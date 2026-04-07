@@ -1,44 +1,14 @@
-const CACHE_NAME = 'liuyao-v1';
-const ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Ma+Shan+Zheng&display=swap',
-  'https://cdn.jsdelivr.net/npm/lunar-javascript/lunar.js'
-];
-
-self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return Promise.allSettled(ASSETS.map(url => cache.add(url).catch(() => {})));
-    })
-  );
-  self.skipWaiting();
-});
-
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys().then(keys => 
-      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
-    )
-  );
-  self.clients.claim();
-});
-
-self.addEventListener('fetch', e => {
-  // Skip GitHub API requests
-  if (e.request.url.includes('api.github.com')) return;
-  
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      if (cached) return cached;
-      return fetch(e.request).then(res => {
-        if (res && res.status === 200 && e.request.method === 'GET') {
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(e.request, clone));
-        }
-        return res;
-      }).catch(() => cached);
-    })
-  );
+const CACHE='liuyao-v2';
+const ASSETS=['/','/index.html','/manifest.json'];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>Promise.allSettled(ASSETS.map(u=>c.add(u).catch(()=>{})))));self.skipWaiting();});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim();});
+self.addEventListener('fetch',e=>{
+  if(e.request.url.includes('api.github.com')||e.request.url.includes('fonts.g'))return;
+  e.respondWith(caches.match(e.request).then(c=>{
+    if(c)return c;
+    return fetch(e.request).then(r=>{
+      if(r&&r.status===200&&e.request.method==='GET'){const cl=r.clone();caches.open(CACHE).then(cache=>cache.put(e.request,cl));}
+      return r;
+    }).catch(()=>c);
+  }));
 });
