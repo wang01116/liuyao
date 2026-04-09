@@ -34,48 +34,48 @@
 }
 /* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box;}
-html{font-size:14px;-webkit-tap-highlight-color:transparent;}
+html{font-size:16px;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s;}
 ::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px;}
 /* ===== HEADER ===== */
 .hdr{position:sticky;top:0;z-index:300;background:var(--surface);border-bottom:1px solid var(--bd);box-shadow:var(--sh);}
-.hdr-in{max-width:1060px;margin:0 auto;padding:0 14px;height:50px;display:flex;align-items:center;justify-content:space-between;}
-.logo{font-family:'Ma Shan Zheng',serif;font-size:1.3rem;color:var(--ac);display:flex;align-items:center;gap:7px;letter-spacing:.04em;}
-.logo-s{font-size:1.6rem;line-height:1;}
-.hdr-acts{display:flex;gap:5px;}
-.ico{width:34px;height:34px;border:1px solid var(--bd);background:var(--surface2);border-radius:var(--rs);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--tx2);transition:var(--tr);}
+.hdr-in{max-width:1100px;margin:0 auto;padding:0 18px;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Ma Shan Zheng',serif;font-size:1.5rem;color:var(--ac);display:flex;align-items:center;gap:8px;letter-spacing:.04em;}
+.logo-s{font-size:1.9rem;line-height:1;}
+.hdr-acts{display:flex;gap:6px;}
+.ico{width:38px;height:38px;border:1px solid var(--bd);background:var(--surface2);border-radius:var(--rs);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--tx2);transition:var(--tr);}
 .ico:hover{border-color:var(--ac);color:var(--ac);}
 /* ===== TABS ===== */
-.tbw{background:var(--surface);border-bottom:1px solid var(--bd);position:sticky;top:50px;z-index:290;}
-.tabs{max-width:1060px;margin:0 auto;padding:0 14px;display:flex;overflow-x:auto;scrollbar-width:none;}
+.tbw{background:var(--surface);border-bottom:1px solid var(--bd);position:sticky;top:56px;z-index:290;}
+.tabs{max-width:1100px;margin:0 auto;padding:0 18px;display:flex;overflow-x:auto;scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{padding:9px 14px;border:none;background:none;cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--tr);white-space:nowrap;display:flex;align-items:center;gap:4px;}
+.tab{padding:11px 18px;border:none;background:none;cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.9rem;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--tr);white-space:nowrap;display:flex;align-items:center;gap:5px;}
 .tab:hover{color:var(--tx);}
 .tab.on{color:var(--ac);border-bottom-color:var(--ac);}
-.tbadge{background:var(--ac);color:#fff;font-size:.62rem;padding:1px 5px;border-radius:8px;min-width:15px;text-align:center;}
-.sdot{width:6px;height:6px;border-radius:50%;background:#e08010;display:inline-block;margin-left:3px;vertical-align:middle;}
+.tbadge{background:var(--ac);color:#fff;font-size:.68rem;padding:1px 6px;border-radius:9px;min-width:17px;text-align:center;}
+.sdot{width:7px;height:7px;border-radius:50%;background:#e08010;display:inline-block;margin-left:3px;vertical-align:middle;}
 /* ===== MAIN ===== */
-.main{max-width:1060px;margin:0 auto;padding:14px;}
+.main{max-width:1100px;margin:0 auto;padding:18px;}
 .pg{display:none;}.pg.on{display:block;}
 /* ===== LAYOUT ===== */
-.lay{display:grid;grid-template-columns:280px 1fr;gap:14px;align-items:start;}
-@media(max-width:700px){.lay{grid-template-columns:1fr;}}
+.lay{display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:start;}
+@media(max-width:760px){.lay{grid-template-columns:1fr;}}
 /* ===== CARD ===== */
-.card{background:var(--surface);border:1px solid var(--bdl);border-radius:var(--r);padding:14px;box-shadow:var(--sh);margin-bottom:10px;}
+.card{background:var(--surface);border:1px solid var(--bdl);border-radius:var(--r);padding:16px;box-shadow:var(--sh);margin-bottom:12px;}
 .card:last-child{margin-bottom:0;}
-.ctit{font-size:.72rem;font-weight:700;color:var(--tx3);letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;gap:5px;}
-.ctit::before{content:'';display:block;width:2px;height:11px;background:var(--ac);border-radius:2px;flex-shrink:0;}
+.ctit{font-size:.8rem;font-weight:700;color:var(--tx3);letter-spacing:.1em;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.ctit::before{content:'';display:block;width:3px;height:13px;background:var(--ac);border-radius:2px;flex-shrink:0;}
 /* ===== GANZHI ===== */
-.gz-row{display:flex;gap:5px;margin-bottom:6px;}
-.gz-cell{flex:1;background:var(--bg2);border:1px solid var(--bdl);border-radius:var(--rs);padding:6px 3px;text-align:center;min-width:0;}
-.gz-lbl{font-size:.6rem;color:var(--tx3);margin-bottom:2px;}
-.gz-val{font-size:.9rem;font-weight:600;line-height:1.2;}
-.gz-ext{margin-top:6px;}
-.gz-ext-row{display:flex;gap:8px;font-size:.68rem;color:var(--tx3);flex-wrap:wrap;margin-bottom:3px;}
+.gz-row{display:flex;gap:6px;margin-bottom:7px;}
+.gz-cell{flex:1;background:var(--bg2);border:1px solid var(--bdl);border-radius:var(--rs);padding:7px 4px;text-align:center;min-width:0;}
+.gz-lbl{font-size:.65rem;color:var(--tx3);margin-bottom:3px;}
+.gz-val{font-size:1rem;font-weight:600;line-height:1.2;}
+.gz-ext{margin-top:7px;}
+.gz-ext-row{display:flex;gap:10px;font-size:.75rem;color:var(--tx3);flex-wrap:wrap;margin-bottom:4px;}
 .gz-ext-row span{color:var(--tx2);}
-.gz-sub{background:var(--bg2);border-radius:var(--rs);padding:6px 8px;margin-top:4px;font-size:.67rem;line-height:1.7;color:var(--tx2);}
-.gz-sub-title{font-weight:700;color:var(--tx3);font-size:.65rem;margin-bottom:3px;}
+.gz-sub{background:var(--bg2);border-radius:var(--rs);padding:7px 10px;margin-top:5px;font-size:.72rem;line-height:1.8;color:var(--tx2);}
+.gz-sub-title{font-weight:700;color:var(--tx3);font-size:.68rem;margin-bottom:3px;}
 /* wuxing css classes */
 .wjin{color:var(--c-jin)!important;}
 .wmu{color:var(--c-mu)!important;}
@@ -83,176 +83,208 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 .whuo{color:var(--c-huo)!important;}
 .wtu{color:var(--c-tu)!important;}
 /* ===== SAVE CARD ===== */
-.sinp{width:100%;padding:7px 9px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.85rem;color:var(--tx);transition:var(--tr);margin-bottom:7px;}
+.sinp{width:100%;padding:9px 11px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.95rem;color:var(--tx);transition:var(--tr);margin-bottom:8px;}
 .sinp:focus{outline:none;border-color:var(--ac);background:var(--surface);}
 .sinp::placeholder{color:var(--tx3);}
-.cats{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;}
-.catb{padding:3px 8px;border:1px solid var(--bd);background:var(--bg2);border-radius:18px;cursor:pointer;font-size:.7rem;color:var(--tx2);transition:var(--tr);font-family:'Noto Serif SC',serif;}
+.cats{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.catb{padding:4px 10px;border:1px solid var(--bd);background:var(--bg2);border-radius:18px;cursor:pointer;font-size:.78rem;color:var(--tx2);transition:var(--tr);font-family:'Noto Serif SC',serif;}
 .catb.on{background:var(--ac);color:#fff;border-color:var(--ac);}
 .catb:hover:not(.on){border-color:var(--ac);color:var(--ac);}
 /* ===== METHOD ===== */
-.mtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px;}
-.mtab{padding:6px 2px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.75rem;color:var(--tx2);text-align:center;transition:var(--tr);}
+.mtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:12px;}
+.mtab{padding:8px 4px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.85rem;color:var(--tx2);text-align:center;transition:var(--tr);}
 .mtab.on{background:var(--ac);color:#fff;border-color:var(--ac);}
 .mtab:hover:not(.on){border-color:var(--ac);color:var(--ac);}
 .mp{display:none;}.mp.on{display:block;}
 /* ===== MANUAL - dropdown style (matches reference images) ===== */
-.ml-grid{display:flex;flex-direction:column;gap:5px;}
-.ml-row{display:grid;grid-template-columns:36px 1fr;align-items:center;gap:8px;}
-.ml-lbl{font-size:.82rem;color:var(--tx2);text-align:right;font-weight:500;}
-.ml-sel{width:100%;padding:8px 10px;border:1px solid var(--bd);background:var(--surface);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx);cursor:pointer;transition:var(--tr);appearance:auto;-webkit-appearance:auto;}
+.ml-grid{display:flex;flex-direction:column;gap:6px;}
+.ml-row{display:grid;grid-template-columns:40px 1fr;align-items:center;gap:8px;}
+.ml-lbl{font-size:.88rem;color:var(--tx2);text-align:right;font-weight:500;}
+.ml-sel{width:100%;padding:9px 11px;border:1px solid var(--bd);background:var(--surface);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.88rem;color:var(--tx);cursor:pointer;transition:var(--tr);appearance:auto;-webkit-appearance:auto;}
 .ml-sel:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 2px rgba(139,37,0,.15);}
-.ml-sel option{font-family:'Noto Serif SC',serif;font-size:.82rem;padding:4px 0;}
+.ml-sel option{font-family:'Noto Serif SC',serif;font-size:.88rem;}
 /* ===== NUMBER INPUT ===== */
-.ngrp{display:flex;flex-direction:column;gap:8px;}
-.nrow{display:flex;align-items:center;gap:7px;}
-.nrow label{font-size:.78rem;color:var(--tx2);min-width:56px;}
-.ninp{width:58px;padding:6px 7px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.9rem;color:var(--tx);text-align:center;transition:var(--tr);}
+.ngrp{display:flex;flex-direction:column;gap:10px;}
+.nrow{display:flex;align-items:center;gap:8px;}
+.nrow label{font-size:.85rem;color:var(--tx2);min-width:56px;}
+.ninp{width:64px;padding:7px 8px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:1rem;color:var(--tx);text-align:center;transition:var(--tr);}
 .ninp:focus{outline:none;border-color:var(--ac);}
-.nhint{font-size:.65rem;color:var(--tx3);line-height:1.5;}
+.nhint{font-size:.72rem;color:var(--tx3);line-height:1.6;}
 /* ===== BUTTONS ===== */
-.btn{padding:7px 14px;border:none;border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.82rem;transition:var(--tr);display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
+.btn{padding:9px 16px;border:none;border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.9rem;transition:var(--tr);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
 .btnp{background:var(--ac);color:#fff;box-shadow:0 2px 7px rgba(139,37,0,.28);}
 .btnp:hover{background:var(--ac2);transform:translateY(-1px);}
 .btns{background:var(--surface2);color:var(--tx2);border:1px solid var(--bd);}
 .btns:hover{border-color:var(--ac);color:var(--ac);}
 .btnd{background:#841818;color:#fff;}
 .btnd:hover{background:#9a2020;}
-.bsm{padding:4px 9px;font-size:.72rem;}
+.bsm{padding:5px 11px;font-size:.78rem;}
 .bfw{width:100%;justify-content:center;}
 /* ===== HEXAGRAM RESULT ===== */
 .hx-area{animation:fadeup .35s ease;}
 @keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-/* Two columns ALWAYS side by side - no wrapping under any screen width */
+/*
+  Layout: [本卦] [○× center col] [变卦]
+  Both columns stay in one horizontal line always.
+  Uses display:table so width is strictly enforced.
+*/
 .hx-cols{
   display:table;
   table-layout:fixed;
   width:100%;
   border-collapse:separate;
-  border-spacing:6px 0;
+  border-spacing:0;
 }
-.hx-col{
-  display:table-cell;
-  width:50%;
-  vertical-align:top;
-}
-/* On very small screens, reduce font sizes to fit */
-@media(max-width:400px){
-  .yao-left{font-size:.58rem;gap:2px;}
-  .yao-right{font-size:.58rem;gap:2px;}
-  .hx-col-tit{font-size:.72rem;}
-  .pal-badge{font-size:.58rem;padding:1px 4px;}
-}
-.hx-col-tit{text-align:center;font-size:.82rem;font-weight:600;color:var(--tx2);margin-bottom:6px;padding-bottom:5px;border-bottom:1px solid var(--bdl);line-height:1.4;}
+.hx-col-main{display:table-cell;width:46%;vertical-align:top;padding-right:4px;}
+.hx-col-mid{display:table-cell;width:8%;vertical-align:top;text-align:center;}
+.hx-col-change{display:table-cell;width:46%;vertical-align:top;padding-left:4px;}
+
+/* Title row */
+.hx-col-tit{text-align:center;font-size:.88rem;font-weight:600;color:var(--tx2);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--bdl);line-height:1.5;}
 .hx-col-tit.ct{color:var(--jade);}
-.pal-badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:.65rem;font-weight:700;}
-.spec-tag{display:inline-block;padding:1px 6px;background:var(--bg2);border:1px solid var(--bdl);border-radius:8px;font-size:.65rem;color:var(--tx2);margin:1px;}
-/* Line rendering */
-.lines-w{display:flex;flex-direction:column;gap:3px;}
-.yao-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:4px;min-height:18px;}
-.yao-left{display:flex;align-items:center;gap:3px;font-size:.68rem;white-space:nowrap;justify-content:flex-end;}
-.yao-right{display:flex;align-items:center;gap:3px;font-size:.68rem;white-space:nowrap;}
+.pal-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.7rem;font-weight:700;}
+.spec-tag{display:inline-block;padding:1px 6px;background:var(--bg2);border:1px solid var(--bdl);border-radius:8px;font-size:.68rem;color:var(--tx2);margin:1px;}
+
+/* Each yao "block" = the yao-row + optional fuchen row.
+   Both main and change hex have identical height blocks → rows align. */
+.yao-block{margin-bottom:6px;}
+.yao-block:last-child{margin-bottom:0;}
+
+/* The actual yao line row */
+.yao-row{display:grid;align-items:center;gap:4px;min-height:22px;}
+/* Main hex: [left-meta][yao-visual][right-world] */
+.yao-row-main{grid-template-columns:auto 1fr auto;}
+/* Change hex: [right-meta] only, no left space needed */
+.yao-row-chg{grid-template-columns:1fr auto;}
+
+.yao-left{display:flex;align-items:center;gap:3px;font-size:.76rem;white-space:nowrap;justify-content:flex-end;}
+.yao-right{display:flex;align-items:center;gap:3px;font-size:.76rem;white-space:nowrap;}
 .yshen{color:var(--sc);font-weight:700;}
 .yqin{color:var(--tx-p);font-weight:600;}
 .yzhi{color:var(--tx-p);}
-.yshi{font-size:.68rem;font-weight:700;padding:0 4px;border-radius:3px;color:var(--ac);}
-.yying{font-size:.68rem;font-weight:700;padding:0 4px;border-radius:3px;color:var(--jade);}
-/* Yao visual */
-.yv{position:relative;display:flex;align-items:center;height:9px;}
-.y-yang{width:100%;height:9px;background:var(--lc);border-radius:4px;}
-.y-yin{display:flex;gap:7px;width:100%;height:9px;}
-.y-yin-h{flex:1;height:9px;background:var(--lc);border-radius:4px;}
-.cmark{position:absolute;left:50%;transform:translateX(-50%);font-size:.65rem;color:var(--gold);font-weight:bold;line-height:1;top:-1px;pointer-events:none;}
-/* Fuchen */
-.fuchen-r{font-size:.6rem;color:var(--tx3);text-align:center;margin-top:0px;padding-left:4px;}
-/* No change */
-.no-chg{display:flex;align-items:center;justify-content:center;height:100%;min-height:100px;color:var(--tx3);font-size:.78rem;flex-direction:column;gap:6px;}
-/* ===== ANALYSIS ===== */
-.ana-sec{margin-top:12px;}
-.ana-title{font-size:.75rem;font-weight:700;color:var(--tx3);letter-spacing:.06em;margin-bottom:6px;padding-left:6px;border-left:2px solid var(--ac);}
-.ana-block{background:var(--bg2);border-radius:var(--rs);padding:8px 10px;margin-bottom:6px;font-size:.72rem;line-height:1.7;color:var(--tx2);}
-.ana-block strong{color:var(--tx);font-weight:600;}
-.ana-item{display:flex;align-items:flex-start;gap:5px;padding:2px 0;border-bottom:1px solid var(--bdl);}
-.ana-item:last-child{border-bottom:none;}
-.ana-dot{width:5px;height:5px;border-radius:50%;background:var(--ac);flex-shrink:0;margin-top:5px;}
-.ana-good{color:var(--c-mu);}
-.ana-bad{color:var(--c-huo);}
-.ana-neu{color:var(--tx3);}
+.yshi{font-size:.74rem;font-weight:700;padding:0 4px;border-radius:3px;color:var(--ac);}
+.yying{font-size:.74rem;font-weight:700;padding:0 4px;border-radius:3px;color:var(--jade);}
+
+/* Yao visual bar */
+.yv{position:relative;display:flex;align-items:center;height:11px;}
+.y-yang{width:100%;height:11px;background:var(--lc);border-radius:5px;}
+.y-yin{display:flex;gap:8px;width:100%;height:11px;}
+.y-yin-h{flex:1;height:11px;background:var(--lc);border-radius:5px;}
+
+/* O/X change marker in CENTER column - aligned to each yao-block */
+.mid-marks{display:flex;flex-direction:column;gap:6px;padding-top:30px;/* offset for title row */}
+.mid-mark{height:22px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:bold;color:var(--gold);}
+.mid-mark:last-child{margin-bottom:0;}
+/* fuchen placeholder in mid column to keep alignment */
+.mid-fc{height:16px;margin-bottom:0;}
+
+/* Fuchen row: appears below the yao-row inside yao-block, grey small text */
+.fuchen-r{font-size:.68rem;color:var(--tx3);padding:2px 0 0 2px;line-height:1.4;min-height:16px;}
+
+/* No change placeholder */
+.no-chg{display:flex;align-items:center;justify-content:center;height:100%;min-height:120px;color:var(--tx3);font-size:.85rem;flex-direction:column;gap:8px;}
+
+/* Responsive: on very small screens shrink text but keep side by side */
+@media(max-width:400px){
+  .yao-left,.yao-right{font-size:.64rem;}
+  .hx-col-tit{font-size:.76rem;}
+  .pal-badge{font-size:.6rem;padding:1px 5px;}
+  .y-yang,.y-yin-h{height:9px;}
+  .yv{height:9px;}
+}
+/* ===== ANALYSIS - graphic SVG style ===== */
+.ana-sec{margin-top:14px;}
+.ana-title{font-size:.82rem;font-weight:700;color:var(--tx3);letter-spacing:.06em;margin-bottom:8px;padding-left:7px;border-left:3px solid var(--ac);}
+.ana-wrap{background:var(--bg2);border-radius:var(--rs);padding:0;margin-bottom:8px;overflow:hidden;}
+.ana-group-hdr{font-size:.72rem;font-weight:700;color:var(--tx3);padding:6px 10px;background:var(--bdl);letter-spacing:.06em;}
+.ana-svg-row{display:flex;align-items:center;gap:0;padding:4px 10px;border-bottom:1px solid var(--bdl);flex-wrap:nowrap;overflow-x:auto;}
+.ana-svg-row:last-child{border-bottom:none;}
+/* SVG graphic element */
+.rel-chip{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:12px;font-size:.7rem;font-weight:600;margin:2px 3px;white-space:nowrap;flex-shrink:0;}
+.rel-good{background:rgba(46,104,48,.15);color:var(--c-mu);border:1px solid rgba(46,104,48,.3);}
+.rel-bad{background:rgba(168,24,8,.12);color:var(--c-huo);border:1px solid rgba(168,24,8,.25);}
+.rel-neu{background:var(--surface2);color:var(--tx3);border:1px solid var(--bdl);}
+/* Inline SVG mini arrow */
+.rel-arrow{font-size:.65rem;color:var(--tx3);flex-shrink:0;}
+.ana-subject{font-size:.74rem;color:var(--tx);font-weight:600;white-space:nowrap;flex-shrink:0;}
 /* ===== NOTES ===== */
-.notes-tog{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:7px 0;border-top:1px solid var(--bdl);margin-top:10px;font-size:.78rem;color:var(--tx3);}
-.nted{width:100%;min-height:110px;padding:9px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx);resize:vertical;transition:var(--tr);line-height:1.7;margin-top:6px;}
+.notes-tog{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:8px 0;border-top:1px solid var(--bdl);margin-top:12px;font-size:.85rem;color:var(--tx3);}
+.nted{width:100%;min-height:120px;padding:10px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.9rem;color:var(--tx);resize:vertical;transition:var(--tr);line-height:1.7;margin-top:7px;}
 .nted:focus{outline:none;border-color:var(--ac);background:var(--surface);}
-.ntpv{min-height:30px;font-size:.82rem;line-height:1.8;color:var(--tx);margin-top:6px;}
-.ntpv h1,.ntpv h2,.ntpv h3{color:var(--ac);margin:6px 0 3px;font-size:.9rem;}
-.ntpv p{margin:3px 0;}
-.ntpv code{background:var(--bg2);padding:1px 3px;border-radius:3px;font-size:.78em;}
-.ntpv blockquote{border-left:2px solid var(--ac);padding-left:7px;color:var(--tx2);margin:4px 0;}
-.ntpv ul,.ntpv ol{padding-left:14px;margin:3px 0;}
+.ntpv{min-height:30px;font-size:.88rem;line-height:1.9;color:var(--tx);margin-top:7px;}
+.ntpv h1,.ntpv h2,.ntpv h3{color:var(--ac);margin:8px 0 4px;font-size:.95rem;}
+.ntpv p{margin:4px 0;}
+.ntpv code{background:var(--bg2);padding:1px 4px;border-radius:3px;font-size:.82em;}
+.ntpv blockquote{border-left:2px solid var(--ac);padding-left:8px;color:var(--tx2);margin:5px 0;}
+.ntpv ul,.ntpv ol{padding-left:16px;margin:4px 0;}
 /* ===== RECORDS ===== */
-.rl{display:flex;flex-direction:column;gap:8px;}
-.ri{background:var(--surface);border:1px solid var(--bdl);border-radius:var(--r);padding:12px;transition:var(--tr);box-shadow:var(--sh);cursor:pointer;}
+.rl{display:flex;flex-direction:column;gap:10px;}
+.ri{background:var(--surface);border:1px solid var(--bdl);border-radius:var(--r);padding:14px;transition:var(--tr);box-shadow:var(--sh);cursor:pointer;}
 .ri:hover{border-color:var(--ac);box-shadow:var(--sh2);}
-.ri-hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;}
-.ri-name{font-size:.9rem;font-weight:600;}
-.ri-date{font-size:.68rem;color:var(--tx3);white-space:nowrap;}
-.ri-meta{font-size:.7rem;color:var(--tx3);margin-top:2px;display:flex;align-items:center;gap:5px;}
-.ri-cat{padding:1px 6px;background:var(--bg2);border-radius:8px;font-size:.65rem;color:var(--tx2);}
-.ri-hex{font-size:.8rem;color:var(--ac);margin-top:4px;font-weight:500;}
-.rfilt{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.ri-hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:7px;}
+.ri-name{font-size:.95rem;font-weight:600;}
+.ri-date{font-size:.72rem;color:var(--tx3);white-space:nowrap;}
+.ri-meta{font-size:.74rem;color:var(--tx3);margin-top:3px;display:flex;align-items:center;gap:6px;}
+.ri-cat{padding:2px 7px;background:var(--bg2);border-radius:8px;font-size:.68rem;color:var(--tx2);}
+.ri-hex{font-size:.85rem;color:var(--ac);margin-top:5px;font-weight:500;}
+.rfilt{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
 /* batch */
-.bbr{display:flex;align-items:center;gap:6px;padding:7px 10px;background:var(--surface2);border-radius:var(--rs);margin-bottom:8px;flex-wrap:wrap;}
-.bbr span{font-size:.76rem;color:var(--tx2);flex:1;}
-.chk{width:14px;height:14px;cursor:pointer;accent-color:var(--ac);}
+.bbr{display:flex;align-items:center;gap:7px;padding:8px 12px;background:var(--surface2);border-radius:var(--rs);margin-bottom:10px;flex-wrap:wrap;}
+.bbr span{font-size:.82rem;color:var(--tx2);flex:1;}
+.chk{width:15px;height:15px;cursor:pointer;accent-color:var(--ac);}
 /* ===== DETAIL ===== */
-.det-back{display:flex;align-items:center;gap:5px;cursor:pointer;color:var(--tx3);font-size:.78rem;margin-bottom:12px;padding:5px 0;border:none;background:none;transition:var(--tr);}
+.det-back{display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--tx3);font-size:.85rem;margin-bottom:14px;padding:6px 0;border:none;background:none;transition:var(--tr);}
 .det-back:hover{color:var(--ac);}
-.det-tabs{display:flex;border-bottom:1px solid var(--bd);margin-bottom:14px;}
-.det-tab{padding:7px 14px;border:none;background:none;cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.78rem;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--tr);}
-.det-tab.on{color:var(--ac);border-bottom-color:var(--ac);}
-.det-tab:hover{color:var(--tx);}
 /* ===== MODAL ===== */
-.mover{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:900;display:flex;align-items:center;justify-content:center;padding:14px;opacity:0;pointer-events:none;transition:opacity .22s;}
+.mover{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:900;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .22s;}
 .mover.on{opacity:1;pointer-events:all;}
-.modal{background:var(--surface);border-radius:var(--r);padding:18px;max-width:420px;width:100%;box-shadow:var(--sh2);transform:translateY(18px);transition:transform .22s;}
+.modal{background:var(--surface);border-radius:var(--r);padding:20px;max-width:440px;width:100%;box-shadow:var(--sh2);transform:translateY(18px);transition:transform .22s;}
 .mover.on .modal{transform:translateY(0);}
-.mtit{font-size:.95rem;font-weight:700;margin-bottom:12px;}
-.mbody{margin-bottom:14px;}
-.mft{display:flex;gap:6px;justify-content:flex-end;}
-.minp{width:100%;padding:7px 9px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx);margin-bottom:7px;transition:var(--tr);}
+.mtit{font-size:1rem;font-weight:700;margin-bottom:14px;}
+.mbody{margin-bottom:16px;}
+.mft{display:flex;gap:7px;justify-content:flex-end;}
+.minp{width:100%;padding:8px 10px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.88rem;color:var(--tx);margin-bottom:8px;transition:var(--tr);}
 .minp:focus{outline:none;border-color:var(--ac);}
-.mlbl{font-size:.72rem;color:var(--tx2);margin-bottom:3px;display:block;}
-.mhint{font-size:.66rem;color:var(--tx3);margin-top:3px;line-height:1.4;}
-.mst{font-size:.72rem;padding:4px 0;color:var(--tx3);}
+.mlbl{font-size:.78rem;color:var(--tx2);margin-bottom:3px;display:block;}
+.mhint{font-size:.7rem;color:var(--tx3);margin-top:3px;line-height:1.5;}
+.mst{font-size:.76rem;padding:4px 0;color:var(--tx3);}
 /* ===== SETTINGS / ABOUT ===== */
-.stit{font-size:.78rem;color:var(--tx2);font-weight:700;margin-bottom:7px;}
-.srow{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bdl);font-size:.82rem;gap:7px;}
+.stit{font-size:.85rem;color:var(--tx2);font-weight:700;margin-bottom:8px;}
+.srow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bdl);font-size:.88rem;gap:8px;}
 .srow:last-child{border-bottom:none;}
 .slbl{color:var(--tx);flex:1;}
-.sdesc{font-size:.68rem;color:var(--tx3);margin-top:2px;}
-.tog{position:relative;width:38px;height:21px;flex-shrink:0;}
+.sdesc{font-size:.72rem;color:var(--tx3);margin-top:2px;}
+.tog{position:relative;width:40px;height:22px;flex-shrink:0;}
 .tog input{opacity:0;width:0;height:0;}
 .togtr{position:absolute;inset:0;background:var(--bd);border-radius:11px;cursor:pointer;transition:var(--tr);}
-.togtr::after{content:'';position:absolute;left:2px;top:2px;width:17px;height:17px;background:#fff;border-radius:50%;transition:var(--tr);box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.togtr::after{content:'';position:absolute;left:2px;top:2px;width:18px;height:18px;background:#fff;border-radius:50%;transition:var(--tr);box-shadow:0 1px 3px rgba(0,0,0,.2);}
 .tog input:checked+.togtr{background:var(--ac);}
-.tog input:checked+.togtr::after{transform:translateX(17px);}
-.about-c{line-height:1.8;font-size:.84rem;color:var(--tx2);}
-.about-c h3{color:var(--ac);margin:12px 0 5px;font-size:.9rem;}
-.about-c ul{padding-left:14px;}
-.about-c li{margin:2px 0;}
+.tog input:checked+.togtr::after{transform:translateX(18px);}
+.about-c{line-height:1.9;font-size:.9rem;color:var(--tx2);}
+.about-c h3{color:var(--ac);margin:14px 0 6px;font-size:.95rem;}
+.about-c ul{padding-left:16px;}
+.about-c li{margin:3px 0;}
 /* ===== IMPORT DROP ===== */
-.drop{border:2px dashed var(--bd);border-radius:var(--r);padding:16px;text-align:center;color:var(--tx3);font-size:.78rem;cursor:pointer;transition:var(--tr);margin-bottom:6px;}
+.drop{border:2px dashed var(--bd);border-radius:var(--r);padding:18px;text-align:center;color:var(--tx3);font-size:.85rem;cursor:pointer;transition:var(--tr);margin-bottom:8px;}
 .drop:hover{border-color:var(--ac);color:var(--ac);}
 /* ===== TOAST ===== */
-.tc{position:fixed;bottom:18px;right:14px;z-index:9999;display:flex;flex-direction:column;gap:5px;pointer-events:none;}
-.toast{background:var(--tx);color:var(--bg);padding:8px 14px;border-radius:var(--rs);font-size:.76rem;box-shadow:var(--sh2);animation:tin .22s ease;max-width:260px;}
+.tc{position:fixed;bottom:20px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:6px;pointer-events:none;}
+.toast{background:var(--tx);color:var(--bg);padding:9px 16px;border-radius:var(--rs);font-size:.82rem;box-shadow:var(--sh2);animation:tin .22s ease;max-width:280px;}
 .toast.ok{background:#1e5e1e;color:#fff;}
 .toast.err{background:#7a1414;color:#fff;}
 @keyframes tin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 /* ===== INSTALL BANNER ===== */
-.ibar{background:var(--ac);color:#fff;padding:6px 14px;display:none;align-items:center;justify-content:space-between;font-size:.76rem;gap:8px;}
-.ibar button{padding:3px 9px;border-radius:10px;cursor:pointer;font-size:.7rem;border:none;}
+.ibar{background:var(--ac);color:#fff;padding:7px 16px;display:none;align-items:center;justify-content:space-between;font-size:.82rem;gap:8px;}
+.ibar button{padding:4px 10px;border-radius:10px;cursor:pointer;font-size:.76rem;border:none;}
 .iby{background:#fff;color:var(--ac);}
 .ibn{background:rgba(255,255,255,.2);color:#fff;}
+/* ===== MOBILE LAYOUT: after cast, reorder sections ===== */
+@media(max-width:760px){
+  .lay{display:flex;flex-direction:column;}
+  /* On mobile, right panel (ganzhi+result) goes FIRST */
+  #rightPanel{order:1;}
+  #leftPanel{order:2;}
+}
 </style>
 </head>
 <body>
@@ -293,15 +325,8 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 <!-- ===== CAST PAGE ===== -->
 <div class="pg on" id="pg-cast">
   <div class="lay">
-    <!-- LEFT PANEL -->
-    <div>
-      <!-- Save card - first in DOM = first on mobile -->
-      <div class="card" id="saveCard">
-        <div class="ctit">💾 保存卦例</div>
-        <input type="text" class="sinp" id="castName" placeholder="为此卦起一个名字..." maxlength="30">
-        <div class="cats" id="catRow"></div>
-        <button class="btn btnp bfw" onclick="saveCast()">保存到卦例</button>
-      </div>
+    <!-- LEFT PANEL (on desktop: controls; on mobile: shows last) -->
+    <div id="leftPanel">
       <!-- Method -->
       <div class="card">
         <div class="ctit">🎲 起卦方式</div>
@@ -312,42 +337,49 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
         </div>
         <!-- Random -->
         <div class="mp on" id="mp-random">
-          <p style="font-size:.72rem;color:var(--tx3);margin-bottom:8px">随机产生六爻含老阴(×)老阳(○)</p>
+          <p style="font-size:.78rem;color:var(--tx3);margin-bottom:8px">随机产生六爻含老阴(×)老阳(○)</p>
           <button class="btn btnp bfw" onclick="castRandom()">🎲 随机起卦</button>
         </div>
         <!-- Number -->
         <div class="mp" id="mp-number">
           <div class="ngrp">
-            <div class="nrow"><label>上卦</label><input class="ninp" type="number" id="nU" min="1" max="9" value="1"><span style="font-size:.65rem;color:var(--tx3)">1/9乾 2兑 3离 4震</span></div>
-            <div class="nrow"><label>下卦</label><input class="ninp" type="number" id="nL" min="1" max="9" value="1"><span style="font-size:.65rem;color:var(--tx3)">5巽 6坎 7艮 8坤</span></div>
+            <div class="nrow"><label>上卦</label><input class="ninp" type="number" id="nU" min="1" max="9" value="1"><span style="font-size:.7rem;color:var(--tx3)">1/9乾 2兑 3离 4震</span></div>
+            <div class="nrow"><label>下卦</label><input class="ninp" type="number" id="nL" min="1" max="9" value="1"><span style="font-size:.7rem;color:var(--tx3)">5巽 6坎 7艮 8坤</span></div>
             <div class="nrow"><label>变爻</label><input class="ninp" type="number" id="nC" min="1" max="9" value="1"></div>
             <div class="nhint">变爻：1/7→初 2/8→二 3/9→三 4→四 5→五 6→上</div>
           </div>
-          <button class="btn btnp bfw" style="margin-top:8px" onclick="castNum()">✨ 数字起卦</button>
+          <button class="btn btnp bfw" style="margin-top:10px" onclick="castNum()">✨ 数字起卦</button>
         </div>
         <!-- Manual -->
         <div class="mp" id="mp-manual">
           <div class="ml-grid" id="mlGrid"></div>
-          <button class="btn btnp bfw" style="margin-top:8px" onclick="castManual()">📝 确定起卦</button>
+          <button class="btn btnp bfw" style="margin-top:10px" onclick="castManual()">📝 确定起卦</button>
         </div>
+      </div>
+      <!-- Save card -->
+      <div class="card" id="saveCard">
+        <div class="ctit">💾 保存卦例</div>
+        <input type="text" class="sinp" id="castName" placeholder="为此卦起一个名字..." maxlength="30">
+        <div class="cats" id="catRow"></div>
+        <button class="btn btnp bfw" onclick="saveCast()">保存到卦例</button>
       </div>
     </div>
 
-    <!-- RIGHT PANEL: ganzhi + result + notes -->
-    <div>
-      <!-- Ganzhi -->
+    <!-- RIGHT PANEL: ganzhi top, then result + notes -->
+    <div id="rightPanel">
+      <!-- Ganzhi - always at top of right panel -->
       <div class="card" id="gzCard">
         <div class="ctit">📅 干支历</div>
-        <div style="font-size:.68rem;color:var(--tx3);margin-bottom:5px" id="lunarStr">加载中...</div>
+        <div style="font-size:.72rem;color:var(--tx3);margin-bottom:6px" id="lunarStr">加载中...</div>
         <div class="gz-row" id="gzRow"></div>
         <div class="gz-ext" id="gzExt"></div>
       </div>
-      <!-- Result -->
+      <!-- Result card -->
       <div class="card" id="resCard">
         <div class="ctit">☯ 卦象结果</div>
         <div id="hexRes">
-          <div style="text-align:center;padding:30px 0;color:var(--tx3)">
-            <div style="font-size:2rem;opacity:.2;margin-bottom:6px">☯</div>请起卦
+          <div style="text-align:center;padding:36px 0;color:var(--tx3)">
+            <div style="font-size:2.4rem;opacity:.2;margin-bottom:8px">☯</div>请起卦
           </div>
         </div>
         <!-- Inline notes below hexagram -->
@@ -358,8 +390,12 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
           </div>
           <div id="cnBody" style="display:none">
             <textarea class="nted" id="castNotesTxt" placeholder="记录占问内容、卦象分析、判断结论..."></textarea>
-            <div style="font-size:.63rem;color:var(--tx3);margin-top:3px">保存卦例时一并保存</div>
+            <div style="font-size:.68rem;color:var(--tx3);margin-top:4px">保存卦例时一并保存</div>
           </div>
+        </div>
+        <!-- Reset button -->
+        <div id="castResetWrap" style="display:none;margin-top:14px;padding-top:12px;border-top:1px solid var(--bdl)">
+          <button class="btn btns bsm" onclick="resetCast()">🔄 清除重新起卦</button>
         </div>
       </div>
     </div>
@@ -919,13 +955,39 @@ function analyzeHex(lines,hexName,gz){
 function renderAnalysis(lines,hexName,gz){
   const ana=analyzeHex(lines,hexName,gz);
   if(!ana.length)return'';
+
+  // Map relation text to visual chip
+  function chip(txt,cls){
+    const icons={
+      '六合':'🔗','三合':'△','冲':'⚡','刑':'✕','生':'→','被生':'←','克':'✖','被克':'◁',
+      '长生':'🌱','沐浴':'💧','冠带':'👑','临官':'📈','帝旺':'🔥','衰':'📉','病':'🤒','死':'💀','墓':'⬛','绝':'❌','胎':'🥚','养':'🌿',
+      '比':'＝'
+    };
+    // find matching icon
+    let icon='';
+    for(const[k,v]of Object.entries(icons)){if(txt.includes(k)){icon=v;break;}}
+    return`<span class="rel-chip ${cls||'rel-neu'}">${icon}${txt}</span>`;
+  }
+
   let html=`<div class="ana-sec"><div class="ana-title">🔍 卦象分析</div>`;
   ana.forEach(a=>{
-    html+=`<div class="ana-block">`;
-    if(a.txt){html+=`<div class="ana-item"><div class="ana-dot"></div><div class="${a.cls||''}">${a.txt}</div></div>`;}
-    else if(a.items){
-      if(a.type)html+=`<div style="font-size:.65rem;color:var(--tx3);margin-bottom:3px;font-weight:700">${a.type}</div>`;
-      a.items.forEach(it=>html+=`<div class="ana-item"><div class="ana-dot"></div><div class="${it.cls||''}">${it.txt}</div></div>`);
+    html+=`<div class="ana-wrap">`;
+    if(a.txt){
+      const c=a.cls==='ana-good'?'rel-good':a.cls==='ana-bad'?'rel-bad':'rel-neu';
+      html+=`<div class="ana-svg-row">${chip(a.txt,c)}</div>`;
+    }else if(a.items&&a.items.length){
+      if(a.type)html+=`<div class="ana-group-hdr">${a.type}</div>`;
+      // Group items into rows of 3-4
+      const rows=[];let row=[];
+      a.items.forEach((it,idx)=>{row.push(it);if(row.length>=3||(idx===a.items.length-1)){rows.push(row);row=[];}});
+      rows.forEach(r=>{
+        html+=`<div class="ana-svg-row">`;
+        r.forEach(it=>{
+          const c=it.cls==='ana-good'?'rel-good':it.cls==='ana-bad'?'rel-bad':'rel-neu';
+          html+=chip(it.txt,c);
+        });
+        html+=`</div>`;
+      });
     }
     html+=`</div>`;
   });
@@ -936,9 +998,9 @@ function renderAnalysis(lines,hexName,gz){
 // ================================================================
 // ===== RENDER HEX RESULT ========================================
 // ================================================================
-function renderLines(lines,branches,lqs,fuchen,pi,shen,origLines){
-  let html='<div class="lines-w">';
-  const lnames=['初','二','三','四','五','上'];
+// Build array of {yaoHtml, fcHtml} for each yao (index 5..0, top to bottom)
+function buildYaoBlocks(lines,branches,lqs,fuchen,pi,shen,origLines){
+  const blocks=[];
   for(let i=5;i>=0;i--){
     const line=lines[i];
     const isYang=line===1||line===3;
@@ -951,24 +1013,36 @@ function renderLines(lines,branches,lqs,fuchen,pi,shen,origLines){
     const isShi=pi&&pi.shi===i;
     const isYing=pi&&pi.ying===i;
     const bCls=b?WX_CSS[BEL[b]]||'':'';
-    let leftHtml='',rightHtml='';
-    if(shen){
-      // main hex: left=shen+lq+zhi, right=世/应
-      leftHtml=`<div class="yao-left">${sh?`<span class="yshen">${sh}</span>`:''}${lqS?`<span class="yqin">${lqS}</span>`:''}${b?`<span class="yzhi ${bCls}">${b}</span>`:''}</div>`;
-      rightHtml=`<div class="yao-right">${isShi?`<span class="yshi">世</span>`:isYing?`<span class="yying">应</span>`:'<span></span>'}</div>`;
-    }else{
-      // change hex: left=change mark, right=lq+zhi
-      leftHtml=`<div class="yao-left" style="min-width:18px;justify-content:center">${isChg?`<span style="color:var(--gold);font-weight:bold;font-size:.65rem">${origLine===3?'○':'×'}</span>`:''}</div>`;
-      rightHtml=`<div class="yao-right">${lqS?`<span class="yqin">${lqS}</span>`:''}${b?`<span class="yzhi ${bCls}">${b}</span>`:''}</div>`;
-    }
-    html+=`<div class="yao-row">${leftHtml}<div class="yv">${isYang?`<div class="y-yang"></div>`:`<div class="y-yin"><div class="y-yin-h"></div><div class="y-yin-h"></div></div>`}</div>${rightHtml}</div>`;
     const fc=fuchen[i];
+
+    // Yao bar HTML (same width regardless of yang/yin)
+    const barHtml=isYang
+      ?`<div class="y-yang"></div>`
+      :`<div class="y-yin"><div class="y-yin-h"></div><div class="y-yin-h"></div></div>`;
+
+    let rowHtml;
+    if(shen){
+      // Main hex: [left=shen+lq+zhi] [yao bar] [world/応]
+      const leftH=`<div class="yao-left">${sh?`<span class="yshen">${sh}</span>`:''}${lqS?`<span class="yqin">${lqS}</span>`:''}${b?`<span class="yzhi ${bCls}">${b}</span>`:''}</div>`;
+      const rightH=`<div class="yao-right">${isShi?`<span class="yshi">世</span>`:isYing?`<span class="yying">应</span>`:''}</div>`;
+      rowHtml=`<div class="yao-row yao-row-main">${leftH}<div class="yv">${barHtml}</div>${rightH}</div>`;
+    }else{
+      // Change hex: [yao bar] [right=lq+zhi]
+      const rightH=`<div class="yao-right">${lqS?`<span class="yqin">${lqS}</span>`:''}${b?`<span class="yzhi ${bCls}">${b}</span>`:''}</div>`;
+      rowHtml=`<div class="yao-row yao-row-chg"><div class="yv">${barHtml}</div>${rightH}</div>`;
+    }
+
+    // Fuchen (伏藏) text - shown below the yao row
+    let fcHtml='';
     if(fc){
       const fcCls=fc.branch?WX_CSS[BEL[fc.branch]]||'':'';
-      html+=`<div class="fuchen-r" style="color:var(--tx3)">伏：<span class="${fcCls}">${fc.branch}</span> ${LQ_S[fc.liuqin]||fc.liuqin}</div>`;
+      const fcLqS=LQ_S[fc.liuqin]||fc.liuqin;
+      fcHtml=`<div class="fuchen-r">伏：<span class="${fcCls}">${fc.branch}</span>${fcLqS}</div>`;
     }
+
+    blocks.push({rowHtml,fcHtml,isChg,origLine});
   }
-  html+='</div>';return html;
+  return blocks;
 }
 
 function buildHexHtml(lines,gz){
@@ -985,31 +1059,75 @@ function buildHexHtml(lines,gz){
   const cPi=hasChange?getPalaceInfo(cHex):null;
   const cBranches=hasChange?getEBranches(cLines):[];
   const{lqs:cLqs,fuchen:cFuchen}=hasChange?getLiuqins(cHex,cBranches,palaceEl):{lqs:Array(6).fill(''),fuchen:{}};
-  
+
   const tags=[],cTags=[];
   if(pi?.isYH)tags.push('游魂');if(pi?.isGH)tags.push('归魂');
   if(LIUHE_SET.has(hexName))tags.push('六合');if(LIUCHONG_SET.has(hexName))tags.push('六冲');
   if(hasChange){if(cPi?.isYH)cTags.push('游魂');if(cPi?.isGH)cTags.push('归魂');if(LIUHE_SET.has(cHex))cTags.push('六合');if(LIUCHONG_SET.has(cHex))cTags.push('六冲');}
 
-  let html=`<div class="hx-area">`;
-  html+=`<div class="hx-cols">`;
-  // Main hex - use table-cell class
-  html+=`<div class="hx-col"><div class="hx-col-tit">`;
+  // Build yao blocks for both hexagrams
+  const mainBlocks=buildYaoBlocks(lines,branches,lqs,fuchen,pi,shen,null);
+  const changeBlocks=hasChange?buildYaoBlocks(cLines,cBranches,cLqs,cFuchen,null,null,lines):null;
+
+  let html=`<div class="hx-area"><div class="hx-cols">`;
+
+  // ---- MAIN HEX column ----
+  html+=`<div class="hx-col-main">`;
+  html+=`<div class="hx-col-tit">`;
   if(pi)html+=`<span class="pal-badge" style="background:${WX_BG[pi.el]};color:${WX_COL[pi.el]}">${pi.palace}宫·${pi.el}</span> `;
   html+=`${HEXSYM[hexName]||''} ${hexName}`;
   tags.forEach(t=>html+=` <span class="spec-tag">${t}</span>`);
-  html+=`</div>${renderLines(lines,branches,lqs,fuchen,pi,shen,null)}</div>`;
-  // Change hex or placeholder
+  html+=`</div>`;
+  // yao blocks
+  mainBlocks.forEach(b=>{
+    html+=`<div class="yao-block">${b.rowHtml}`;
+    if(b.fcHtml)html+=b.fcHtml;
+    html+=`</div>`;
+  });
+  html+=`</div>`; // end main col
+
+  // ---- MIDDLE column: O/X markers ----
+  html+=`<div class="hx-col-mid">`;
+  // Title spacer (match title height approx)
+  html+=`<div style="height:38px"></div>`;
   if(hasChange){
-    html+=`<div class="hx-col"><div class="hx-col-tit ct">`;
+    mainBlocks.forEach(b=>{
+      // yao-row height ~22px
+      html+=`<div style="height:22px;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:bold;color:var(--gold)">${b.isChg?(b.origLine===3?'○':'×'):''}</div>`;
+      // fuchen spacer
+      if(b.fcHtml)html+=`<div style="height:18px"></div>`;
+      // gap between blocks
+      html+=`<div style="height:6px"></div>`;
+    });
+  }
+  html+=`</div>`; // end mid col
+
+  // ---- CHANGE HEX column ----
+  if(hasChange){
+    html+=`<div class="hx-col-change">`;
+    html+=`<div class="hx-col-tit ct">`;
     if(cPi)html+=`<span class="pal-badge" style="background:${WX_BG[cPi.el]};color:${WX_COL[cPi.el]}">${cPi.palace}宫·${cPi.el}</span> `;
     html+=`${HEXSYM[cHex]||''} ${cHex}`;
     cTags.forEach(t=>html+=` <span class="spec-tag">${t}</span>`);
-    html+=`</div>${renderLines(cLines,cBranches,cLqs,cFuchen,null,null,lines)}</div>`;
+    html+=`</div>`;
+    changeBlocks.forEach((b,idx)=>{
+      html+=`<div class="yao-block">${b.rowHtml}`;
+      // Mirror fuchen spacing from main
+      if(mainBlocks[idx]?.fcHtml)html+=`<div class="fuchen-r" style="visibility:hidden">伏：XX</div>`;
+      html+=`</div>`;
+    });
+    html+=`</div>`;
   }else{
-    html+=`<div class="hx-col no-chg"><div style="opacity:.3;font-size:1.4rem">—</div><div>无变爻</div></div>`;
+    html+=`<div class="hx-col-change no-chg"><div style="opacity:.3;font-size:1.6rem">—</div><div>无变爻</div></div>`;
   }
-  html+=`</div>`;
+
+  html+=`</div>`; // end hx-cols
+
+  // Analysis (graphic SVG style)
+  html+=renderAnalysis(lines,hexName,gz);
+  html+=`</div>`; // end hx-area
+  return html;
+}
   // Analysis
   html+=renderAnalysis(lines,hexName,gz);
   html+=`</div>`;
@@ -1049,6 +1167,15 @@ function refreshResult(){
   const gz=curGZ||renderGZ();
   document.getElementById('hexRes').innerHTML=buildHexHtml(curLines,gz);
   document.getElementById('castNotesWrap').style.display='block';
+  document.getElementById('castResetWrap').style.display='block';
+}
+function resetCast(){
+  curLines=null;curMethod='random';
+  document.getElementById('hexRes').innerHTML='<div style="text-align:center;padding:36px 0;color:var(--tx3)"><div style="font-size:2.4rem;opacity:.2;margin-bottom:8px">☯</div>请起卦</div>';
+  document.getElementById('castNotesWrap').style.display='none';
+  document.getElementById('castResetWrap').style.display='none';
+  if(document.getElementById('castNotesTxt'))document.getElementById('castNotesTxt').value='';
+  toast('已清除');
 }
 
 // Manual selector - dropdown style, 上爻 at top, 初爻 at bottom (matches reference images)
@@ -1202,16 +1329,23 @@ function renderRD(rec){
       </div>
     </div>`;
 
-    // Ganzhi
+    // Ganzhi - full display with extended info
     if(rec.ganzhi){
       const g=rec.ganzhi;
-      h+=`<div style="margin-bottom:10px"><div class="gz-row" style="max-width:280px">
-        ${['年','月','日','时'].map((l,i)=>{
-          const v=[g.y,g.m,g.d,g.h][i];
-          return`<div class="gz-cell"><div class="gz-lbl">${l}</div><div class="gz-val"><span class="${WX_CSS[tgEl(v[0])]||''}">${v[0]}</span><span class="${WX_CSS[dzEl(v[1])]||''}">${v[1]}</span></div></div>`;
-        }).join('')}
-      </div>
-      <div class="gz-ext-row" style="margin-top:4px"><span>日辰空亡：</span><span>${(g.kw||[]).join('')}</span></div></div>`;
+      const gzFull={...g, dayTG:g.d?.[0]||'甲'};
+      h+=`<div style="margin-bottom:12px">
+        <div style="font-size:.68rem;color:var(--tx3);margin-bottom:5px">${g.lunar_str||''}</div>
+        <div class="gz-row" style="max-width:340px">
+          ${['年','月','日','时'].map((l,i)=>{
+            const v=[g.y,g.m,g.d,g.h][i];
+            return`<div class="gz-cell"><div class="gz-lbl">${l}</div><div class="gz-val"><span class="${WX_CSS[tgEl(v[0])]||''}">${v[0]}</span><span class="${WX_CSS[dzEl(v[1])]||''}">${v[1]}</span></div></div>`;
+          }).join('')}
+        </div>
+        <div class="gz-ext-row" style="margin-top:6px">
+          <span>日辰空亡：</span><span>${(g.kw||[]).join('')}</span>
+          ${g.dayDZ?`&ensp;<span>日地支方位：</span><span>${DZ_DIR[g.dayDZ]||''}</span>`:''}
+        </div>
+      </div>`;
     }
 
     // Hex result (ALWAYS visible, no tab)
