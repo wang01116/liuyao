@@ -2,288 +2,284 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#8b2500">
 <title>六爻起卦</title>
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript/lunar.js"></script>
 <style>
-/* ===== ROOT VARIABLES ===== */
 :root{
-  --bg:#f5f0e8;--bg2:#ece5d4;--surface:#fff;--surface2:#faf5ec;
-  --bd:#cbbfa0;--bdl:#ddd5bc;
-  --tx:#1a1208;--tx2:#58422a;--tx3:#998060;
+  --bg:#f4efe6;--bg2:#ebe3d0;--sf:#fff;--sf2:#f8f3ea;
+  --bd:#c8bc9a;--bdl:#ddd4bc;
+  --tx:#1a1208;--tx2:#564028;--tx3:#9a7e5a;
   --ac:#8b2500;--ac2:#a83008;
-  --gold:#907010;--jade:#2a6040;
-  --sh:0 1px 6px rgba(26,18,8,.1);--sh2:0 3px 14px rgba(26,18,8,.14);
-  --r:10px;--rs:6px;--tr:all .22s cubic-bezier(.4,0,.2,1);
-  --c-jin:#a07820;--c-mu:#2e6830;--c-shui:#185898;--c-huo:#a81808;--c-tu:#784828;
-  --lc:#1a1208;--sc:#b81808;--tx-p:#1a1208;
+  --gold:#8a6a00;--jade:#285a3a;
+  --sh:0 1px 5px rgba(26,18,8,.08);--sh2:0 2px 12px rgba(26,18,8,.12);
+  --r:8px;--rs:5px;--tr:all .2s ease;
+  --jin:#9a7010;--mu:#286028;--shui:#145890;--huo:#a01808;--tu:#724428;
+  --lc:#1a1208;--sc:#a81808;
 }
 [data-theme=dark]{
-  --bg:#0e0a03;--bg2:#160f05;--surface:#1e1408;--surface2:#261a0c;
-  --bd:#382810;--bdl:#2a1e0a;
-  --tx:#e5d5b0;--tx2:#ae8e60;--tx3:#685030;
-  --ac:#cc3c10;--ac2:#e05020;
-  --gold:#c09020;--jade:#389060;
-  --sh:0 1px 6px rgba(0,0,0,.4);--sh2:0 3px 14px rgba(0,0,0,.5);
-  --c-jin:#c09020;--c-mu:#48a050;--c-shui:#3878c8;--c-huo:#d83020;--c-tu:#a07040;
-  --lc:#e5d5b0;--sc:#d04028;--tx-p:#e5d5b0;
+  --bg:#0d0902;--bg2:#150e05;--sf:#1c1308;--sf2:#231810;
+  --bd:#362610;--bdl:#28180a;
+  --tx:#e2d0a8;--tx2:#ac8858;--tx3:#685030;
+  --ac:#c83810;--ac2:#de4e20;
+  --gold:#b88818;--jade:#348058;
+  --sh:0 1px 5px rgba(0,0,0,.4);--sh2:0 2px 12px rgba(0,0,0,.5);
+  --jin:#b88818;--mu:#46a048;--shui:#2a70c0;--huo:#d02818;--tu:#9a6838;
+  --lc:#e2d0a8;--sc:#cc3020;
 }
-/* ===== RESET ===== */
 *{margin:0;padding:0;box-sizing:border-box;}
-html{font-size:16px;-webkit-tap-highlight-color:transparent;}
-body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s;}
-::-webkit-scrollbar{width:4px;height:4px;}
+html{font-size:15px;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;transition:background .25s,color .25s;}
+::-webkit-scrollbar{width:3px;height:3px;}
 ::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px;}
-/* ===== HEADER ===== */
-.hdr{position:sticky;top:0;z-index:300;background:var(--surface);border-bottom:1px solid var(--bd);box-shadow:var(--sh);}
-.hdr-in{max-width:1100px;margin:0 auto;padding:0 18px;height:56px;display:flex;align-items:center;justify-content:space-between;}
-.logo{font-family:'Ma Shan Zheng',serif;font-size:1.5rem;color:var(--ac);display:flex;align-items:center;gap:8px;letter-spacing:.04em;}
-.logo-s{font-size:1.9rem;line-height:1;}
-.hdr-acts{display:flex;gap:6px;}
-.ico{width:38px;height:38px;border:1px solid var(--bd);background:var(--surface2);border-radius:var(--rs);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--tx2);transition:var(--tr);}
+
+/* HEADER */
+.hdr{position:sticky;top:0;z-index:300;background:var(--sf);border-bottom:1px solid var(--bd);box-shadow:var(--sh);}
+.hdr-in{max-width:1080px;margin:0 auto;padding:0 16px;height:52px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Ma Shan Zheng',serif;font-size:1.4rem;color:var(--ac);display:flex;align-items:center;gap:7px;}
+.logo-s{font-size:1.7rem;line-height:1;}
+.hdr-r{display:flex;gap:5px;}
+.ico{width:36px;height:36px;border:1px solid var(--bdl);background:none;border-radius:var(--rs);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--tx3);transition:var(--tr);}
 .ico:hover{border-color:var(--ac);color:var(--ac);}
-/* ===== TABS ===== */
-.tbw{background:var(--surface);border-bottom:1px solid var(--bd);position:sticky;top:56px;z-index:290;}
-.tabs{max-width:1100px;margin:0 auto;padding:0 18px;display:flex;overflow-x:auto;scrollbar-width:none;}
+
+/* TABS */
+.tbw{background:var(--sf);border-bottom:1px solid var(--bd);position:sticky;top:52px;z-index:290;}
+.tabs{max-width:1080px;margin:0 auto;padding:0 16px;display:flex;overflow-x:auto;scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{padding:11px 18px;border:none;background:none;cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.9rem;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--tr);white-space:nowrap;display:flex;align-items:center;gap:5px;}
-.tab:hover{color:var(--tx);}
+.tab{padding:10px 15px;border:none;background:none;cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.88rem;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--tr);white-space:nowrap;display:flex;align-items:center;gap:4px;}
 .tab.on{color:var(--ac);border-bottom-color:var(--ac);}
-.tbadge{background:var(--ac);color:#fff;font-size:.68rem;padding:1px 6px;border-radius:9px;min-width:17px;text-align:center;}
-.sdot{width:7px;height:7px;border-radius:50%;background:#e08010;display:inline-block;margin-left:3px;vertical-align:middle;}
-/* ===== MAIN ===== */
-.main{max-width:1100px;margin:0 auto;padding:18px;}
+.tbadge{background:var(--ac);color:#fff;font-size:.6rem;padding:1px 5px;border-radius:8px;min-width:15px;text-align:center;}
+.sdot{width:6px;height:6px;border-radius:50%;background:#d08010;display:inline-block;margin-left:3px;vertical-align:middle;}
+
+/* MAIN */
+.main{max-width:1080px;margin:0 auto;padding:14px 16px;}
 .pg{display:none;}.pg.on{display:block;}
-/* ===== LAYOUT ===== */
-.lay{display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:start;}
-@media(max-width:760px){.lay{grid-template-columns:1fr;}}
-/* ===== CARD ===== */
-.card{background:var(--surface);border:1px solid var(--bdl);border-radius:var(--r);padding:16px;box-shadow:var(--sh);margin-bottom:12px;}
+
+/* LAYOUT */
+.lay{display:grid;grid-template-columns:270px 1fr;gap:14px;align-items:start;}
+@media(max-width:700px){.lay{grid-template-columns:1fr;}}
+@media(max-width:700px){#rightPanel{order:1;}#leftPanel{order:2;}}
+
+/* CARD - minimal */
+.card{background:var(--sf);border:1px solid var(--bdl);border-radius:var(--r);padding:14px;box-shadow:var(--sh);margin-bottom:10px;}
 .card:last-child{margin-bottom:0;}
-.ctit{font-size:.8rem;font-weight:700;color:var(--tx3);letter-spacing:.1em;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
-.ctit::before{content:'';display:block;width:3px;height:13px;background:var(--ac);border-radius:2px;flex-shrink:0;}
-/* ===== GANZHI ===== */
-.gz-row{display:flex;gap:6px;margin-bottom:7px;}
-.gz-cell{flex:1;background:var(--bg2);border:1px solid var(--bdl);border-radius:var(--rs);padding:7px 4px;text-align:center;min-width:0;}
-.gz-lbl{font-size:.65rem;color:var(--tx3);margin-bottom:3px;}
-.gz-val{font-size:1rem;font-weight:600;line-height:1.2;}
-.gz-ext{margin-top:7px;}
-.gz-ext-row{display:flex;gap:10px;font-size:.75rem;color:var(--tx3);flex-wrap:wrap;margin-bottom:4px;}
-.gz-ext-row span{color:var(--tx2);}
-.gz-sub{background:var(--bg2);border-radius:var(--rs);padding:7px 10px;margin-top:5px;font-size:.72rem;line-height:1.8;color:var(--tx2);}
-.gz-sub-title{font-weight:700;color:var(--tx3);font-size:.68rem;margin-bottom:3px;}
-/* wuxing css classes */
-.wjin{color:var(--c-jin)!important;}
-.wmu{color:var(--c-mu)!important;}
-.wshui{color:var(--c-shui)!important;}
-.whuo{color:var(--c-huo)!important;}
-.wtu{color:var(--c-tu)!important;}
-/* ===== SAVE CARD ===== */
-.sinp{width:100%;padding:9px 11px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.95rem;color:var(--tx);transition:var(--tr);margin-bottom:8px;}
-.sinp:focus{outline:none;border-color:var(--ac);background:var(--surface);}
+.ctit{font-size:.7rem;font-weight:700;color:var(--tx3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px;}
+.ctit::before{content:'';display:block;width:2px;height:11px;background:var(--ac);border-radius:2px;flex-shrink:0;}
+
+/* GANZHI */
+.gz-row{display:flex;gap:5px;margin-bottom:6px;}
+.gz-cell{flex:1;background:var(--bg2);border-radius:var(--rs);padding:6px 3px;text-align:center;min-width:0;}
+.gz-lbl{font-size:.58rem;color:var(--tx3);margin-bottom:2px;}
+.gz-val{font-size:.95rem;font-weight:600;}
+.gz-ext{font-size:.7rem;color:var(--tx3);margin-top:5px;display:flex;gap:10px;flex-wrap:wrap;}
+.gz-ext span{color:var(--tx2);}
+.gz-sub{font-size:.65rem;color:var(--tx2);margin-top:4px;line-height:1.7;}
+.wjin{color:var(--jin)!important;}.wmu{color:var(--mu)!important;}
+.wshui{color:var(--shui)!important;}.whuo{color:var(--huo)!important;}.wtu{color:var(--tu)!important;}
+
+/* SAVE / METHOD */
+.sinp{width:100%;padding:8px 10px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.88rem;color:var(--tx);transition:var(--tr);margin-bottom:7px;}
+.sinp:focus{outline:none;border-color:var(--ac);background:var(--sf);}
 .sinp::placeholder{color:var(--tx3);}
-.cats{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
-.catb{padding:4px 10px;border:1px solid var(--bd);background:var(--bg2);border-radius:18px;cursor:pointer;font-size:.78rem;color:var(--tx2);transition:var(--tr);font-family:'Noto Serif SC',serif;}
+.cats{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;}
+.catb{padding:3px 8px;border:1px solid var(--bdl);background:none;border-radius:14px;cursor:pointer;font-size:.7rem;color:var(--tx3);transition:var(--tr);}
 .catb.on{background:var(--ac);color:#fff;border-color:var(--ac);}
 .catb:hover:not(.on){border-color:var(--ac);color:var(--ac);}
-/* ===== METHOD ===== */
-.mtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:12px;}
-.mtab{padding:8px 4px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.85rem;color:var(--tx2);text-align:center;transition:var(--tr);}
+.mtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px;}
+.mtab{padding:7px 3px;border:1px solid var(--bdl);background:none;border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.78rem;color:var(--tx3);text-align:center;transition:var(--tr);}
 .mtab.on{background:var(--ac);color:#fff;border-color:var(--ac);}
 .mtab:hover:not(.on){border-color:var(--ac);color:var(--ac);}
 .mp{display:none;}.mp.on{display:block;}
-/* ===== MANUAL - dropdown style (matches reference images) ===== */
-.ml-grid{display:flex;flex-direction:column;gap:6px;}
-.ml-row{display:grid;grid-template-columns:40px 1fr;align-items:center;gap:8px;}
-.ml-lbl{font-size:.88rem;color:var(--tx2);text-align:right;font-weight:500;}
-.ml-sel{width:100%;padding:9px 11px;border:1px solid var(--bd);background:var(--surface);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.88rem;color:var(--tx);cursor:pointer;transition:var(--tr);appearance:auto;-webkit-appearance:auto;}
-.ml-sel:focus{outline:none;border-color:var(--ac);box-shadow:0 0 0 2px rgba(139,37,0,.15);}
-.ml-sel option{font-family:'Noto Serif SC',serif;font-size:.88rem;}
-/* ===== NUMBER INPUT ===== */
-.ngrp{display:flex;flex-direction:column;gap:10px;}
-.nrow{display:flex;align-items:center;gap:8px;}
-.nrow label{font-size:.85rem;color:var(--tx2);min-width:56px;}
-.ninp{width:64px;padding:7px 8px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:1rem;color:var(--tx);text-align:center;transition:var(--tr);}
+.ml-grid{display:flex;flex-direction:column;gap:5px;}
+.ml-row{display:grid;grid-template-columns:34px 1fr;align-items:center;gap:7px;}
+.ml-lbl{font-size:.82rem;color:var(--tx2);text-align:right;font-weight:500;}
+.ml-sel{width:100%;padding:7px 8px;border:1px solid var(--bd);background:var(--sf);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx);cursor:pointer;appearance:auto;}
+.ml-sel:focus{outline:none;border-color:var(--ac);}
+.ngrp{display:flex;flex-direction:column;gap:8px;}
+.nrow{display:flex;align-items:center;gap:7px;}
+.nrow label{font-size:.8rem;color:var(--tx2);min-width:52px;}
+.ninp{width:58px;padding:6px 7px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.95rem;color:var(--tx);text-align:center;}
 .ninp:focus{outline:none;border-color:var(--ac);}
-.nhint{font-size:.72rem;color:var(--tx3);line-height:1.6;}
-/* ===== BUTTONS ===== */
-.btn{padding:9px 16px;border:none;border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.9rem;transition:var(--tr);display:inline-flex;align-items:center;gap:5px;white-space:nowrap;}
-.btnp{background:var(--ac);color:#fff;box-shadow:0 2px 7px rgba(139,37,0,.28);}
-.btnp:hover{background:var(--ac2);transform:translateY(-1px);}
-.btns{background:var(--surface2);color:var(--tx2);border:1px solid var(--bd);}
+.nhint{font-size:.64rem;color:var(--tx3);line-height:1.6;}
+
+/* BUTTONS */
+.btn{padding:8px 14px;border:none;border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.85rem;transition:var(--tr);display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
+.btnp{background:var(--ac);color:#fff;}
+.btnp:hover{background:var(--ac2);}
+.btns{background:none;color:var(--tx2);border:1px solid var(--bdl);}
 .btns:hover{border-color:var(--ac);color:var(--ac);}
-.btnd{background:#841818;color:#fff;}
-.btnd:hover{background:#9a2020;}
-.bsm{padding:5px 11px;font-size:.78rem;}
+.btnd{background:#7a1414;color:#fff;}
+.btnd:hover{background:#921818;}
+.bsm{padding:4px 10px;font-size:.74rem;}
 .bfw{width:100%;justify-content:center;}
-/* ===== HEXAGRAM RESULT ===== */
-.hx-area{animation:fadeup .35s ease;}
-@keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-/*
-  Layout: [本卦] [○× center col] [变卦]
-  Both columns stay in one horizontal line always.
-  Uses display:table so width is strictly enforced.
-*/
-.hx-cols{
-  display:table;
-  table-layout:fixed;
-  width:100%;
-  border-collapse:separate;
-  border-spacing:0;
-}
-.hx-col-main{display:table-cell;width:46%;vertical-align:top;padding-right:4px;}
-.hx-col-mid{display:table-cell;width:8%;vertical-align:top;text-align:center;}
-.hx-col-change{display:table-cell;width:46%;vertical-align:top;padding-left:4px;}
 
-/* Title row */
-.hx-col-tit{text-align:center;font-size:.88rem;font-weight:600;color:var(--tx2);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--bdl);line-height:1.5;}
-.hx-col-tit.ct{color:var(--jade);}
-.pal-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.7rem;font-weight:700;}
-.spec-tag{display:inline-block;padding:1px 6px;background:var(--bg2);border:1px solid var(--bdl);border-radius:8px;font-size:.68rem;color:var(--tx2);margin:1px;}
+/* ============================================================
+   HEXAGRAM TABLE - compact, always side by side
+   Layout per row (from left→right):
+   [伏] [六神] | [六亲] [地支] [爻] [世应] | [○×] | [爻] [地支] [六亲]
+   ============================================================ */
+.hx-area{animation:fadeup .3s ease;}
+@keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-/* Each yao "block" = the yao-row + optional fuchen row.
-   Both main and change hex have identical height blocks → rows align. */
-.yao-block{margin-bottom:6px;}
-.yao-block:last-child{margin-bottom:0;}
+/* Title row above both hexagrams */
+.hx-header{display:flex;gap:0;margin-bottom:8px;align-items:stretch;}
+.hx-hdr-l{flex:1;text-align:center;font-size:.8rem;font-weight:600;color:var(--tx2);padding:4px 0;border-bottom:1px solid var(--bdl);}
+.hx-hdr-mid{width:20px;flex-shrink:0;}
+.hx-hdr-r{flex:1;text-align:center;font-size:.8rem;font-weight:600;color:var(--jade);padding:4px 0;border-bottom:1px solid var(--bdl);}
+.pal-badge{display:inline-block;padding:1px 6px;border-radius:8px;font-size:.62rem;font-weight:700;margin-right:3px;}
+.spec-tag{display:inline-block;padding:1px 5px;border-radius:6px;font-size:.6rem;color:var(--tx3);border:1px solid var(--bdl);margin:1px;}
 
-/* The actual yao line row */
-.yao-row{display:grid;align-items:center;gap:4px;min-height:22px;}
-/* Main hex: [left-meta][yao-visual][right-world] */
-.yao-row-main{grid-template-columns:auto 1fr auto;}
-/* Change hex: [right-meta] only, no left space needed */
-.yao-row-chg{grid-template-columns:1fr auto;}
+/* The yao table - each ROW represents one爻 position */
+.hx-table{width:100%;border-collapse:collapse;}
+.hx-table td{padding:1px 2px;vertical-align:middle;white-space:nowrap;}
+/* Column definitions */
+.col-fuchen{width:auto;text-align:right;font-size:.62rem;}    /* 伏藏 */
+.col-shen{width:auto;text-align:right;font-size:.68rem;font-weight:700;color:var(--sc);padding-right:3px;}  /* 六神 */
+.col-sep{width:3px;border-right:1px solid var(--bdl);}         /* separator */
+.col-lq{width:auto;text-align:right;font-size:.65rem;font-weight:600;padding-right:2px;}   /* 六亲 */
+.col-dz{width:auto;text-align:right;font-size:.65rem;padding-right:3px;}   /* 地支 */
+.col-yao{width:54px;min-width:44px;}                            /* 爻画 */
+.col-sw{width:14px;text-align:center;font-size:.65rem;}         /* 世应 */
+.col-mark{width:16px;text-align:center;font-size:.75rem;font-weight:bold;color:var(--gold);} /* ○× */
+.col-cyao{width:54px;min-width:44px;}                           /* 变卦爻 */
+.col-cdz{width:auto;text-align:left;font-size:.65rem;padding-left:3px;}    /* 变卦地支 */
+.col-clq{width:auto;text-align:left;font-size:.65rem;font-weight:600;}     /* 变卦六亲 */
+/* Fuchen sub-row */
+.fc-row td{padding:0 2px;font-size:.58rem;color:var(--tx3);}
+.fc-cell{text-align:right;}
 
-.yao-left{display:flex;align-items:center;gap:3px;font-size:.76rem;white-space:nowrap;justify-content:flex-end;}
-.yao-right{display:flex;align-items:center;gap:3px;font-size:.76rem;white-space:nowrap;}
-.yshen{color:var(--sc);font-weight:700;}
-.yqin{color:var(--tx-p);font-weight:600;}
-.yzhi{color:var(--tx-p);}
-.yshi{font-size:.74rem;font-weight:700;padding:0 4px;border-radius:3px;color:var(--ac);}
-.yying{font-size:.74rem;font-weight:700;padding:0 4px;border-radius:3px;color:var(--jade);}
+/* Yao visual bars - compact height */
+.yv{display:flex;align-items:center;height:9px;width:100%;}
+.y-yang{width:100%;height:9px;background:var(--lc);border-radius:4px;}
+.y-yin{display:flex;gap:6px;width:100%;height:9px;}
+.y-yin-h{flex:1;height:9px;background:var(--lc);border-radius:4px;}
 
-/* Yao visual bar */
-.yv{position:relative;display:flex;align-items:center;height:11px;}
-.y-yang{width:100%;height:11px;background:var(--lc);border-radius:5px;}
-.y-yin{display:flex;gap:8px;width:100%;height:11px;}
-.y-yin-h{flex:1;height:11px;background:var(--lc);border-radius:5px;}
+/* World/应 */
+.yshi{color:var(--ac);font-weight:700;}
+.yying{color:var(--jade);font-weight:700;}
 
-/* O/X change marker in CENTER column - aligned to each yao-block */
-.mid-marks{display:flex;flex-direction:column;gap:6px;padding-top:30px;/* offset for title row */}
-.mid-mark{height:22px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:bold;color:var(--gold);}
-.mid-mark:last-child{margin-bottom:0;}
-/* fuchen placeholder in mid column to keep alignment */
-.mid-fc{height:16px;margin-bottom:0;}
+/* No-change placeholder */
+.no-chg{display:flex;align-items:center;justify-content:center;padding:20px 0;color:var(--tx3);font-size:.8rem;flex-direction:column;gap:5px;}
 
-/* Fuchen row: appears below the yao-row inside yao-block, grey small text */
-.fuchen-r{font-size:.68rem;color:var(--tx3);padding:2px 0 0 2px;line-height:1.4;min-height:16px;}
+/* ============================================================
+   ANALYSIS - collapsible panel with flowchart SVG
+   ============================================================ */
+.ana-toggle{display:flex;align-items:center;gap:6px;cursor:pointer;padding:8px 0;border-top:1px solid var(--bdl);margin-top:10px;font-size:.78rem;color:var(--tx3);user-select:none;}
+.ana-toggle:hover{color:var(--ac);}
+.ana-toggle-icon{font-size:.65rem;transition:transform .2s;}
+.ana-toggle-icon.open{transform:rotate(90deg);}
+.ana-body{display:none;margin-top:8px;}
+.ana-body.open{display:block;}
 
-/* No change placeholder */
-.no-chg{display:flex;align-items:center;justify-content:center;height:100%;min-height:120px;color:var(--tx3);font-size:.85rem;flex-direction:column;gap:8px;}
+/* Flowchart / mindmap style SVG container */
+.ana-svg-wrap{overflow-x:auto;padding:4px 0;}
+.ana-section{margin-bottom:10px;}
+.ana-sec-title{font-size:.68rem;font-weight:700;color:var(--tx3);letter-spacing:.08em;margin-bottom:5px;padding-left:5px;border-left:2px solid var(--ac);}
+/* Chip row */
+.chip-row{display:flex;flex-wrap:wrap;gap:4px;align-items:center;}
+.chip{display:inline-flex;align-items:center;gap:2px;padding:2px 7px;border-radius:10px;font-size:.68rem;font-weight:500;line-height:1.4;}
+.chip-g{background:rgba(40,96,40,.12);color:var(--mu);border:1px solid rgba(40,96,40,.25);}
+.chip-b{background:rgba(160,24,8,.1);color:var(--huo);border:1px solid rgba(160,24,8,.2);}
+.chip-n{background:var(--bg2);color:var(--tx3);border:1px solid var(--bdl);}
+.chip-subj{font-size:.68rem;color:var(--tx2);font-weight:600;flex-shrink:0;}
+.chip-arr{font-size:.6rem;color:var(--tx3);margin:0 2px;}
 
-/* Responsive: on very small screens shrink text but keep side by side */
-@media(max-width:400px){
-  .yao-left,.yao-right{font-size:.64rem;}
-  .hx-col-tit{font-size:.76rem;}
-  .pal-badge{font-size:.6rem;padding:1px 5px;}
-  .y-yang,.y-yin-h{height:9px;}
-  .yv{height:9px;}
-}
-/* ===== ANALYSIS - graphic SVG style ===== */
-.ana-sec{margin-top:14px;}
-.ana-title{font-size:.82rem;font-weight:700;color:var(--tx3);letter-spacing:.06em;margin-bottom:8px;padding-left:7px;border-left:3px solid var(--ac);}
-.ana-wrap{background:var(--bg2);border-radius:var(--rs);padding:0;margin-bottom:8px;overflow:hidden;}
-.ana-group-hdr{font-size:.72rem;font-weight:700;color:var(--tx3);padding:6px 10px;background:var(--bdl);letter-spacing:.06em;}
-.ana-svg-row{display:flex;align-items:center;gap:0;padding:4px 10px;border-bottom:1px solid var(--bdl);flex-wrap:nowrap;overflow-x:auto;}
-.ana-svg-row:last-child{border-bottom:none;}
-/* SVG graphic element */
-.rel-chip{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:12px;font-size:.7rem;font-weight:600;margin:2px 3px;white-space:nowrap;flex-shrink:0;}
-.rel-good{background:rgba(46,104,48,.15);color:var(--c-mu);border:1px solid rgba(46,104,48,.3);}
-.rel-bad{background:rgba(168,24,8,.12);color:var(--c-huo);border:1px solid rgba(168,24,8,.25);}
-.rel-neu{background:var(--surface2);color:var(--tx3);border:1px solid var(--bdl);}
-/* Inline SVG mini arrow */
-.rel-arrow{font-size:.65rem;color:var(--tx3);flex-shrink:0;}
-.ana-subject{font-size:.74rem;color:var(--tx);font-weight:600;white-space:nowrap;flex-shrink:0;}
-/* ===== NOTES ===== */
-.notes-tog{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:8px 0;border-top:1px solid var(--bdl);margin-top:12px;font-size:.85rem;color:var(--tx3);}
-.nted{width:100%;min-height:120px;padding:10px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.9rem;color:var(--tx);resize:vertical;transition:var(--tr);line-height:1.7;margin-top:7px;}
-.nted:focus{outline:none;border-color:var(--ac);background:var(--surface);}
-.ntpv{min-height:30px;font-size:.88rem;line-height:1.9;color:var(--tx);margin-top:7px;}
-.ntpv h1,.ntpv h2,.ntpv h3{color:var(--ac);margin:8px 0 4px;font-size:.95rem;}
-.ntpv p{margin:4px 0;}
-.ntpv code{background:var(--bg2);padding:1px 4px;border-radius:3px;font-size:.82em;}
-.ntpv blockquote{border-left:2px solid var(--ac);padding-left:8px;color:var(--tx2);margin:5px 0;}
-.ntpv ul,.ntpv ol{padding-left:16px;margin:4px 0;}
-/* ===== RECORDS ===== */
-.rl{display:flex;flex-direction:column;gap:10px;}
-.ri{background:var(--surface);border:1px solid var(--bdl);border-radius:var(--r);padding:14px;transition:var(--tr);box-shadow:var(--sh);cursor:pointer;}
-.ri:hover{border-color:var(--ac);box-shadow:var(--sh2);}
-.ri-hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:7px;}
-.ri-name{font-size:.95rem;font-weight:600;}
-.ri-date{font-size:.72rem;color:var(--tx3);white-space:nowrap;}
-.ri-meta{font-size:.74rem;color:var(--tx3);margin-top:3px;display:flex;align-items:center;gap:6px;}
-.ri-cat{padding:2px 7px;background:var(--bg2);border-radius:8px;font-size:.68rem;color:var(--tx2);}
-.ri-hex{font-size:.85rem;color:var(--ac);margin-top:5px;font-weight:500;}
-.rfilt{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
-/* batch */
-.bbr{display:flex;align-items:center;gap:7px;padding:8px 12px;background:var(--surface2);border-radius:var(--rs);margin-bottom:10px;flex-wrap:wrap;}
-.bbr span{font-size:.82rem;color:var(--tx2);flex:1;}
-.chk{width:15px;height:15px;cursor:pointer;accent-color:var(--ac);}
-/* ===== DETAIL ===== */
-.det-back{display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--tx3);font-size:.85rem;margin-bottom:14px;padding:6px 0;border:none;background:none;transition:var(--tr);}
+/* SVG flowchart */
+.ana-flow{display:block;overflow:visible;}
+
+/* ============================================================
+   GANZHI→SOLAR CONVERTER
+   ============================================================ */
+.gz-conv{margin-top:8px;}
+.gz-conv-row{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:6px;}
+.gz-conv select{padding:5px 7px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.8rem;color:var(--tx);cursor:pointer;}
+.gz-conv select:focus{outline:none;border-color:var(--ac);}
+.gz-conv-result{font-size:.78rem;color:var(--tx2);background:var(--bg2);border-radius:var(--rs);padding:6px 10px;line-height:1.7;}
+
+/* NOTES */
+.notes-tog{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:7px 0;border-top:1px solid var(--bdl);margin-top:10px;font-size:.76rem;color:var(--tx3);}
+.nted{width:100%;min-height:110px;padding:9px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.85rem;color:var(--tx);resize:vertical;line-height:1.7;margin-top:6px;}
+.nted:focus{outline:none;border-color:var(--ac);background:var(--sf);}
+.ntpv{font-size:.85rem;line-height:1.85;color:var(--tx);margin-top:6px;}
+.ntpv h1,.ntpv h2,.ntpv h3{color:var(--ac);margin:7px 0 3px;font-size:.9rem;}
+.ntpv p{margin:3px 0;}.ntpv code{background:var(--bg2);padding:1px 4px;border-radius:3px;font-size:.8em;}
+.ntpv blockquote{border-left:2px solid var(--ac);padding-left:7px;color:var(--tx2);margin:4px 0;}
+.ntpv ul,.ntpv ol{padding-left:14px;margin:3px 0;}
+
+/* RECORDS */
+.rl{display:flex;flex-direction:column;gap:8px;}
+.ri{background:var(--sf);border:1px solid var(--bdl);border-radius:var(--r);padding:12px;transition:var(--tr);cursor:pointer;}
+.ri:hover{border-color:var(--ac);}
+.ri-hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;}
+.ri-name{font-size:.9rem;font-weight:600;}
+.ri-date{font-size:.68rem;color:var(--tx3);white-space:nowrap;}
+.ri-meta{font-size:.7rem;color:var(--tx3);margin-top:2px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+.ri-cat{padding:1px 6px;background:var(--bg2);border-radius:7px;font-size:.65rem;color:var(--tx2);}
+.ri-hex{font-size:.82rem;color:var(--ac);margin-top:4px;font-weight:500;}
+.rfilt{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.bbr{display:flex;align-items:center;gap:6px;padding:7px 10px;background:var(--sf2);border-radius:var(--rs);margin-bottom:8px;flex-wrap:wrap;font-size:.78rem;color:var(--tx2);}
+.chk{width:14px;height:14px;cursor:pointer;accent-color:var(--ac);}
+
+/* DETAIL */
+.det-back{display:flex;align-items:center;gap:5px;cursor:pointer;color:var(--tx3);font-size:.78rem;margin-bottom:12px;padding:5px 0;border:none;background:none;transition:var(--tr);}
 .det-back:hover{color:var(--ac);}
-/* ===== MODAL ===== */
-.mover{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:900;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .22s;}
+
+/* MODAL */
+.mover{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:900;display:flex;align-items:center;justify-content:center;padding:14px;opacity:0;pointer-events:none;transition:opacity .2s;}
 .mover.on{opacity:1;pointer-events:all;}
-.modal{background:var(--surface);border-radius:var(--r);padding:20px;max-width:440px;width:100%;box-shadow:var(--sh2);transform:translateY(18px);transition:transform .22s;}
+.modal{background:var(--sf);border-radius:var(--r);padding:18px;max-width:430px;width:100%;box-shadow:var(--sh2);transform:translateY(16px);transition:transform .2s;}
 .mover.on .modal{transform:translateY(0);}
-.mtit{font-size:1rem;font-weight:700;margin-bottom:14px;}
-.mbody{margin-bottom:16px;}
-.mft{display:flex;gap:7px;justify-content:flex-end;}
-.minp{width:100%;padding:8px 10px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.88rem;color:var(--tx);margin-bottom:8px;transition:var(--tr);}
+.mtit{font-size:.95rem;font-weight:700;margin-bottom:12px;}
+.mbody{margin-bottom:14px;}
+.mft{display:flex;gap:6px;justify-content:flex-end;}
+.minp{width:100%;padding:7px 9px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx);margin-bottom:7px;}
 .minp:focus{outline:none;border-color:var(--ac);}
-.mlbl{font-size:.78rem;color:var(--tx2);margin-bottom:3px;display:block;}
-.mhint{font-size:.7rem;color:var(--tx3);margin-top:3px;line-height:1.5;}
-.mst{font-size:.76rem;padding:4px 0;color:var(--tx3);}
-/* ===== SETTINGS / ABOUT ===== */
-.stit{font-size:.85rem;color:var(--tx2);font-weight:700;margin-bottom:8px;}
-.srow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--bdl);font-size:.88rem;gap:8px;}
+.mlbl{font-size:.72rem;color:var(--tx2);margin-bottom:3px;display:block;}
+.mhint{font-size:.65rem;color:var(--tx3);margin-top:3px;line-height:1.4;}
+.mst{font-size:.7rem;padding:4px 0;color:var(--tx3);}
+
+/* SETTINGS / ABOUT */
+.stit{font-size:.8rem;color:var(--tx2);font-weight:700;margin-bottom:7px;}
+.srow{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bdl);font-size:.85rem;gap:7px;}
 .srow:last-child{border-bottom:none;}
 .slbl{color:var(--tx);flex:1;}
-.sdesc{font-size:.72rem;color:var(--tx3);margin-top:2px;}
-.tog{position:relative;width:40px;height:22px;flex-shrink:0;}
+.sdesc{font-size:.68rem;color:var(--tx3);margin-top:2px;}
+.tog{position:relative;width:38px;height:21px;flex-shrink:0;}
 .tog input{opacity:0;width:0;height:0;}
-.togtr{position:absolute;inset:0;background:var(--bd);border-radius:11px;cursor:pointer;transition:var(--tr);}
-.togtr::after{content:'';position:absolute;left:2px;top:2px;width:18px;height:18px;background:#fff;border-radius:50%;transition:var(--tr);box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.togtr{position:absolute;inset:0;background:var(--bdl);border-radius:11px;cursor:pointer;transition:var(--tr);}
+.togtr::after{content:'';position:absolute;left:2px;top:2px;width:17px;height:17px;background:#fff;border-radius:50%;transition:var(--tr);}
 .tog input:checked+.togtr{background:var(--ac);}
-.tog input:checked+.togtr::after{transform:translateX(18px);}
-.about-c{line-height:1.9;font-size:.9rem;color:var(--tx2);}
-.about-c h3{color:var(--ac);margin:14px 0 6px;font-size:.95rem;}
-.about-c ul{padding-left:16px;}
-.about-c li{margin:3px 0;}
-/* ===== IMPORT DROP ===== */
-.drop{border:2px dashed var(--bd);border-radius:var(--r);padding:18px;text-align:center;color:var(--tx3);font-size:.85rem;cursor:pointer;transition:var(--tr);margin-bottom:8px;}
+.tog input:checked+.togtr::after{transform:translateX(17px);}
+.about-c{line-height:1.85;font-size:.85rem;color:var(--tx2);}
+.about-c h3{color:var(--ac);margin:12px 0 4px;font-size:.88rem;}
+.about-c ul{padding-left:14px;}
+.about-c li{margin:2px 0;}
+
+/* IMPORT */
+.drop{border:2px dashed var(--bdl);border-radius:var(--r);padding:15px;text-align:center;color:var(--tx3);font-size:.78rem;cursor:pointer;transition:var(--tr);margin-bottom:6px;}
 .drop:hover{border-color:var(--ac);color:var(--ac);}
-/* ===== TOAST ===== */
-.tc{position:fixed;bottom:20px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:6px;pointer-events:none;}
-.toast{background:var(--tx);color:var(--bg);padding:9px 16px;border-radius:var(--rs);font-size:.82rem;box-shadow:var(--sh2);animation:tin .22s ease;max-width:280px;}
-.toast.ok{background:#1e5e1e;color:#fff;}
-.toast.err{background:#7a1414;color:#fff;}
-@keyframes tin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-/* ===== INSTALL BANNER ===== */
-.ibar{background:var(--ac);color:#fff;padding:7px 16px;display:none;align-items:center;justify-content:space-between;font-size:.82rem;gap:8px;}
-.ibar button{padding:4px 10px;border-radius:10px;cursor:pointer;font-size:.76rem;border:none;}
+
+/* TOAST */
+.tc{position:fixed;bottom:18px;right:14px;z-index:9999;display:flex;flex-direction:column;gap:5px;pointer-events:none;}
+.toast{background:var(--tx);color:var(--bg);padding:8px 14px;border-radius:var(--rs);font-size:.76rem;box-shadow:var(--sh2);animation:tin .2s ease;max-width:260px;}
+.toast.ok{background:#1a581a;color:#fff;}
+.toast.err{background:#741414;color:#fff;}
+@keyframes tin{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* INSTALL */
+.ibar{background:var(--ac);color:#fff;padding:6px 14px;display:none;align-items:center;justify-content:space-between;font-size:.76rem;gap:8px;}
+.ibar button{padding:3px 9px;border-radius:10px;cursor:pointer;font-size:.7rem;border:none;}
 .iby{background:#fff;color:var(--ac);}
 .ibn{background:rgba(255,255,255,.2);color:#fff;}
-/* ===== MOBILE LAYOUT: after cast, reorder sections ===== */
-@media(max-width:760px){
-  .lay{display:flex;flex-direction:column;}
-  /* On mobile, right panel (ganzhi+result) goes FIRST */
-  #rightPanel{order:1;}
-  #leftPanel{order:2;}
+
+@media(max-width:400px){
+  .col-yao,.col-cyao{width:38px;min-width:32px;}
+  .col-fuchen,.col-shen,.col-lq,.col-dz,.col-cdz,.col-clq{font-size:.56rem;}
+  .hx-hdr-l,.hx-hdr-r{font-size:.7rem;}
 }
 </style>
 </head>
@@ -300,7 +296,7 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 <header class="hdr">
   <div class="hdr-in">
     <div class="logo"><span class="logo-s">☯</span>六爻起卦</div>
-    <div class="hdr-acts">
+    <div class="hdr-r">
       <button class="ico" id="themeBtn" onclick="toggleTheme()" title="主题">🌙</button>
       <button class="ico" onclick="openModal('syncModal')" title="同步">☁</button>
       <button class="ico" onclick="showPage('about')" title="简介">？</button>
@@ -325,9 +321,7 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 <!-- ===== CAST PAGE ===== -->
 <div class="pg on" id="pg-cast">
   <div class="lay">
-    <!-- LEFT PANEL (on desktop: controls; on mobile: shows last) -->
     <div id="leftPanel">
-      <!-- Method -->
       <div class="card">
         <div class="ctit">🎲 起卦方式</div>
         <div class="mtabs">
@@ -335,66 +329,66 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
           <button class="mtab" onclick="setMethod('number')">数字</button>
           <button class="mtab" onclick="setMethod('manual')">手动</button>
         </div>
-        <!-- Random -->
         <div class="mp on" id="mp-random">
-          <p style="font-size:.78rem;color:var(--tx3);margin-bottom:8px">随机产生六爻含老阴(×)老阳(○)</p>
+          <p style="font-size:.72rem;color:var(--tx3);margin-bottom:8px">随机产生六爻，含老阴(×)老阳(○)</p>
           <button class="btn btnp bfw" onclick="castRandom()">🎲 随机起卦</button>
         </div>
-        <!-- Number -->
         <div class="mp" id="mp-number">
           <div class="ngrp">
-            <div class="nrow"><label>上卦</label><input class="ninp" type="number" id="nU" min="1" max="9" value="1"><span style="font-size:.7rem;color:var(--tx3)">1/9乾 2兑 3离 4震</span></div>
-            <div class="nrow"><label>下卦</label><input class="ninp" type="number" id="nL" min="1" max="9" value="1"><span style="font-size:.7rem;color:var(--tx3)">5巽 6坎 7艮 8坤</span></div>
+            <div class="nrow"><label>上卦</label><input class="ninp" type="number" id="nU" min="1" max="9" value="1"><span style="font-size:.65rem;color:var(--tx3)">1/9乾 2兑 3离 4震</span></div>
+            <div class="nrow"><label>下卦</label><input class="ninp" type="number" id="nL" min="1" max="9" value="1"><span style="font-size:.65rem;color:var(--tx3)">5巽 6坎 7艮 8坤</span></div>
             <div class="nrow"><label>变爻</label><input class="ninp" type="number" id="nC" min="1" max="9" value="1"></div>
             <div class="nhint">变爻：1/7→初 2/8→二 3/9→三 4→四 5→五 6→上</div>
           </div>
-          <button class="btn btnp bfw" style="margin-top:10px" onclick="castNum()">✨ 数字起卦</button>
+          <button class="btn btnp bfw" style="margin-top:9px" onclick="castNum()">✨ 数字起卦</button>
         </div>
-        <!-- Manual -->
         <div class="mp" id="mp-manual">
           <div class="ml-grid" id="mlGrid"></div>
-          <button class="btn btnp bfw" style="margin-top:10px" onclick="castManual()">📝 确定起卦</button>
+          <button class="btn btnp bfw" style="margin-top:9px" onclick="castManual()">📝 确定起卦</button>
         </div>
       </div>
-      <!-- Save card -->
-      <div class="card" id="saveCard">
+      <div class="card">
         <div class="ctit">💾 保存卦例</div>
-        <input type="text" class="sinp" id="castName" placeholder="为此卦起一个名字..." maxlength="30">
+        <input type="text" class="sinp" id="castName" placeholder="为此卦起一个名字…" maxlength="30">
         <div class="cats" id="catRow"></div>
         <button class="btn btnp bfw" onclick="saveCast()">保存到卦例</button>
       </div>
     </div>
 
-    <!-- RIGHT PANEL: ganzhi top, then result + notes -->
     <div id="rightPanel">
-      <!-- Ganzhi - always at top of right panel -->
-      <div class="card" id="gzCard">
+      <!-- Ganzhi -->
+      <div class="card">
         <div class="ctit">📅 干支历</div>
-        <div style="font-size:.72rem;color:var(--tx3);margin-bottom:6px" id="lunarStr">加载中...</div>
+        <div style="font-size:.65rem;color:var(--tx3);margin-bottom:5px" id="lunarStr">加载中…</div>
         <div class="gz-row" id="gzRow"></div>
-        <div class="gz-ext" id="gzExt"></div>
+        <div id="gzExt"></div>
+        <!-- GanZhi → Solar converter -->
+        <details style="margin-top:8px">
+          <summary style="font-size:.72rem;color:var(--tx3);cursor:pointer;user-select:none;list-style:none;display:flex;align-items:center;gap:4px">
+            <span>▶</span> 干支历→阳历推算（应期参考）
+          </summary>
+          <div class="gz-conv" id="gzConvArea"></div>
+        </details>
       </div>
-      <!-- Result card -->
+      <!-- Result -->
       <div class="card" id="resCard">
-        <div class="ctit">☯ 卦象结果</div>
+        <div class="ctit">☯ 卦象</div>
         <div id="hexRes">
-          <div style="text-align:center;padding:36px 0;color:var(--tx3)">
-            <div style="font-size:2.4rem;opacity:.2;margin-bottom:8px">☯</div>请起卦
+          <div style="text-align:center;padding:32px 0;color:var(--tx3)">
+            <div style="font-size:2.2rem;opacity:.18;margin-bottom:6px">☯</div>
+            请起卦
           </div>
         </div>
-        <!-- Inline notes below hexagram -->
         <div id="castNotesWrap" style="display:none">
           <div class="notes-tog" onclick="toggleCN()">
-            <span>📝 笔记（边看卦边记录）</span>
-            <span id="cnArrow">▼</span>
+            <span>📝 笔记</span><span id="cnArrow">▼</span>
           </div>
           <div id="cnBody" style="display:none">
-            <textarea class="nted" id="castNotesTxt" placeholder="记录占问内容、卦象分析、判断结论..."></textarea>
-            <div style="font-size:.68rem;color:var(--tx3);margin-top:4px">保存卦例时一并保存</div>
+            <textarea class="nted" id="castNotesTxt" placeholder="记录占问内容、卦象分析、判断结论…"></textarea>
+            <div style="font-size:.62rem;color:var(--tx3);margin-top:3px">保存卦例时一并保存</div>
           </div>
         </div>
-        <!-- Reset button -->
-        <div id="castResetWrap" style="display:none;margin-top:14px;padding-top:12px;border-top:1px solid var(--bdl)">
+        <div id="castResetWrap" style="display:none;margin-top:12px;padding-top:10px;border-top:1px solid var(--bdl)">
           <button class="btn btns bsm" onclick="resetCast()">🔄 清除重新起卦</button>
         </div>
       </div>
@@ -406,7 +400,7 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 <div class="pg" id="pg-records">
   <div id="rlv">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px">
-      <div style="font-size:.88rem;font-weight:600">卦例 <span style="font-size:.74rem;color:var(--tx3)" id="recTotal"></span></div>
+      <div style="font-size:.88rem;font-weight:600">卦例 <span style="font-size:.72rem;color:var(--tx3)" id="recTotal"></span></div>
       <div style="display:flex;gap:5px">
         <button class="btn btns bsm" onclick="openModal('syncModal')">☁ 同步</button>
         <button class="btn btns bsm" onclick="toggleBatch()">☑ 批量</button>
@@ -416,7 +410,7 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
     <div class="rfilt" id="recFilt"></div>
     <div class="bbr" id="batchBar" style="display:none">
       <input type="checkbox" class="chk" id="selAll" onchange="togSelAll(this)">
-      <span id="batchCnt">已选 0 条</span>
+      <span id="batchCnt" style="flex:1">已选 0 条</span>
       <button class="btn btns bsm" onclick="batchMov()">移动分类</button>
       <button class="btn btnd bsm" onclick="batchDel()">删除</button>
       <button class="btn btns bsm" onclick="toggleBatch()">取消</button>
@@ -424,7 +418,7 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
     <div class="rl" id="recList"></div>
   </div>
   <div id="rdv" style="display:none">
-    <button class="det-back" onclick="showRL()">← 返回卦例列表</button>
+    <button class="det-back" onclick="showRL()">← 返回列表</button>
     <div id="rdContent"></div>
   </div>
 </div>
@@ -464,54 +458,44 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
   <div class="card">
     <div class="ctit">？ 关于本站</div>
     <div class="about-c">
-      <p><strong>六爻起卦</strong>是一款基于传统六爻体系的排盘工具，参考《增删卜易》等古籍构建。</p>
-      <h3>🎲 三种起卦方式</h3>
+      <p><strong>六爻起卦</strong>是一款传统六爻排盘工具，参考《增删卜易》等古籍构建。</p>
+      <h3>🎲 起卦方式</h3>
       <ul>
-        <li><strong>随机卦</strong>：随机生成六爻含老阴(×)老阳(○)，自动产生本卦与变卦</li>
-        <li><strong>数字起卦</strong>：三个1-9数字分别决定上卦、下卦、变爻位置</li>
-        <li><strong>手动指定</strong>：下拉选择每爻的阴/阳/老阴/老阳</li>
+        <li>随机卦 · 数字起卦 · 手动指定（上爻→初爻下拉选取）</li>
       </ul>
       <h3>📊 卦象信息</h3>
       <ul>
-        <li>本卦与变卦横排并列显示，含卦名、卦宫五行</li>
-        <li>六神按日辰天干排布（简写：龙/雀/勾/蛇/虎/玄）</li>
-        <li>六亲按卦宫五行生克关系（简写：父/兄/孙/财/官）</li>
-        <li>世爻、应爻标注；伏藏爻显示于对应爻下方</li>
-        <li>特殊卦：六冲、六合、游魂、归魂</li>
+        <li>本宫卦伏藏爻列在爻的最左侧</li>
+        <li>六神（红色）按日辰天干排布（龙/雀/勾/蛇/虎/玄）</li>
+        <li>六亲按卦宫五行生克（父/兄/孙/财/官）</li>
+        <li>世爻应爻；老阴×老阳○标注在本变之间</li>
         <li>变卦六亲以本卦卦宫五行为基准</li>
+        <li>特殊卦：六冲/六合/游魂/归魂</li>
       </ul>
-      <h3>🔍 卦象分析</h3>
-      <ul>
-        <li>本卦变卦卦宫五行生克关系分析</li>
-        <li>月日地支对各爻的生、克、合、冲、刑关系</li>
-        <li>动爻与各爻的十二长生对应关系</li>
-        <li>六合、三合局分析</li>
-      </ul>
-      <h3>📅 干支历</h3>
-      <p>实时显示年月日时干支、节气、地支藏干、方位信息，空亡按日辰计算。</p>
+      <h3>🔍 地支分析</h3>
+      <p>点击「地支分析」展开，流程图形式展示月日建对各爻的生克合冲刑关系、动爻变化十二长生等。</p>
+      <h3>📅 干支历→阳历</h3>
+      <p>起卦页面干支历下方「应期推算」功能，选择天干地支即可查找对应阳历日期区间。</p>
       <h3>📚 卦例管理</h3>
       <ul>
-        <li>命名保存，支持八类分类标签</li>
-        <li>每个卦例可添加 Markdown 笔记，笔记显示在卦象下方</li>
-        <li>导出/导入/分享单卦 JSON</li>
+        <li>命名保存，八类分类标签</li>
+        <li>卦例下方可直接查看/编辑 Markdown 笔记</li>
+        <li>导出/导入/单卦分享 JSON</li>
         <li>GitHub Fine-grained Token 云端同步</li>
-        <li>批量删除、批量移动分类</li>
       </ul>
-      <h3>📱 PWA</h3>
-      <p>部署到 HTTPS 后可安装为本地应用，支持离线使用。</p>
     </div>
   </div>
 </div>
 </main>
 
-<!-- ===== SYNC MODAL ===== -->
+<!-- SYNC MODAL -->
 <div class="mover" id="syncModal">
   <div class="modal">
     <div class="mtit">☁ GitHub 同步配置</div>
     <div class="mbody">
       <label class="mlbl">Personal Access Token (Fine-grained)</label>
       <div style="display:flex;gap:5px;margin-bottom:7px">
-        <input type="password" class="minp" id="ghTok" placeholder="github_pat_..." style="margin:0;flex:1" autocomplete="off">
+        <input type="password" class="minp" id="ghTok" placeholder="github_pat_…" style="margin:0;flex:1" autocomplete="off">
         <button class="btn btns bsm" onclick="togTok()">👁</button>
       </div>
       <label class="mlbl">仓库 (owner/repo)</label>
@@ -529,16 +513,16 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
   </div>
 </div>
 
-<!-- ===== IMPORT MODAL ===== -->
+<!-- IMPORT MODAL -->
 <div class="mover" id="importModal">
   <div class="modal">
     <div class="mtit">⬆ 导入卦例</div>
     <div class="mbody">
       <div class="drop" id="dropA" onclick="document.getElementById('impFile').click()">点击选择或拖拽 JSON 文件</div>
       <input type="file" id="impFile" accept=".json" style="display:none" onchange="handleImpFile(this)">
-      <div id="impSt" style="font-size:.72rem;color:var(--tx3);margin-bottom:5px"></div>
-      <div style="font-size:.68rem;color:var(--tx3);margin-bottom:4px">或粘贴 JSON：</div>
-      <textarea class="minp" id="impTxt" style="height:70px;margin:0" placeholder='[{"id":"..."}]'></textarea>
+      <div id="impSt" style="font-size:.7rem;color:var(--tx3);margin-bottom:5px"></div>
+      <div style="font-size:.65rem;color:var(--tx3);margin-bottom:4px">或粘贴 JSON：</div>
+      <textarea class="minp" id="impTxt" style="height:68px;margin:0" placeholder='[{"id":"…"}]'></textarea>
     </div>
     <div class="mft">
       <button class="btn btns bsm" onclick="closeModal('importModal')">取消</button>
@@ -560,180 +544,78 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 </div>
 
 <div class="tc" id="tc"></div>
+
 <script>
 // ================================================================
-// ===== DATA TABLES ==============================================
+// DATA TABLES
 // ================================================================
-const HEXDB={
-  '111111':'乾为天','000000':'坤为地','010001':'水雷屯','100010':'山水蒙',
-  '010111':'水天需','111010':'天水讼','000010':'地水师','010000':'水地比',
-  '110111':'风天小畜','111011':'天泽履','000111':'地天泰','111000':'天地否',
-  '111101':'天火同人','101111':'火天大有','000100':'地山谦','001000':'雷地豫',
-  '011001':'泽雷随','100110':'山风蛊','000011':'地泽临','110000':'风地观',
-  '101001':'火雷噬嗑','100101':'山火贲','100000':'山地剥','000001':'地雷复',
-  '111001':'天雷无妄','100111':'山天大畜','100001':'山雷颐','011110':'泽风大过',
-  '010010':'坎为水','101101':'离为火','011100':'泽山咸','001110':'雷风恒',
-  '111100':'天山遁','001111':'雷天大壮','101000':'火地晋','000101':'地火明夷',
-  '110101':'风火家人','101011':'火泽睽','010100':'水山蹇','001010':'雷水解',
-  '100011':'山泽损','110001':'风雷益','011111':'泽天夬','111110':'天风姤',
-  '011000':'泽地萃','000110':'地风升','011010':'泽水困','010110':'水风井',
-  '011101':'泽火革','101110':'火风鼎','001001':'震为雷','100100':'艮为山',
-  '110100':'风山渐','001011':'雷泽归妹','001101':'雷火丰','101100':'火山旅',
-  '110110':'巽为风','011011':'兑为泽','110010':'风水涣','010011':'水泽节',
-  '110011':'风泽中孚','001100':'雷山小过','010101':'水火既济','101010':'火水未济'
-};
-const HEXSYM={
-  '乾为天':'䷀','坤为地':'䷁','水雷屯':'䷂','山水蒙':'䷃','水天需':'䷄','天水讼':'䷅',
-  '地水师':'䷆','水地比':'䷇','风天小畜':'䷈','天泽履':'䷉','地天泰':'䷊','天地否':'䷋',
-  '天火同人':'䷌','火天大有':'䷍','地山谦':'䷎','雷地豫':'䷏','泽雷随':'䷐','山风蛊':'䷑',
-  '地泽临':'䷒','风地观':'䷓','火雷噬嗑':'䷔','山火贲':'䷕','山地剥':'䷖','地雷复':'䷗',
-  '天雷无妄':'䷘','山天大畜':'䷙','山雷颐':'䷚','泽风大过':'䷛','坎为水':'䷜','离为火':'䷝',
-  '泽山咸':'䷞','雷风恒':'䷟','天山遁':'䷠','雷天大壮':'䷡','火地晋':'䷢','地火明夷':'䷣',
-  '风火家人':'䷤','火泽睽':'䷥','水山蹇':'䷦','雷水解':'䷧','山泽损':'䷨','风雷益':'䷩',
-  '泽天夬':'䷪','天风姤':'䷫','泽地萃':'䷬','地风升':'䷭','泽水困':'䷮','水风井':'䷯',
-  '泽火革':'䷰','火风鼎':'䷱','震为雷':'䷲','艮为山':'䷳','风山渐':'䷴','雷泽归妹':'䷵',
-  '雷火丰':'䷶','火山旅':'䷷','巽为风':'䷸','兑为泽':'䷹','风水涣':'䷺','水泽节':'䷻',
-  '风泽中孚':'䷼','雷山小过':'䷽','水火既济':'䷾','火水未济':'䷿'
-};
-const PALACES={
-  '乾':{el:'金',hexs:['乾为天','天风姤','天山遁','天地否','风地观','山地剥','火地晋','火天大有']},
-  '坎':{el:'水',hexs:['坎为水','水泽节','水雷屯','水火既济','泽火革','雷火丰','地火明夷','地水师']},
-  '艮':{el:'土',hexs:['艮为山','山火贲','山天大畜','山泽损','火泽睽','天泽履','风泽中孚','风山渐']},
-  '震':{el:'木',hexs:['震为雷','雷地豫','雷水解','雷风恒','地风升','水风井','泽风大过','泽雷随']},
-  '巽':{el:'木',hexs:['巽为风','风天小畜','风火家人','风雷益','天雷无妄','火雷噬嗑','山雷颐','山风蛊']},
-  '离':{el:'火',hexs:['离为火','火山旅','火风鼎','火水未济','山水蒙','风水涣','天水讼','天火同人']},
-  '坤':{el:'土',hexs:['坤为地','地雷复','地泽临','地天泰','雷天大壮','泽天夬','水天需','水地比']},
-  '兑':{el:'金',hexs:['兑为泽','泽水困','泽地萃','泽山咸','水山蹇','地山谦','雷山小过','雷泽归妹']}
-};
+const HEXDB={'111111':'乾为天','000000':'坤为地','010001':'水雷屯','100010':'山水蒙','010111':'水天需','111010':'天水讼','000010':'地水师','010000':'水地比','110111':'风天小畜','111011':'天泽履','000111':'地天泰','111000':'天地否','111101':'天火同人','101111':'火天大有','000100':'地山谦','001000':'雷地豫','011001':'泽雷随','100110':'山风蛊','000011':'地泽临','110000':'风地观','101001':'火雷噬嗑','100101':'山火贲','100000':'山地剥','000001':'地雷复','111001':'天雷无妄','100111':'山天大畜','100001':'山雷颐','011110':'泽风大过','010010':'坎为水','101101':'离为火','011100':'泽山咸','001110':'雷风恒','111100':'天山遁','001111':'雷天大壮','101000':'火地晋','000101':'地火明夷','110101':'风火家人','101011':'火泽睽','010100':'水山蹇','001010':'雷水解','100011':'山泽损','110001':'风雷益','011111':'泽天夬','111110':'天风姤','011000':'泽地萃','000110':'地风升','011010':'泽水困','010110':'水风井','011101':'泽火革','101110':'火风鼎','001001':'震为雷','100100':'艮为山','110100':'风山渐','001011':'雷泽归妹','001101':'雷火丰','101100':'火山旅','110110':'巽为风','011011':'兑为泽','110010':'风水涣','010011':'水泽节','110011':'风泽中孚','001100':'雷山小过','010101':'水火既济','101010':'火水未济'};
+const HEXSYM={'乾为天':'䷀','坤为地':'䷁','水雷屯':'䷂','山水蒙':'䷃','水天需':'䷄','天水讼':'䷅','地水师':'䷆','水地比':'䷇','风天小畜':'䷈','天泽履':'䷉','地天泰':'䷊','天地否':'䷋','天火同人':'䷌','火天大有':'䷍','地山谦':'䷎','雷地豫':'䷏','泽雷随':'䷐','山风蛊':'䷑','地泽临':'䷒','风地观':'䷓','火雷噬嗑':'䷔','山火贲':'䷕','山地剥':'䷖','地雷复':'䷗','天雷无妄':'䷘','山天大畜':'䷙','山雷颐':'䷚','泽风大过':'䷛','坎为水':'䷜','离为火':'䷝','泽山咸':'䷞','雷风恒':'䷟','天山遁':'䷠','雷天大壮':'䷡','火地晋':'䷢','地火明夷':'䷣','风火家人':'䷤','火泽睽':'䷥','水山蹇':'䷦','雷水解':'䷧','山泽损':'䷨','风雷益':'䷩','泽天夬':'䷪','天风姤':'䷫','泽地萃':'䷬','地风升':'䷭','泽水困':'䷮','水风井':'䷯','泽火革':'䷰','火风鼎':'䷱','震为雷':'䷲','艮为山':'䷳','风山渐':'䷴','雷泽归妹':'䷵','雷火丰':'䷶','火山旅':'䷷','巽为风':'䷸','兑为泽':'䷹','风水涣':'䷺','水泽节':'䷻','风泽中孚':'䷼','雷山小过':'䷽','水火既济':'䷾','火水未济':'䷿'};
+const PALACES={'乾':{el:'金',hexs:['乾为天','天风姤','天山遁','天地否','风地观','山地剥','火地晋','火天大有']},'坎':{el:'水',hexs:['坎为水','水泽节','水雷屯','水火既济','泽火革','雷火丰','地火明夷','地水师']},'艮':{el:'土',hexs:['艮为山','山火贲','山天大畜','山泽损','火泽睽','天泽履','风泽中孚','风山渐']},'震':{el:'木',hexs:['震为雷','雷地豫','雷水解','雷风恒','地风升','水风井','泽风大过','泽雷随']},'巽':{el:'木',hexs:['巽为风','风天小畜','风火家人','风雷益','天雷无妄','火雷噬嗑','山雷颐','山风蛊']},'离':{el:'火',hexs:['离为火','火山旅','火风鼎','火水未济','山水蒙','风水涣','天水讼','天火同人']},'坤':{el:'土',hexs:['坤为地','地雷复','地泽临','地天泰','雷天大壮','泽天夬','水天需','水地比']},'兑':{el:'金',hexs:['兑为泽','泽水困','泽地萃','泽山咸','水山蹇','地山谦','雷山小过','雷泽归妹']}};
 const LIUHE_SET=new Set(['天地否','地天泰','地雷复','雷地豫','山火贲','火山旅','泽水困','水泽节']);
 const LIUCHONG_SET=new Set(['乾为天','兑为泽','离为火','震为雷','巽为风','坎为水','艮为山','坤为地','天雷无妄','雷天大壮']);
-const BRANCH_CFG={
-  '111':['子','寅','辰','午','申','戌'],
-  '001':['子','寅','辰','午','申','戌'],
-  '010':['寅','辰','午','申','戌','子'],
-  '100':['辰','午','申','戌','子','寅'],
-  '000':['未','巳','卯','丑','亥','酉'],
-  '011':['巳','卯','丑','亥','酉','未'],
-  '110':['丑','亥','酉','未','巳','卯'],
-  '101':['卯','丑','亥','酉','未','巳']
-};
+const BRANCH_CFG={'111':['子','寅','辰','午','申','戌'],'001':['子','寅','辰','午','申','戌'],'010':['寅','辰','午','申','戌','子'],'100':['辰','午','申','戌','子','寅'],'000':['未','巳','卯','丑','亥','酉'],'011':['巳','卯','丑','亥','酉','未'],'110':['丑','亥','酉','未','巳','卯'],'101':['卯','丑','亥','酉','未','巳']};
 const BEL={子:'水',丑:'土',寅:'木',卯:'木',辰:'土',巳:'火',午:'火',未:'土',申:'金',酉:'金',戌:'土',亥:'水'};
 const WX_CSS={金:'wjin',木:'wmu',水:'wshui',火:'whuo',土:'wtu'};
-const WX_COL={金:'var(--c-jin)',木:'var(--c-mu)',水:'var(--c-shui)',火:'var(--c-huo)',土:'var(--c-tu)'};
-const WX_BG={金:'rgba(160,120,32,.12)',木:'rgba(46,104,48,.12)',水:'rgba(24,88,152,.12)',火:'rgba(168,24,8,.12)',土:'rgba(120,72,40,.12)'};
-const SHEN_MAP={
-  甲:['龙','雀','勾','蛇','虎','玄'],乙:['龙','雀','勾','蛇','虎','玄'],
-  丙:['雀','勾','蛇','虎','玄','龙'],丁:['雀','勾','蛇','虎','玄','龙'],
-  戊:['勾','蛇','虎','玄','龙','雀'],己:['蛇','虎','玄','龙','雀','勾'],
-  庚:['虎','玄','龙','雀','勾','蛇'],辛:['虎','玄','龙','雀','勾','蛇'],
-  壬:['玄','龙','雀','勾','蛇','虎'],癸:['玄','龙','雀','勾','蛇','虎']
-};
+const WX_COL={金:'var(--jin)',木:'var(--mu)',水:'var(--shui)',火:'var(--huo)',土:'var(--tu)'};
+const WX_BG={金:'rgba(154,112,16,.12)',木:'rgba(40,96,40,.12)',水:'rgba(20,88,144,.12)',火:'rgba(160,24,8,.12)',土:'rgba(114,68,40,.12)'};
+const SHEN_MAP={甲:['龙','雀','勾','蛇','虎','玄'],乙:['龙','雀','勾','蛇','虎','玄'],丙:['雀','勾','蛇','虎','玄','龙'],丁:['雀','勾','蛇','虎','玄','龙'],戊:['勾','蛇','虎','玄','龙','雀'],己:['蛇','虎','玄','龙','雀','勾'],庚:['虎','玄','龙','雀','勾','蛇'],辛:['虎','玄','龙','雀','勾','蛇'],壬:['玄','龙','雀','勾','蛇','虎'],癸:['玄','龙','雀','勾','蛇','虎']};
 const LQ_S={父母:'父',兄弟:'兄',子孙:'孙',妻财:'财',官鬼:'官'};
 const TG=['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
 const DZ=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
-const CATS=[
-  {id:'work',n:'工作',e:'💼'},{id:'study',n:'学业',e:'📖'},{id:'money',n:'求财',e:'💰'},
-  {id:'love',n:'婚恋',e:'💕'},{id:'fengshui',n:'风水',e:'🏠'},{id:'health',n:'占病',e:'🏥'},
-  {id:'fortune',n:'运势',e:'🔮'},{id:'other',n:'其他',e:'📋'}
-];
+const CATS=[{id:'work',n:'工作',e:'💼'},{id:'study',n:'学业',e:'📖'},{id:'money',n:'求财',e:'💰'},{id:'love',n:'婚恋',e:'💕'},{id:'fengshui',n:'风水',e:'🏠'},{id:'health',n:'占病',e:'🏥'},{id:'fortune',n:'运势',e:'🔮'},{id:'other',n:'其他',e:'📋'}];
 
 // ================================================================
-// ===== FIVE-ELEMENTS RELATIONS ==================================
+// FIVE ELEMENTS
 // ================================================================
-const SK={金:{sheng:'水',ke:'木'},木:{sheng:'火',ke:'土'},水:{sheng:'木',ke:'火'},火:{sheng:'土',ke:'金'},土:{sheng:'金',ke:'水'}};
-function wxSheng(a,b){return SK[a]&&SK[a].sheng===b;} // a生b
-function wxKe(a,b){return SK[a]&&SK[a].ke===b;}       // a克b
-function wxRel(a,b){
-  if(a===b)return'比';
-  if(wxSheng(a,b))return'生';
-  if(wxSheng(b,a))return'被生';
-  if(wxKe(a,b))return'克';
-  if(wxKe(b,a))return'被克';
-  return'';
-}
+const SK={金:{s:'水',k:'木'},木:{s:'火',k:'土'},水:{s:'木',k:'火'},火:{s:'土',k:'金'},土:{s:'金',k:'水'}};
+function wxRel(a,b){if(a===b)return'比';if(SK[a]?.s===b)return'生';if(SK[b]?.s===a)return'被生';if(SK[a]?.k===b)return'克';if(SK[b]?.k===a)return'被克';return'';}
 
 // ================================================================
-// ===== DI ZHI RELATIONS =========================================
+// DIZHI RELATIONS
 // ================================================================
-// 六合 pairs
-const LIUHE_PAIRS={子:'丑',丑:'子',寅:'亥',亥:'寅',卯:'戌',戌:'卯',辰:'酉',酉:'辰',巳:'申',申:'巳',午:'未',未:'午'};
-// 六冲 pairs
+const LIUHE_P={子:'丑',丑:'子',寅:'亥',亥:'寅',卯:'戌',戌:'卯',辰:'酉',酉:'辰',巳:'申',申:'巳',午:'未',未:'午'};
 const LIUCHONG_P={子:'午',午:'子',丑:'未',未:'丑',寅:'申',申:'寅',卯:'酉',酉:'卯',辰:'戌',戌:'辰',巳:'亥',亥:'巳'};
-// 三合局
-const SANHE=[
-  {el:'水',members:['申','子','辰']},
-  {el:'木',members:['亥','卯','未']},
-  {el:'火',members:['寅','午','戌']},
-  {el:'金',members:['巳','酉','丑']}
-];
-// 刑 (三刑, 自刑)
+const SANHE=[{el:'水',m:['申','子','辰']},{el:'木',m:['亥','卯','未']},{el:'火',m:['寅','午','戌']},{el:'金',m:['巳','酉','丑']}];
 const XING={寅:'巳',巳:'申',申:'寅',丑:'戌',戌:'未',未:'丑',子:'卯',卯:'子',辰:'辰',午:'午',酉:'酉',亥:'亥'};
-// 十二长生 (以五行元素开始的地支)
-// 长生起点: 金长生于巳, 木长生于亥, 水长生于申, 火长生于寅, 土长生于寅(阳土)
-const CHANG12=['长生','沐浴','冠带','临官','帝旺','衰','病','死','墓','绝','胎','养'];
-const CHANG12_START={金:'巳',木:'亥',水:'申',火:'寅',土:'寅'};
-// direction: some go forward, some backward through DZ
-const CHANG12_DIR={金:-1,木:1,水:-1,火:1,土:1}; // -1=逆, 1=顺
-function getChangSheng(el,dz){
-  const start=CHANG12_START[el];if(!start)return'';
-  const dir=CHANG12_DIR[el]||1;
-  const si=DZ.indexOf(start),di=DZ.indexOf(dz);
-  if(si<0||di<0)return'';
-  let steps=((di-si)*dir+12)%12;
-  return CHANG12[steps]||'';
-}
+const C12=['长生','沐浴','冠带','临官','帝旺','衰','病','死','墓','绝','胎','养'];
+const C12S={金:'巳',木:'亥',水:'申',火:'寅',土:'寅'};
+const C12D={金:-1,木:1,水:-1,火:1,土:1};
+function getCS(el,dz){const s=C12S[el],dir=C12D[el]||1,si=DZ.indexOf(s),di=DZ.indexOf(dz);if(si<0||di<0)return'';return C12[((di-si)*dir+12)%12]||'';}
 function dzRel(a,b){
-  const rels=[];
-  if(LIUHE_PAIRS[a]===b)rels.push('六合');
-  if(LIUCHONG_P[a]===b)rels.push('冲');
-  if(XING[a]===b)rels.push('刑');
-  // 三合
-  for(const sg of SANHE){if(sg.members.includes(a)&&sg.members.includes(b))rels.push(`三合${sg.el}`);}
-  // 五行生克
-  const r=wxRel(BEL[a],BEL[b]);if(r&&r!=='比')rels.push(r);
-  return rels;
+  const r=[];
+  if(LIUHE_P[a]===b)r.push('六合');
+  if(LIUCHONG_P[a]===b)r.push('冲');
+  if(XING[a]===b&&a!==b)r.push('刑');
+  for(const sg of SANHE){if(sg.m.includes(a)&&sg.m.includes(b))r.push(`三合${sg.el}`);}
+  const wr=wxRel(BEL[a],BEL[b]);if(wr&&wr!=='比')r.push(wr);
+  return r;
 }
 
 // ================================================================
-// ===== GANZHI CALENDAR ==========================================
+// GANZHI CALENDAR
 // ================================================================
-// Ganzhi extended info
-const DZ_CANG={
-  子:{main:'癸'},丑:{main:'己',mid:'癸',res:'辛'},寅:{main:'甲',mid:'丙',res:'戊'},
-  卯:{main:'乙'},辰:{main:'戊',mid:'乙',res:'癸'},巳:{main:'丙',mid:'庚',res:'戊'},
-  午:{main:'丁',mid:'己'},未:{main:'己',mid:'丁',res:'乙'},申:{main:'庚',mid:'壬',res:'戊'},
-  酉:{main:'辛'},戌:{main:'戊',mid:'辛',res:'丁'},亥:{main:'壬',mid:'甲'}
-};
-const DZ_DIR={子:'正北',丑:'东北偏北',寅:'东北偏东',卯:'正东',辰:'东南偏东',巳:'东南偏南',
-  午:'正南',未:'西南偏南',申:'西南偏西',酉:'正西',戌:'西北偏西',亥:'西北偏北'};
-
+const DZ_CANG={子:{main:'癸'},丑:{main:'己',mid:'癸',res:'辛'},寅:{main:'甲',mid:'丙',res:'戊'},卯:{main:'乙'},辰:{main:'戊',mid:'乙',res:'癸'},巳:{main:'丙',mid:'庚',res:'戊'},午:{main:'丁',mid:'己'},未:{main:'己',mid:'丁',res:'乙'},申:{main:'庚',mid:'壬',res:'戊'},酉:{main:'辛'},戌:{main:'戊',mid:'辛',res:'丁'},亥:{main:'壬',mid:'甲'}};
+const DZ_DIR={子:'正北',丑:'东北偏北',寅:'东北偏东',卯:'正东',辰:'东南偏东',巳:'东南偏南',午:'正南',未:'西南偏南',申:'西南偏西',酉:'正西',戌:'西北偏西',亥:'西北偏北'};
 function tgEl(c){if('甲乙'.includes(c))return'木';if('丙丁'.includes(c))return'火';if('戊己'.includes(c))return'土';if('庚辛'.includes(c))return'金';if('壬癸'.includes(c))return'水';return'';}
 function dzEl(c){return BEL[c]||'';}
-
 let curGZ=null;
 function getGZ(){
   try{
-    const now=new Date();
-    const lunar=Lunar.fromDate(now);
-    const y=lunar.getYearInGanZhi();
-    const m=lunar.getMonthInGanZhi();
-    const d=lunar.getDayInGanZhi();
-    const h=calcHrGZ(now,d);
-    const lunar_str=`农历${lunar.getYearInChinese()}年${lunar.getMonthInChinese()}月${lunar.getDayInChinese()}`;
+    const now=new Date(),lunar=Lunar.fromDate(now);
+    const y=lunar.getYearInGanZhi(),m=lunar.getMonthInGanZhi(),d=lunar.getDayInGanZhi(),h=calcHrGZ(now,d);
+    const ls=`农历${lunar.getYearInChinese()}年${lunar.getMonthInChinese()}月${lunar.getDayInChinese()}`;
     const kw=calcKW(d);
-    const jq=lunar.getPrevJieQi()?.getName()||'';
-    const jq_date=lunar.getPrevJieQi()?.getSolar();
-    const nxtJq=lunar.getNextJieQi()?.getName()||'';
-    const nxtDate=lunar.getNextJieQi()?.getSolar();
-    return{y,m,d,h,lunar_str,dayTG:d[0],dayDZ:d[1],monthDZ:m[1],kw,jq,jq_date,nxtJq,nxtDate};
+    const jq=lunar.getPrevJieQi()?.getName()||'',nxtJq=lunar.getNextJieQi()?.getName()||'';
+    const jqD=lunar.getPrevJieQi()?.getSolar(),nxtD=lunar.getNextJieQi()?.getSolar();
+    return{y,m,d,h,ls,dayTG:d[0],dayDZ:d[1],monthDZ:m[1],kw,jq,jqD,nxtJq,nxtD};
   }catch(e){return null;}
 }
 function calcHrGZ(date,dayGZ){
-  const hr=date.getHours();
-  const dti=TG.indexOf(dayGZ[0]);
+  const hr=date.getHours(),dti=TG.indexOf(dayGZ[0]);
   const sm={0:0,1:2,2:4,3:6,4:8,5:0,6:2,7:4,8:6,9:8};
   const stg=sm[dti]||0;
-  let bi=hr>=23||hr<1?0:Math.floor((hr+1)/2);
+  const bi=hr>=23||hr<1?0:Math.floor((hr+1)/2);
   return TG[(stg+bi)%10]+DZ[bi];
 }
 function calcKW(dayGZ){
@@ -741,308 +623,228 @@ function calcKW(dayGZ){
   const ds=(di-ti%10+12)%12;
   return[DZ[(ds+10)%12],DZ[(ds+11)%12]];
 }
-
 function renderGZ(){
   const gz=getGZ();
-  if(!gz){document.getElementById('lunarStr').textContent='干支历加载失败';return null;}
+  if(!gz){document.getElementById('lunarStr').textContent='加载失败';return null;}
   curGZ=gz;
-  document.getElementById('lunarStr').textContent=gz.lunar_str;
+  document.getElementById('lunarStr').textContent=gz.ls;
   const cells=[{l:'年',v:gz.y},{l:'月',v:gz.m},{l:'日',v:gz.d},{l:'时',v:gz.h}];
-  document.getElementById('gzRow').innerHTML=cells.map(c=>{
-    const tg=c.v[0],dz=c.v[1];
-    return`<div class="gz-cell"><div class="gz-lbl">${c.l}</div><div class="gz-val"><span class="${WX_CSS[tgEl(tg)]||''}">${tg}</span><span class="${WX_CSS[dzEl(dz)]||''}">${dz}</span></div></div>`;
-  }).join('');
-  // Extended info
-  let ext=`<div class="gz-ext-row">
-    <span>空亡(日)：</span><span class="${WX_CSS[dzEl(gz.kw[0])]}"><b>${gz.kw.join('')}</b></span>
-    &ensp;<span>日地支方位：</span><span>${DZ_DIR[gz.dayDZ]||''}</span>
-  </div>`;
-  // Jieqi
+  document.getElementById('gzRow').innerHTML=cells.map(c=>`<div class="gz-cell"><div class="gz-lbl">${c.l}</div><div class="gz-val"><span class="${WX_CSS[tgEl(c.v[0])]||''}">${c.v[0]}</span><span class="${WX_CSS[dzEl(c.v[1])]||''}">${c.v[1]}</span></div></div>`).join('');
+  let ext=`<div class="gz-ext"><span>日辰空亡：</span><span class="${WX_CSS[dzEl(gz.kw[0])]||''}">${gz.kw.join('')}</span>&emsp;<span>方位：</span><span>${DZ_DIR[gz.dayDZ]||''}</span></div>`;
   if(gz.jq||gz.nxtJq){
-    const prev_d=gz.jq_date?`${gz.jq_date.getYear()}.${gz.jq_date.getMonth()}.${gz.jq_date.getDay()}`:'';
-    const nxt_d=gz.nxtDate?`${gz.nxtDate.getYear()}.${gz.nxtDate.getMonth()}.${gz.nxtDate.getDay()}`:'';
-    ext+=`<div class="gz-ext-row"><span>节气：</span><span>${gz.jq} ${prev_d}</span>&ensp;<span>→</span>&ensp;<span>${gz.nxtJq} ${nxt_d}</span></div>`;
+    const pd=gz.jqD?`${gz.jqD.getYear()}.${gz.jqD.getMonth()}.${gz.jqD.getDay()}`:'';
+    const nd=gz.nxtD?`${gz.nxtD.getYear()}.${gz.nxtD.getMonth()}.${gz.nxtD.getDay()}`:'';
+    ext+=`<div class="gz-ext" style="margin-top:3px"><span>节气：${gz.jq} ${pd}</span>&emsp;<span>→ ${gz.nxtJq} ${nd}</span></div>`;
   }
-  // Cang gan for each DZ
-  const showCang=(dz,label)=>{
-    const c=DZ_CANG[dz];if(!c)return'';
-    const parts=[c.main];if(c.mid)parts.push(c.mid);if(c.res)parts.push(c.res);
-    const colored=parts.map(t=>`<span class="${WX_CSS[tgEl(t)]||''}">${t}</span>`).join(' ');
-    return`<span>${label}(${dz})藏干：${colored}</span>`;
-  };
-  const cangStr=[
-    showCang(gz.d[1],'日'),showCang(gz.m[1],'月'),showCang(gz.h[1],'时')
-  ].filter(Boolean).join('&ensp;&ensp;');
-  if(cangStr){
-    ext+=`<div class="gz-sub"><div class="gz-sub-title">地支藏干参考</div>${cangStr}</div>`;
-  }
+  const showCang=dz=>{const c=DZ_CANG[dz];if(!c)return'';const ps=[c.main,c.mid,c.res].filter(Boolean);return`${dz}(${ps.map(t=>`<span class="${WX_CSS[tgEl(t)]||''}">${t}</span>`).join('')})`;};
+  ext+=`<div class="gz-sub">藏干：${showCang(gz.d[1])} ${showCang(gz.m[1])} ${showCang(gz.h[1])}</div>`;
   document.getElementById('gzExt').innerHTML=ext;
+  // Init converter
+  initGZConv();
   return gz;
 }
 
 // ================================================================
-// ===== HEXAGRAM LOGIC ===========================================
+// GANZHI → SOLAR CONVERTER
 // ================================================================
-function getLiuqin(be,pe){
-  if(be===pe)return'兄弟';
-  if(SK[pe]&&SK[pe].sheng===be)return'子孙';
-  if(SK[be]&&SK[be].sheng===pe)return'父母';
-  if(SK[pe]&&SK[pe].ke===be)return'妻财';
-  if(SK[be]&&SK[be].ke===pe)return'官鬼';
-  return'兄弟';
+function initGZConv(){
+  const area=document.getElementById('gzConvArea');
+  if(!area)return;
+  const tgOpts=TG.map((t,i)=>`<option value="${i}">${t}</option>`).join('');
+  const dzOpts=DZ.map((d,i)=>`<option value="${i}">${d}</option>`).join('');
+  area.innerHTML=`
+    <div class="gz-conv-row" style="margin-top:6px">
+      <select id="convTG" style="flex:1">${tgOpts}</select>
+      <select id="convDZ" style="flex:1">${dzOpts}</select>
+      <select id="convRange" style="flex:1">
+        <option value="5">未来5年</option>
+        <option value="3">未来3年</option>
+        <option value="10">未来10年</option>
+      </select>
+      <button class="btn btnp bsm" onclick="calcGZSolar()">查询</button>
+    </div>
+    <div id="convResult" class="gz-conv-result" style="display:none"></div>
+  `;
 }
-function getHexName(lines){
-  const key=lines.map(l=>l===0||l===2?0:1).reverse().join('');
-  return HEXDB[key]||'未知';
-}
-function getPalaceInfo(hexName){
-  for(const[p,d]of Object.entries(PALACES)){
-    const i=d.hexs.indexOf(hexName);if(i<0)continue;
-    let shi;if(i===0)shi=5;else if(i<=5)shi=i-1;else if(i===6)shi=3;else shi=2;
-    return{palace:p,el:d.el,shi,ying:(shi+3)%6,idx:i,isYH:i===6,isGH:i===7,isBG:i===0};
-  }return null;
-}
-function getEBranches(lines){
-  const b=v=>(v===0||v===2)?'0':'1';
-  const lk=[b(lines[2]),b(lines[1]),b(lines[0])].join('');
-  const uk=[b(lines[5]),b(lines[4]),b(lines[3])].join('');
-  const lb=BRANCH_CFG[lk]||[],ub=BRANCH_CFG[uk]||[];
-  return[lb[0]||'',lb[1]||'',lb[2]||'',ub[3]||'',ub[4]||'',ub[5]||''];
-}
-function getLiuqins(hexName,branches,palaceEl){
-  const lqs=branches.map(b=>b?getLiuqin(BEL[b],palaceEl):'');
-  const required=['父母','兄弟','官鬼','妻财','子孙'];
-  const missing=required.filter(lq=>!lqs.includes(lq));
-  const fuchen={};
-  if(missing.length>0){
-    const pi=getPalaceInfo(hexName);if(!pi)return{lqs,fuchen};
-    const bgn=PALACES[pi.palace].hexs[0];
-    const bgk=Object.entries(HEXDB).find(([k,v])=>v===bgn)?.[0];
-    if(bgk){
-      const bgl=bgk.split('').map(Number).reverse();
-      const bgb=getEBranches(bgl);
-      const bglq=bgb.map(b=>b?getLiuqin(BEL[b],palaceEl):'');
-      missing.forEach(lq=>{
-        const bi=bglq.indexOf(lq);if(bi<0)return;
-        const counts={};
-        lqs.forEach((l,i)=>{if(l)(counts[l]=counts[l]||[]).push(i);});
-        const dup=Object.entries(counts).find(([,v])=>v.length>1);
-        if(dup)fuchen[dup[1][0]]={branch:bgb[bi],liuqin:lq};
-      });
-    }
+function calcGZSolar(){
+  const tgi=parseInt(document.getElementById('convTG').value);
+  const dzi=parseInt(document.getElementById('convDZ').value);
+  const years=parseInt(document.getElementById('convRange').value)||5;
+  const tg=TG[tgi],dz=DZ[dzi];
+  // Validate: tg and dz must be compatible (TG index mod 5 matches DZ group)
+  // 甲己合子午 etc - simplified check: (tg_idx%10) and (dz_idx%12) parity
+  // In 60-jiazi: tg_idx%2 must equal dz_idx%2
+  const res=document.getElementById('convResult');
+  if(tgi%2!==dzi%2){
+    res.style.display='block';
+    res.innerHTML=`<span style="color:var(--huo)">${tg}${dz} 不在六十甲子中，请重新选择</span>`;
+    return;
   }
-  return{lqs,fuchen};
+  const now=new Date();
+  const matches=[];
+  // Search through dates in range
+  for(let y=now.getFullYear();y<=now.getFullYear()+years;y++){
+    // 365 days per year
+    const start=new Date(y,0,1),end=new Date(y,11,31);
+    let cur=new Date(start);
+    while(cur<=end&&matches.length<8){
+      try{
+        const lunar=Lunar.fromDate(cur);
+        const dgz=lunar.getDayInGanZhi();
+        if(dgz===tg+dz){
+          const d=cur;
+          matches.push(`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日（${['日','一','二','三','四','五','六'][d.getDay()]}）`);
+        }
+      }catch(e){}
+      cur.setDate(cur.getDate()+1);
+    }
+    if(matches.length>=8)break;
+  }
+  res.style.display='block';
+  if(matches.length===0){
+    res.innerHTML=`在未来${years}年内未找到 <b>${tg}${dz}</b> 日`;
+  }else{
+    res.innerHTML=`<b>${tg}${dz}</b> 日（未来${years}年）：<br>${matches.map(m=>`• ${m}`).join('<br>')}`;
+  }
 }
-function getChangedLines(lines){return lines.map(l=>l===3?0:l===2?1:l);}
 
 // ================================================================
-// ===== ANALYSIS ENGINE ==========================================
+// HEXAGRAM LOGIC
+// ================================================================
+function getLiuqin(be,pe){if(be===pe)return'兄弟';if(SK[pe]?.s===be)return'子孙';if(SK[be]?.s===pe)return'父母';if(SK[pe]?.k===be)return'妻财';if(SK[be]?.k===pe)return'官鬼';return'兄弟';}
+function getHexName(lines){return HEXDB[lines.map(l=>l===0||l===2?0:1).reverse().join('')]||'未知';}
+function getPalaceInfo(hexName){for(const[p,d]of Object.entries(PALACES)){const i=d.hexs.indexOf(hexName);if(i<0)continue;let shi;if(i===0)shi=5;else if(i<=5)shi=i-1;else if(i===6)shi=3;else shi=2;return{palace:p,el:d.el,shi,ying:(shi+3)%6,idx:i,isYH:i===6,isGH:i===7,isBG:i===0};}return null;}
+function getEBranches(lines){const b=v=>(v===0||v===2)?'0':'1';const lk=[b(lines[2]),b(lines[1]),b(lines[0])].join('');const uk=[b(lines[5]),b(lines[4]),b(lines[3])].join('');const lb=BRANCH_CFG[lk]||[],ub=BRANCH_CFG[uk]||[];return[lb[0]||'',lb[1]||'',lb[2]||'',ub[3]||'',ub[4]||'',ub[5]||''];}
+function getChangedLines(lines){return lines.map(l=>l===3?0:l===2?1:l);}
+
+// Get all bengong (本宫卦) branches for fuchen reference
+function getBengongBranches(palaceInfo){
+  if(!palaceInfo)return Array(6).fill('');
+  const bgn=PALACES[palaceInfo.palace].hexs[0];
+  const bgk=Object.entries(HEXDB).find(([,v])=>v===bgn)?.[0];
+  if(!bgk)return Array(6).fill('');
+  const bgl=bgk.split('').map(Number).reverse();
+  return getEBranches(bgl);
+}
+
+// Full fuchen: ALL 6 bengong爻 branches (always show full bengong column)
+function getBengongLiuqins(palaceInfo){
+  if(!palaceInfo)return{branches:Array(6).fill(''),lqs:Array(6).fill('')};
+  const branches=getBengongBranches(palaceInfo);
+  const lqs=branches.map(b=>b?getLiuqin(BEL[b],palaceInfo.el):'');
+  return{branches,lqs};
+}
+
+function getLiuqinsForHex(hexName,branches,palaceEl){
+  const lqs=branches.map(b=>b?getLiuqin(BEL[b],palaceEl):'');
+  return lqs;
+}
+
+function getChangedLines2(lines){return lines.map(l=>l===3?0:l===2?1:l);}
+
+// ================================================================
+// ANALYSIS ENGINE
 // ================================================================
 function analyzeHex(lines,hexName,gz){
   const results=[];
-  const pi=getPalaceInfo(hexName);
-  if(!pi)return results;
+  const pi=getPalaceInfo(hexName);if(!pi)return results;
   const palaceEl=pi.el;
   const branches=getEBranches(lines);
-  const{lqs}=getLiuqins(hexName,branches,palaceEl);
+  const lqs=getLiuqinsForHex(hexName,branches,palaceEl);
   const hasChange=lines.some(l=>l===2||l===3);
-  const changedLines=getChangedLines(lines);
-  const changeHexName=hasChange?getHexName(changedLines):'';
-  const changePi=hasChange?getPalaceInfo(changeHexName):null;
+  const cLines=getChangedLines(lines);
+  const cHex=hasChange?getHexName(cLines):'';
+  const cPi=hasChange?getPalaceInfo(cHex):null;
 
-  // 1. 本卦与变卦五行关系
-  if(hasChange&&changePi){
-    const rel=wxRel(palaceEl,changePi.el);
-    let desc='',cls='ana-neu';
-    if(rel==='生'){desc=`本卦${palaceEl}宫生变卦${changePi.el}宫，泄气，事主渐散`;cls='ana-bad';}
-    else if(rel==='被生'){desc=`变卦${changePi.el}宫生本卦${palaceEl}宫，回头生，利于所求`;cls='ana-good';}
-    else if(rel==='克'){desc=`本卦${palaceEl}宫克变卦${changePi.el}宫，有制，主凶后收`;cls='ana-bad';}
-    else if(rel==='被克'){desc=`变卦${changePi.el}宫克本卦${palaceEl}宫，回头克，主凶`;cls='ana-bad';}
-    else if(palaceEl===changePi.el){desc=`本变同宫，格局稳定`;cls='ana-neu';}
-    if(desc)results.push({type:'五行',txt:desc,cls});
+  // 1. 本变五行
+  if(hasChange&&cPi){
+    const rel=wxRel(palaceEl,cPi.el);
+    let txt='',cls='chip-n';
+    if(rel==='生'){txt=`本卦${palaceEl}生变卦${cPi.el}，泄气主渐散`;cls='chip-b';}
+    else if(rel==='被生'){txt=`变卦${cPi.el}生本卦${palaceEl}，回头生主吉`;cls='chip-g';}
+    else if(rel==='克'){txt=`本卦${palaceEl}克变卦${cPi.el}，有制凶后收`;cls='chip-b';}
+    else if(rel==='被克'){txt=`变卦${cPi.el}克本卦${palaceEl}，回头克主凶`;cls='chip-b';}
+    else if(palaceEl===cPi.el){txt=`本变同宫${palaceEl}，格局稳定`;cls='chip-n';}
+    if(txt)results.push({type:'本变五行',items:[{txt,cls}]});
   }
 
-  // 2. 月日对各爻的影响
+  // 2. 月日对各爻
   if(gz){
     const mdz=gz.monthDZ,ddz=gz.dayDZ;
     const dynIdx=lines.map((l,i)=>(l===2||l===3)?i:-1).filter(i=>i>=0);
-    
-    // Month/Day influence on each line
-    const mRels=[],dRels=[],dynRels=[];
+    const lnames=['初','二','三','四','五','上'];
+
+    const mItems=[],dItems=[];
     for(let i=0;i<6;i++){
       const b=branches[i];if(!b)continue;
-      const lqS=LQ_S[lqs[i]]||lqs[i];
-      const ln=['初','二','三','四','五','上'][i];
-      // Month
-      const mdr=dzRel(mdz,b);
-      mdr.forEach(r=>{
-        let cls='ana-neu';
-        if(r==='六合'||r.includes('三合')||r==='被生')cls='ana-good';
-        if(r==='冲'||r==='克'||r==='刑')cls='ana-bad';
-        mRels.push({txt:`月(${mdz})${r}${ln}爻${lqS}(${b})`,cls});
+      const ln=lnames[i],lqS=LQ_S[lqs[i]]||lqs[i];
+      dzRel(mdz,b).forEach(r=>{
+        let cls='chip-n';
+        if(r==='六合'||r.includes('三合')||r==='被生')cls='chip-g';
+        if(r==='冲'||r==='克'||r==='刑')cls='chip-b';
+        mItems.push({txt:`月${mdz}${r}${ln}${lqS}(${b})`,cls});
       });
-      // Day
-      const ddr=dzRel(ddz,b);
-      ddr.forEach(r=>{
-        let cls='ana-neu';
-        if(r==='六合'||r.includes('三合')||r==='被生')cls='ana-good';
-        if(r==='冲'||r==='克'||r==='刑')cls='ana-bad';
-        dRels.push({txt:`日(${ddz})${r}${ln}爻${lqS}(${b})`,cls});
+      dzRel(ddz,b).forEach(r=>{
+        let cls='chip-n';
+        if(r==='六合'||r.includes('三合')||r==='被生')cls='chip-g';
+        if(r==='冲'||r==='克'||r==='刑')cls='chip-b';
+        dItems.push({txt:`日${ddz}${r}${ln}${lqS}(${b})`,cls});
       });
-      // Dynamic lines (动爻) relationships
-      if(dynIdx.includes(i)){
-        // Chang12 of each line's element relative to day
-        const cs12=getChangSheng(BEL[b],ddz);
-        if(cs12)dynRels.push({txt:`动${ln}爻${lqS}(${b})日(${ddz})逢${cs12}`,cls:'ana-neu'});
-      }
     }
-    if(mRels.length)results.push({type:'月建',items:mRels});
-    if(dRels.length)results.push({type:'日辰',items:dRels});
+    if(mItems.length)results.push({type:'月建影响',items:mItems});
+    if(dItems.length)results.push({type:'日辰影响',items:dItems});
 
-    // Dynamic lines vs other lines
+    // 3. 动爻
     if(dynIdx.length>0){
-      const dyn2dyn=[];
+      const dynItems=[];
       dynIdx.forEach(di=>{
         const db=branches[di];if(!db)return;
-        const dln=['初','二','三','四','五','上'][di];
-        const dlqS=LQ_S[lqs[di]]||lqs[di];
-        // Changed form
-        const cl=changedLines[di];
-        const cb=getEBranches(changedLines)[di];
-        if(cb&&cb!==db){
-          const cs12=getChangSheng(BEL[db],cb);
-          if(cs12)dyn2dyn.push({txt:`动${dln}爻${dlqS}(${db})化${cb}逢${cs12}`,cls:'ana-neu'});
-          const rel=dzRel(db,cb);
-          rel.forEach(r=>{
-            let cls='ana-neu';
-            if(r==='六合'||r.includes('三合')||r==='被生')cls='ana-good';
-            if(r==='冲'||r==='克'||r==='刑')cls='ana-bad';
-            dyn2dyn.push({txt:`动${dln}爻(${db})化${cb} ${r}`,cls});
-          });
-        }
-        // Against other lines
+        const dln=lnames[di],dlqS=LQ_S[lqs[di]]||lqs[di];
+        // vs other lines
         for(let j=0;j<6;j++){
           if(j===di)continue;
           const ob=branches[j];if(!ob)continue;
-          const oln=['初','二','三','四','五','上'][j];
-          const olqS=LQ_S[lqs[j]]||lqs[j];
-          const rel=dzRel(db,ob);
-          rel.forEach(r=>{
-            let cls='ana-neu';
-            if(r==='六合'||r.includes('三合'))cls='ana-good';
-            if(r==='冲'||r==='刑')cls='ana-bad';
-            if(r==='克')cls='ana-bad';
-            if(r==='被生')cls='ana-good';
-            dyn2dyn.push({txt:`动${dln}爻${dlqS}(${db})${r}${oln}爻${olqS}(${ob})`,cls});
+          const oln=lnames[j],olqS=LQ_S[lqs[j]]||lqs[j];
+          dzRel(db,ob).forEach(r=>{
+            let cls='chip-n';
+            if(r==='六合'||r.includes('三合'))cls='chip-g';
+            if(r==='冲'||r==='刑'||r==='克')cls='chip-b';
+            if(r==='被生')cls='chip-g';
+            dynItems.push({txt:`动${dln}${dlqS}(${db})${r}${oln}${olqS}(${ob})`,cls});
+          });
+        }
+        // changsheng
+        const cs=getCS(BEL[db],ddz);
+        if(cs)dynItems.push({txt:`动${dln}${dlqS}(${db})逢日${ddz}长生:${cs}`,cls:'chip-n'});
+        // vs changed form
+        const cdb=getEBranches(cLines)[di];
+        if(cdb&&cdb!==db){
+          dzRel(db,cdb).forEach(r=>{
+            let cls='chip-n';
+            if(r==='六合'||r.includes('三合'))cls='chip-g';
+            if(r==='冲'||r==='刑'||r==='克')cls='chip-b';
+            dynItems.push({txt:`${dln}爻(${db})化(${cdb}) ${r}`,cls});
           });
         }
       });
-      if(dyn2dyn.length)results.push({type:'动爻',items:dyn2dyn});
-      // Dynamic lines chang12 from day element
-      if(dynRels.length)results.push({type:'十二长生',items:dynRels});
+      if(dynItems.length)results.push({type:'动爻分析',items:dynItems});
     }
-    // Six-combination (六合局) check across all lines
-    const sanhePairs=[];
-    for(const sg of SANHE){
-      const mb=sg.members.filter(dz=>branches.includes(dz));
-      if(mb.length>=2)sanhePairs.push(`卦内含三合${sg.el}局(${mb.join('')})`);
-    }
-    if(sanhePairs.length)results.push({type:'三合',items:sanhePairs.map(t=>({txt:t,cls:'ana-good'}))});
+
+    // 4. 三合局
+    const shItems=[];
+    for(const sg of SANHE){const mb=sg.m.filter(dz=>branches.includes(dz));if(mb.length>=2)shItems.push({txt:`卦内含三合${sg.el}局(${mb.join('')})`,cls:'chip-g'});}
+    if(shItems.length)results.push({type:'三合局',items:shItems});
   }
   return results;
 }
 
-function renderAnalysis(lines,hexName,gz){
-  const ana=analyzeHex(lines,hexName,gz);
-  if(!ana.length)return'';
-
-  // Map relation text to visual chip
-  function chip(txt,cls){
-    const icons={
-      '六合':'🔗','三合':'△','冲':'⚡','刑':'✕','生':'→','被生':'←','克':'✖','被克':'◁',
-      '长生':'🌱','沐浴':'💧','冠带':'👑','临官':'📈','帝旺':'🔥','衰':'📉','病':'🤒','死':'💀','墓':'⬛','绝':'❌','胎':'🥚','养':'🌿',
-      '比':'＝'
-    };
-    // find matching icon
-    let icon='';
-    for(const[k,v]of Object.entries(icons)){if(txt.includes(k)){icon=v;break;}}
-    return`<span class="rel-chip ${cls||'rel-neu'}">${icon}${txt}</span>`;
-  }
-
-  let html=`<div class="ana-sec"><div class="ana-title">🔍 卦象分析</div>`;
-  ana.forEach(a=>{
-    html+=`<div class="ana-wrap">`;
-    if(a.txt){
-      const c=a.cls==='ana-good'?'rel-good':a.cls==='ana-bad'?'rel-bad':'rel-neu';
-      html+=`<div class="ana-svg-row">${chip(a.txt,c)}</div>`;
-    }else if(a.items&&a.items.length){
-      if(a.type)html+=`<div class="ana-group-hdr">${a.type}</div>`;
-      // Group items into rows of 3-4
-      const rows=[];let row=[];
-      a.items.forEach((it,idx)=>{row.push(it);if(row.length>=3||(idx===a.items.length-1)){rows.push(row);row=[];}});
-      rows.forEach(r=>{
-        html+=`<div class="ana-svg-row">`;
-        r.forEach(it=>{
-          const c=it.cls==='ana-good'?'rel-good':it.cls==='ana-bad'?'rel-bad':'rel-neu';
-          html+=chip(it.txt,c);
-        });
-        html+=`</div>`;
-      });
-    }
-    html+=`</div>`;
-  });
-  html+=`</div>`;
-  return html;
-}
-
 // ================================================================
-// ===== RENDER HEX RESULT ========================================
+// BUILD HEXAGRAM HTML
+// Columns: [伏藏支] [伏藏亲] | [六神] [六亲] [地支] [爻] [世应] | [○×] | [变爻] [变地支] [变六亲]
 // ================================================================
-// Build array of {yaoHtml, fcHtml} for each yao (index 5..0, top to bottom)
-function buildYaoBlocks(lines,branches,lqs,fuchen,pi,shen,origLines){
-  const blocks=[];
-  for(let i=5;i>=0;i--){
-    const line=lines[i];
-    const isYang=line===1||line===3;
-    const origLine=origLines?origLines[i]:null;
-    const isChg=origLine!==null&&(origLine===2||origLine===3);
-    const b=branches[i]||'';
-    const lqF=lqs[i]||'';
-    const lqS=LQ_S[lqF]||lqF;
-    const sh=shen?shen[i]:'';
-    const isShi=pi&&pi.shi===i;
-    const isYing=pi&&pi.ying===i;
-    const bCls=b?WX_CSS[BEL[b]]||'':'';
-    const fc=fuchen[i];
-
-    // Yao bar HTML (same width regardless of yang/yin)
-    const barHtml=isYang
-      ?`<div class="y-yang"></div>`
-      :`<div class="y-yin"><div class="y-yin-h"></div><div class="y-yin-h"></div></div>`;
-
-    let rowHtml;
-    if(shen){
-      // Main hex: [left=shen+lq+zhi] [yao bar] [world/応]
-      const leftH=`<div class="yao-left">${sh?`<span class="yshen">${sh}</span>`:''}${lqS?`<span class="yqin">${lqS}</span>`:''}${b?`<span class="yzhi ${bCls}">${b}</span>`:''}</div>`;
-      const rightH=`<div class="yao-right">${isShi?`<span class="yshi">世</span>`:isYing?`<span class="yying">应</span>`:''}</div>`;
-      rowHtml=`<div class="yao-row yao-row-main">${leftH}<div class="yv">${barHtml}</div>${rightH}</div>`;
-    }else{
-      // Change hex: [yao bar] [right=lq+zhi]
-      const rightH=`<div class="yao-right">${lqS?`<span class="yqin">${lqS}</span>`:''}${b?`<span class="yzhi ${bCls}">${b}</span>`:''}</div>`;
-      rowHtml=`<div class="yao-row yao-row-chg"><div class="yv">${barHtml}</div>${rightH}</div>`;
-    }
-
-    // Fuchen (伏藏) text - shown below the yao row
-    let fcHtml='';
-    if(fc){
-      const fcCls=fc.branch?WX_CSS[BEL[fc.branch]]||'':'';
-      const fcLqS=LQ_S[fc.liuqin]||fc.liuqin;
-      fcHtml=`<div class="fuchen-r">伏：<span class="${fcCls}">${fc.branch}</span>${fcLqS}</div>`;
-    }
-
-    blocks.push({rowHtml,fcHtml,isChg,origLine});
-  }
-  return blocks;
+function yaoBar(isYang){
+  if(isYang)return`<div class="yv"><div class="y-yang"></div></div>`;
+  return`<div class="yv"><div class="y-yin"><div class="y-yin-h"></div><div class="y-yin-h"></div></div></div>`;
 }
 
 function buildHexHtml(lines,gz){
@@ -1051,86 +853,121 @@ function buildHexHtml(lines,gz){
   const pi=getPalaceInfo(hexName);
   const palaceEl=pi?pi.el:'金';
   const branches=getEBranches(lines);
-  const{lqs,fuchen}=getLiuqins(hexName,branches,palaceEl);
+  const lqs=getLiuqinsForHex(hexName,branches,palaceEl);
   const dayTG=gz?gz.dayTG:'甲';
   const shen=SHEN_MAP[dayTG]||SHEN_MAP['甲'];
+
+  // Bengong column (full 6爻 of 本宫卦)
+  const bgInfo=getBengongLiuqins(pi);
+  const bgBranches=bgInfo.branches;
+  const bgLqs=bgInfo.lqs;
+
   const cLines=getChangedLines(lines);
   const cHex=hasChange?getHexName(cLines):'';
   const cPi=hasChange?getPalaceInfo(cHex):null;
-  const cBranches=hasChange?getEBranches(cLines):[];
-  const{lqs:cLqs,fuchen:cFuchen}=hasChange?getLiuqins(cHex,cBranches,palaceEl):{lqs:Array(6).fill(''),fuchen:{}};
+  const cBranches=hasChange?getEBranches(cLines):Array(6).fill('');
+  const cLqs=hasChange?getLiuqinsForHex(cHex,cBranches,palaceEl):Array(6).fill('');
 
   const tags=[],cTags=[];
   if(pi?.isYH)tags.push('游魂');if(pi?.isGH)tags.push('归魂');
   if(LIUHE_SET.has(hexName))tags.push('六合');if(LIUCHONG_SET.has(hexName))tags.push('六冲');
   if(hasChange){if(cPi?.isYH)cTags.push('游魂');if(cPi?.isGH)cTags.push('归魂');if(LIUHE_SET.has(cHex))cTags.push('六合');if(LIUCHONG_SET.has(cHex))cTags.push('六冲');}
 
-  // Build yao blocks for both hexagrams
-  const mainBlocks=buildYaoBlocks(lines,branches,lqs,fuchen,pi,shen,null);
-  const changeBlocks=hasChange?buildYaoBlocks(cLines,cBranches,cLqs,cFuchen,null,null,lines):null;
+  let html=`<div class="hx-area">`;
 
-  let html=`<div class="hx-area"><div class="hx-cols">`;
+  // Header titles
+  html+=`<div class="hx-header">
+    <div class="hx-hdr-l">
+      ${pi?`<span class="pal-badge" style="background:${WX_BG[pi.el]};color:${WX_COL[pi.el]}">${pi.palace}宫·${pi.el}</span>`:''}
+      ${HEXSYM[hexName]||''} ${hexName}${tags.map(t=>`<span class="spec-tag">${t}</span>`).join('')}
+    </div>
+    <div class="hx-hdr-mid"></div>
+    <div class="hx-hdr-r">
+      ${hasChange?`${cPi?`<span class="pal-badge" style="background:${WX_BG[cPi.el]};color:${WX_COL[cPi.el]}">${cPi.palace}宫·${cPi.el}</span>`:''} ${HEXSYM[cHex]||''} ${cHex}${cTags.map(t=>`<span class="spec-tag">${t}</span>`).join('')}`:'<span style="color:var(--tx3)">无变卦</span>'}
+    </div>
+  </div>`;
 
-  // ---- MAIN HEX column ----
-  html+=`<div class="hx-col-main">`;
-  html+=`<div class="hx-col-tit">`;
-  if(pi)html+=`<span class="pal-badge" style="background:${WX_BG[pi.el]};color:${WX_COL[pi.el]}">${pi.palace}宫·${pi.el}</span> `;
-  html+=`${HEXSYM[hexName]||''} ${hexName}`;
-  tags.forEach(t=>html+=` <span class="spec-tag">${t}</span>`);
+  // Table: render from 上爻(5) down to 初爻(0)
+  html+=`<table class="hx-table">`;
+  for(let i=5;i>=0;i--){
+    const line=lines[i];
+    const isYang=line===1||line===3;
+    const isOldYang=line===3,isOldYin=line===2;
+    const b=branches[i]||'';
+    const lqS=LQ_S[lqs[i]]||lqs[i]||'';
+    const sh=shen[i]||'';
+    const isShi=pi&&pi.shi===i,isYing=pi&&pi.ying===i;
+    const bCls=b?WX_CSS[BEL[b]]||'':'';
+    const markTxt=isOldYang?'○':isOldYin?'×':'';
+
+    // Bengong (伏) column - show full bengong爻
+    const bgB=bgBranches[i]||'';
+    const bgLq=LQ_S[bgLqs[i]]||bgLqs[i]||'';
+    const bgBCls=bgB?WX_CSS[BEL[bgB]]||'':'';
+    // Only show 伏 if not bengong hex itself
+    const showFuchen=pi&&!pi.isBG&&bgB;
+
+    // Change hex
+    const cB=cBranches[i]||'';
+    const cLqS=LQ_S[cLqs[i]]||cLqs[i]||'';
+    const cBCls=cB?WX_CSS[BEL[cB]]||'':'';
+    const cLine=hasChange?cLines[i]:null;
+    const cIsYang=cLine===1||cLine===3;
+
+    html+=`<tr>
+      <td class="col-fuchen">${showFuchen?`<span class="${bgBCls}">${bgB}</span>`:''}</td>
+      <td class="col-fuchen" style="padding-right:4px">${showFuchen?`<span style="font-size:.58rem;color:var(--tx3)">${bgLq}</span>`:''}</td>
+      <td class="col-sep"></td>
+      <td class="col-shen">${sh}</td>
+      <td class="col-lq"><span class="${bCls}">${lqS}</span></td>
+      <td class="col-dz"><span class="${bCls}">${b}</span></td>
+      <td class="col-yao">${yaoBar(isYang)}</td>
+      <td class="col-sw">${isShi?`<span class="yshi">世</span>`:isYing?`<span class="yying">应</span>`:''}</td>
+      <td class="col-mark">${markTxt}</td>
+      <td class="col-cyao">${hasChange?yaoBar(cIsYang):''}</td>
+      <td class="col-cdz"><span class="${cBCls}">${cB}</span></td>
+      <td class="col-clq"><span class="${cBCls}">${cLqS}</span></td>
+    </tr>`;
+  }
+  html+=`</table>`;
+
+  // Analysis - collapsible
+  const anaData=analyzeHex(lines,hexName,gz);
+  if(anaData.length){
+    html+=`<div class="ana-toggle" onclick="toggleAna(this)">
+      <span class="ana-toggle-icon">▶</span>
+      <span style="font-size:.72rem;font-weight:600;letter-spacing:.06em">地支分析</span>
+      <span style="font-size:.65rem;color:var(--tx3);margin-left:4px">(点击展开)</span>
+    </div>
+    <div class="ana-body">`;
+    anaData.forEach(sec=>{
+      html+=`<div class="ana-section">
+        <div class="ana-sec-title">${sec.type}</div>
+        <div class="chip-row">`;
+      sec.items.forEach(it=>{
+        const icons={六合:'🔗',三合:'△',冲:'⚡',刑:'✕',生:'→',被生:'←',克:'✖',被克:'◁',长生:'🌱',沐浴:'💧',帝旺:'🔥',死:'💀',墓:'⬛',绝:'❌'};
+        let icon='';for(const[k,v]of Object.entries(icons)){if(it.txt.includes(k)){icon=v;break;}}
+        html+=`<span class="chip ${it.cls}">${icon}${it.txt}</span>`;
+      });
+      html+=`</div></div>`;
+    });
+    html+=`</div>`;
+  }
+
   html+=`</div>`;
-  // yao blocks
-  mainBlocks.forEach(b=>{
-    html+=`<div class="yao-block">${b.rowHtml}`;
-    if(b.fcHtml)html+=b.fcHtml;
-    html+=`</div>`;
-  });
-  html+=`</div>`; // end main col
-
-  // ---- MIDDLE column: O/X markers ----
-  html+=`<div class="hx-col-mid">`;
-  // Title spacer (match title height approx)
-  html+=`<div style="height:38px"></div>`;
-  if(hasChange){
-    mainBlocks.forEach(b=>{
-      // yao-row height ~22px
-      html+=`<div style="height:22px;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:bold;color:var(--gold)">${b.isChg?(b.origLine===3?'○':'×'):''}</div>`;
-      // fuchen spacer
-      if(b.fcHtml)html+=`<div style="height:18px"></div>`;
-      // gap between blocks
-      html+=`<div style="height:6px"></div>`;
-    });
-  }
-  html+=`</div>`; // end mid col
-
-  // ---- CHANGE HEX column ----
-  if(hasChange){
-    html+=`<div class="hx-col-change">`;
-    html+=`<div class="hx-col-tit ct">`;
-    if(cPi)html+=`<span class="pal-badge" style="background:${WX_BG[cPi.el]};color:${WX_COL[cPi.el]}">${cPi.palace}宫·${cPi.el}</span> `;
-    html+=`${HEXSYM[cHex]||''} ${cHex}`;
-    cTags.forEach(t=>html+=` <span class="spec-tag">${t}</span>`);
-    html+=`</div>`;
-    changeBlocks.forEach((b,idx)=>{
-      html+=`<div class="yao-block">${b.rowHtml}`;
-      // Mirror fuchen spacing from main
-      if(mainBlocks[idx]?.fcHtml)html+=`<div class="fuchen-r" style="visibility:hidden">伏：XX</div>`;
-      html+=`</div>`;
-    });
-    html+=`</div>`;
-  }else{
-    html+=`<div class="hx-col-change no-chg"><div style="opacity:.3;font-size:1.6rem">—</div><div>无变爻</div></div>`;
-  }
-
-  html+=`</div>`; // end hx-cols
-
-  // Analysis (graphic SVG style)
-  html+=renderAnalysis(lines,hexName,gz);
-  html+=`</div>`; // end hx-area
   return html;
 }
 
+function toggleAna(el){
+  const body=el.nextElementSibling;
+  const icon=el.querySelector('.ana-toggle-icon');
+  const isOpen=body.classList.toggle('open');
+  icon.classList.toggle('open',isOpen);
+  el.querySelector('span:last-child').textContent=isOpen?'(点击收起)':'(点击展开)';
+}
+
 // ================================================================
-// ===== CAST METHODS =============================================
+// CAST
 // ================================================================
 let curLines=null,curMethod='random',selCat='',cnOpen=false;
 let manualState=[0,0,0,0,0,0];
@@ -1141,17 +978,13 @@ function setMethod(m){
   document.querySelectorAll('.mp').forEach(p=>p.classList.remove('on'));
   document.getElementById('mp-'+m).classList.add('on');
 }
-function castRandom(){
-  curLines=Array.from({length:6},()=>[2,3,0,1][Math.floor(Math.random()*4)]);
-  refreshResult();toast('随机起卦','ok');
-}
+function castRandom(){curLines=Array.from({length:6},()=>[2,3,0,1][Math.floor(Math.random()*4)]);refreshResult();toast('随机起卦','ok');}
 const N2TRI={1:'111',9:'111',2:'011',3:'101',4:'001',5:'110',6:'010',7:'100',8:'000'};
 const CN_MAP={1:0,7:0,2:1,8:1,3:2,9:2,4:3,5:4,6:5};
 function castNum(){
   const u=+document.getElementById('nU').value||1,l=+document.getElementById('nL').value||1,c=+document.getElementById('nC').value||1;
   if(u<1||u>9||l<1||l>9||c<1||c>9){toast('请输入1-9','err');return;}
-  const ut=N2TRI[u]||'111',lt=N2TRI[l]||'111';
-  const cp=CN_MAP[c];
+  const ut=N2TRI[u]||'111',lt=N2TRI[l]||'111',cp=CN_MAP[c];
   const ln=[+lt[2],+lt[1],+lt[0],+ut[2],+ut[1],+ut[0]];
   ln[cp]=ln[cp]===1?3:2;
   curLines=ln;refreshResult();toast('数字起卦','ok');
@@ -1165,53 +998,40 @@ function refreshResult(){
   document.getElementById('castResetWrap').style.display='block';
 }
 function resetCast(){
-  curLines=null;curMethod='random';
-  document.getElementById('hexRes').innerHTML='<div style="text-align:center;padding:36px 0;color:var(--tx3)"><div style="font-size:2.4rem;opacity:.2;margin-bottom:8px">☯</div>请起卦</div>';
+  curLines=null;
+  document.getElementById('hexRes').innerHTML='<div style="text-align:center;padding:32px 0;color:var(--tx3)"><div style="font-size:2.2rem;opacity:.18;margin-bottom:6px">☯</div>请起卦</div>';
   document.getElementById('castNotesWrap').style.display='none';
   document.getElementById('castResetWrap').style.display='none';
   if(document.getElementById('castNotesTxt'))document.getElementById('castNotesTxt').value='';
   toast('已清除');
 }
-
-// Manual selector - dropdown style, 上爻 at top, 初爻 at bottom (matches reference images)
 function renderManual(){
   const labels=['初爻','二爻','三爻','四爻','五爻','上爻'];
   const g=document.getElementById('mlGrid');
   let h='';
-  // i=5 (上爻) at top → i=0 (初爻) at bottom
   for(let i=5;i>=0;i--){
-    h+=`<div class="ml-row">
-      <div class="ml-lbl">${labels[i]}</div>
+    h+=`<div class="ml-row"><div class="ml-lbl">${labels[i]}</div>
       <select class="ml-sel" onchange="manualState[${i}]=parseInt(this.value)">
         <option value="1"${manualState[i]===1?' selected':''}>少阳 ————</option>
         <option value="0"${manualState[i]===0?' selected':''}>少阴 ── ──</option>
-        <option value="3"${manualState[i]===3?' selected':''}>老阳 ──────  O</option>
-        <option value="2"${manualState[i]===2?' selected':''}>老阴 ── ──  X</option>
-      </select>
-    </div>`;
+        <option value="3"${manualState[i]===3?' selected':''}>老阳 ────── O</option>
+        <option value="2"${manualState[i]===2?' selected':''}>老阴 ── ── X</option>
+      </select></div>`;
   }
   g.innerHTML=h;
 }
-
-function toggleCN(){
-  cnOpen=!cnOpen;
-  document.getElementById('cnBody').style.display=cnOpen?'block':'none';
-  document.getElementById('cnArrow').textContent=cnOpen?'▲':'▼';
-}
+function toggleCN(){cnOpen=!cnOpen;document.getElementById('cnBody').style.display=cnOpen?'block':'none';document.getElementById('cnArrow').textContent=cnOpen?'▲':'▼';}
 
 // ================================================================
-// ===== CATEGORIES ===============================================
+// CATEGORIES
 // ================================================================
-function renderCats(){
-  document.getElementById('catRow').innerHTML=CATS.map(c=>`<button class="catb${selCat===c.id?' on':''}" onclick="setSCat('${c.id}')">${c.e}${c.n}</button>`).join('');
-}
+function renderCats(){document.getElementById('catRow').innerHTML=CATS.map(c=>`<button class="catb${selCat===c.id?' on':''}" onclick="setSCat('${c.id}')">${c.e}${c.n}</button>`).join('');}
 function setSCat(id){selCat=selCat===id?'':id;renderCats();}
 
 // ================================================================
-// ===== RECORDS ==================================================
+// RECORDS
 // ================================================================
 let recs=[],batchMode=false,selIds=new Set(),recFilt='',movCatTgt='';
-
 function saveCast(){
   if(!curLines){toast('请先起卦','err');return;}
   const name=document.getElementById('castName').value.trim();
@@ -1221,10 +1041,8 @@ function saveCast(){
   const cLines=getChangedLines(curLines);
   const chex=curLines.some(l=>l===2||l===3)?getHexName(cLines):'';
   const notes=document.getElementById('castNotesTxt')?.value||'';
-  const rec={id:Date.now()+'',name,cat:selCat,date:new Date().toISOString(),
-    lines:[...curLines],hexName,changeHex:chex||null,method:curMethod,
-    ganzhi:gz?{y:gz.y,m:gz.m,d:gz.d,h:gz.h,lunar_str:gz.lunar_str,kw:gz.kw,monthDZ:gz.monthDZ,dayDZ:gz.dayDZ}:null,
-    notes,synced:false};
+  const rec={id:Date.now()+'',name,cat:selCat,date:new Date().toISOString(),lines:[...curLines],hexName,changeHex:chex||null,method:curMethod,
+    ganzhi:gz?{y:gz.y,m:gz.m,d:gz.d,h:gz.h,ls:gz.ls,kw:gz.kw,monthDZ:gz.monthDZ,dayDZ:gz.dayDZ}:null,notes,synced:false};
   recs.unshift(rec);saveRecs();renderRL();
   document.getElementById('castName').value='';selCat='';renderCats();
   if(document.getElementById('castNotesTxt'))document.getElementById('castNotesTxt').value='';
@@ -1234,12 +1052,18 @@ function saveRecs(){localStorage.setItem('liuyao_recs',JSON.stringify(recs));}
 function loadRecs(){try{recs=JSON.parse(localStorage.getItem('liuyao_recs')||'[]');}catch{recs=[];}updCnt();}
 function updCnt(){document.getElementById('recCnt').textContent=recs.length;document.getElementById('recTotal').textContent=`共 ${recs.length} 条`;}
 function updSyncDot(){document.getElementById('syncDot').style.display=recs.some(r=>!r.synced)?'inline-block':'none';}
-
+function renderRecFilt(){
+  const act=new Set(recs.map(r=>r.cat).filter(Boolean));
+  let h=`<button class="catb${recFilt===''?' on':''}" onclick="setRF('')">全部</button>`;
+  CATS.filter(c=>act.has(c.id)).forEach(c=>{h+=`<button class="catb${recFilt===c.id?' on':''}" onclick="setRF('${c.id}')">${c.e}${c.n}</button>`;});
+  document.getElementById('recFilt').innerHTML=h;
+}
+function setRF(id){recFilt=id;renderRL();}
 function renderRL(){
   updCnt();renderRecFilt();
   const filtered=recFilt?recs.filter(r=>r.cat===recFilt):recs;
   const c=document.getElementById('recList');
-  if(!filtered.length){c.innerHTML='<div style="text-align:center;padding:30px;color:var(--tx3)"><div style="font-size:1.8rem;opacity:.3;margin-bottom:6px">📚</div>暂无卦例</div>';return;}
+  if(!filtered.length){c.innerHTML='<div style="text-align:center;padding:36px;color:var(--tx3)"><div style="font-size:1.8rem;opacity:.3;margin-bottom:6px">📚</div>暂无卦例</div>';return;}
   const cm=Object.fromEntries(CATS.map(c=>[c.id,c]));
   c.innerHTML=filtered.map(r=>{
     const dt=new Date(r.date);
@@ -1256,46 +1080,31 @@ function renderRL(){
         ${r.ganzhi?`<span>${r.ganzhi.d}日</span>`:''}
       </div>
       <div class="ri-hex">${HEXSYM[r.hexName]||''} ${hx}</div>
-      ${!batchMode?`<div style="font-size:.65rem;color:var(--tx3);margin-top:5px">点击查看详情 →</div>`:''}
     </div>`;
   }).join('');
 }
-function renderRecFilt(){
-  const active=new Set(recs.map(r=>r.cat).filter(Boolean));
-  let h=`<button class="catb${recFilt===''?' on':''}" onclick="setRF('')">全部</button>`;
-  CATS.filter(c=>active.has(c.id)).forEach(c=>{h+=`<button class="catb${recFilt===c.id?' on':''}" onclick="setRF('${c.id}')">${c.e}${c.n}</button>`;});
-  document.getElementById('recFilt').innerHTML=h;
-}
-function setRF(id){recFilt=id;renderRL();}
 function toggleBatch(){batchMode=!batchMode;selIds=new Set();document.getElementById('batchBar').style.display=batchMode?'flex':'none';renderRL();}
 function togSel(id,el){if(el.checked)selIds.add(id);else selIds.delete(id);document.getElementById('batchCnt').textContent=`已选 ${selIds.size} 条`;}
 function togSelAll(el){const f=recFilt?recs.filter(r=>r.cat===recFilt):recs;if(el.checked)f.forEach(r=>selIds.add(r.id));else selIds=new Set();document.getElementById('batchCnt').textContent=`已选 ${selIds.size} 条`;renderRL();}
 function batchDel(){if(!selIds.size){toast('请先选择','err');return;}if(!confirm(`删除 ${selIds.size} 条？`))return;recs=recs.filter(r=>!selIds.has(r.id));saveRecs();selIds=new Set();toggleBatch();toast('已删除','ok');}
-function batchMov(){if(!selIds.size){toast('请先选择','err');return;}
+function batchMov(){
+  if(!selIds.size){toast('请先选择','err');return;}
   const b=document.getElementById('movCatB');
   b.innerHTML='<div style="margin-bottom:8px;font-size:.78rem;color:var(--tx2)">选择目标分类：</div>'+CATS.map(c=>`<button class="catb" onclick="movCatTgt='${c.id}';document.querySelectorAll('#movCatB .catb').forEach(x=>x.classList.remove('on'));this.classList.add('on')">${c.e}${c.n}</button>`).join(' ');
-  movCatTgt='';openModal('movCatM');}
-function confMovCat(){if(!movCatTgt){toast('请选择分类','err');return;}recs.forEach(r=>{if(selIds.has(r.id))r.cat=movCatTgt;});saveRecs();closeModal('movCatM');toggleBatch();toast('分类已更新','ok');}
-function delRec(id){if(!confirm('删除此卦例？'))return;recs=recs.filter(r=>r.id!==id);saveRecs();renderRL();toast('已删除','ok');}
-function shareRec(id){
-  const r=recs.find(x=>x.id===id);if(!r)return;
-  const b=new Blob([JSON.stringify([r],null,2)],{type:'application/json'});
-  const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`卦例_${r.name}.json`;a.click();URL.revokeObjectURL(u);toast('已导出');
+  movCatTgt='';openModal('movCatM');
 }
+function confMovCat(){if(!movCatTgt){toast('请选择分类','err');return;}recs.forEach(r=>{if(selIds.has(r.id))r.cat=movCatTgt;});saveRecs();closeModal('movCatM');toggleBatch();toast('分类已更新','ok');}
+function shareRec(id){const r=recs.find(x=>x.id===id);if(!r)return;const b=new Blob([JSON.stringify([r],null,2)],{type:'application/json'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`卦例_${r.name}.json`;a.click();URL.revokeObjectURL(u);toast('已导出');}
+function delRec(id){if(!confirm('删除？'))return;recs=recs.filter(r=>r.id!==id);saveRecs();renderRL();toast('已删除','ok');}
 
 // ================================================================
-// ===== RECORD DETAIL ============================================
+// RECORD DETAIL
 // ================================================================
-function openRec(id){
-  const rec=recs.find(r=>r.id===id);if(!rec)return;
-  document.getElementById('rlv').style.display='none';
-  document.getElementById('rdv').style.display='block';
-  renderRD(rec);
-}
+function openRec(id){const rec=recs.find(r=>r.id===id);if(!rec)return;document.getElementById('rlv').style.display='none';document.getElementById('rdv').style.display='block';renderRD(rec);}
 function showRL(){document.getElementById('rlv').style.display='block';document.getElementById('rdv').style.display='none';}
 
 function renderRD(rec){
-  const lines=rec.lines,hasChange=!!rec.changeHex;
+  const lines=rec.lines;
   const gz=rec.ganzhi?{...rec.ganzhi,dayTG:rec.ganzhi.d?.[0]||'甲'}:null;
   const dt=new Date(rec.date);
   const ds=`${dt.getFullYear()}年${dt.getMonth()+1}月${dt.getDate()}日 ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')}`;
@@ -1305,127 +1114,88 @@ function renderRD(rec){
   let noteEd=false;
 
   function render(){
-    let h=``;
-    // Header
-    h+=`<div style="margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bdl)">
+    let h=`<div style="margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bdl)">
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;flex-wrap:wrap">
         <div>
           <div style="font-size:1rem;font-weight:700;margin-bottom:3px">${rec.name}</div>
-          <div style="font-size:.7rem;color:var(--tx3);display:flex;gap:8px;flex-wrap:wrap">
-            <span>${ds}</span>
-            ${cat?`<span>${cat.e}${cat.n}</span>`:''}
+          <div style="font-size:.7rem;color:var(--tx3);display:flex;gap:7px;flex-wrap:wrap">
+            <span>${ds}</span>${cat?`<span>${cat.e}${cat.n}</span>`:''}
             <span style="color:var(--ac)">${hx}</span>
           </div>
         </div>
-        <div style="display:flex;gap:5px;flex-shrink:0">
+        <div style="display:flex;gap:5px">
           <button class="btn btns bsm" onclick="shareRec('${rec.id}')">📤 分享</button>
-          <button class="btn btnd bsm" onclick="delRecFromDetail('${rec.id}')">删除</button>
+          <button class="btn btnd bsm" onclick="delRecDetail('${rec.id}')">删除</button>
         </div>
       </div>
     </div>`;
 
-    // Ganzhi - full display with extended info
+    // Ganzhi
     if(rec.ganzhi){
       const g=rec.ganzhi;
-      const gzFull={...g, dayTG:g.d?.[0]||'甲'};
-      h+=`<div style="margin-bottom:12px">
-        <div style="font-size:.68rem;color:var(--tx3);margin-bottom:5px">${g.lunar_str||''}</div>
-        <div class="gz-row" style="max-width:340px">
-          ${['年','月','日','时'].map((l,i)=>{
-            const v=[g.y,g.m,g.d,g.h][i];
-            return`<div class="gz-cell"><div class="gz-lbl">${l}</div><div class="gz-val"><span class="${WX_CSS[tgEl(v[0])]||''}">${v[0]}</span><span class="${WX_CSS[dzEl(v[1])]||''}">${v[1]}</span></div></div>`;
-          }).join('')}
+      h+=`<div style="margin-bottom:10px">
+        <div style="font-size:.65rem;color:var(--tx3);margin-bottom:4px">${g.ls||''}</div>
+        <div class="gz-row" style="max-width:300px">
+          ${['年','月','日','时'].map((l,i)=>{const v=[g.y,g.m,g.d,g.h][i];return`<div class="gz-cell"><div class="gz-lbl">${l}</div><div class="gz-val"><span class="${WX_CSS[tgEl(v[0])]||''}">${v[0]}</span><span class="${WX_CSS[dzEl(v[1])]||''}">${v[1]}</span></div></div>`;}).join('')}
         </div>
-        <div class="gz-ext-row" style="margin-top:6px">
-          <span>日辰空亡：</span><span>${(g.kw||[]).join('')}</span>
-          ${g.dayDZ?`&ensp;<span>日地支方位：</span><span>${DZ_DIR[g.dayDZ]||''}</span>`:''}
-        </div>
+        <div class="gz-ext" style="margin-top:5px"><span>日辰空亡：</span><span>${(g.kw||[]).join('')}</span></div>
       </div>`;
     }
 
-    // Hex result (ALWAYS visible, no tab)
-    h+=`<div style="margin-bottom:14px">`;
-    h+=buildHexHtml(lines,gz);
-    h+=`</div>`;
+    // Hex
+    h+=`<div style="margin-bottom:12px">${buildHexHtml(lines,gz)}</div>`;
 
-    // Notes DIRECTLY below hex (always visible, not in a separate tab)
-    h+=`<div style="border-top:1px solid var(--bdl);padding-top:12px">`;
-    h+=`<div style="font-size:.78rem;font-weight:700;color:var(--tx3);margin-bottom:8px;padding-left:5px;border-left:2px solid var(--ac);display:flex;align-items:center;justify-content:space-between">
-      <span>📝 笔记</span>
-      ${!noteEd?`<button class="btn btns bsm" id="edNt">✏️ 编辑</button>`:''}
-    </div>`;
+    // Notes
+    h+=`<div style="border-top:1px solid var(--bdl);padding-top:10px">
+      <div style="font-size:.7rem;font-weight:700;color:var(--tx3);margin-bottom:6px;padding-left:4px;border-left:2px solid var(--ac);display:flex;align-items:center;justify-content:space-between">
+        <span>📝 笔记</span>
+        ${!noteEd?`<button class="btn btns bsm" id="edNt">✏️ 编辑</button>`:''}
+      </div>`;
     if(noteEd){
       h+=`<textarea class="nted" id="ntEd">${escH(rec.notes||'')}</textarea>
-        <div style="display:flex;gap:5px;margin-top:6px;justify-content:flex-end">
+        <div style="display:flex;gap:5px;margin-top:5px;justify-content:flex-end">
           <button class="btn btnp bsm" id="svNt">保存</button>
           <button class="btn btns bsm" id="cnNt">取消</button>
         </div>`;
     }else{
-      h+=`<div class="ntpv">${rec.notes?parseMD(rec.notes):'<span style="color:var(--tx3)">暂无笔记，点击编辑添加...</span>'}</div>`;
+      h+=`<div class="ntpv">${rec.notes?parseMD(rec.notes):'<span style="color:var(--tx3)">暂无笔记</span>'}</div>`;
     }
     h+=`</div>`;
-
     container.innerHTML=h;
-
-    // Bind note edit buttons
     document.getElementById('edNt')?.addEventListener('click',()=>{noteEd=true;render();setTimeout(()=>document.getElementById('ntEd')?.focus(),50);});
-    document.getElementById('svNt')?.addEventListener('click',()=>{
-      const v=document.getElementById('ntEd')?.value||'';
-      const idx=recs.findIndex(r=>r.id===rec.id);
-      if(idx>=0){recs[idx].notes=v;rec.notes=v;saveRecs();}
-      noteEd=false;render();toast('笔记已保存','ok');
-    });
+    document.getElementById('svNt')?.addEventListener('click',()=>{const v=document.getElementById('ntEd')?.value||'';const idx=recs.findIndex(r=>r.id===rec.id);if(idx>=0){recs[idx].notes=v;rec.notes=v;saveRecs();}noteEd=false;render();toast('笔记已保存','ok');});
     document.getElementById('cnNt')?.addEventListener('click',()=>{noteEd=false;render();});
   }
   render();
 }
-function delRecFromDetail(id){if(!confirm('删除？'))return;recs=recs.filter(r=>r.id!==id);saveRecs();renderRL();showRL();toast('已删除','ok');}
+function delRecDetail(id){if(!confirm('删除？'))return;recs=recs.filter(r=>r.id!==id);saveRecs();renderRL();showRL();toast('已删除','ok');}
 
 // ================================================================
-// ===== IMPORT / EXPORT ==========================================
+// IMPORT / EXPORT
 // ================================================================
-function exportRecs(){
-  const b=new Blob([JSON.stringify(recs,null,2)],{type:'application/json'});
-  const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`liuyao_${Date.now()}.json`;a.click();URL.revokeObjectURL(u);toast('导出成功');
-}
+function exportRecs(){const b=new Blob([JSON.stringify(recs,null,2)],{type:'application/json'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`liuyao_${Date.now()}.json`;a.click();URL.revokeObjectURL(u);toast('导出成功');}
 function openImport(){openModal('importModal');document.getElementById('impSt').textContent='';document.getElementById('impTxt').value='';}
-function handleImpFile(el){
-  const f=el.files[0];if(!f)return;
-  const r=new FileReader();r.onload=e=>{document.getElementById('impTxt').value=e.target.result;document.getElementById('impSt').textContent='文件已读取';};r.readAsText(f);
-}
+function handleImpFile(el){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{document.getElementById('impTxt').value=e.target.result;document.getElementById('impSt').textContent='文件已读取';};r.readAsText(f);}
 function initDropArea(){
-  const drop=document.getElementById('dropA');
-  if(!drop)return;
-  drop.addEventListener('dragover',e=>{e.preventDefault();drop.style.borderColor='var(--ac)';});
-  drop.addEventListener('dragleave',()=>{drop.style.borderColor='';});
-  drop.addEventListener('drop',e=>{
-    e.preventDefault();drop.style.borderColor='';
-    const f=e.dataTransfer.files[0];if(!f)return;
-    const r=new FileReader();r.onload=ev=>{document.getElementById('impTxt').value=ev.target.result;document.getElementById('impSt').textContent='文件已读取';};r.readAsText(f);
-  });
+  const d=document.getElementById('dropA');if(!d)return;
+  d.addEventListener('dragover',e=>{e.preventDefault();d.style.borderColor='var(--ac)';});
+  d.addEventListener('dragleave',()=>{d.style.borderColor='';});
+  d.addEventListener('drop',e=>{e.preventDefault();d.style.borderColor='';const f=e.dataTransfer.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{document.getElementById('impTxt').value=ev.target.result;document.getElementById('impSt').textContent='文件已读取';};r.readAsText(f);});
 }
-function doImport(){
-  const raw=(document.getElementById('impTxt').value||'').trim();if(!raw){toast('请提供内容','err');return;}
-  try{let d=JSON.parse(raw);if(!Array.isArray(d))d=[d];let n=0;d.forEach(r=>{if(!r.id||!r.name||!r.lines)return;if(!recs.find(x=>x.id===r.id)){recs.unshift(r);n++;}});saveRecs();renderRL();closeModal('importModal');toast(`导入 ${n} 条`,'ok');}
-  catch(e){toast('JSON格式错误','err');}
-}
+function doImport(){const raw=(document.getElementById('impTxt').value||'').trim();if(!raw){toast('请提供内容','err');return;}try{let d=JSON.parse(raw);if(!Array.isArray(d))d=[d];let n=0;d.forEach(r=>{if(!r.id||!r.name||!r.lines)return;if(!recs.find(x=>x.id===r.id)){recs.unshift(r);n++;}});saveRecs();renderRL();closeModal('importModal');toast(`导入 ${n} 条`,'ok');}catch(e){toast('JSON格式错误','err');}}
 function clearAll(){if(!confirm('清空所有卦例？'))return;recs=[];saveRecs();renderRL();toast('已清空');}
 
 // ================================================================
-// ===== GITHUB SYNC ==============================================
+// GITHUB SYNC
 // ================================================================
-function loadGHSettings(){
-  document.getElementById('ghTok').value=localStorage.getItem('gh_tok')||'';
-  document.getElementById('ghRepo').value=localStorage.getItem('gh_repo')||'';
-  document.getElementById('ghPath').value=localStorage.getItem('gh_path')||'records.json';
-}
+function loadGHSettings(){document.getElementById('ghTok').value=localStorage.getItem('gh_tok')||'';document.getElementById('ghRepo').value=localStorage.getItem('gh_repo')||'';document.getElementById('ghPath').value=localStorage.getItem('gh_path')||'records.json';}
 function saveGHS(){localStorage.setItem('gh_tok',document.getElementById('ghTok').value);localStorage.setItem('gh_repo',document.getElementById('ghRepo').value);localStorage.setItem('gh_path',document.getElementById('ghPath').value||'records.json');}
 function togTok(){const i=document.getElementById('ghTok');i.type=i.type==='password'?'text':'password';}
 async function saveAndPush(){
   saveGHS();
   const tok=localStorage.getItem('gh_tok'),repo=localStorage.getItem('gh_repo'),path=localStorage.getItem('gh_path')||'records.json';
   if(!tok||!repo){toast('请填写Token和仓库','err');return;}
-  document.getElementById('ghSt').textContent='推送中...';
+  document.getElementById('ghSt').textContent='推送中…';
   try{
     let sha=null;
     const cr=await fetch(`https://api.github.com/repos/${repo}/contents/${path}`,{headers:{Authorization:`Bearer ${tok}`,Accept:'application/vnd.github+json'}});
@@ -1434,27 +1204,27 @@ async function saveAndPush(){
     const body={message:`liuyao sync ${new Date().toISOString()}`,content};if(sha)body.sha=sha;
     const res=await fetch(`https://api.github.com/repos/${repo}/contents/${path}`,{method:'PUT',headers:{Authorization:`Bearer ${tok}`,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});
     if(res.ok){recs.forEach(r=>r.synced=true);saveRecs();updSyncDot();toast('推送成功','ok');document.getElementById('ghSt').textContent=`同步：${new Date().toLocaleString()}`;closeModal('syncModal');}
-    else{const e=await res.json();toast('推送失败: '+(e.message||res.status),'err');document.getElementById('ghSt').textContent='失败';}
-  }catch(e){toast('推送失败: '+e.message,'err');}
+    else{const e=await res.json();toast('失败: '+(e.message||res.status),'err');document.getElementById('ghSt').textContent='失败';}
+  }catch(e){toast('失败: '+e.message,'err');}
 }
 async function syncFrom(){
   saveGHS();
   const tok=localStorage.getItem('gh_tok'),repo=localStorage.getItem('gh_repo'),path=localStorage.getItem('gh_path')||'records.json';
   if(!tok||!repo){toast('请填写Token和仓库','err');return;}
-  document.getElementById('ghSt').textContent='同步中...';
+  document.getElementById('ghSt').textContent='同步中…';
   try{
     const res=await fetch(`https://api.github.com/repos/${repo}/contents/${path}`,{headers:{Authorization:`Bearer ${tok}`,Accept:'application/vnd.github+json'}});
     if(!res.ok){toast('失败: '+res.status,'err');return;}
-    const d=await res.json();
-    const json=decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
+    const data=await res.json();
+    const json=decodeURIComponent(escape(atob(data.content.replace(/\n/g,''))));
     const imp=JSON.parse(json);if(!Array.isArray(imp))throw new Error('格式错误');
     let n=0;imp.forEach(r=>{if(r.id&&!recs.find(x=>x.id===r.id)){r.synced=true;recs.unshift(r);n++;}});
-    saveRecs();renderRL();updSyncDot();toast(`同步成功：+${n}条`,'ok');document.getElementById('ghSt').textContent=`同步：${new Date().toLocaleString()}`;closeModal('syncModal');
-  }catch(e){toast('同步失败: '+e.message,'err');}
+    saveRecs();renderRL();updSyncDot();toast(`同步成功 +${n}条`,'ok');document.getElementById('ghSt').textContent=`同步：${new Date().toLocaleString()}`;closeModal('syncModal');
+  }catch(e){toast('失败: '+e.message,'err');}
 }
 
 // ================================================================
-// ===== UI HELPERS ===============================================
+// UI
 // ================================================================
 function showPage(p){
   document.querySelectorAll('.pg').forEach(x=>x.classList.remove('on'));
@@ -1467,62 +1237,31 @@ function openModal(id){if(id==='syncModal')loadGHSettings();document.getElementB
 function closeModal(id){document.getElementById(id).classList.remove('on');}
 function toggleTheme(){applyT(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');}
 function togTheme(el){applyT(el.checked?'dark':'light');}
-function applyT(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('liuyao_t',t);const btn=document.getElementById('themeBtn');if(btn)btn.textContent=t==='dark'?'☀':'🌙';}
-function toast(msg,t){
-  const c=document.getElementById('tc');if(!c)return;
-  const el=document.createElement('div');
-  el.className=`toast${t?' '+t:''}`;el.textContent=msg;c.appendChild(el);
-  setTimeout(()=>{el.style.opacity='0';el.style.transform='translateY(4px)';el.style.transition='all .25s';setTimeout(()=>el.remove(),250);},2400);
-}
+function applyT(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('liuyao_t',t);document.getElementById('themeBtn').textContent=t==='dark'?'☀':'🌙';}
+function toast(msg,t){const c=document.getElementById('tc');const el=document.createElement('div');el.className=`toast${t?' '+t:''}`;el.textContent=msg;c.appendChild(el);setTimeout(()=>{el.style.opacity='0';el.style.transform='translateY(4px)';el.style.transition='all .25s';setTimeout(()=>el.remove(),250);},2400);}
 function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function parseMD(md){
-  return md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h1>$1</h1>')
-    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/`(.+?)`/g,'<code>$1</code>')
-    .replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>').replace(/^---$/gm,'<hr>')
-    .replace(/^[-*] (.+)$/gm,'<li>$1</li>').replace(/(<li>[\s\S]+?<\/li>)/g,'<ul>$1</ul>')
-    .replace(/\n\n/g,'</p><p>').replace(/^(?!<[hubl])(.+)$/gm,'<p>$1</p>');
-}
+function parseMD(md){return md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h1>$1</h1>').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/`(.+?)`/g,'<code>$1</code>').replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>').replace(/^---$/gm,'<hr>').replace(/^[-*] (.+)$/gm,'<li>$1</li>').replace(/(<li>[\s\S]+?<\/li>)/g,'<ul>$1</ul>').replace(/\n\n/g,'</p><p>').replace(/^(?!<[hubl])(.+)$/gm,'<p>$1</p>');}
 
 // ================================================================
-// ===== PWA ======================================================
+// PWA
 // ================================================================
 let dp=null;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;const bar=document.getElementById('ibar');if(bar)bar.style.display='flex';});
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;document.getElementById('ibar').style.display='flex';});
+document.getElementById('instBtn')?.addEventListener('click',async()=>{if(!dp)return;dp.prompt();await dp.userChoice;document.getElementById('ibar').style.display='none';dp=null;});
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 
 // ================================================================
-// ===== INIT =====================================================
+// INIT
 // ================================================================
 function init(){
   const t=localStorage.getItem('liuyao_t')||'light';applyT(t);
   loadRecs();renderRL();renderManual();renderCats();renderGZ();updSyncDot();
-  setInterval(renderGZ,60000);
-
-  // Init drop area for import
   initDropArea();
-
-  // Modal overlay click to close
-  document.querySelectorAll('.mover').forEach(o=>{
-    o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('on');});
-  });
-
-  // PWA install button
+  document.querySelectorAll('.mover').forEach(o=>{o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('on');});});
   const instBtn=document.getElementById('instBtn');
-  if(instBtn){
-    instBtn.addEventListener('click',async()=>{
-      if(!dp)return;
-      dp.prompt();
-      await dp.userChoice;
-      const bar=document.getElementById('ibar');
-      if(bar)bar.style.display='none';
-      dp=null;
-    });
-  }
-
-  // Service worker
-  if('serviceWorker' in navigator){
-    window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
-  }
+  if(instBtn){instBtn.addEventListener('click',async()=>{if(!dp)return;dp.prompt();await dp.userChoice;document.getElementById('ibar').style.display='none';dp=null;});}
+  if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}
+  setInterval(renderGZ,60000);
 }
 document.addEventListener('DOMContentLoaded',init);
 </script>
