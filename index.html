@@ -118,52 +118,81 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 .bfw{width:100%;justify-content:center;}
 
 /* ============================================================
-   HEXAGRAM TABLE - compact, always side by side
-   Layout per row (from left→right):
-   [伏] [六神] | [六亲] [地支] [爻] [世应] | [○×] | [爻] [地支] [六亲]
+   HEXAGRAM TABLE
+   Row layout (left→right):
+   [伏地支 伏亲(可选)] | 六神 | 六亲 地支 [本卦爻] 世应 | ○× | [变卦爻] 变地支 变亲
+   Key: 爻画列用固定宽度，卦名标题用colgroup对齐
    ============================================================ */
 .hx-area{animation:fadeup .3s ease;}
 @keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-/* Title row above both hexagrams */
-.hx-header{display:flex;gap:0;margin-bottom:8px;align-items:stretch;}
-.hx-hdr-l{flex:1;text-align:center;font-size:.8rem;font-weight:600;color:var(--tx2);padding:4px 0;border-bottom:1px solid var(--bdl);}
-.hx-hdr-mid{width:20px;flex-shrink:0;}
-.hx-hdr-r{flex:1;text-align:center;font-size:.8rem;font-weight:600;color:var(--jade);padding:4px 0;border-bottom:1px solid var(--bdl);}
-.pal-badge{display:inline-block;padding:1px 6px;border-radius:8px;font-size:.62rem;font-weight:700;margin-right:3px;}
-.spec-tag{display:inline-block;padding:1px 5px;border-radius:6px;font-size:.6rem;color:var(--tx3);border:1px solid var(--bdl);margin:1px;}
+/* Fuchen toggle button */
+.fc-toggle{display:inline-flex;align-items:center;gap:3px;font-size:.65rem;color:var(--tx3);cursor:pointer;padding:2px 7px;border:1px solid var(--bdl);border-radius:10px;background:none;transition:var(--tr);margin-bottom:6px;user-select:none;}
+.fc-toggle.on{color:var(--ac);border-color:var(--ac);}
+.fc-toggle:hover{border-color:var(--ac);color:var(--ac);}
 
-/* The yao table - each ROW represents one爻 position */
-.hx-table{width:100%;border-collapse:collapse;}
-.hx-table td{padding:1px 2px;vertical-align:middle;white-space:nowrap;}
-/* Column definitions */
-.col-fuchen{width:auto;text-align:right;font-size:.62rem;}    /* 伏藏 */
-.col-shen{width:auto;text-align:right;font-size:.68rem;font-weight:700;color:var(--sc);padding-right:3px;}  /* 六神 */
-.col-sep{width:3px;border-right:1px solid var(--bdl);}         /* separator */
-.col-lq{width:auto;text-align:right;font-size:.65rem;font-weight:600;padding-right:2px;}   /* 六亲 */
-.col-dz{width:auto;text-align:right;font-size:.65rem;padding-right:3px;}   /* 地支 */
-.col-yao{width:54px;min-width:44px;}                            /* 爻画 */
-.col-sw{width:14px;text-align:center;font-size:.65rem;}         /* 世应 */
-.col-mark{width:16px;text-align:center;font-size:.75rem;font-weight:bold;color:var(--gold);} /* ○× */
-.col-cyao{width:54px;min-width:44px;}                           /* 变卦爻 */
-.col-cdz{width:auto;text-align:left;font-size:.65rem;padding-left:3px;}    /* 变卦地支 */
-.col-clq{width:auto;text-align:left;font-size:.65rem;font-weight:600;}     /* 变卦六亲 */
-/* Fuchen sub-row */
-.fc-row td{padding:0 2px;font-size:.58rem;color:var(--tx3);}
-.fc-cell{text-align:right;}
+/* The wrapper that holds title row + yao table together, ensuring alignment */
+.hx-wrap{width:100%;overflow-x:auto;}
 
-/* Yao visual bars - compact height */
-.yv{display:flex;align-items:center;height:9px;width:100%;}
-.y-yang{width:100%;height:9px;background:var(--lc);border-radius:4px;}
-.y-yin{display:flex;gap:6px;width:100%;height:9px;}
-.y-yin-h{flex:1;height:9px;background:var(--lc);border-radius:4px;}
+/* Title bar above the table - must match table column structure exactly */
+.hx-title-row{display:flex;align-items:center;margin-bottom:4px;gap:0;}
+/* These flex items mirror the colgroup widths */
+.hx-t-fc{flex:0 0 auto;min-width:0;} /* 伏藏 (hidden by default) */
+.hx-t-sep{flex:0 0 3px;}
+.hx-t-shen{flex:0 0 18px;}          /* 六神 col */
+.hx-t-left{flex:1;text-align:right;font-size:.8rem;font-weight:700;color:var(--tx2);padding-right:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hx-t-yao{flex:0 0 52px;}           /* 本卦爻 - fixed */
+.hx-t-sw{flex:0 0 14px;}            /* 世应 */
+.hx-t-mark{flex:0 0 16px;}          /* ○× */
+.hx-t-cyao{flex:0 0 52px;}          /* 变卦爻 - fixed */
+.hx-t-right{flex:1;text-align:left;font-size:.8rem;font-weight:700;color:var(--jade);padding-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
-/* World/应 */
-.yshi{color:var(--ac);font-weight:700;}
-.yying{color:var(--jade);font-weight:700;}
+/* Special styling for title sections */
+.hx-t-left span,.hx-t-right span{font-size:.8rem;}
 
-/* No-change placeholder */
-.no-chg{display:flex;align-items:center;justify-content:center;padding:20px 0;color:var(--tx3);font-size:.8rem;flex-direction:column;gap:5px;}
+/* Yao table */
+.hx-table{width:100%;border-collapse:collapse;table-layout:auto;}
+.hx-table td{padding:2px 1px;vertical-align:middle;white-space:nowrap;font-size:.68rem;}
+
+/* Column widths via explicit width on td */
+.c-fc{width:24px;max-width:28px;text-align:right;font-size:.6rem;color:var(--tx3);opacity:.8;}
+.c-fclq{width:14px;max-width:16px;text-align:right;font-size:.58rem;color:var(--tx3);opacity:.75;padding-right:2px;}
+.c-sep{width:3px;border-right:1px solid var(--bdl);padding:0;}
+.c-shen{width:18px;text-align:center;font-size:.7rem;font-weight:700;color:var(--sc);}
+.c-lq{width:auto;text-align:right;font-size:.65rem;font-weight:600;padding-right:2px;}
+.c-dz{width:auto;text-align:right;font-size:.65rem;padding-right:3px;}
+.c-yao{width:52px;min-width:44px;max-width:60px;}
+.c-sw{width:14px;text-align:center;font-size:.65rem;}
+.c-mark{width:16px;text-align:center;font-size:.75rem;font-weight:bold;color:var(--gold);}
+.c-cyao{width:52px;min-width:44px;max-width:60px;}
+.c-cdz{width:auto;text-align:left;font-size:.65rem;padding-left:3px;}
+.c-clq{width:auto;text-align:left;font-size:.65rem;font-weight:600;}
+
+/* Yao bars */
+.yv{display:flex;align-items:center;height:10px;width:100%;}
+.y-yang{width:100%;height:10px;background:var(--lc);border-radius:5px;}
+.y-yin{display:flex;gap:6px;width:100%;height:10px;}
+.y-yin-h{flex:1;height:10px;background:var(--lc);border-radius:5px;}
+
+/* World / 应 */
+.yshi{color:var(--ac);font-weight:700;font-size:.65rem;}
+.yying{color:var(--jade);font-weight:700;font-size:.65rem;}
+
+/* Palace badge, spec tag */
+.pal-badge{display:inline-block;padding:1px 5px;border-radius:7px;font-size:.6rem;font-weight:700;margin-right:2px;vertical-align:middle;}
+.spec-tag{display:inline-block;padding:1px 4px;border-radius:5px;font-size:.58rem;color:var(--tx3);border:1px solid var(--bdl);margin-left:2px;vertical-align:middle;}
+
+/* Hide fuchen cols by default */
+.fc-cols-hidden .c-fc,
+.fc-cols-hidden .c-fclq,
+.fc-cols-hidden .hx-t-fc{display:none;}
+
+@media(max-width:380px){
+  .c-yao,.c-cyao{width:38px;min-width:32px;}
+  .hx-t-yao,.hx-t-cyao{flex:0 0 38px;}
+  .hx-table td{font-size:.6rem;}
+  .c-shen{width:14px;font-size:.62rem;}
+}
 
 /* ============================================================
    ANALYSIS - collapsible panel with flowchart SVG
@@ -192,13 +221,39 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 .ana-flow{display:block;overflow:visible;}
 
 /* ============================================================
-   GANZHI→SOLAR CONVERTER
+   GANZHI→SOLAR CONVERTER  (modal)
    ============================================================ */
-.gz-conv{margin-top:8px;}
-.gz-conv-row{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:6px;}
-.gz-conv select{padding:5px 7px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.8rem;color:var(--tx);cursor:pointer;}
-.gz-conv select:focus{outline:none;border-color:var(--ac);}
-.gz-conv-result{font-size:.78rem;color:var(--tx2);background:var(--bg2);border-radius:var(--rs);padding:6px 10px;line-height:1.7;}
+.gz-cal-btn{display:flex;align-items:center;gap:5px;margin-top:8px;padding:6px 12px;background:var(--bg2);border:1px solid var(--bdl);border-radius:var(--rs);cursor:pointer;font-size:.75rem;color:var(--tx2);transition:var(--tr);font-family:'Noto Serif SC',serif;width:100%;justify-content:center;}
+.gz-cal-btn:hover{border-color:var(--ac);color:var(--ac);}
+/* mode tabs inside modal */
+.cal-tabs{display:flex;gap:0;border-bottom:1px solid var(--bdl);margin-bottom:12px;}
+.cal-tab{padding:7px 16px;border:none;background:none;cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.8rem;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--tr);}
+.cal-tab.on{color:var(--ac);border-bottom-color:var(--ac);}
+/* Calendar grid */
+.cal-grid-hdr{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;}
+.cal-grid-hdr span{text-align:center;font-size:.62rem;color:var(--tx3);font-weight:600;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cal-day{text-align:center;padding:4px 2px;border-radius:4px;cursor:default;transition:var(--tr);}
+.cal-day .solar{font-size:.78rem;font-weight:500;line-height:1.2;}
+.cal-day .lunar{font-size:.54rem;color:var(--tx3);line-height:1.2;}
+.cal-day .ganzhi{font-size:.5rem;color:var(--tx3);line-height:1.2;}
+.cal-day.empty{opacity:0;}
+.cal-day.today .solar{color:var(--ac);font-weight:700;}
+.cal-day.today{background:var(--bg2);}
+.cal-day.match-gz{background:rgba(139,37,0,.12);border-radius:4px;}
+.cal-day.match-gz .solar{color:var(--ac);font-weight:700;}
+.cal-day.match-gz .ganzhi{color:var(--ac);}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.cal-nav-btn{background:none;border:1px solid var(--bdl);border-radius:var(--rs);padding:3px 10px;cursor:pointer;font-size:.82rem;color:var(--tx2);transition:var(--tr);}
+.cal-nav-btn:hover{border-color:var(--ac);color:var(--ac);}
+.cal-title{font-size:.88rem;font-weight:700;color:var(--tx);}
+/* Search panel */
+.gz-sel-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px;}
+.gz-sel-row select{width:100%;padding:6px 5px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.78rem;color:var(--tx);}
+.gz-sel-row select:focus{outline:none;border-color:var(--ac);}
+.gz-result-list{max-height:200px;overflow-y:auto;font-size:.78rem;line-height:1.9;color:var(--tx2);}
+.gz-result-item{padding:2px 0;border-bottom:1px solid var(--bdl);}
+.gz-result-item:last-child{border-bottom:none;}
 
 /* NOTES */
 .notes-tog{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:7px 0;border-top:1px solid var(--bdl);margin-top:10px;font-size:.76rem;color:var(--tx3);}
@@ -362,17 +417,18 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
         <div style="font-size:.65rem;color:var(--tx3);margin-bottom:5px" id="lunarStr">加载中…</div>
         <div class="gz-row" id="gzRow"></div>
         <div id="gzExt"></div>
-        <!-- GanZhi → Solar converter -->
-        <details style="margin-top:8px">
-          <summary style="font-size:.72rem;color:var(--tx3);cursor:pointer;user-select:none;list-style:none;display:flex;align-items:center;gap:4px">
-            <span>▶</span> 干支历→阳历推算（应期参考）
-          </summary>
-          <div class="gz-conv" id="gzConvArea"></div>
-        </details>
+        <button class="gz-cal-btn" onclick="openModal('calModal')">
+          📆 干支应期推算 / 万年历
+        </button>
       </div>
       <!-- Result -->
       <div class="card" id="resCard">
-        <div class="ctit">☯ 卦象</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <div class="ctit" style="margin-bottom:0">☯ 卦象</div>
+          <button class="fc-toggle" id="fcToggleBtn" onclick="toggleFuchen()" title="显示/隐藏伏藏爻">
+            伏藏爻 <span id="fcToggleTxt">off</span>
+          </button>
+        </div>
         <div id="hexRes">
           <div style="text-align:center;padding:32px 0;color:var(--tx3)">
             <div style="font-size:2.2rem;opacity:.18;margin-bottom:6px">☯</div>
@@ -543,6 +599,66 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
   </div>
 </div>
 
+<!-- CALENDAR MODAL -->
+<div class="mover" id="calModal">
+  <div class="modal" style="max-width:500px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div class="mtit" style="margin-bottom:0">📆 干支应期推算</div>
+      <button class="btn btns bsm" onclick="closeModal('calModal')">×</button>
+    </div>
+    <div class="cal-tabs">
+      <button class="cal-tab on" onclick="switchCalTab('cal',this)">万年历</button>
+      <button class="cal-tab" onclick="switchCalTab('search',this)">干支查询</button>
+    </div>
+    <!-- Calendar view -->
+    <div id="calPane">
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="calMove(-1)">‹</button>
+        <div class="cal-title" id="calTitle"></div>
+        <button class="cal-nav-btn" onclick="calMove(1)">›</button>
+      </div>
+      <div style="font-size:.65rem;color:var(--tx3);margin-bottom:6px">
+        高亮显示：
+        <select id="calHlTG" onchange="renderCal()" style="font-size:.65rem;padding:2px 4px;border:1px solid var(--bdl);background:var(--bg2);border-radius:3px;color:var(--tx);font-family:'Noto Serif SC',serif"></select>
+        <select id="calHlDZ" onchange="renderCal()" style="font-size:.65rem;padding:2px 4px;border:1px solid var(--bdl);background:var(--bg2);border-radius:3px;color:var(--tx);font-family:'Noto Serif SC',serif"></select>
+        <span style="color:var(--tx3)">（选择后高亮对应干支日）</span>
+      </div>
+      <div class="cal-grid-hdr">
+        <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+    <!-- Search view -->
+    <div id="searchPane" style="display:none">
+      <div style="font-size:.75rem;color:var(--tx2);margin-bottom:8px">选择年月日干支，查找对应公历日期</div>
+      <div class="gz-sel-row">
+        <select id="srchTG"><option value="">天干（不限）</option></select>
+        <select id="srchDZ"><option value="">地支（不限）</option></select>
+        <select id="srchYears">
+          <option value="2">近2年</option>
+          <option value="3" selected>近3年</option>
+          <option value="5">近5年</option>
+          <option value="10">近10年</option>
+        </select>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px">
+        <div>
+          <div style="font-size:.65rem;color:var(--tx3);margin-bottom:3px">月干支（可选）</div>
+          <select id="srchMTG" style="width:100%;padding:5px;border:1px solid var(--bdl);background:var(--bg2);border-radius:var(--rs);font-size:.72rem;color:var(--tx);font-family:'Noto Serif SC',serif"><option value="">不限</option></select>
+        </div>
+        <div>
+          <div style="font-size:.65rem;color:var(--tx3);margin-bottom:3px">月地支（可选）</div>
+          <select id="srchMDZ" style="width:100%;padding:5px;border:1px solid var(--bdl);background:var(--bg2);border-radius:var(--rs);font-size:.72rem;color:var(--tx);font-family:'Noto Serif SC',serif"><option value="">不限</option></select>
+        </div>
+        <div style="display:flex;align-items:flex-end">
+          <button class="btn btnp bfw bsm" onclick="doGZSearch()">查询</button>
+        </div>
+      </div>
+      <div id="srchResult" class="gz-result-list"></div>
+    </div>
+  </div>
+</div>
+
 <div class="tc" id="tc"></div>
 
 <script>
@@ -645,68 +761,156 @@ function renderGZ(){
 }
 
 // ================================================================
-// GANZHI → SOLAR CONVERTER
+// CALENDAR & GANZHI CONVERTER
 // ================================================================
+let calYear=new Date().getFullYear(), calMonth=new Date().getMonth();
+
 function initGZConv(){
-  const area=document.getElementById('gzConvArea');
-  if(!area)return;
-  const tgOpts=TG.map((t,i)=>`<option value="${i}">${t}</option>`).join('');
-  const dzOpts=DZ.map((d,i)=>`<option value="${i}">${d}</option>`).join('');
-  area.innerHTML=`
-    <div class="gz-conv-row" style="margin-top:6px">
-      <select id="convTG" style="flex:1">${tgOpts}</select>
-      <select id="convDZ" style="flex:1">${dzOpts}</select>
-      <select id="convRange" style="flex:1">
-        <option value="5">未来5年</option>
-        <option value="3">未来3年</option>
-        <option value="10">未来10年</option>
-      </select>
-      <button class="btn btnp bsm" onclick="calcGZSolar()">查询</button>
-    </div>
-    <div id="convResult" class="gz-conv-result" style="display:none"></div>
-  `;
-}
-function calcGZSolar(){
-  const tgi=parseInt(document.getElementById('convTG').value);
-  const dzi=parseInt(document.getElementById('convDZ').value);
-  const years=parseInt(document.getElementById('convRange').value)||5;
-  const tg=TG[tgi],dz=DZ[dzi];
-  // Validate: tg and dz must be compatible (TG index mod 5 matches DZ group)
-  // 甲己合子午 etc - simplified check: (tg_idx%10) and (dz_idx%12) parity
-  // In 60-jiazi: tg_idx%2 must equal dz_idx%2
-  const res=document.getElementById('convResult');
-  if(tgi%2!==dzi%2){
-    res.style.display='block';
-    res.innerHTML=`<span style="color:var(--huo)">${tg}${dz} 不在六十甲子中，请重新选择</span>`;
-    return;
+  // This is now replaced by the modal - just init select options in modal
+  // Called from renderGZ, sets up the modal selects if needed
+  const hlTG=document.getElementById('calHlTG');
+  const hlDZ=document.getElementById('calHlDZ');
+  if(hlTG&&!hlTG.options.length){
+    hlTG.innerHTML=`<option value="">天干（无）</option>`+TG.map((t,i)=>`<option value="${i}">${t}</option>`).join('');
+    hlDZ.innerHTML=`<option value="">地支（无）</option>`+DZ.map((d,i)=>`<option value="${i}">${d}</option>`).join('');
   }
+  // search selects
+  const sTG=document.getElementById('srchTG'),sDZ=document.getElementById('srchDZ');
+  const sMTG=document.getElementById('srchMTG'),sMDZ=document.getElementById('srchMDZ');
+  if(sTG&&!sTG.options.length){
+    const tgOpts=TG.map((t,i)=>`<option value="${i}">${t}</option>`).join('');
+    const dzOpts=DZ.map((d,i)=>`<option value="${i}">${d}</option>`).join('');
+    sTG.innerHTML=`<option value="">天干（不限）</option>`+tgOpts;
+    sDZ.innerHTML=`<option value="">地支（不限）</option>`+dzOpts;
+    sMTG.innerHTML=`<option value="">不限</option>`+tgOpts;
+    sMDZ.innerHTML=`<option value="">不限</option>`+dzOpts;
+  }
+}
+
+function openModal(id){
+  if(id==='syncModal')loadGHSettings();
+  if(id==='calModal'){
+    initGZConv();
+    calYear=new Date().getFullYear();
+    calMonth=new Date().getMonth();
+    renderCal();
+  }
+  document.getElementById(id).classList.add('on');
+}
+
+function switchCalTab(tab,el){
+  document.querySelectorAll('.cal-tab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('calPane').style.display=tab==='cal'?'block':'none';
+  document.getElementById('searchPane').style.display=tab==='search'?'block':'none';
+}
+
+function calMove(dir){
+  calMonth+=dir;
+  if(calMonth>11){calMonth=0;calYear++;}
+  if(calMonth<0){calMonth=11;calYear--;}
+  renderCal();
+}
+
+function renderCal(){
+  const titleEl=document.getElementById('calTitle');
+  const gridEl=document.getElementById('calGrid');
+  if(!titleEl||!gridEl)return;
+
+  titleEl.textContent=`${calYear}年${calMonth+1}月`;
+
+  // Highlight target ganzhi
+  const hlTGIdx=document.getElementById('calHlTG')?.value;
+  const hlDZIdx=document.getElementById('calHlDZ')?.value;
+  const hlTG=(hlTGIdx!==''&&hlTGIdx!==undefined)?TG[parseInt(hlTGIdx)]:'';
+  const hlDZ=(hlDZIdx!==''&&hlDZIdx!==undefined)?DZ[parseInt(hlDZIdx)]:'';
+
+  const today=new Date();
+  const firstDay=new Date(calYear,calMonth,1);
+  const lastDay=new Date(calYear,calMonth+1,0);
+  const startWday=firstDay.getDay(); // 0=Sun
+
+  let html='';
+  // Empty cells
+  for(let i=0;i<startWday;i++) html+=`<div class="cal-day empty"></div>`;
+
+  for(let d=1;d<=lastDay.getDate();d++){
+    const date=new Date(calYear,calMonth,d);
+    const isToday=date.toDateString()===today.toDateString();
+    let lunarStr='',gzStr='',isMatch=false;
+    try{
+      const lunar=Lunar.fromDate(date);
+      lunarStr=lunar.getMonthInChinese()+'月'+lunar.getDayInChinese();
+      const dgz=lunar.getDayInGanZhi();
+      gzStr=dgz;
+      if(hlTG&&hlDZ&&dgz===hlTG+hlDZ) isMatch=true;
+      else if(hlTG&&!hlDZ&&dgz[0]===hlTG) isMatch=true;
+      else if(!hlTG&&hlDZ&&dgz[1]===hlDZ) isMatch=true;
+    }catch(e){}
+    html+=`<div class="cal-day${isToday?' today':''}${isMatch?' match-gz':''}">
+      <div class="solar">${d}</div>
+      <div class="lunar">${lunarStr}</div>
+      <div class="ganzhi">${gzStr}</div>
+    </div>`;
+  }
+  gridEl.innerHTML=html;
+}
+
+function doGZSearch(){
+  const tgIdx=document.getElementById('srchTG').value;
+  const dzIdx=document.getElementById('srchDZ').value;
+  const mtgIdx=document.getElementById('srchMTG').value;
+  const mdzIdx=document.getElementById('srchMDZ').value;
+  const yrs=parseInt(document.getElementById('srchYears').value)||3;
+  const res=document.getElementById('srchResult');
+
+  if(tgIdx===''&&dzIdx===''){
+    res.innerHTML='<span style="color:var(--huo)">请至少选择天干或地支</span>';return;
+  }
+  const wantTG=tgIdx!==''?TG[parseInt(tgIdx)]:'';
+  const wantDZ=dzIdx!==''?DZ[parseInt(dzIdx)]:'';
+  // validate compatible if both chosen
+  if(wantTG&&wantDZ&&parseInt(tgIdx)%2!==parseInt(dzIdx)%2){
+    res.innerHTML=`<span style="color:var(--huo)">${wantTG}${wantDZ} 不在六十甲子中</span>`;return;
+  }
+  const wantMTG=mtgIdx!==''?TG[parseInt(mtgIdx)]:'';
+  const wantMDZ=mdzIdx!==''?DZ[parseInt(mdzIdx)]:'';
+
   const now=new Date();
   const matches=[];
-  // Search through dates in range
-  for(let y=now.getFullYear();y<=now.getFullYear()+years;y++){
-    // 365 days per year
-    const start=new Date(y,0,1),end=new Date(y,11,31);
-    let cur=new Date(start);
-    while(cur<=end&&matches.length<8){
-      try{
-        const lunar=Lunar.fromDate(cur);
-        const dgz=lunar.getDayInGanZhi();
-        if(dgz===tg+dz){
-          const d=cur;
-          matches.push(`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日（${['日','一','二','三','四','五','六'][d.getDay()]}）`);
-        }
-      }catch(e){}
-      cur.setDate(cur.getDate()+1);
+  const endY=now.getFullYear()+yrs;
+  outer:
+  for(let y=now.getFullYear();y<=endY;y++){
+    for(let mo=0;mo<12;mo++){
+      const days=new Date(y,mo+1,0).getDate();
+      for(let d=1;d<=days;d++){
+        if(matches.length>=30)break outer;
+        const date=new Date(y,mo,d);
+        if(date<now)continue;
+        try{
+          const lunar=Lunar.fromDate(date);
+          const dgz=lunar.getDayInGanZhi();
+          const mgz=lunar.getMonthInGanZhi();
+          const dayOk=(!wantTG||dgz[0]===wantTG)&&(!wantDZ||dgz[1]===wantDZ);
+          const monOk=(!wantMTG||mgz[0]===wantMTG)&&(!wantMDZ||mgz[1]===wantMDZ);
+          if(dayOk&&monOk){
+            const ws=['日','一','二','三','四','五','六'][date.getDay()];
+            matches.push(`${y}年${mo+1}月${d}日（周${ws}）— 日柱${dgz} 月柱${mgz}`);
+          }
+        }catch(e){}
+      }
     }
-    if(matches.length>=8)break;
   }
-  res.style.display='block';
-  if(matches.length===0){
-    res.innerHTML=`在未来${years}年内未找到 <b>${tg}${dz}</b> 日`;
-  }else{
-    res.innerHTML=`<b>${tg}${dz}</b> 日（未来${years}年）：<br>${matches.map(m=>`• ${m}`).join('<br>')}`;
+
+  if(!matches.length){
+    res.innerHTML='<div style="color:var(--tx3)">未找到匹配日期</div>';return;
   }
+  const label=(wantTG||'')+( wantDZ||'')+(wantMTG?` 月${wantMTG}`:'')+(wantMDZ?`${wantMDZ}`:'');
+  res.innerHTML=`<div style="font-size:.72rem;color:var(--tx3);margin-bottom:5px"><b>${label}</b> 日，近${yrs}年内共找到 ${matches.length} 个：</div>`+
+    matches.map(m=>`<div class="gz-result-item">${m}</div>`).join('');
 }
+
+function calcGZSolar(){} // legacy stub, replaced by modal
 
 // ================================================================
 // HEXAGRAM LOGIC
@@ -839,9 +1043,19 @@ function analyzeHex(lines,hexName,gz){
 }
 
 // ================================================================
-// BUILD HEXAGRAM HTML
-// Columns: [伏藏支] [伏藏亲] | [六神] [六亲] [地支] [爻] [世应] | [○×] | [变爻] [变地支] [变六亲]
+// BUILD HEXAGRAM HTML - fixed alignment
+// Title row mirrors table columns exactly via flex
 // ================================================================
+let showFuchenCols=false;
+function toggleFuchen(){
+  showFuchenCols=!showFuchenCols;
+  const btn=document.getElementById('fcToggleBtn');
+  const txt=document.getElementById('fcToggleTxt');
+  if(btn)btn.classList.toggle('on',showFuchenCols);
+  if(txt)txt.textContent=showFuchenCols?'on':'off';
+  if(curLines)refreshResult();
+}
+
 function yaoBar(isYang){
   if(isYang)return`<div class="yv"><div class="y-yang"></div></div>`;
   return`<div class="yv"><div class="y-yin"><div class="y-yin-h"></div><div class="y-yin-h"></div></div></div>`;
@@ -857,10 +1071,10 @@ function buildHexHtml(lines,gz){
   const dayTG=gz?gz.dayTG:'甲';
   const shen=SHEN_MAP[dayTG]||SHEN_MAP['甲'];
 
-  // Bengong column (full 6爻 of 本宫卦)
   const bgInfo=getBengongLiuqins(pi);
   const bgBranches=bgInfo.branches;
   const bgLqs=bgInfo.lqs;
+  const hasFuchen=pi&&!pi.isBG;
 
   const cLines=getChangedLines(lines);
   const cHex=hasChange?getHexName(cLines):'';
@@ -873,21 +1087,33 @@ function buildHexHtml(lines,gz){
   if(LIUHE_SET.has(hexName))tags.push('六合');if(LIUCHONG_SET.has(hexName))tags.push('六冲');
   if(hasChange){if(cPi?.isYH)cTags.push('游魂');if(cPi?.isGH)cTags.push('归魂');if(LIUHE_SET.has(cHex))cTags.push('六合');if(LIUCHONG_SET.has(cHex))cTags.push('六冲');}
 
-  let html=`<div class="hx-area">`;
+  const fcHide=showFuchenCols?'':'fc-cols-hidden';
 
-  // Header titles
-  html+=`<div class="hx-header">
-    <div class="hx-hdr-l">
-      ${pi?`<span class="pal-badge" style="background:${WX_BG[pi.el]};color:${WX_COL[pi.el]}">${pi.palace}宫·${pi.el}</span>`:''}
-      ${HEXSYM[hexName]||''} ${hexName}${tags.map(t=>`<span class="spec-tag">${t}</span>`).join('')}
-    </div>
-    <div class="hx-hdr-mid"></div>
-    <div class="hx-hdr-r">
-      ${hasChange?`${cPi?`<span class="pal-badge" style="background:${WX_BG[cPi.el]};color:${WX_COL[cPi.el]}">${cPi.palace}宫·${cPi.el}</span>`:''} ${HEXSYM[cHex]||''} ${cHex}${cTags.map(t=>`<span class="spec-tag">${t}</span>`).join('')}`:'<span style="color:var(--tx3)">无变卦</span>'}
-    </div>
+  const mainTitle=(pi?`<span class="pal-badge" style="background:${WX_BG[pi.el]};color:${WX_COL[pi.el]}">${pi.palace}宫·${pi.el}</span>`:'')+
+    `${HEXSYM[hexName]||''}&thinsp;${hexName}`+tags.map(t=>`<span class="spec-tag">${t}</span>`).join('');
+  const changeTitle=hasChange?
+    (cPi?`<span class="pal-badge" style="background:${WX_BG[cPi.el]};color:${WX_COL[cPi.el]}">${cPi.palace}宫·${cPi.el}</span>`:'')+
+    `${HEXSYM[cHex]||''}&thinsp;${cHex}`+cTags.map(t=>`<span class="spec-tag">${t}</span>`).join(''):
+    `<span style="color:var(--tx3);font-size:.72rem;font-weight:400">无变卦</span>`;
+
+  // The title row uses the same flex structure as the table uses for columns
+  // We use a colgroup-like approach: fixed-width cells + auto-flex cells for meta text
+  let html=`<div class="hx-area"><div class="hx-wrap ${fcHide}">`;
+
+  // Title row - identical column structure to table rows below
+  html+=`<div class="hx-title-row">
+    <div class="hx-t-fc"></div>
+    <div class="hx-t-fc"></div>
+    <div class="hx-t-sep"></div>
+    <div class="hx-t-shen"></div>
+    <div class="hx-t-left">${mainTitle}</div>
+    <div class="hx-t-yao"></div>
+    <div class="hx-t-sw"></div>
+    <div class="hx-t-mark"></div>
+    <div class="hx-t-cyao"></div>
+    <div class="hx-t-right">${changeTitle}</div>
   </div>`;
 
-  // Table: render from 上爻(5) down to 初爻(0)
   html+=`<table class="hx-table">`;
   for(let i=5;i>=0;i--){
     const line=lines[i];
@@ -900,50 +1126,43 @@ function buildHexHtml(lines,gz){
     const bCls=b?WX_CSS[BEL[b]]||'':'';
     const markTxt=isOldYang?'○':isOldYin?'×':'';
 
-    // Bengong (伏) column - show full bengong爻
     const bgB=bgBranches[i]||'';
     const bgLq=LQ_S[bgLqs[i]]||bgLqs[i]||'';
     const bgBCls=bgB?WX_CSS[BEL[bgB]]||'':'';
-    // Only show 伏 if not bengong hex itself
-    const showFuchen=pi&&!pi.isBG&&bgB;
+    const showFC=hasFuchen&&bgB;
 
-    // Change hex
     const cB=cBranches[i]||'';
     const cLqS=LQ_S[cLqs[i]]||cLqs[i]||'';
     const cBCls=cB?WX_CSS[BEL[cB]]||'':'';
-    const cLine=hasChange?cLines[i]:null;
+    const cLine=hasChange?cLines[i]:line;
     const cIsYang=cLine===1||cLine===3;
 
     html+=`<tr>
-      <td class="col-fuchen">${showFuchen?`<span class="${bgBCls}">${bgB}</span>`:''}</td>
-      <td class="col-fuchen" style="padding-right:4px">${showFuchen?`<span style="font-size:.58rem;color:var(--tx3)">${bgLq}</span>`:''}</td>
-      <td class="col-sep"></td>
-      <td class="col-shen">${sh}</td>
-      <td class="col-lq"><span class="${bCls}">${lqS}</span></td>
-      <td class="col-dz"><span class="${bCls}">${b}</span></td>
-      <td class="col-yao">${yaoBar(isYang)}</td>
-      <td class="col-sw">${isShi?`<span class="yshi">世</span>`:isYing?`<span class="yying">应</span>`:''}</td>
-      <td class="col-mark">${markTxt}</td>
-      <td class="col-cyao">${hasChange?yaoBar(cIsYang):''}</td>
-      <td class="col-cdz"><span class="${cBCls}">${cB}</span></td>
-      <td class="col-clq"><span class="${cBCls}">${cLqS}</span></td>
+      <td class="c-fc">${showFC?`<span class="${bgBCls}">${bgB}</span>`:''}</td>
+      <td class="c-fclq">${showFC?`<span class="${bgBCls}">${bgLq}</span>`:''}</td>
+      <td class="c-sep"></td>
+      <td class="c-shen">${sh}</td>
+      <td class="c-lq"><span class="${bCls}">${lqS}</span></td>
+      <td class="c-dz"><span class="${bCls}">${b}</span></td>
+      <td class="c-yao">${yaoBar(isYang)}</td>
+      <td class="c-sw">${isShi?`<span class="yshi">世</span>`:isYing?`<span class="yying">应</span>`:''}</td>
+      <td class="c-mark">${markTxt}</td>
+      <td class="c-cyao">${hasChange?yaoBar(cIsYang):''}</td>
+      <td class="c-cdz">${hasChange?`<span class="${cBCls}">${cB}</span>`:''}</td>
+      <td class="c-clq">${hasChange?`<span class="${cBCls}">${cLqS}</span>`:''}</td>
     </tr>`;
   }
-  html+=`</table>`;
+  html+=`</table></div>`;
 
-  // Analysis - collapsible
   const anaData=analyzeHex(lines,hexName,gz);
   if(anaData.length){
     html+=`<div class="ana-toggle" onclick="toggleAna(this)">
       <span class="ana-toggle-icon">▶</span>
       <span style="font-size:.72rem;font-weight:600;letter-spacing:.06em">地支分析</span>
       <span style="font-size:.65rem;color:var(--tx3);margin-left:4px">(点击展开)</span>
-    </div>
-    <div class="ana-body">`;
+    </div><div class="ana-body">`;
     anaData.forEach(sec=>{
-      html+=`<div class="ana-section">
-        <div class="ana-sec-title">${sec.type}</div>
-        <div class="chip-row">`;
+      html+=`<div class="ana-section"><div class="ana-sec-title">${sec.type}</div><div class="chip-row">`;
       sec.items.forEach(it=>{
         const icons={六合:'🔗',三合:'△',冲:'⚡',刑:'✕',生:'→',被生:'←',克:'✖',被克:'◁',长生:'🌱',沐浴:'💧',帝旺:'🔥',死:'💀',墓:'⬛',绝:'❌'};
         let icon='';for(const[k,v]of Object.entries(icons)){if(it.txt.includes(k)){icon=v;break;}}
@@ -953,7 +1172,6 @@ function buildHexHtml(lines,gz){
     });
     html+=`</div>`;
   }
-
   html+=`</div>`;
   return html;
 }
@@ -1233,7 +1451,6 @@ function showPage(p){
   if(p==='records')renderRL();
   if(p==='settings')document.getElementById('darkTog').checked=document.documentElement.getAttribute('data-theme')==='dark';
 }
-function openModal(id){if(id==='syncModal')loadGHSettings();document.getElementById(id).classList.add('on');}
 function closeModal(id){document.getElementById(id).classList.remove('on');}
 function toggleTheme(){applyT(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');}
 function togTheme(el){applyT(el.checked?'dark':'light');}
