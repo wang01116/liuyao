@@ -10,12 +10,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/lunar-javascript/lunar.js"></script>
 <style>
+/* ===== VARS ===== */
 :root{
   --bg:#f4efe6;--bg2:#ebe3d0;--sf:#fff;--sf2:#f8f3ea;
   --bd:#c8bc9a;--bdl:#ddd4bc;
   --tx:#1a1208;--tx2:#564028;--tx3:#9a7e5a;
-  --ac:#8b2500;--ac2:#a83008;
-  --gold:#8a6a00;--jade:#285a3a;
+  --ac:#8b2500;--ac2:#a83008;--gold:#8a6a00;--jade:#285a3a;
   --sh:0 1px 5px rgba(26,18,8,.08);--sh2:0 2px 12px rgba(26,18,8,.12);
   --r:8px;--rs:5px;--tr:all .2s ease;
   --jin:#9a7010;--mu:#286028;--shui:#145890;--huo:#a01808;--tu:#724428;
@@ -25,8 +25,7 @@
   --bg:#0d0902;--bg2:#150e05;--sf:#1c1308;--sf2:#231810;
   --bd:#362610;--bdl:#28180a;
   --tx:#e2d0a8;--tx2:#ac8858;--tx3:#685030;
-  --ac:#c83810;--ac2:#de4e20;
-  --gold:#b88818;--jade:#348058;
+  --ac:#c83810;--ac2:#de4e20;--gold:#b88818;--jade:#348058;
   --sh:0 1px 5px rgba(0,0,0,.4);--sh2:0 2px 12px rgba(0,0,0,.5);
   --jin:#b88818;--mu:#46a048;--shui:#2a70c0;--huo:#d02818;--tu:#9a6838;
   --lc:#e2d0a8;--sc:#cc3020;
@@ -37,309 +36,316 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 ::-webkit-scrollbar{width:3px;height:3px;}
 ::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px;}
 
-/* HEADER */
+/* ===== HEADER ===== */
 .hdr{position:sticky;top:0;z-index:300;background:var(--sf);border-bottom:1px solid var(--bd);box-shadow:var(--sh);}
-.hdr-in{max-width:1080px;margin:0 auto;padding:0 16px;height:52px;display:flex;align-items:center;justify-content:space-between;}
-.logo{font-family:'Ma Shan Zheng',serif;font-size:1.4rem;color:var(--ac);display:flex;align-items:center;gap:7px;}
-.logo-s{font-size:1.7rem;line-height:1;}
-.hdr-r{display:flex;gap:5px;}
-.ico{width:36px;height:36px;border:1px solid var(--bdl);background:none;border-radius:var(--rs);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--tx3);transition:var(--tr);}
+.hdr-in{max-width:1080px;margin:0 auto;padding:0 14px;height:52px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Ma Shan Zheng',serif;font-size:1.35rem;color:var(--ac);display:flex;align-items:center;gap:6px;}
+.logo-s{font-size:1.6rem;line-height:1;}
+.hdr-r{display:flex;gap:4px;}
+.ico{width:34px;height:34px;border:1px solid var(--bdl);background:none;border-radius:var(--rs);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.88rem;color:var(--tx3);transition:var(--tr);}
 .ico:hover{border-color:var(--ac);color:var(--ac);}
 
-/* TABS */
+/* ===== TABS ===== */
 .tbw{background:var(--sf);border-bottom:1px solid var(--bd);position:sticky;top:52px;z-index:290;}
-.tabs{max-width:1080px;margin:0 auto;padding:0 16px;display:flex;overflow-x:auto;scrollbar-width:none;}
+.tabs{max-width:1080px;margin:0 auto;padding:0 14px;display:flex;overflow-x:auto;scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{padding:10px 15px;border:none;background:none;cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.88rem;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--tr);white-space:nowrap;display:flex;align-items:center;gap:4px;}
+.tab{padding:9px 13px;border:none;background:none;cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.84rem;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--tr);white-space:nowrap;display:flex;align-items:center;gap:4px;}
 .tab.on{color:var(--ac);border-bottom-color:var(--ac);}
 .tbadge{background:var(--ac);color:#fff;font-size:.6rem;padding:1px 5px;border-radius:8px;min-width:15px;text-align:center;}
 .sdot{width:6px;height:6px;border-radius:50%;background:#d08010;display:inline-block;margin-left:3px;vertical-align:middle;}
 
-/* MAIN */
-.main{max-width:1080px;margin:0 auto;padding:14px 16px;}
+/* ===== MAIN ===== */
+.main{max-width:1080px;margin:0 auto;padding:13px 14px;}
 .pg{display:none;}.pg.on{display:block;}
 
-/* LAYOUT */
-.lay{display:grid;grid-template-columns:270px 1fr;gap:14px;align-items:start;}
-@media(max-width:700px){.lay{grid-template-columns:1fr;}}
-@media(max-width:700px){#rightPanel{order:1;}#leftPanel{order:2;}}
+/* ===== LAYOUT ===== */
+.lay{display:grid;grid-template-columns:260px 1fr;gap:13px;align-items:start;}
+@media(max-width:680px){.lay{grid-template-columns:1fr;}}
+@media(max-width:680px){#rightPanel{order:1;}#leftPanel{order:2;}}
 
-/* CARD - minimal */
-.card{background:var(--sf);border:1px solid var(--bdl);border-radius:var(--r);padding:14px;box-shadow:var(--sh);margin-bottom:10px;}
+/* ===== CARDS ===== */
+.card{background:var(--sf);border:1px solid var(--bdl);border-radius:var(--r);padding:13px;box-shadow:var(--sh);margin-bottom:10px;}
 .card:last-child{margin-bottom:0;}
 .ctit{font-size:.7rem;font-weight:700;color:var(--tx3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px;}
 .ctit::before{content:'';display:block;width:2px;height:11px;background:var(--ac);border-radius:2px;flex-shrink:0;}
 
-/* GANZHI */
+/* ===== GANZHI ===== */
 .gz-row{display:flex;gap:5px;margin-bottom:6px;}
 .gz-cell{flex:1;background:var(--bg2);border-radius:var(--rs);padding:6px 3px;text-align:center;min-width:0;}
 .gz-lbl{font-size:.58rem;color:var(--tx3);margin-bottom:2px;}
-.gz-val{font-size:.95rem;font-weight:600;}
-.gz-ext{font-size:.7rem;color:var(--tx3);margin-top:5px;display:flex;gap:10px;flex-wrap:wrap;}
+.gz-val{font-size:.92rem;font-weight:600;}
+.gz-ext{font-size:.68rem;color:var(--tx3);margin-top:5px;display:flex;gap:8px;flex-wrap:wrap;}
 .gz-ext span{color:var(--tx2);}
-.gz-sub{font-size:.65rem;color:var(--tx2);margin-top:4px;line-height:1.7;}
+.gz-sub{font-size:.62rem;color:var(--tx2);margin-top:4px;line-height:1.7;}
 .wjin{color:var(--jin)!important;}.wmu{color:var(--mu)!important;}
 .wshui{color:var(--shui)!important;}.whuo{color:var(--huo)!important;}.wtu{color:var(--tu)!important;}
 
-/* SAVE / METHOD */
-.sinp{width:100%;padding:8px 10px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.88rem;color:var(--tx);transition:var(--tr);margin-bottom:7px;}
-.sinp:focus{outline:none;border-color:var(--ac);background:var(--sf);}
-.sinp::placeholder{color:var(--tx3);}
-.cats{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;}
-.catb{padding:3px 8px;border:1px solid var(--bdl);background:none;border-radius:14px;cursor:pointer;font-size:.7rem;color:var(--tx3);transition:var(--tr);}
-.catb.on{background:var(--ac);color:#fff;border-color:var(--ac);}
-.catb:hover:not(.on){border-color:var(--ac);color:var(--ac);}
-.mtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:10px;}
-.mtab{padding:7px 3px;border:1px solid var(--bdl);background:none;border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.78rem;color:var(--tx3);text-align:center;transition:var(--tr);}
-.mtab.on{background:var(--ac);color:#fff;border-color:var(--ac);}
-.mtab:hover:not(.on){border-color:var(--ac);color:var(--ac);}
-.mp{display:none;}.mp.on{display:block;}
-.ml-grid{display:flex;flex-direction:column;gap:5px;}
-.ml-row{display:grid;grid-template-columns:34px 1fr;align-items:center;gap:7px;}
-.ml-lbl{font-size:.82rem;color:var(--tx2);text-align:right;font-weight:500;}
-.ml-sel{width:100%;padding:7px 8px;border:1px solid var(--bd);background:var(--sf);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx);cursor:pointer;appearance:auto;}
-.ml-sel:focus{outline:none;border-color:var(--ac);}
-.ngrp{display:flex;flex-direction:column;gap:8px;}
-.nrow{display:flex;align-items:center;gap:7px;}
-.nrow label{font-size:.8rem;color:var(--tx2);min-width:52px;}
-.ninp{width:58px;padding:6px 7px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.95rem;color:var(--tx);text-align:center;}
-.ninp:focus{outline:none;border-color:var(--ac);}
-.nhint{font-size:.64rem;color:var(--tx3);line-height:1.6;}
-
-/* BUTTONS */
-.btn{padding:8px 14px;border:none;border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.85rem;transition:var(--tr);display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
+/* ===== BUTTONS ===== */
+.btn{padding:7px 13px;border:none;border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.82rem;transition:var(--tr);display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
 .btnp{background:var(--ac);color:#fff;}
 .btnp:hover{background:var(--ac2);}
 .btns{background:none;color:var(--tx2);border:1px solid var(--bdl);}
 .btns:hover{border-color:var(--ac);color:var(--ac);}
 .btnd{background:#7a1414;color:#fff;}
 .btnd:hover{background:#921818;}
-.bsm{padding:4px 10px;font-size:.74rem;}
+.bsm{padding:4px 9px;font-size:.72rem;}
 .bfw{width:100%;justify-content:center;}
 
-/* ============================================================
-   HEXAGRAM TABLE - single <table> with <thead> for guaranteed alignment
-   Columns: [伏支?][伏亲?] | 六神 | 六亲 地支 [爻] 世应 | ○× | [变爻] 变地支 变亲
-   ============================================================ */
+/* ===== FORM ELEMENTS ===== */
+.sinp{width:100%;padding:7px 9px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.85rem;color:var(--tx);transition:var(--tr);margin-bottom:7px;}
+.sinp:focus{outline:none;border-color:var(--ac);background:var(--sf);}
+.sinp::placeholder{color:var(--tx3);}
+.sel-inp{appearance:auto;cursor:pointer;}
+.cats{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;}
+.catb{padding:3px 8px;border:1px solid var(--bdl);background:none;border-radius:14px;cursor:pointer;font-size:.7rem;color:var(--tx3);transition:var(--tr);font-family:'Noto Serif SC',serif;}
+.catb.on{background:var(--ac);color:#fff;border-color:var(--ac);}
+.catb:hover:not(.on){border-color:var(--ac);color:var(--ac);}
+
+/* ===== METHOD TABS ===== */
+.mtabs{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:10px;}
+.mtab{padding:6px 10px;border:1px solid var(--bdl);background:none;border-radius:var(--rs);cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.75rem;color:var(--tx3);text-align:center;transition:var(--tr);}
+.mtab.on{background:var(--ac);color:#fff;border-color:var(--ac);}
+.mtab:hover:not(.on){border-color:var(--ac);color:var(--ac);}
+.mp{display:none;}.mp.on{display:block;}
+
+/* ===== MANUAL YAO SELECT ===== */
+.ml-grid{display:flex;flex-direction:column;gap:4px;}
+.ml-row{display:grid;grid-template-columns:36px 1fr;align-items:center;gap:6px;}
+.ml-lbl{font-size:.8rem;color:var(--tx2);text-align:right;font-weight:500;}
+.ml-sel{width:100%;padding:7px 8px;border:1px solid var(--bd);background:var(--sf);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx);cursor:pointer;appearance:auto;}
+.ml-sel:focus{outline:none;border-color:var(--ac);}
+/* Bold yao symbols in select options */
+.ml-sel option{font-family:'Noto Serif SC',serif;}
+
+/* ===== HEXAGRAM NAME METHOD ===== */
+.trigram-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:8px;}
+.tri-btn{padding:7px 4px;border:1px solid var(--bdl);background:var(--bg2);border-radius:var(--rs);cursor:pointer;text-align:center;font-family:'Noto Serif SC',serif;font-size:.8rem;color:var(--tx2);transition:var(--tr);}
+.tri-btn.on{background:var(--ac);color:#fff;border-color:var(--ac);}
+.tri-btn:hover:not(.on){border-color:var(--ac);color:var(--ac);}
+.tri-sym{font-size:1.1rem;display:block;margin-bottom:2px;}
+.tri-name{font-size:.72rem;}
+.trigram-result{background:var(--bg2);border-radius:var(--rs);padding:7px 10px;font-size:.82rem;color:var(--tx2);min-height:32px;margin-bottom:8px;}
+/* Change yao selection for name method */
+.cn-yao-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:8px;}
+.cn-yao-btn{padding:6px 2px;border:1px solid var(--bdl);background:var(--bg2);border-radius:var(--rs);cursor:pointer;text-align:center;font-family:'Noto Serif SC',serif;font-size:.65rem;color:var(--tx3);transition:var(--tr);}
+.cn-yao-btn.on{background:var(--ac);color:#fff;border-color:var(--ac);}
+
+/* ===== NUMBER INPUT ===== */
+.ngrp{display:flex;flex-direction:column;gap:8px;}
+.nrow{display:flex;align-items:center;gap:7px;}
+.nrow label{font-size:.78rem;color:var(--tx2);min-width:52px;}
+.ninp{width:56px;padding:6px 7px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.9rem;color:var(--tx);text-align:center;}
+.ninp:focus{outline:none;border-color:var(--ac);}
+.nhint{font-size:.63rem;color:var(--tx3);line-height:1.6;}
+
+/* ===== HEXAGRAM TABLE ===== */
 .hx-area{animation:fadeup .3s ease;}
 @keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-
-/* Fuchen toggle */
-.fc-toggle{display:inline-flex;align-items:center;gap:3px;font-size:.65rem;color:var(--tx3);cursor:pointer;padding:2px 8px;border:1px solid var(--bdl);border-radius:10px;background:none;transition:var(--tr);user-select:none;}
-.fc-toggle.on{color:var(--ac);border-color:var(--ac);}
-.fc-toggle:hover{border-color:var(--ac);color:var(--ac);}
-
-/* Outer wrapper with horizontal scroll on tiny screens */
 .hx-wrap{width:100%;overflow-x:auto;}
-
-/* THE TABLE - one table covers both title row and yao rows */
-.hx-table{border-collapse:collapse;table-layout:fixed;}
-/* Force table to NOT stretch: width determined by content */
-.hx-table-outer{display:inline-block;min-width:100%;}
-.hx-table td,.hx-table th{padding:2px 2px;vertical-align:middle;white-space:nowrap;}
-
-/* Fixed column widths */
-.hx-table col.cfc {width:22px;}   /* 伏地支 */
-.hx-table col.cfclq{width:14px;}  /* 伏六亲 */
-.hx-table col.csep{width:4px;}    /* separator */
-.hx-table col.cshn{width:20px;}   /* 六神 */
-.hx-table col.clq {width:20px;}   /* 六亲 */
-.hx-table col.cdz {width:20px;}   /* 地支 */
-.hx-table col.cyao{width:56px;}   /* 本卦爻 */
-.hx-table col.csw {width:16px;}   /* 世应 */
-.hx-table col.cmk {width:16px;}   /* ○× */
-.hx-table col.ccyao{width:56px;}  /* 变卦爻 */
-.hx-table col.ccdz{width:20px;}   /* 变地支 */
-.hx-table col.cclq{width:20px;}   /* 变六亲 */
-
-/* Title row (thead) */
-.hx-table thead th{
-  font-size:.78rem;font-weight:700;padding:0 2px 6px;border-bottom:1px solid var(--bdl);
-  vertical-align:bottom;
-}
-/* Main hex title spans lq+dz+yao cols = right-aligned */
+.fc-toggle{display:inline-flex;align-items:center;gap:3px;font-size:.63rem;color:var(--tx3);cursor:pointer;padding:2px 7px;border:1px solid var(--bdl);border-radius:9px;background:none;transition:var(--tr);user-select:none;}
+.fc-toggle.on{color:var(--ac);border-color:var(--ac);}
+.hx-table{border-collapse:collapse;width:100%;}
+.hx-table col.cfc{width:22px;}.hx-table col.cfclq{width:14px;}
+.hx-table col.csep{width:4px;}.hx-table col.cshn{width:20px;}
+.hx-table col.clq{width:20px;}.hx-table col.cdz{width:20px;}
+.hx-table col.cyao{width:54px;}.hx-table col.csw{width:15px;}
+.hx-table col.cmk{width:15px;}.hx-table col.ccyao{width:54px;}
+.hx-table col.ccdz{width:20px;}.hx-table col.cclq{width:20px;}
+.hx-table td,.hx-table th{padding:2px 1px;vertical-align:middle;white-space:nowrap;}
+.hx-table thead th{font-size:.76rem;font-weight:700;padding-bottom:5px;border-bottom:1px solid var(--bdl);}
 .th-main{text-align:right;color:var(--tx2);}
-/* Change hex title spans cyao+cdz+clq = left-aligned */
 .th-change{text-align:left;color:var(--jade);}
-/* Middle gap cols in thead */
 .th-gap{border-bottom:1px solid var(--bdl);}
-
-/* Data cell classes */
-.c-fc {text-align:right;font-size:.6rem;color:var(--tx3);opacity:.75;}
-.c-fclq{text-align:right;font-size:.58rem;color:var(--tx3);opacity:.70;padding-right:1px;}
+.c-fc{text-align:right;font-size:.58rem;color:var(--tx3);opacity:.7;}
+.c-fclq{text-align:right;font-size:.56rem;color:var(--tx3);opacity:.65;padding-right:1px;}
 .c-sep{border-right:1px solid var(--bdl);padding:0!important;}
-.c-shen{text-align:center;font-size:.7rem;font-weight:700;color:var(--sc);}
-.c-lq{text-align:right;font-size:.65rem;font-weight:600;padding-right:1px;}
-.c-dz{text-align:right;font-size:.65rem;padding-right:2px;}
-.c-yao{} /* width from col */
-.c-sw{text-align:center;font-size:.65rem;}
-.c-mark{text-align:center;font-size:.75rem;font-weight:bold;color:var(--gold);}
-.c-cyao{}
-.c-cdz{text-align:left;font-size:.65rem;padding-left:2px;}
-.c-clq{text-align:left;font-size:.65rem;font-weight:600;}
-
-/* Yao bars */
+.c-shen{text-align:center;font-size:.68rem;font-weight:700;color:var(--sc);}
+.c-lq{text-align:right;font-size:.63rem;font-weight:600;padding-right:1px;}
+.c-dz{text-align:right;font-size:.63rem;padding-right:2px;}
+.c-sw{text-align:center;font-size:.63rem;}
+.c-mark{text-align:center;font-size:.72rem;font-weight:bold;color:var(--gold);}
+.c-cdz{text-align:left;font-size:.63rem;padding-left:2px;}
+.c-clq{text-align:left;font-size:.63rem;font-weight:600;}
 .yv{display:flex;align-items:center;height:10px;width:100%;}
 .y-yang{width:100%;height:10px;background:var(--lc);border-radius:5px;}
-.y-yin{display:flex;gap:6px;width:100%;height:10px;}
+.y-yin{display:flex;gap:5px;width:100%;height:10px;}
 .y-yin-h{flex:1;height:10px;background:var(--lc);border-radius:5px;}
+.yshi{color:var(--ac);font-weight:700;font-size:.63rem;}
+.yying{color:var(--jade);font-weight:700;font-size:.63rem;}
+.pal-badge{display:inline-block;padding:1px 5px;border-radius:7px;font-size:.58rem;font-weight:700;margin-right:2px;vertical-align:middle;}
+.spec-tag{display:inline-block;padding:1px 4px;border-radius:5px;font-size:.56rem;color:var(--tx3);border:1px solid var(--bdl);margin-left:2px;vertical-align:middle;}
+.fc-hidden .cfc-cell,.fc-hidden .cfclq-cell{display:none;}
+@media(max-width:360px){.hx-table col.cyao,.hx-table col.ccyao{width:38px;}.hx-table td,.hx-table th{font-size:.55rem;}}
 
-.yshi{color:var(--ac);font-weight:700;font-size:.65rem;}
-.yying{color:var(--jade);font-weight:700;font-size:.65rem;}
-
-.pal-badge{display:inline-block;padding:1px 5px;border-radius:7px;font-size:.6rem;font-weight:700;margin-right:2px;vertical-align:middle;}
-.spec-tag{display:inline-block;padding:1px 4px;border-radius:5px;font-size:.58rem;color:var(--tx3);border:1px solid var(--bdl);margin-left:2px;vertical-align:middle;}
-
-/* Hide fuchen cols */
-.fc-hidden .cfc-cell,.fc-hidden .cfclq-cell,.fc-hidden .cfc,.fc-hidden .cfclq{display:none;}
-
-@media(max-width:360px){
-  .hx-table col.cyao,.hx-table col.ccyao{width:42px;}
-  .hx-table td,.hx-table th{font-size:.58rem;}
-}
-
-/* ============================================================
-   ANALYSIS - collapsible panel with flowchart SVG
-   ============================================================ */
-.ana-toggle{display:flex;align-items:center;gap:6px;cursor:pointer;padding:8px 0;border-top:1px solid var(--bdl);margin-top:10px;font-size:.78rem;color:var(--tx3);user-select:none;}
+/* ===== ANALYSIS ===== */
+.ana-toggle{display:flex;align-items:center;gap:5px;cursor:pointer;padding:7px 0;border-top:1px solid var(--bdl);margin-top:8px;font-size:.75rem;color:var(--tx3);user-select:none;}
 .ana-toggle:hover{color:var(--ac);}
-.ana-toggle-icon{font-size:.65rem;transition:transform .2s;}
-.ana-toggle-icon.open{transform:rotate(90deg);}
-.ana-body{display:none;margin-top:8px;}
+.ana-icon{font-size:.62rem;transition:transform .2s;}
+.ana-icon.open{transform:rotate(90deg);}
+.ana-body{display:none;margin-top:6px;}
 .ana-body.open{display:block;}
-
-/* Flowchart / mindmap style SVG container */
-.ana-svg-wrap{overflow-x:auto;padding:4px 0;}
-.ana-section{margin-bottom:10px;}
-.ana-sec-title{font-size:.68rem;font-weight:700;color:var(--tx3);letter-spacing:.08em;margin-bottom:5px;padding-left:5px;border-left:2px solid var(--ac);}
-/* Chip row */
-.chip-row{display:flex;flex-wrap:wrap;gap:4px;align-items:center;}
-.chip{display:inline-flex;align-items:center;gap:2px;padding:2px 7px;border-radius:10px;font-size:.68rem;font-weight:500;line-height:1.4;}
-.chip-g{background:rgba(40,96,40,.12);color:var(--mu);border:1px solid rgba(40,96,40,.25);}
-.chip-b{background:rgba(160,24,8,.1);color:var(--huo);border:1px solid rgba(160,24,8,.2);}
+.ana-sec{margin-bottom:8px;}
+.ana-sec-tit{font-size:.65rem;font-weight:700;color:var(--tx3);margin-bottom:4px;padding-left:4px;border-left:2px solid var(--ac);}
+.chip-row{display:flex;flex-wrap:wrap;gap:3px;}
+.chip{display:inline-flex;align-items:center;gap:2px;padding:2px 6px;border-radius:9px;font-size:.66rem;font-weight:500;line-height:1.4;}
+.chip-g{background:rgba(40,96,40,.1);color:var(--mu);border:1px solid rgba(40,96,40,.2);}
+.chip-b{background:rgba(160,24,8,.08);color:var(--huo);border:1px solid rgba(160,24,8,.18);}
 .chip-n{background:var(--bg2);color:var(--tx3);border:1px solid var(--bdl);}
-.chip-subj{font-size:.68rem;color:var(--tx2);font-weight:600;flex-shrink:0;}
-.chip-arr{font-size:.6rem;color:var(--tx3);margin:0 2px;}
 
-/* SVG flowchart */
-.ana-flow{display:block;overflow:visible;}
+/* ===== MARKDOWN EDITOR (enhanced) ===== */
+.med-wrap{border:1px solid var(--bd);border-radius:var(--rs);overflow:hidden;background:var(--sf);}
+.med-toolbar{display:flex;flex-wrap:wrap;gap:1px;padding:4px 6px;background:var(--bg2);border-bottom:1px solid var(--bdl);}
+.med-btn{padding:3px 6px;background:none;border:none;border-radius:3px;cursor:pointer;font-size:.78rem;color:var(--tx2);transition:var(--tr);font-family:'Noto Serif SC',serif;display:inline-flex;align-items:center;gap:2px;min-width:24px;justify-content:center;}
+.med-btn:hover{background:var(--bdl);color:var(--ac);}
+.med-btn.on{background:var(--ac);color:#fff;}
+.med-sep{width:1px;background:var(--bdl);margin:2px 2px;align-self:stretch;}
+.med-ta{width:100%;min-height:130px;padding:9px 10px;border:none;background:none;font-family:'Noto Serif SC',serif;font-size:.84rem;color:var(--tx);resize:vertical;line-height:1.75;outline:none;}
+.med-preview{min-height:60px;padding:9px 10px;font-size:.84rem;line-height:1.85;color:var(--tx);}
+.med-preview h1{font-size:1.1rem;color:var(--ac);margin:8px 0 4px;}
+.med-preview h2{font-size:1rem;color:var(--ac);margin:7px 0 3px;}
+.med-preview h3{font-size:.92rem;color:var(--ac);margin:6px 0 2px;}
+.med-preview p{margin:3px 0;}
+.med-preview code{background:var(--bg2);padding:1px 4px;border-radius:3px;font-size:.8em;}
+.med-preview pre{background:var(--bg2);padding:8px;border-radius:var(--rs);overflow-x:auto;margin:5px 0;}
+.med-preview blockquote{border-left:2px solid var(--ac);padding-left:8px;color:var(--tx2);margin:4px 0;}
+.med-preview ul,.med-preview ol{padding-left:16px;margin:4px 0;}
+.med-preview li input[type=checkbox]{margin-right:4px;}
+.med-preview table{border-collapse:collapse;margin:5px 0;font-size:.82rem;}
+.med-preview th,.med-preview td{border:1px solid var(--bdl);padding:3px 7px;}
+.med-preview th{background:var(--bg2);font-weight:600;}
+.med-preview hr{border:none;border-top:1px solid var(--bdl);margin:8px 0;}
+.med-preview strong{font-weight:700;}
+.med-preview em{font-style:italic;}
+.med-tabs{display:flex;border-bottom:1px solid var(--bdl);}
+.med-tab{padding:5px 12px;border:none;background:none;cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.72rem;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--tr);}
+.med-tab.on{color:var(--ac);border-bottom-color:var(--ac);}
+.color-picker-row{display:flex;gap:3px;padding:3px 6px;background:var(--bg2);border-bottom:1px solid var(--bdl);}
+.col-dot{width:16px;height:16px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:var(--tr);}
+.col-dot:hover{border-color:var(--bd);}
 
-/* ============================================================
-   GANZHI→SOLAR CONVERTER  (modal)
-   ============================================================ */
-.gz-cal-btn{display:flex;align-items:center;gap:5px;margin-top:8px;padding:6px 12px;background:var(--bg2);border:1px solid var(--bdl);border-radius:var(--rs);cursor:pointer;font-size:.75rem;color:var(--tx2);transition:var(--tr);font-family:'Noto Serif SC',serif;width:100%;justify-content:center;}
-.gz-cal-btn:hover{border-color:var(--ac);color:var(--ac);}
-/* mode tabs inside modal */
-.cal-tabs{display:flex;gap:0;border-bottom:1px solid var(--bdl);margin-bottom:12px;}
-.cal-tab{padding:7px 16px;border:none;background:none;cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.8rem;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--tr);}
-.cal-tab.on{color:var(--ac);border-bottom-color:var(--ac);}
-/* Calendar grid */
-.cal-grid-hdr{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px;}
-.cal-grid-hdr span{text-align:center;font-size:.62rem;color:var(--tx3);font-weight:600;}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
-.cal-day{text-align:center;padding:4px 2px;border-radius:4px;cursor:default;transition:var(--tr);}
-.cal-day .solar{font-size:.78rem;font-weight:500;line-height:1.2;}
-.cal-day .lunar{font-size:.54rem;color:var(--tx3);line-height:1.2;}
-.cal-day .ganzhi{font-size:.5rem;color:var(--tx3);line-height:1.2;}
-.cal-day.empty{opacity:0;}
-.cal-day.today .solar{color:var(--ac);font-weight:700;}
-.cal-day.today{background:var(--bg2);}
-.cal-day.match-gz{background:rgba(139,37,0,.12);border-radius:4px;}
-.cal-day.match-gz .solar{color:var(--ac);font-weight:700;}
-.cal-day.match-gz .ganzhi{color:var(--ac);}
-.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-.cal-nav-btn{background:none;border:1px solid var(--bdl);border-radius:var(--rs);padding:3px 10px;cursor:pointer;font-size:.82rem;color:var(--tx2);transition:var(--tr);}
-.cal-nav-btn:hover{border-color:var(--ac);color:var(--ac);}
-.cal-title{font-size:.88rem;font-weight:700;color:var(--tx);}
-/* Search panel */
-.gz-sel-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:8px;}
-.gz-sel-row select{width:100%;padding:6px 5px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.78rem;color:var(--tx);}
-.gz-sel-row select:focus{outline:none;border-color:var(--ac);}
-.gz-result-list{max-height:200px;overflow-y:auto;font-size:.78rem;line-height:1.9;color:var(--tx2);}
-.gz-result-item{padding:2px 0;border-bottom:1px solid var(--bdl);}
-.gz-result-item:last-child{border-bottom:none;}
+/* ===== NOTES LIST (notebook page) ===== */
+.nb-list{display:flex;flex-direction:column;gap:8px;}
+.nb-item{background:var(--sf);border:1px solid var(--bdl);border-radius:var(--r);padding:11px;cursor:pointer;transition:var(--tr);}
+.nb-item:hover{border-color:var(--ac);}
+.nb-name{font-size:.9rem;font-weight:600;margin-bottom:3px;}
+.nb-meta{font-size:.68rem;color:var(--tx3);display:flex;gap:5px;flex-wrap:wrap;align-items:center;}
+.nb-preview{font-size:.74rem;color:var(--tx3);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;}
 
-/* NOTES */
-.notes-tog{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:7px 0;border-top:1px solid var(--bdl);margin-top:10px;font-size:.76rem;color:var(--tx3);}
-.nted{width:100%;min-height:110px;padding:9px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.85rem;color:var(--tx);resize:vertical;line-height:1.7;margin-top:6px;}
-.nted:focus{outline:none;border-color:var(--ac);background:var(--sf);}
-.ntpv{font-size:.85rem;line-height:1.85;color:var(--tx);margin-top:6px;}
-.ntpv h1,.ntpv h2,.ntpv h3{color:var(--ac);margin:7px 0 3px;font-size:.9rem;}
-.ntpv p{margin:3px 0;}.ntpv code{background:var(--bg2);padding:1px 4px;border-radius:3px;font-size:.8em;}
-.ntpv blockquote{border-left:2px solid var(--ac);padding-left:7px;color:var(--tx2);margin:4px 0;}
-.ntpv ul,.ntpv ol{padding-left:14px;margin:3px 0;}
-
-/* RECORDS */
+/* ===== RECORDS ===== */
 .rl{display:flex;flex-direction:column;gap:8px;}
-.ri{background:var(--sf);border:1px solid var(--bdl);border-radius:var(--r);padding:12px;transition:var(--tr);cursor:pointer;}
+.ri{background:var(--sf);border:1px solid var(--bdl);border-radius:var(--r);padding:11px;cursor:pointer;transition:var(--tr);}
 .ri:hover{border-color:var(--ac);}
-.ri-hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;}
-.ri-name{font-size:.9rem;font-weight:600;}
-.ri-date{font-size:.68rem;color:var(--tx3);white-space:nowrap;}
-.ri-meta{font-size:.7rem;color:var(--tx3);margin-top:2px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
-.ri-cat{padding:1px 6px;background:var(--bg2);border-radius:7px;font-size:.65rem;color:var(--tx2);}
-.ri-hex{font-size:.82rem;color:var(--ac);margin-top:4px;font-weight:500;}
-.rfilt{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
-.bbr{display:flex;align-items:center;gap:6px;padding:7px 10px;background:var(--sf2);border-radius:var(--rs);margin-bottom:8px;flex-wrap:wrap;font-size:.78rem;color:var(--tx2);}
+.ri-hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:5px;}
+.ri-name{font-size:.88rem;font-weight:600;}
+.ri-date{font-size:.66rem;color:var(--tx3);white-space:nowrap;}
+.ri-meta{font-size:.68rem;color:var(--tx3);margin-top:2px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
+.ri-hex{font-size:.8rem;color:var(--ac);margin-top:4px;font-weight:500;}
+.tag-badge{padding:1px 5px;background:var(--bg2);border-radius:6px;font-size:.62rem;color:var(--tx2);}
+.cat-badge{padding:1px 6px;border-radius:7px;font-size:.62rem;font-weight:600;}
+.import-badge{font-size:.55rem;padding:1px 4px;background:var(--jade);color:#fff;border-radius:4px;vertical-align:middle;margin-left:3px;}
+.rfilt{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:9px;}
+.bbr{display:flex;align-items:center;gap:5px;padding:6px 10px;background:var(--sf2);border-radius:var(--rs);margin-bottom:8px;flex-wrap:wrap;font-size:.76rem;color:var(--tx2);}
 .chk{width:14px;height:14px;cursor:pointer;accent-color:var(--ac);}
 
-/* DETAIL */
-.det-back{display:flex;align-items:center;gap:5px;cursor:pointer;color:var(--tx3);font-size:.78rem;margin-bottom:12px;padding:5px 0;border:none;background:none;transition:var(--tr);}
+/* ===== DETAIL VIEW ===== */
+.det-back{display:flex;align-items:center;gap:5px;cursor:pointer;color:var(--tx3);font-size:.76rem;margin-bottom:11px;padding:5px 0;border:none;background:none;transition:var(--tr);}
 .det-back:hover{color:var(--ac);}
 
-/* MODAL */
-.mover{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:900;display:flex;align-items:center;justify-content:center;padding:14px;opacity:0;pointer-events:none;transition:opacity .2s;}
-.mover.on{opacity:1;pointer-events:all;}
-.modal{background:var(--sf);border-radius:var(--r);padding:18px;max-width:430px;width:100%;box-shadow:var(--sh2);transform:translateY(16px);transition:transform .2s;}
-.mover.on .modal{transform:translateY(0);}
-.mtit{font-size:.95rem;font-weight:700;margin-bottom:12px;}
-.mbody{margin-bottom:14px;}
-.mft{display:flex;gap:6px;justify-content:flex-end;}
-.minp{width:100%;padding:7px 9px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx);margin-bottom:7px;}
-.minp:focus{outline:none;border-color:var(--ac);}
-.mlbl{font-size:.72rem;color:var(--tx2);margin-bottom:3px;display:block;}
-.mhint{font-size:.65rem;color:var(--tx3);margin-top:3px;line-height:1.4;}
-.mst{font-size:.7rem;padding:4px 0;color:var(--tx3);}
-
-/* SETTINGS / ABOUT */
-.stit{font-size:.8rem;color:var(--tx2);font-weight:700;margin-bottom:7px;}
-.srow{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--bdl);font-size:.85rem;gap:7px;}
+/* ===== SETTINGS ===== */
+.stit{font-size:.78rem;color:var(--tx2);font-weight:700;margin-bottom:7px;margin-top:14px;}
+.stit:first-child{margin-top:0;}
+.srow{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bdl);font-size:.82rem;gap:7px;}
 .srow:last-child{border-bottom:none;}
 .slbl{color:var(--tx);flex:1;}
-.sdesc{font-size:.68rem;color:var(--tx3);margin-top:2px;}
+.sdesc{font-size:.65rem;color:var(--tx3);margin-top:2px;}
 .tog{position:relative;width:38px;height:21px;flex-shrink:0;}
 .tog input{opacity:0;width:0;height:0;}
 .togtr{position:absolute;inset:0;background:var(--bdl);border-radius:11px;cursor:pointer;transition:var(--tr);}
 .togtr::after{content:'';position:absolute;left:2px;top:2px;width:17px;height:17px;background:#fff;border-radius:50%;transition:var(--tr);}
 .tog input:checked+.togtr{background:var(--ac);}
 .tog input:checked+.togtr::after{transform:translateX(17px);}
-.about-c{line-height:1.85;font-size:.85rem;color:var(--tx2);}
+.tag-list{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;}
+.tag-editable{display:inline-flex;align-items:center;gap:3px;padding:3px 7px;border:1px solid var(--bdl);border-radius:12px;font-size:.72rem;color:var(--tx2);background:var(--bg2);}
+.tag-editable .tag-del{cursor:pointer;color:var(--tx3);font-size:.7rem;margin-left:2px;}
+.tag-editable .tag-del:hover{color:var(--huo);}
+.links-list{display:flex;flex-direction:column;gap:5px;margin-top:5px;}
+.link-item{display:flex;align-items:center;gap:6px;padding:5px 8px;border:1px solid var(--bdl);border-radius:var(--rs);background:var(--bg2);font-size:.78rem;}
+.link-item a{flex:1;color:var(--ac);text-decoration:none;}
+.link-item a:hover{text-decoration:underline;}
+
+/* ===== ABOUT ===== */
+.about-c{line-height:1.85;font-size:.84rem;color:var(--tx2);}
 .about-c h3{color:var(--ac);margin:12px 0 4px;font-size:.88rem;}
 .about-c ul{padding-left:14px;}
 .about-c li{margin:2px 0;}
 
-/* IMPORT */
-.drop{border:2px dashed var(--bdl);border-radius:var(--r);padding:15px;text-align:center;color:var(--tx3);font-size:.78rem;cursor:pointer;transition:var(--tr);margin-bottom:6px;}
+/* ===== MODAL ===== */
+.mover{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:900;display:flex;align-items:center;justify-content:center;padding:14px;opacity:0;pointer-events:none;transition:opacity .2s;}
+.mover.on{opacity:1;pointer-events:all;}
+.modal{background:var(--sf);border-radius:var(--r);padding:18px;max-width:460px;width:100%;box-shadow:var(--sh2);transform:translateY(16px);transition:transform .2s;max-height:90vh;overflow-y:auto;}
+.mover.on .modal{transform:translateY(0);}
+.mtit{font-size:.95rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;}
+.mbody{margin-bottom:14px;}
+.mft{display:flex;gap:6px;justify-content:flex-end;}
+.minp{width:100%;padding:7px 9px;border:1px solid var(--bd);background:var(--bg2);border-radius:var(--rs);font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx);margin-bottom:7px;transition:var(--tr);}
+.minp:focus{outline:none;border-color:var(--ac);}
+.mlbl{font-size:.72rem;color:var(--tx2);margin-bottom:3px;display:block;}
+.mhint{font-size:.64rem;color:var(--tx3);margin-top:3px;line-height:1.4;}
+.mst{font-size:.7rem;padding:4px 0;color:var(--tx3);}
+
+/* ===== CALENDAR MODAL ===== */
+.gz-cal-btn{display:flex;align-items:center;gap:5px;margin-top:7px;padding:5px 11px;background:var(--bg2);border:1px solid var(--bdl);border-radius:var(--rs);cursor:pointer;font-size:.72rem;color:var(--tx2);transition:var(--tr);font-family:'Noto Serif SC',serif;justify-content:center;}
+.gz-cal-btn:hover{border-color:var(--ac);color:var(--ac);}
+.cal-tabs{display:flex;gap:0;border-bottom:1px solid var(--bdl);margin-bottom:10px;}
+.cal-tab{padding:6px 14px;border:none;background:none;cursor:pointer;font-family:'Noto Serif SC',serif;font-size:.78rem;color:var(--tx3);border-bottom:2px solid transparent;transition:var(--tr);}
+.cal-tab.on{color:var(--ac);border-bottom-color:var(--ac);}
+.cal-grid-hdr{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:3px;}
+.cal-grid-hdr span{text-align:center;font-size:.6rem;color:var(--tx3);font-weight:600;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cal-day{text-align:center;padding:3px 1px;border-radius:3px;}
+.cal-day .solar{font-size:.75rem;font-weight:500;line-height:1.2;}
+.cal-day .lunar{font-size:.52rem;color:var(--tx3);line-height:1.2;}
+.cal-day .ganzhi{font-size:.48rem;color:var(--tx3);line-height:1.2;}
+.cal-day.empty{opacity:0;}
+.cal-day.today{background:var(--bg2);}
+.cal-day.today .solar{color:var(--ac);font-weight:700;}
+.cal-day.match-gz{background:rgba(139,37,0,.1);}
+.cal-day.match-gz .solar{color:var(--ac);font-weight:700;}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;}
+.cal-nav-btn{background:none;border:1px solid var(--bdl);border-radius:var(--rs);padding:2px 9px;cursor:pointer;font-size:.8rem;color:var(--tx2);transition:var(--tr);}
+.cal-nav-btn:hover{border-color:var(--ac);color:var(--ac);}
+.cal-title{font-size:.86rem;font-weight:700;}
+.gz-sel-row{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:7px;}
+.gz-sel-row select{width:100%;padding:5px 4px;border:1px solid var(--bdl);background:var(--bg2);border-radius:var(--rs);font-size:.74rem;color:var(--tx);font-family:'Noto Serif SC',serif;}
+.gz-result-list{max-height:200px;overflow-y:auto;font-size:.76rem;line-height:1.9;color:var(--tx2);}
+.gz-result-item{padding:2px 0;border-bottom:1px solid var(--bdl);}
+.gz-result-item:last-child{border-bottom:none;}
+
+/* ===== SEARCH ===== */
+.search-wrap{position:relative;margin-bottom:10px;}
+.search-inp{width:100%;padding:7px 12px 7px 32px;border:1px solid var(--bdl);background:var(--bg2);border-radius:20px;font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx);transition:var(--tr);}
+.search-inp:focus{outline:none;border-color:var(--ac);background:var(--sf);}
+.search-ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:.8rem;color:var(--tx3);pointer-events:none;}
+
+/* ===== IMPORT DROP ===== */
+.drop{border:2px dashed var(--bdl);border-radius:var(--r);padding:14px;text-align:center;color:var(--tx3);font-size:.76rem;cursor:pointer;transition:var(--tr);margin-bottom:6px;}
 .drop:hover{border-color:var(--ac);color:var(--ac);}
 
-/* TOAST */
-.tc{position:fixed;bottom:18px;right:14px;z-index:9999;display:flex;flex-direction:column;gap:5px;pointer-events:none;}
-.toast{background:var(--tx);color:var(--bg);padding:8px 14px;border-radius:var(--rs);font-size:.76rem;box-shadow:var(--sh2);animation:tin .2s ease;max-width:260px;}
+/* ===== OTHER SITES ===== */
+.ext-site-frame{width:100%;height:calc(100vh - 130px);border:none;border-radius:var(--r);box-shadow:var(--sh);}
+
+/* ===== TOAST ===== */
+.tc{position:fixed;bottom:18px;right:13px;z-index:9999;display:flex;flex-direction:column;gap:5px;pointer-events:none;}
+.toast{background:var(--tx);color:var(--bg);padding:7px 13px;border-radius:var(--rs);font-size:.74rem;box-shadow:var(--sh2);animation:tin .2s ease;max-width:260px;}
 .toast.ok{background:#1a581a;color:#fff;}
 .toast.err{background:#741414;color:#fff;}
 @keyframes tin{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
-/* INSTALL */
-.ibar{background:var(--ac);color:#fff;padding:6px 14px;display:none;align-items:center;justify-content:space-between;font-size:.76rem;gap:8px;}
+/* ===== INSTALL ===== */
+.ibar{background:var(--ac);color:#fff;padding:6px 14px;display:none;align-items:center;justify-content:space-between;font-size:.74rem;gap:8px;}
 .ibar button{padding:3px 9px;border-radius:10px;cursor:pointer;font-size:.7rem;border:none;}
 .iby{background:#fff;color:var(--ac);}
 .ibn{background:rgba(255,255,255,.2);color:#fff;}
-
-@media(max-width:400px){
-  .col-yao,.col-cyao{width:38px;min-width:32px;}
-  .col-fuchen,.col-shen,.col-lq,.col-dz,.col-cdz,.col-clq{font-size:.56rem;}
-  .hx-hdr-l,.hx-hdr-r{font-size:.7rem;}
-}
 </style>
 </head>
 <body>
@@ -356,22 +362,27 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
   <div class="hdr-in">
     <div class="logo"><span class="logo-s">☯</span>六爻起卦</div>
     <div class="hdr-r">
-      <button class="ico" id="themeBtn" onclick="toggleTheme()" title="主题">🌙</button>
-      <button class="ico" onclick="openModal('syncModal')" title="同步">☁</button>
-      <button class="ico" onclick="showPage('about')" title="简介">？</button>
+      <button class="ico" id="themeBtn" onclick="toggleTheme()">🌙</button>
+      <button class="ico" onclick="openModal('syncModal')">☁</button>
+      <button class="ico" onclick="openGlobalSearch()">🔍</button>
+      <button class="ico" onclick="showPage('about')">？</button>
     </div>
   </div>
 </header>
 
 <div class="tbw">
-  <div class="tabs">
+  <div class="tabs" id="mainTabs">
     <button class="tab on" data-p="cast" onclick="showPage('cast')">☰ 起卦</button>
     <button class="tab" data-p="records" onclick="showPage('records')">
       📚 卦例 <span class="tbadge" id="recCnt">0</span>
       <span class="sdot" id="syncDot" style="display:none"></span>
     </button>
+    <button class="tab" data-p="notebook" onclick="showPage('notebook')">
+      📔 笔记 <span class="tbadge" id="nbCnt">0</span>
+    </button>
     <button class="tab" data-p="settings" onclick="showPage('settings')">⚙ 设置</button>
     <button class="tab" data-p="about" onclick="showPage('about')">？ 简介</button>
+    <!-- External sites added dynamically -->
   </div>
 </div>
 
@@ -379,79 +390,103 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 
 <!-- ===== CAST PAGE ===== -->
 <div class="pg on" id="pg-cast">
-  <div class="lay">
-    <div id="leftPanel">
-      <div class="card">
-        <div class="ctit">🎲 起卦方式</div>
-        <div class="mtabs">
-          <button class="mtab on" onclick="setMethod('random')">随机卦</button>
-          <button class="mtab" onclick="setMethod('number')">数字</button>
-          <button class="mtab" onclick="setMethod('manual')">手动</button>
-        </div>
-        <div class="mp on" id="mp-random">
-          <p style="font-size:.72rem;color:var(--tx3);margin-bottom:8px">随机产生六爻，含老阴(×)老阳(○)</p>
-          <button class="btn btnp bfw" onclick="castRandom()">🎲 随机起卦</button>
-        </div>
-        <div class="mp" id="mp-number">
-          <div class="ngrp">
-            <div class="nrow"><label>上卦</label><input class="ninp" type="number" id="nU" min="1" max="9" value="1"><span style="font-size:.65rem;color:var(--tx3)">1/9乾 2兑 3离 4震</span></div>
-            <div class="nrow"><label>下卦</label><input class="ninp" type="number" id="nL" min="1" max="9" value="1"><span style="font-size:.65rem;color:var(--tx3)">5巽 6坎 7艮 8坤</span></div>
-            <div class="nrow"><label>变爻</label><input class="ninp" type="number" id="nC" min="1" max="9" value="1"></div>
-            <div class="nhint">变爻：1/7→初 2/8→二 3/9→三 4→四 5→五 6→上</div>
+  <!-- BEFORE CAST: method + ganzhi side by side -->
+  <div id="castBefore">
+    <div class="lay">
+      <div id="leftPanel">
+        <div class="card">
+          <div class="ctit">🎲 起卦方式</div>
+          <div class="mtabs">
+            <button class="mtab on" onclick="setMethod('random')">随机</button>
+            <button class="mtab" onclick="setMethod('number')">数字</button>
+            <button class="mtab" onclick="setMethod('manual')">手动</button>
+            <button class="mtab" onclick="setMethod('name')">卦名</button>
           </div>
-          <button class="btn btnp bfw" style="margin-top:9px" onclick="castNum()">✨ 数字起卦</button>
-        </div>
-        <div class="mp" id="mp-manual">
-          <div class="ml-grid" id="mlGrid"></div>
-          <button class="btn btnp bfw" style="margin-top:9px" onclick="castManual()">📝 确定起卦</button>
+          <!-- Random -->
+          <div class="mp on" id="mp-random">
+            <p style="font-size:.72rem;color:var(--tx3);margin-bottom:8px">随机产生六爻，含老阴(×)老阳(○)</p>
+            <button class="btn btnp bfw" onclick="castRandom()">🎲 随机起卦</button>
+          </div>
+          <!-- Number -->
+          <div class="mp" id="mp-number">
+            <div class="ngrp">
+              <div class="nrow"><label>上卦</label><input class="ninp" type="number" id="nU" min="1" max="9" value="1"><span style="font-size:.63rem;color:var(--tx3)">1/9乾 2兑 3离 4震</span></div>
+              <div class="nrow"><label>下卦</label><input class="ninp" type="number" id="nL" min="1" max="9" value="1"><span style="font-size:.63rem;color:var(--tx3)">5巽 6坎 7艮 8坤</span></div>
+              <div class="nrow"><label>变爻</label><input class="ninp" type="number" id="nC" min="1" max="9" value="1"></div>
+              <div class="nhint">变爻：1/7→初 2/8→二 3/9→三 4→四 5→五 6→上</div>
+            </div>
+            <button class="btn btnp bfw" style="margin-top:8px" onclick="castNum()">✨ 数字起卦</button>
+          </div>
+          <!-- Manual -->
+          <div class="mp" id="mp-manual">
+            <div class="ml-grid" id="mlGrid"></div>
+            <button class="btn btnp bfw" style="margin-top:8px" onclick="castManual()">📝 确定起卦</button>
+          </div>
+          <!-- Name -->
+          <div class="mp" id="mp-name">
+            <div style="font-size:.72rem;color:var(--tx3);margin-bottom:6px">选择上卦（外卦）</div>
+            <div class="trigram-grid" id="upperTriGrid"></div>
+            <div style="font-size:.72rem;color:var(--tx3);margin-bottom:6px;margin-top:6px">选择下卦（内卦）</div>
+            <div class="trigram-grid" id="lowerTriGrid"></div>
+            <div class="trigram-result" id="nameResult">请选择上卦和下卦</div>
+            <div style="font-size:.72rem;color:var(--tx3);margin-bottom:5px">选择变爻（可多选，不选则为静卦）</div>
+            <div class="cn-yao-grid" id="cnYaoGrid"></div>
+            <button class="btn btnp bfw" style="margin-top:8px" onclick="castByName()">✨ 起卦</button>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <div class="ctit">💾 保存卦例</div>
-        <input type="text" class="sinp" id="castName" placeholder="为此卦起一个名字…" maxlength="30">
-        <div class="cats" id="catRow"></div>
-        <button class="btn btnp bfw" onclick="saveCast()">保存到卦例</button>
+      <div id="rightPanel">
+        <div class="card">
+          <div class="ctit">📅 干支历</div>
+          <div style="font-size:.63rem;color:var(--tx3);margin-bottom:5px" id="lunarStr">加载中…</div>
+          <div class="gz-row" id="gzRow"></div>
+          <div id="gzExt"></div>
+          <button class="gz-cal-btn" onclick="openModal('calModal')">📆 干支应期推算 / 万年历</button>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div id="rightPanel">
-      <!-- Ganzhi -->
-      <div class="card">
-        <div class="ctit">📅 干支历</div>
-        <div style="font-size:.65rem;color:var(--tx3);margin-bottom:5px" id="lunarStr">加载中…</div>
-        <div class="gz-row" id="gzRow"></div>
-        <div id="gzExt"></div>
-        <button class="gz-cal-btn" onclick="openModal('calModal')">
-          📆 干支应期推算 / 万年历
-        </button>
+  <!-- AFTER CAST: ganzhi top, then result, save, notes -->
+  <div id="castAfter" style="display:none">
+    <div class="card" style="margin-bottom:10px">
+      <div class="ctit">📅 干支历</div>
+      <div style="font-size:.63rem;color:var(--tx3);margin-bottom:5px" id="lunarStr2"></div>
+      <div class="gz-row" id="gzRow2"></div>
+      <div id="gzExt2"></div>
+      <button class="gz-cal-btn" onclick="openModal('calModal')">📆 干支应期推算 / 万年历</button>
+    </div>
+    <div class="card" style="margin-bottom:10px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <div class="ctit" style="margin-bottom:0">☯ 卦象</div>
+        <button class="fc-toggle" onclick="toggleFuchen()">伏藏爻 <span class="fc-txt">off</span></button>
       </div>
-      <!-- Result -->
-      <div class="card" id="resCard">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-          <div class="ctit" style="margin-bottom:0">☯ 卦象</div>
-          <button class="fc-toggle" id="fcToggleBtn" onclick="toggleFuchen()" title="显示/隐藏伏藏爻">
-            伏藏爻 <span class="fc-txt">off</span>
-          </button>
+      <div id="hexRes"></div>
+      <!-- Notes toggle -->
+      <div style="border-top:1px solid var(--bdl);margin-top:10px;padding-top:8px">
+        <div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer" onclick="toggleCastNotes()">
+          <span style="font-size:.74rem;color:var(--tx3)">📝 笔记</span>
+          <span id="castNoteArrow" style="font-size:.7rem;color:var(--tx3)">▼</span>
         </div>
-        <div id="hexRes">
-          <div style="text-align:center;padding:32px 0;color:var(--tx3)">
-            <div style="font-size:2.2rem;opacity:.18;margin-bottom:6px">☯</div>
-            请起卦
-          </div>
-        </div>
-        <div id="castNotesWrap" style="display:none">
-          <div class="notes-tog" onclick="toggleCN()">
-            <span>📝 笔记</span><span id="cnArrow">▼</span>
-          </div>
-          <div id="cnBody" style="display:none">
-            <textarea class="nted" id="castNotesTxt" placeholder="记录占问内容、卦象分析、判断结论…"></textarea>
-            <div style="font-size:.62rem;color:var(--tx3);margin-top:3px">保存卦例时一并保存</div>
-          </div>
-        </div>
-        <div id="castResetWrap" style="display:none;margin-top:12px;padding-top:10px;border-top:1px solid var(--bdl)">
-          <button class="btn btns bsm" onclick="resetCast()">🔄 清除重新起卦</button>
+        <div id="castNotesBody" style="display:none;margin-top:6px">
+          <div id="castMedWrap"></div>
+          <div style="font-size:.6rem;color:var(--tx3);margin-top:3px">保存时一并保存</div>
         </div>
       </div>
+      <!-- Analysis -->
+      <div id="hexAna"></div>
+    </div>
+    <!-- Save + Reset -->
+    <div class="card">
+      <div class="ctit">💾 保存卦例</div>
+      <input type="text" class="sinp" id="castName" placeholder="为此卦起一个名字…" maxlength="40">
+      <div style="font-size:.7rem;color:var(--tx3);margin-bottom:4px">分类</div>
+      <div class="cats" id="castFolderRow"></div>
+      <div style="font-size:.7rem;color:var(--tx3);margin-bottom:4px">标签</div>
+      <div class="cats" id="castTagRow"></div>
+      <input type="text" class="sinp" id="castTagInput" placeholder="输入新标签后按回车…" style="margin-bottom:8px">
+      <button class="btn btnp bfw" onclick="saveCast()" style="margin-bottom:8px">保存到卦例</button>
+      <button class="btn btns bfw" onclick="resetCast()">🔄 清除重新起卦</button>
     </div>
   </div>
 </div>
@@ -459,21 +494,22 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 <!-- ===== RECORDS PAGE ===== -->
 <div class="pg" id="pg-records">
   <div id="rlv">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px">
-      <div style="font-size:.88rem;font-weight:600">卦例 <span style="font-size:.72rem;color:var(--tx3)" id="recTotal"></span></div>
-      <div style="display:flex;gap:5px">
+    <div class="search-wrap"><span class="search-ico">🔍</span><input class="search-inp" id="recSearch" placeholder="搜索卦例名称、标签…" oninput="renderRL()"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:5px">
+      <div style="font-size:.86rem;font-weight:600">卦例 <span style="font-size:.7rem;color:var(--tx3)" id="recTotal"></span></div>
+      <div style="display:flex;gap:4px">
         <button class="btn btns bsm" onclick="openModal('syncModal')">☁ 同步</button>
-        <button class="btn btns bsm" onclick="toggleBatch()">☑ 批量</button>
-        <button class="btn btns bsm" onclick="openImport()">⬆ 导入</button>
+        <button class="btn btns bsm" onclick="toggleBatch('rec')">☑ 批量</button>
+        <button class="btn btns bsm" onclick="openImport('rec')">⬆ 导入</button>
       </div>
     </div>
     <div class="rfilt" id="recFilt"></div>
-    <div class="bbr" id="batchBar" style="display:none">
-      <input type="checkbox" class="chk" id="selAll" onchange="togSelAll(this)">
-      <span id="batchCnt" style="flex:1">已选 0 条</span>
-      <button class="btn btns bsm" onclick="batchMov()">移动分类</button>
-      <button class="btn btnd bsm" onclick="batchDel()">删除</button>
-      <button class="btn btns bsm" onclick="toggleBatch()">取消</button>
+    <div class="bbr" id="recBatchBar" style="display:none">
+      <input type="checkbox" class="chk" id="recSelAll" onchange="togSelAll('rec',this)">
+      <span id="recBatchCnt" style="flex:1">已选 0 条</span>
+      <button class="btn btns bsm" onclick="batchMov('rec')">移动</button>
+      <button class="btn btnd bsm" onclick="batchDel('rec')">删除</button>
+      <button class="btn btns bsm" onclick="toggleBatch('rec')">取消</button>
     </div>
     <div class="rl" id="recList"></div>
   </div>
@@ -483,32 +519,76 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
   </div>
 </div>
 
+<!-- ===== NOTEBOOK PAGE ===== -->
+<div class="pg" id="pg-notebook">
+  <div id="nbListView">
+    <div class="search-wrap"><span class="search-ico">🔍</span><input class="search-inp" id="nbSearch" placeholder="搜索笔记…" oninput="renderNBList()"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:5px">
+      <div style="font-size:.86rem;font-weight:600">笔记 <span style="font-size:.7rem;color:var(--tx3)" id="nbTotal"></span></div>
+      <div style="display:flex;gap:4px">
+        <button class="btn btnp bsm" onclick="newNote()">+ 新建笔记</button>
+        <button class="btn btns bsm" onclick="toggleBatch('nb')">☑ 批量</button>
+        <button class="btn btns bsm" onclick="openImport('nb')">⬆ 导入</button>
+      </div>
+    </div>
+    <div class="rfilt" id="nbFilt"></div>
+    <div class="bbr" id="nbBatchBar" style="display:none">
+      <input type="checkbox" class="chk" id="nbSelAll" onchange="togSelAll('nb',this)">
+      <span id="nbBatchCnt" style="flex:1">已选 0 条</span>
+      <button class="btn btns bsm" onclick="batchMov('nb')">移动</button>
+      <button class="btn btnd bsm" onclick="batchDel('nb')">删除</button>
+      <button class="btn btns bsm" onclick="toggleBatch('nb')">取消</button>
+    </div>
+    <div class="nb-list" id="nbList"></div>
+  </div>
+  <div id="nbDetailView" style="display:none">
+    <button class="det-back" onclick="showNBList()">← 返回笔记列表</button>
+    <div id="nbDetailContent"></div>
+  </div>
+</div>
+
 <!-- ===== SETTINGS PAGE ===== -->
 <div class="pg" id="pg-settings">
   <div class="card">
     <div class="ctit">⚙ 设置</div>
     <div class="stit">外观</div>
-    <div class="srow">
-      <div class="slbl">深色模式</div>
-      <label class="tog"><input type="checkbox" id="darkTog" onchange="togTheme(this)"><span class="togtr"></span></label>
+    <div class="srow"><div class="slbl">深色模式</div><label class="tog"><input type="checkbox" id="darkTog" onchange="togTheme(this)"><span class="togtr"></span></label></div>
+    <div class="stit">分类管理</div>
+    <div class="srow" style="flex-direction:column;align-items:stretch;gap:6px">
+      <div class="tag-list" id="folderManageList"></div>
+      <div style="display:flex;gap:5px">
+        <input type="text" id="newFolderInp" class="sinp" placeholder="新分类名称…" style="margin:0;flex:1">
+        <input type="text" id="newFolderEmoji" class="sinp" placeholder="表情" style="margin:0;width:60px">
+        <button class="btn btns bsm" onclick="addFolder()">添加</button>
+      </div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap">
+        <button class="btn btns bsm" onclick="exportFolderTags()">导出分类/标签设置</button>
+        <button class="btn btns bsm" onclick="importFolderTagsClick()">导入分类/标签设置</button>
+        <input type="file" id="ftImportFile" accept=".json" style="display:none" onchange="importFolderTagsFile(this)">
+      </div>
     </div>
-    <div class="stit" style="margin-top:14px">数据管理</div>
-    <div class="srow">
-      <div><div class="slbl">导出卦例 JSON</div><div class="sdesc">导出全部卦例供他人导入</div></div>
-      <button class="btn btns bsm" onclick="exportRecs()">导出</button>
+    <div class="stit">标签管理</div>
+    <div class="srow" style="flex-direction:column;align-items:stretch;gap:6px">
+      <div class="tag-list" id="tagManageList"></div>
+      <div style="display:flex;gap:5px">
+        <input type="text" id="newTagInp" class="sinp" placeholder="新标签…" style="margin:0;flex:1">
+        <button class="btn btns bsm" onclick="addTag()">添加</button>
+      </div>
     </div>
-    <div class="srow">
-      <div><div class="slbl">导入 JSON 卦例</div><div class="sdesc">导入他人分享的卦例</div></div>
-      <button class="btn btns bsm" onclick="openImport()">导入</button>
-    </div>
-    <div class="srow">
-      <div class="slbl">清空所有卦例</div>
-      <button class="btn btnd bsm" onclick="clearAll()">清空</button>
-    </div>
-    <div class="stit" style="margin-top:14px">GitHub 同步</div>
-    <div class="srow">
-      <div class="slbl">配置并同步</div>
-      <button class="btn btns bsm" onclick="openModal('syncModal')">配置</button>
+    <div class="stit">数据管理</div>
+    <div class="srow"><div><div class="slbl">导出所有数据</div><div class="sdesc">卦例+笔记+设置</div></div><button class="btn btns bsm" onclick="exportAll()">导出</button></div>
+    <div class="srow"><div><div class="slbl">导入卦例 JSON</div></div><button class="btn btns bsm" onclick="openImport('rec')">导入</button></div>
+    <div class="srow"><div><div class="slbl">导入笔记 JSON</div></div><button class="btn btns bsm" onclick="openImport('nb')">导入</button></div>
+    <div class="srow"><div class="slbl">清空所有卦例</div><button class="btn btnd bsm" onclick="clearAll('rec')">清空</button></div>
+    <div class="srow"><div class="slbl">清空所有笔记</div><button class="btn btnd bsm" onclick="clearAll('nb')">清空</button></div>
+    <div class="stit">GitHub 同步</div>
+    <div class="srow"><div class="slbl">配置并同步</div><button class="btn btns bsm" onclick="openModal('syncModal')">配置</button></div>
+    <div class="stit">外部链接</div>
+    <div class="links-list" id="linksManageList"></div>
+    <div style="display:flex;gap:5px;margin-top:6px;flex-wrap:wrap">
+      <input type="text" id="newLinkName" class="sinp" placeholder="名称" style="margin:0;flex:1;min-width:80px">
+      <input type="text" id="newLinkUrl" class="sinp" placeholder="https://…" style="margin:0;flex:2;min-width:120px">
+      <button class="btn btns bsm" onclick="addLink()">添加</button>
     </div>
   </div>
 </div>
@@ -518,40 +598,34 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
   <div class="card">
     <div class="ctit">？ 关于本站</div>
     <div class="about-c">
-      <p><strong>六爻起卦</strong>是一款传统六爻排盘工具，参考《增删卜易》等古籍构建。</p>
+      <p><strong>六爻起卦</strong>是一款传统六爻排盘工具，支持多种起卦方式、卦例管理、Markdown 笔记。</p>
       <h3>🎲 起卦方式</h3>
       <ul>
-        <li>随机卦 · 数字起卦 · 手动指定（上爻→初爻下拉选取）</li>
+        <li>随机卦 · 数字 · 手动（下拉选择） · 卦名（选八卦组合）</li>
+        <li>卦名起卦：选择上下卦直接确定卦名，可选变爻生成变卦</li>
       </ul>
       <h3>📊 卦象信息</h3>
       <ul>
-        <li>本宫卦伏藏爻列在爻的最左侧</li>
-        <li>六神（红色）按日辰天干排布（龙/雀/勾/蛇/虎/玄）</li>
-        <li>六亲按卦宫五行生克（父/兄/孙/财/官）</li>
-        <li>世爻应爻；老阴×老阳○标注在本变之间</li>
-        <li>变卦六亲以本卦卦宫五行为基准</li>
-        <li>特殊卦：六冲/六合/游魂/归魂</li>
+        <li>六神（红色）· 六亲 · 地支 · 世应 · 老阴× 老阳○</li>
+        <li>伏藏爻（可开关）· 地支分析（折叠）</li>
       </ul>
-      <h3>🔍 地支分析</h3>
-      <p>点击「地支分析」展开，流程图形式展示月日建对各爻的生克合冲刑关系、动爻变化十二长生等。</p>
-      <h3>📅 干支历→阳历</h3>
-      <p>起卦页面干支历下方「应期推算」功能，选择天干地支即可查找对应阳历日期区间。</p>
-      <h3>📚 卦例管理</h3>
-      <ul>
-        <li>命名保存，八类分类标签</li>
-        <li>卦例下方可直接查看/编辑 Markdown 笔记</li>
-        <li>导出/导入/单卦分享 JSON</li>
-        <li>GitHub Fine-grained Token 云端同步</li>
-      </ul>
+      <h3>📔 笔记</h3>
+      <p>独立笔记本，支持 Markdown 增强编辑器（工具栏、颜色等）、标签、分类。</p>
+      <h3>📅 干支历 / 应期推算</h3>
+      <p>实时干支历、万年历、干支查询应期。</p>
+      <h3>📱 PWA</h3>
+      <p>部署到 HTTPS 后可安装为本地应用，支持离线使用。</p>
     </div>
   </div>
 </div>
+
+<!-- External site pages added dynamically -->
 </main>
 
 <!-- SYNC MODAL -->
 <div class="mover" id="syncModal">
   <div class="modal">
-    <div class="mtit">☁ GitHub 同步配置</div>
+    <div class="mtit">☁ GitHub 同步配置 <button class="btn btns bsm" onclick="closeModal('syncModal')">×</button></div>
     <div class="mbody">
       <label class="mlbl">Personal Access Token (Fine-grained)</label>
       <div style="display:flex;gap:5px;margin-bottom:7px">
@@ -562,13 +636,13 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
       <input type="text" class="minp" id="ghRepo" placeholder="user/liuyao-data">
       <label class="mlbl">文件路径</label>
       <input type="text" class="minp" id="ghPath" placeholder="records.json">
-      <div class="mhint">在 GitHub Developer settings → Fine-grained tokens 创建，需要目标仓库 Contents 读写权限。</div>
+      <div class="mhint">在 GitHub Developer settings → Fine-grained tokens 中创建，需要目标仓库 Contents 读写权限。</div>
       <div class="mst" id="ghSt"></div>
     </div>
     <div class="mft">
       <button class="btn btns bsm" onclick="closeModal('syncModal')">取消</button>
-      <button class="btn btns bsm" onclick="syncFrom()">⬇ 从GitHub同步</button>
-      <button class="btn btnp bsm" onclick="saveAndPush()">保存并推送 ⬆</button>
+      <button class="btn btns bsm" onclick="syncFrom()">⬇ 从GitHub</button>
+      <button class="btn btnp bsm" onclick="saveAndPush()">保存推送 ⬆</button>
     </div>
   </div>
 </div>
@@ -576,13 +650,13 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 <!-- IMPORT MODAL -->
 <div class="mover" id="importModal">
   <div class="modal">
-    <div class="mtit">⬆ 导入卦例</div>
+    <div class="mtit">⬆ 导入 <button class="btn btns bsm" onclick="closeModal('importModal')">×</button></div>
     <div class="mbody">
       <div class="drop" id="dropA" onclick="document.getElementById('impFile').click()">点击选择或拖拽 JSON 文件</div>
       <input type="file" id="impFile" accept=".json" style="display:none" onchange="handleImpFile(this)">
       <div id="impSt" style="font-size:.7rem;color:var(--tx3);margin-bottom:5px"></div>
-      <div style="font-size:.65rem;color:var(--tx3);margin-bottom:4px">或粘贴 JSON：</div>
-      <textarea class="minp" id="impTxt" style="height:68px;margin:0" placeholder='[{"id":"…"}]'></textarea>
+      <div style="font-size:.63rem;color:var(--tx3);margin-bottom:4px">或粘贴 JSON：</div>
+      <textarea class="minp" id="impTxt" style="height:65px;margin:0" placeholder='[{"id":"…"}]'></textarea>
     </div>
     <div class="mft">
       <button class="btn btns bsm" onclick="closeModal('importModal')">取消</button>
@@ -591,13 +665,13 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
   </div>
 </div>
 
-<!-- MOVE CAT MODAL -->
-<div class="mover" id="movCatM">
+<!-- MOVE MODAL -->
+<div class="mover" id="movModal">
   <div class="modal">
-    <div class="mtit">移动分类</div>
-    <div class="mbody" id="movCatB"></div>
+    <div class="mtit">移动分类 <button class="btn btns bsm" onclick="closeModal('movModal')">×</button></div>
+    <div class="mbody" id="movModalBody"></div>
     <div class="mft">
-      <button class="btn btns bsm" onclick="closeModal('movCatM')">取消</button>
+      <button class="btn btns bsm" onclick="closeModal('movModal')">取消</button>
       <button class="btn btnp bsm" onclick="confMovCat()">确定</button>
     </div>
   </div>
@@ -606,74 +680,69 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 <!-- CALENDAR MODAL -->
 <div class="mover" id="calModal">
   <div class="modal" style="max-width:500px">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-      <div class="mtit" style="margin-bottom:0">📆 干支应期推算</div>
-      <button class="btn btns bsm" onclick="closeModal('calModal')">×</button>
-    </div>
+    <div class="mtit">📆 干支应期推算 <button class="btn btns bsm" onclick="closeModal('calModal')">×</button></div>
     <div class="cal-tabs">
       <button class="cal-tab on" onclick="switchCalTab('cal',this)">万年历</button>
       <button class="cal-tab" onclick="switchCalTab('search',this)">干支查询</button>
     </div>
-    <!-- Calendar view -->
     <div id="calPane">
       <div class="cal-nav">
         <button class="cal-nav-btn" onclick="calMove(-1)">‹</button>
         <div class="cal-title" id="calTitle"></div>
         <button class="cal-nav-btn" onclick="calMove(1)">›</button>
       </div>
-      <div style="font-size:.65rem;color:var(--tx3);margin-bottom:6px">
-        高亮显示：
-        <select id="calHlTG" onchange="renderCal()" style="font-size:.65rem;padding:2px 4px;border:1px solid var(--bdl);background:var(--bg2);border-radius:3px;color:var(--tx);font-family:'Noto Serif SC',serif"></select>
-        <select id="calHlDZ" onchange="renderCal()" style="font-size:.65rem;padding:2px 4px;border:1px solid var(--bdl);background:var(--bg2);border-radius:3px;color:var(--tx);font-family:'Noto Serif SC',serif"></select>
-        <span style="color:var(--tx3)">（选择后高亮对应干支日）</span>
+      <div style="font-size:.63rem;color:var(--tx3);margin-bottom:5px;display:flex;gap:5px;flex-wrap:wrap;align-items:center">
+        高亮：
+        <select id="calHlTG" onchange="renderCal()" style="font-size:.63rem;padding:2px 4px;border:1px solid var(--bdl);background:var(--bg2);border-radius:3px;color:var(--tx);font-family:'Noto Serif SC',serif"></select>
+        <select id="calHlDZ" onchange="renderCal()" style="font-size:.63rem;padding:2px 4px;border:1px solid var(--bdl);background:var(--bg2);border-radius:3px;color:var(--tx);font-family:'Noto Serif SC',serif"></select>
       </div>
-      <div class="cal-grid-hdr">
-        <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
-      </div>
+      <div class="cal-grid-hdr"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
       <div class="cal-grid" id="calGrid"></div>
     </div>
-    <!-- Search view -->
     <div id="searchPane" style="display:none">
-      <div style="font-size:.75rem;color:var(--tx2);margin-bottom:8px">选择年月日干支，查找对应公历日期</div>
+      <div style="font-size:.73rem;color:var(--tx2);margin-bottom:7px">选择干支查找对应公历日期</div>
       <div class="gz-sel-row">
         <select id="srchTG"><option value="">天干（不限）</option></select>
         <select id="srchDZ"><option value="">地支（不限）</option></select>
-        <select id="srchYears">
-          <option value="2">近2年</option>
-          <option value="3" selected>近3年</option>
-          <option value="5">近5年</option>
-          <option value="10">近10年</option>
-        </select>
+        <select id="srchYears"><option value="2">近2年</option><option value="3" selected>近3年</option><option value="5">近5年</option><option value="10">近10年</option></select>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px">
+      <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:5px;margin-bottom:7px;align-items:end">
         <div>
-          <div style="font-size:.65rem;color:var(--tx3);margin-bottom:3px">月干支（可选）</div>
-          <select id="srchMTG" style="width:100%;padding:5px;border:1px solid var(--bdl);background:var(--bg2);border-radius:var(--rs);font-size:.72rem;color:var(--tx);font-family:'Noto Serif SC',serif"><option value="">不限</option></select>
+          <div style="font-size:.63rem;color:var(--tx3);margin-bottom:3px">月天干（可选）</div>
+          <select id="srchMTG" style="width:100%;padding:5px 4px;border:1px solid var(--bdl);background:var(--bg2);border-radius:var(--rs);font-size:.7rem;color:var(--tx);font-family:'Noto Serif SC',serif"><option value="">不限</option></select>
         </div>
         <div>
-          <div style="font-size:.65rem;color:var(--tx3);margin-bottom:3px">月地支（可选）</div>
-          <select id="srchMDZ" style="width:100%;padding:5px;border:1px solid var(--bdl);background:var(--bg2);border-radius:var(--rs);font-size:.72rem;color:var(--tx);font-family:'Noto Serif SC',serif"><option value="">不限</option></select>
+          <div style="font-size:.63rem;color:var(--tx3);margin-bottom:3px">月地支（可选）</div>
+          <select id="srchMDZ" style="width:100%;padding:5px 4px;border:1px solid var(--bdl);background:var(--bg2);border-radius:var(--rs);font-size:.7rem;color:var(--tx);font-family:'Noto Serif SC',serif"><option value="">不限</option></select>
         </div>
-        <div style="display:flex;align-items:flex-end">
-          <button class="btn btnp bfw bsm" onclick="doGZSearch()">查询</button>
-        </div>
+        <button class="btn btnp bsm" onclick="doGZSearch()">查询</button>
       </div>
       <div id="srchResult" class="gz-result-list"></div>
     </div>
   </div>
 </div>
 
-<div class="tc" id="tc"></div>
+<!-- GLOBAL SEARCH MODAL -->
+<div class="mover" id="searchModal">
+  <div class="modal" style="max-width:500px">
+    <div class="mtit">🔍 全局搜索 <button class="btn btns bsm" onclick="closeModal('searchModal')">×</button></div>
+    <div class="mbody">
+      <input type="text" class="minp" id="globalSearchInp" placeholder="搜索卦例、笔记…" oninput="doGlobalSearch()" style="margin-bottom:8px">
+      <div id="globalSearchResult" style="max-height:320px;overflow-y:auto;font-size:.8rem"></div>
+    </div>
+  </div>
+</div>
 
+<div class="tc" id="tc"></div>
 <script>
 // ================================================================
-// DATA TABLES
+// DATA CONSTANTS
 // ================================================================
 const HEXDB={'111111':'乾为天','000000':'坤为地','010001':'水雷屯','100010':'山水蒙','010111':'水天需','111010':'天水讼','000010':'地水师','010000':'水地比','110111':'风天小畜','111011':'天泽履','000111':'地天泰','111000':'天地否','111101':'天火同人','101111':'火天大有','000100':'地山谦','001000':'雷地豫','011001':'泽雷随','100110':'山风蛊','000011':'地泽临','110000':'风地观','101001':'火雷噬嗑','100101':'山火贲','100000':'山地剥','000001':'地雷复','111001':'天雷无妄','100111':'山天大畜','100001':'山雷颐','011110':'泽风大过','010010':'坎为水','101101':'离为火','011100':'泽山咸','001110':'雷风恒','111100':'天山遁','001111':'雷天大壮','101000':'火地晋','000101':'地火明夷','110101':'风火家人','101011':'火泽睽','010100':'水山蹇','001010':'雷水解','100011':'山泽损','110001':'风雷益','011111':'泽天夬','111110':'天风姤','011000':'泽地萃','000110':'地风升','011010':'泽水困','010110':'水风井','011101':'泽火革','101110':'火风鼎','001001':'震为雷','100100':'艮为山','110100':'风山渐','001011':'雷泽归妹','001101':'雷火丰','101100':'火山旅','110110':'巽为风','011011':'兑为泽','110010':'风水涣','010011':'水泽节','110011':'风泽中孚','001100':'雷山小过','010101':'水火既济','101010':'火水未济'};
 const HEXSYM={'乾为天':'䷀','坤为地':'䷁','水雷屯':'䷂','山水蒙':'䷃','水天需':'䷄','天水讼':'䷅','地水师':'䷆','水地比':'䷇','风天小畜':'䷈','天泽履':'䷉','地天泰':'䷊','天地否':'䷋','天火同人':'䷌','火天大有':'䷍','地山谦':'䷎','雷地豫':'䷏','泽雷随':'䷐','山风蛊':'䷑','地泽临':'䷒','风地观':'䷓','火雷噬嗑':'䷔','山火贲':'䷕','山地剥':'䷖','地雷复':'䷗','天雷无妄':'䷘','山天大畜':'䷙','山雷颐':'䷚','泽风大过':'䷛','坎为水':'䷜','离为火':'䷝','泽山咸':'䷞','雷风恒':'䷟','天山遁':'䷠','雷天大壮':'䷡','火地晋':'䷢','地火明夷':'䷣','风火家人':'䷤','火泽睽':'䷥','水山蹇':'䷦','雷水解':'䷧','山泽损':'䷨','风雷益':'䷩','泽天夬':'䷪','天风姤':'䷫','泽地萃':'䷬','地风升':'䷭','泽水困':'䷮','水风井':'䷯','泽火革':'䷰','火风鼎':'䷱','震为雷':'䷲','艮为山':'䷳','风山渐':'䷴','雷泽归妹':'䷵','雷火丰':'䷶','火山旅':'䷷','巽为风':'䷸','兑为泽':'䷹','风水涣':'䷺','水泽节':'䷻','风泽中孚':'䷼','雷山小过':'䷽','水火既济':'䷾','火水未济':'䷿'};
 const PALACES={'乾':{el:'金',hexs:['乾为天','天风姤','天山遁','天地否','风地观','山地剥','火地晋','火天大有']},'坎':{el:'水',hexs:['坎为水','水泽节','水雷屯','水火既济','泽火革','雷火丰','地火明夷','地水师']},'艮':{el:'土',hexs:['艮为山','山火贲','山天大畜','山泽损','火泽睽','天泽履','风泽中孚','风山渐']},'震':{el:'木',hexs:['震为雷','雷地豫','雷水解','雷风恒','地风升','水风井','泽风大过','泽雷随']},'巽':{el:'木',hexs:['巽为风','风天小畜','风火家人','风雷益','天雷无妄','火雷噬嗑','山雷颐','山风蛊']},'离':{el:'火',hexs:['离为火','火山旅','火风鼎','火水未济','山水蒙','风水涣','天水讼','天火同人']},'坤':{el:'土',hexs:['坤为地','地雷复','地泽临','地天泰','雷天大壮','泽天夬','水天需','水地比']},'兑':{el:'金',hexs:['兑为泽','泽水困','泽地萃','泽山咸','水山蹇','地山谦','雷山小过','雷泽归妹']}};
-const LIUHE_SET=new Set(['天地否','地天泰','地雷复','雷地豫','山火贲','火山旅','泽水困','水泽节']);
-const LIUCHONG_SET=new Set(['乾为天','兑为泽','离为火','震为雷','巽为风','坎为水','艮为山','坤为地','天雷无妄','雷天大壮']);
+const LIUHE_S=new Set(['天地否','地天泰','地雷复','雷地豫','山火贲','火山旅','泽水困','水泽节']);
+const LIUCHONG_S=new Set(['乾为天','兑为泽','离为火','震为雷','巽为风','坎为水','艮为山','坤为地','天雷无妄','雷天大壮']);
 const BRANCH_CFG={'111':['子','寅','辰','午','申','戌'],'001':['子','寅','辰','午','申','戌'],'010':['寅','辰','午','申','戌','子'],'100':['辰','午','申','戌','子','寅'],'000':['未','巳','卯','丑','亥','酉'],'011':['巳','卯','丑','亥','酉','未'],'110':['丑','亥','酉','未','巳','卯'],'101':['卯','丑','亥','酉','未','巳']};
 const BEL={子:'水',丑:'土',寅:'木',卯:'木',辰:'土',巳:'火',午:'火',未:'土',申:'金',酉:'金',戌:'土',亥:'水'};
 const WX_CSS={金:'wjin',木:'wmu',水:'wshui',火:'whuo',土:'wtu'};
@@ -683,17 +752,53 @@ const SHEN_MAP={甲:['龙','雀','勾','蛇','虎','玄'],乙:['龙','雀','勾'
 const LQ_S={父母:'父',兄弟:'兄',子孙:'孙',妻财:'财',官鬼:'官'};
 const TG=['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
 const DZ=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
-const CATS=[{id:'work',n:'工作',e:'💼'},{id:'study',n:'学业',e:'📖'},{id:'money',n:'求财',e:'💰'},{id:'love',n:'婚恋',e:'💕'},{id:'fengshui',n:'风水',e:'🏠'},{id:'health',n:'占病',e:'🏥'},{id:'fortune',n:'运势',e:'🔮'},{id:'other',n:'其他',e:'📋'}];
+// Trigrams for name method
+const TRIGRAMS=[
+  {name:'乾',sym:'☰',bits:'111'},{name:'兑',sym:'☱',bits:'011'},
+  {name:'离',sym:'☲',bits:'101'},{name:'震',sym:'☳',bits:'001'},
+  {name:'巽',sym:'☴',bits:'110'},{name:'坎',sym:'☵',bits:'010'},
+  {name:'艮',sym:'☶',bits:'100'},{name:'坤',sym:'☷',bits:'000'}
+];
+// DEFAULT folders & tags (can be customized)
+const DEFAULT_FOLDERS=[
+  {id:'offline',name:'线下卦',emoji:'🏮'},
+  {id:'online',name:'网络卦',emoji:'🌐'},
+  {id:'teach',name:'教学卦',emoji:'📚'},
+  {id:'other',name:'其他',emoji:'📋'}
+];
+const DEFAULT_TAGS=['感情','财运','健康','事业','学业'];
 
 // ================================================================
-// FIVE ELEMENTS
+// STATE
+// ================================================================
+let recs=[],notes=[],cfg={folders:[...DEFAULT_FOLDERS],tags:[...DEFAULT_TAGS],links:[],darkMode:false};
+let curLines=null,curMethod='random',cnOpen=false;
+let castSelFolder='',castSelTags=new Set(),castNotesMed=null;
+let manualState=[0,0,0,0,0,0];
+let nameUpperBits=null,nameLowerBits=null,nameChangedYaos=new Set();
+let recFilt={folder:'',tag:'',q:''},nbFilt={folder:'',tag:'',q:''};
+let recBatch=false,nbBatch=false,recSelIds=new Set(),nbSelIds=new Set();
+let movTarget={type:'',folder:'',tags:new Set()};
+let importType='rec';
+let showFcol=false;
+let curGZ=null;
+let calYear=new Date().getFullYear(),calMonth=new Date().getMonth();
+
+// ================================================================
+// STORAGE
+// ================================================================
+function saveAll(){localStorage.setItem('ly_recs',JSON.stringify(recs));localStorage.setItem('ly_notes',JSON.stringify(notes));localStorage.setItem('ly_cfg',JSON.stringify(cfg));}
+function loadAll(){
+  try{recs=JSON.parse(localStorage.getItem('ly_recs')||'[]');}catch{recs=[];}
+  try{notes=JSON.parse(localStorage.getItem('ly_notes')||'[]');}catch{notes=[];}
+  try{const c=JSON.parse(localStorage.getItem('ly_cfg')||'{}');cfg={...{folders:[...DEFAULT_FOLDERS],tags:[...DEFAULT_TAGS],links:[]},...c};}catch{cfg={folders:[...DEFAULT_FOLDERS],tags:[...DEFAULT_TAGS],links:[]};}
+}
+
+// ================================================================
+// FIVE ELEMENTS & DIZHI
 // ================================================================
 const SK={金:{s:'水',k:'木'},木:{s:'火',k:'土'},水:{s:'木',k:'火'},火:{s:'土',k:'金'},土:{s:'金',k:'水'}};
 function wxRel(a,b){if(a===b)return'比';if(SK[a]?.s===b)return'生';if(SK[b]?.s===a)return'被生';if(SK[a]?.k===b)return'克';if(SK[b]?.k===a)return'被克';return'';}
-
-// ================================================================
-// DIZHI RELATIONS
-// ================================================================
 const LIUHE_P={子:'丑',丑:'子',寅:'亥',亥:'寅',卯:'戌',戌:'卯',辰:'酉',酉:'辰',巳:'申',申:'巳',午:'未',未:'午'};
 const LIUCHONG_P={子:'午',午:'子',丑:'未',未:'丑',寅:'申',申:'寅',卯:'酉',酉:'卯',辰:'戌',戌:'辰',巳:'亥',亥:'巳'};
 const SANHE=[{el:'水',m:['申','子','辰']},{el:'木',m:['亥','卯','未']},{el:'火',m:['寅','午','戌']},{el:'金',m:['巳','酉','丑']}];
@@ -702,24 +807,15 @@ const C12=['长生','沐浴','冠带','临官','帝旺','衰','病','死','墓',
 const C12S={金:'巳',木:'亥',水:'申',火:'寅',土:'寅'};
 const C12D={金:-1,木:1,水:-1,火:1,土:1};
 function getCS(el,dz){const s=C12S[el],dir=C12D[el]||1,si=DZ.indexOf(s),di=DZ.indexOf(dz);if(si<0||di<0)return'';return C12[((di-si)*dir+12)%12]||'';}
-function dzRel(a,b){
-  const r=[];
-  if(LIUHE_P[a]===b)r.push('六合');
-  if(LIUCHONG_P[a]===b)r.push('冲');
-  if(XING[a]===b&&a!==b)r.push('刑');
-  for(const sg of SANHE){if(sg.m.includes(a)&&sg.m.includes(b))r.push(`三合${sg.el}`);}
-  const wr=wxRel(BEL[a],BEL[b]);if(wr&&wr!=='比')r.push(wr);
-  return r;
-}
+function dzRel(a,b){const r=[];if(LIUHE_P[a]===b)r.push('六合');if(LIUCHONG_P[a]===b)r.push('冲');if(XING[a]===b&&a!==b)r.push('刑');for(const sg of SANHE){if(sg.m.includes(a)&&sg.m.includes(b))r.push('三合'+sg.el);}const wr=wxRel(BEL[a],BEL[b]);if(wr&&wr!=='比')r.push(wr);return r;}
+function tgEl(c){if('甲乙'.includes(c))return'木';if('丙丁'.includes(c))return'火';if('戊己'.includes(c))return'土';if('庚辛'.includes(c))return'金';if('壬癸'.includes(c))return'水';return'';}
+function dzEl(c){return BEL[c]||'';}
 
 // ================================================================
 // GANZHI CALENDAR
 // ================================================================
 const DZ_CANG={子:{main:'癸'},丑:{main:'己',mid:'癸',res:'辛'},寅:{main:'甲',mid:'丙',res:'戊'},卯:{main:'乙'},辰:{main:'戊',mid:'乙',res:'癸'},巳:{main:'丙',mid:'庚',res:'戊'},午:{main:'丁',mid:'己'},未:{main:'己',mid:'丁',res:'乙'},申:{main:'庚',mid:'壬',res:'戊'},酉:{main:'辛'},戌:{main:'戊',mid:'辛',res:'丁'},亥:{main:'壬',mid:'甲'}};
 const DZ_DIR={子:'正北',丑:'东北偏北',寅:'东北偏东',卯:'正东',辰:'东南偏东',巳:'东南偏南',午:'正南',未:'西南偏南',申:'西南偏西',酉:'正西',戌:'西北偏西',亥:'西北偏北'};
-function tgEl(c){if('甲乙'.includes(c))return'木';if('丙丁'.includes(c))return'火';if('戊己'.includes(c))return'土';if('庚辛'.includes(c))return'金';if('壬癸'.includes(c))return'水';return'';}
-function dzEl(c){return BEL[c]||'';}
-let curGZ=null;
 function getGZ(){
   try{
     const now=new Date(),lunar=Lunar.fromDate(now);
@@ -729,704 +825,666 @@ function getGZ(){
     const jq=lunar.getPrevJieQi()?.getName()||'',nxtJq=lunar.getNextJieQi()?.getName()||'';
     const jqD=lunar.getPrevJieQi()?.getSolar(),nxtD=lunar.getNextJieQi()?.getSolar();
     return{y,m,d,h,ls,dayTG:d[0],dayDZ:d[1],monthDZ:m[1],kw,jq,jqD,nxtJq,nxtD};
-  }catch(e){return null;}
+  }catch{return null;}
 }
-function calcHrGZ(date,dayGZ){
-  const hr=date.getHours(),dti=TG.indexOf(dayGZ[0]);
-  const sm={0:0,1:2,2:4,3:6,4:8,5:0,6:2,7:4,8:6,9:8};
-  const stg=sm[dti]||0;
-  const bi=hr>=23||hr<1?0:Math.floor((hr+1)/2);
-  return TG[(stg+bi)%10]+DZ[bi];
-}
-function calcKW(dayGZ){
-  const ti=TG.indexOf(dayGZ[0]),di=DZ.indexOf(dayGZ[1]);
-  const ds=(di-ti%10+12)%12;
-  return[DZ[(ds+10)%12],DZ[(ds+11)%12]];
-}
-function renderGZ(){
-  const gz=getGZ();
-  if(!gz){document.getElementById('lunarStr').textContent='加载失败';return null;}
-  curGZ=gz;
-  document.getElementById('lunarStr').textContent=gz.ls;
-  const cells=[{l:'年',v:gz.y},{l:'月',v:gz.m},{l:'日',v:gz.d},{l:'时',v:gz.h}];
-  document.getElementById('gzRow').innerHTML=cells.map(c=>`<div class="gz-cell"><div class="gz-lbl">${c.l}</div><div class="gz-val"><span class="${WX_CSS[tgEl(c.v[0])]||''}">${c.v[0]}</span><span class="${WX_CSS[dzEl(c.v[1])]||''}">${c.v[1]}</span></div></div>`).join('');
-  let ext=`<div class="gz-ext"><span>日辰空亡：</span><span class="${WX_CSS[dzEl(gz.kw[0])]||''}">${gz.kw.join('')}</span>&emsp;<span>方位：</span><span>${DZ_DIR[gz.dayDZ]||''}</span></div>`;
-  if(gz.jq||gz.nxtJq){
-    const pd=gz.jqD?`${gz.jqD.getYear()}.${gz.jqD.getMonth()}.${gz.jqD.getDay()}`:'';
-    const nd=gz.nxtD?`${gz.nxtD.getYear()}.${gz.nxtD.getMonth()}.${gz.nxtD.getDay()}`:'';
-    ext+=`<div class="gz-ext" style="margin-top:3px"><span>节气：${gz.jq} ${pd}</span>&emsp;<span>→ ${gz.nxtJq} ${nd}</span></div>`;
+function calcHrGZ(date,dg){const hr=date.getHours(),dti=TG.indexOf(dg[0]),sm={0:0,1:2,2:4,3:6,4:8,5:0,6:2,7:4,8:6,9:8},stg=sm[dti]||0,bi=hr>=23||hr<1?0:Math.floor((hr+1)/2);return TG[(stg+bi)%10]+DZ[bi];}
+function calcKW(dg){const ti=TG.indexOf(dg[0]),di=DZ.indexOf(dg[1]),ds=(di-ti%10+12)%12;return[DZ[(ds+10)%12],DZ[(ds+11)%12]];}
+function renderGZTo(lsId,rowId,extId,gz){
+  if(!gz)return;
+  const lsEl=document.getElementById(lsId),rowEl=document.getElementById(rowId),extEl=document.getElementById(extId);
+  if(lsEl)lsEl.textContent=gz.ls;
+  if(rowEl){
+    const cells=[{l:'年',v:gz.y},{l:'月',v:gz.m},{l:'日',v:gz.d},{l:'时',v:gz.h}];
+    rowEl.innerHTML=cells.map(c=>`<div class="gz-cell"><div class="gz-lbl">${c.l}</div><div class="gz-val"><span class="${WX_CSS[tgEl(c.v[0])]||''}">${c.v[0]}</span><span class="${WX_CSS[dzEl(c.v[1])]||''}">${c.v[1]}</span></div></div>`).join('');
   }
-  const showCang=dz=>{const c=DZ_CANG[dz];if(!c)return'';const ps=[c.main,c.mid,c.res].filter(Boolean);return`${dz}(${ps.map(t=>`<span class="${WX_CSS[tgEl(t)]||''}">${t}</span>`).join('')})`;};
-  ext+=`<div class="gz-sub">藏干：${showCang(gz.d[1])} ${showCang(gz.m[1])} ${showCang(gz.h[1])}</div>`;
-  document.getElementById('gzExt').innerHTML=ext;
-  // Init converter
-  initGZConv();
-  return gz;
+  if(extEl){
+    let ext=`<div class="gz-ext"><span>日辰空亡：</span><span>${gz.kw.join('')}</span>&emsp;<span>方位：</span><span>${DZ_DIR[gz.dayDZ]||''}</span></div>`;
+    if(gz.jq)ext+=`<div class="gz-ext" style="margin-top:2px"><span>节气：${gz.jq}</span>&emsp;<span>→ ${gz.nxtJq}</span></div>`;
+    const sc=dz=>{const c=DZ_CANG[dz];if(!c)return'';const ps=[c.main,c.mid,c.res].filter(Boolean);return`${dz}(${ps.map(t=>`<span class="${WX_CSS[tgEl(t)]||''}">${t}</span>`).join('')})`;};
+    ext+=`<div class="gz-sub">藏干：${sc(gz.d[1])} ${sc(gz.m[1])} ${sc(gz.h[1])}</div>`;
+    extEl.innerHTML=ext;
+  }
 }
+function renderGZ(){const gz=getGZ();if(!gz)return null;curGZ=gz;renderGZTo('lunarStr','gzRow','gzExt',gz);initGZConvSelects();return gz;}
 
 // ================================================================
-// CALENDAR & GANZHI CONVERTER
+// CALENDAR
 // ================================================================
-let calYear=new Date().getFullYear(), calMonth=new Date().getMonth();
-
-function initGZConv(){
-  // This is now replaced by the modal - just init select options in modal
-  // Called from renderGZ, sets up the modal selects if needed
-  const hlTG=document.getElementById('calHlTG');
-  const hlDZ=document.getElementById('calHlDZ');
-  if(hlTG&&!hlTG.options.length){
-    hlTG.innerHTML=`<option value="">天干（无）</option>`+TG.map((t,i)=>`<option value="${i}">${t}</option>`).join('');
-    hlDZ.innerHTML=`<option value="">地支（无）</option>`+DZ.map((d,i)=>`<option value="${i}">${d}</option>`).join('');
-  }
-  // search selects
-  const sTG=document.getElementById('srchTG'),sDZ=document.getElementById('srchDZ');
-  const sMTG=document.getElementById('srchMTG'),sMDZ=document.getElementById('srchMDZ');
-  if(sTG&&!sTG.options.length){
-    const tgOpts=TG.map((t,i)=>`<option value="${i}">${t}</option>`).join('');
-    const dzOpts=DZ.map((d,i)=>`<option value="${i}">${d}</option>`).join('');
-    sTG.innerHTML=`<option value="">天干（不限）</option>`+tgOpts;
-    sDZ.innerHTML=`<option value="">地支（不限）</option>`+dzOpts;
-    sMTG.innerHTML=`<option value="">不限</option>`+tgOpts;
-    sMDZ.innerHTML=`<option value="">不限</option>`+dzOpts;
-  }
+function initGZConvSelects(){
+  const hlTG=document.getElementById('calHlTG'),hlDZ=document.getElementById('calHlDZ');
+  if(hlTG&&!hlTG.options.length){hlTG.innerHTML=`<option value="">天干（不限）</option>`+TG.map((t,i)=>`<option value="${i}">${t}</option>`).join('');hlDZ.innerHTML=`<option value="">地支（不限）</option>`+DZ.map((d,i)=>`<option value="${i}">${d}</option>`).join('');}
+  const sTG=document.getElementById('srchTG'),sDZ=document.getElementById('srchDZ'),sMTG=document.getElementById('srchMTG'),sMDZ=document.getElementById('srchMDZ');
+  if(sTG&&!sTG.options.length){const to=TG.map((t,i)=>`<option value="${i}">${t}</option>`).join(''),dzo=DZ.map((d,i)=>`<option value="${i}">${d}</option>`).join('');sTG.innerHTML=`<option value="">天干（不限）</option>`+to;sDZ.innerHTML=`<option value="">地支（不限）</option>`+dzo;sMTG.innerHTML=`<option value="">不限</option>`+to;sMDZ.innerHTML=`<option value="">不限</option>`+dzo;}
 }
-
 function openModal(id){
   if(id==='syncModal')loadGHSettings();
-  if(id==='calModal'){
-    initGZConv();
-    calYear=new Date().getFullYear();
-    calMonth=new Date().getMonth();
-    renderCal();
-  }
+  if(id==='calModal'){initGZConvSelects();calYear=new Date().getFullYear();calMonth=new Date().getMonth();renderCal();}
   document.getElementById(id).classList.add('on');
 }
-
-function switchCalTab(tab,el){
-  document.querySelectorAll('.cal-tab').forEach(t=>t.classList.remove('on'));
-  el.classList.add('on');
-  document.getElementById('calPane').style.display=tab==='cal'?'block':'none';
-  document.getElementById('searchPane').style.display=tab==='search'?'block':'none';
-}
-
-function calMove(dir){
-  calMonth+=dir;
-  if(calMonth>11){calMonth=0;calYear++;}
-  if(calMonth<0){calMonth=11;calYear--;}
-  renderCal();
-}
-
+function closeModal(id){document.getElementById(id).classList.remove('on');}
+function switchCalTab(t,el){document.querySelectorAll('.cal-tab').forEach(x=>x.classList.remove('on'));el.classList.add('on');document.getElementById('calPane').style.display=t==='cal'?'block':'none';document.getElementById('searchPane').style.display=t==='search'?'block':'none';}
+function calMove(d){calMonth+=d;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCal();}
 function renderCal(){
-  const titleEl=document.getElementById('calTitle');
-  const gridEl=document.getElementById('calGrid');
-  if(!titleEl||!gridEl)return;
-
-  titleEl.textContent=`${calYear}年${calMonth+1}月`;
-
-  // Highlight target ganzhi
-  const hlTGIdx=document.getElementById('calHlTG')?.value;
-  const hlDZIdx=document.getElementById('calHlDZ')?.value;
-  const hlTG=(hlTGIdx!==''&&hlTGIdx!==undefined)?TG[parseInt(hlTGIdx)]:'';
-  const hlDZ=(hlDZIdx!==''&&hlDZIdx!==undefined)?DZ[parseInt(hlDZIdx)]:'';
-
-  const today=new Date();
-  const firstDay=new Date(calYear,calMonth,1);
-  const lastDay=new Date(calYear,calMonth+1,0);
-  const startWday=firstDay.getDay(); // 0=Sun
-
-  let html='';
-  // Empty cells
-  for(let i=0;i<startWday;i++) html+=`<div class="cal-day empty"></div>`;
-
-  for(let d=1;d<=lastDay.getDate();d++){
-    const date=new Date(calYear,calMonth,d);
-    const isToday=date.toDateString()===today.toDateString();
-    let lunarStr='',gzStr='',isMatch=false;
-    try{
-      const lunar=Lunar.fromDate(date);
-      lunarStr=lunar.getMonthInChinese()+'月'+lunar.getDayInChinese();
-      const dgz=lunar.getDayInGanZhi();
-      gzStr=dgz;
-      if(hlTG&&hlDZ&&dgz===hlTG+hlDZ) isMatch=true;
-      else if(hlTG&&!hlDZ&&dgz[0]===hlTG) isMatch=true;
-      else if(!hlTG&&hlDZ&&dgz[1]===hlDZ) isMatch=true;
-    }catch(e){}
-    html+=`<div class="cal-day${isToday?' today':''}${isMatch?' match-gz':''}">
-      <div class="solar">${d}</div>
-      <div class="lunar">${lunarStr}</div>
-      <div class="ganzhi">${gzStr}</div>
-    </div>`;
+  const tEl=document.getElementById('calTitle'),gEl=document.getElementById('calGrid');if(!tEl||!gEl)return;
+  tEl.textContent=`${calYear}年${calMonth+1}月`;
+  const hlTGi=document.getElementById('calHlTG')?.value,hlDZi=document.getElementById('calHlDZ')?.value;
+  const hlTG=hlTGi!==''&&hlTGi!==undefined?TG[parseInt(hlTGi)]:'',hlDZ=hlDZi!==''&&hlDZi!==undefined?DZ[parseInt(hlDZi)]:'';
+  const today=new Date(),fd=new Date(calYear,calMonth,1),ld=new Date(calYear,calMonth+1,0);
+  let h='';
+  for(let i=0;i<fd.getDay();i++)h+=`<div class="cal-day empty"></div>`;
+  for(let d=1;d<=ld.getDate();d++){
+    const date=new Date(calYear,calMonth,d),isToday=date.toDateString()===today.toDateString();
+    let ls='',gz='',match=false;
+    try{const lunar=Lunar.fromDate(date);ls=lunar.getMonthInChinese()+'月'+lunar.getDayInChinese();gz=lunar.getDayInGanZhi();if(hlTG&&hlDZ&&gz===hlTG+hlDZ)match=true;else if(hlTG&&!hlDZ&&gz[0]===hlTG)match=true;else if(!hlTG&&hlDZ&&gz[1]===hlDZ)match=true;}catch{}
+    h+=`<div class="cal-day${isToday?' today':''}${match?' match-gz':''}"><div class="solar">${d}</div><div class="lunar">${ls}</div><div class="ganzhi">${gz}</div></div>`;
   }
-  gridEl.innerHTML=html;
+  gEl.innerHTML=h;
 }
-
 function doGZSearch(){
-  const tgIdx=document.getElementById('srchTG').value;
-  const dzIdx=document.getElementById('srchDZ').value;
-  const mtgIdx=document.getElementById('srchMTG').value;
-  const mdzIdx=document.getElementById('srchMDZ').value;
+  const tgi=document.getElementById('srchTG').value,dzi=document.getElementById('srchDZ').value;
+  const mtgi=document.getElementById('srchMTG').value,mdzi=document.getElementById('srchMDZ').value;
   const yrs=parseInt(document.getElementById('srchYears').value)||3;
   const res=document.getElementById('srchResult');
-
-  if(tgIdx===''&&dzIdx===''){
-    res.innerHTML='<span style="color:var(--huo)">请至少选择天干或地支</span>';return;
+  if(tgi===''&&dzi===''){res.innerHTML='<span style="color:var(--huo)">请至少选择天干或地支</span>';return;}
+  const wTG=tgi!==''?TG[parseInt(tgi)]:'',wDZ=dzi!==''?DZ[parseInt(dzi)]:'';
+  if(wTG&&wDZ&&parseInt(tgi)%2!==parseInt(dzi)%2){res.innerHTML=`<span style="color:var(--huo)">${wTG}${wDZ} 不在六十甲子中</span>`;return;}
+  const wMTG=mtgi!==''?TG[parseInt(mtgi)]:'',wMDZ=mdzi!==''?DZ[parseInt(mdzi)]:'';
+  const now=new Date(),matches=[];
+  outer:for(let y=now.getFullYear();y<=now.getFullYear()+yrs;y++){
+    for(let mo=0;mo<12;mo++){const days=new Date(y,mo+1,0).getDate();for(let d=1;d<=days;d++){if(matches.length>=30)break outer;const date=new Date(y,mo,d);if(date<now)continue;try{const lunar=Lunar.fromDate(date);const dgz=lunar.getDayInGanZhi(),mgz=lunar.getMonthInGanZhi();if((!wTG||dgz[0]===wTG)&&(!wDZ||dgz[1]===wDZ)&&(!wMTG||mgz[0]===wMTG)&&(!wMDZ||mgz[1]===wMDZ)){const ws=['日','一','二','三','四','五','六'][date.getDay()];matches.push(`${y}年${mo+1}月${d}日（周${ws}）— 日${dgz} 月${mgz}`);}}catch{}}}
   }
-  const wantTG=tgIdx!==''?TG[parseInt(tgIdx)]:'';
-  const wantDZ=dzIdx!==''?DZ[parseInt(dzIdx)]:'';
-  // validate compatible if both chosen
-  if(wantTG&&wantDZ&&parseInt(tgIdx)%2!==parseInt(dzIdx)%2){
-    res.innerHTML=`<span style="color:var(--huo)">${wantTG}${wantDZ} 不在六十甲子中</span>`;return;
-  }
-  const wantMTG=mtgIdx!==''?TG[parseInt(mtgIdx)]:'';
-  const wantMDZ=mdzIdx!==''?DZ[parseInt(mdzIdx)]:'';
-
-  const now=new Date();
-  const matches=[];
-  const endY=now.getFullYear()+yrs;
-  outer:
-  for(let y=now.getFullYear();y<=endY;y++){
-    for(let mo=0;mo<12;mo++){
-      const days=new Date(y,mo+1,0).getDate();
-      for(let d=1;d<=days;d++){
-        if(matches.length>=30)break outer;
-        const date=new Date(y,mo,d);
-        if(date<now)continue;
-        try{
-          const lunar=Lunar.fromDate(date);
-          const dgz=lunar.getDayInGanZhi();
-          const mgz=lunar.getMonthInGanZhi();
-          const dayOk=(!wantTG||dgz[0]===wantTG)&&(!wantDZ||dgz[1]===wantDZ);
-          const monOk=(!wantMTG||mgz[0]===wantMTG)&&(!wantMDZ||mgz[1]===wantMDZ);
-          if(dayOk&&monOk){
-            const ws=['日','一','二','三','四','五','六'][date.getDay()];
-            matches.push(`${y}年${mo+1}月${d}日（周${ws}）— 日柱${dgz} 月柱${mgz}`);
-          }
-        }catch(e){}
-      }
-    }
-  }
-
-  if(!matches.length){
-    res.innerHTML='<div style="color:var(--tx3)">未找到匹配日期</div>';return;
-  }
-  const label=(wantTG||'')+( wantDZ||'')+(wantMTG?` 月${wantMTG}`:'')+(wantMDZ?`${wantMDZ}`:'');
-  res.innerHTML=`<div style="font-size:.72rem;color:var(--tx3);margin-bottom:5px"><b>${label}</b> 日，近${yrs}年内共找到 ${matches.length} 个：</div>`+
-    matches.map(m=>`<div class="gz-result-item">${m}</div>`).join('');
+  const label=(wTG||'')+(wDZ||'')+(wMTG?` 月${wMTG}`:'')+(wMDZ?`${wMDZ}`:'');
+  res.innerHTML=matches.length?`<div style="font-size:.7rem;color:var(--tx3);margin-bottom:4px"><b>${label}</b> 共 ${matches.length} 个：</div>`+matches.map(m=>`<div class="gz-result-item">${m}</div>`).join(''):'<div style="color:var(--tx3)">未找到匹配</div>';
 }
-
-function calcGZSolar(){} // legacy stub, replaced by modal
 
 // ================================================================
 // HEXAGRAM LOGIC
 // ================================================================
 function getLiuqin(be,pe){if(be===pe)return'兄弟';if(SK[pe]?.s===be)return'子孙';if(SK[be]?.s===pe)return'父母';if(SK[pe]?.k===be)return'妻财';if(SK[be]?.k===pe)return'官鬼';return'兄弟';}
 function getHexName(lines){return HEXDB[lines.map(l=>l===0||l===2?0:1).reverse().join('')]||'未知';}
-function getPalaceInfo(hexName){for(const[p,d]of Object.entries(PALACES)){const i=d.hexs.indexOf(hexName);if(i<0)continue;let shi;if(i===0)shi=5;else if(i<=5)shi=i-1;else if(i===6)shi=3;else shi=2;return{palace:p,el:d.el,shi,ying:(shi+3)%6,idx:i,isYH:i===6,isGH:i===7,isBG:i===0};}return null;}
+function getPalaceInfo(n){for(const[p,d]of Object.entries(PALACES)){const i=d.hexs.indexOf(n);if(i<0)continue;let s;if(i===0)s=5;else if(i<=5)s=i-1;else if(i===6)s=3;else s=2;return{palace:p,el:d.el,shi:s,ying:(s+3)%6,idx:i,isYH:i===6,isGH:i===7,isBG:i===0};}return null;}
 function getEBranches(lines){const b=v=>(v===0||v===2)?'0':'1';const lk=[b(lines[2]),b(lines[1]),b(lines[0])].join('');const uk=[b(lines[5]),b(lines[4]),b(lines[3])].join('');const lb=BRANCH_CFG[lk]||[],ub=BRANCH_CFG[uk]||[];return[lb[0]||'',lb[1]||'',lb[2]||'',ub[3]||'',ub[4]||'',ub[5]||''];}
 function getChangedLines(lines){return lines.map(l=>l===3?0:l===2?1:l);}
-
-// Get all bengong (本宫卦) branches for fuchen reference
-function getBengongBranches(palaceInfo){
-  if(!palaceInfo)return Array(6).fill('');
-  const bgn=PALACES[palaceInfo.palace].hexs[0];
-  const bgk=Object.entries(HEXDB).find(([,v])=>v===bgn)?.[0];
-  if(!bgk)return Array(6).fill('');
-  const bgl=bgk.split('').map(Number).reverse();
-  return getEBranches(bgl);
-}
-
-// Full fuchen: ALL 6 bengong爻 branches (always show full bengong column)
-function getBengongLiuqins(palaceInfo){
-  if(!palaceInfo)return{branches:Array(6).fill(''),lqs:Array(6).fill('')};
-  const branches=getBengongBranches(palaceInfo);
-  const lqs=branches.map(b=>b?getLiuqin(BEL[b],palaceInfo.el):'');
-  return{branches,lqs};
-}
-
-function getLiuqinsForHex(hexName,branches,palaceEl){
-  const lqs=branches.map(b=>b?getLiuqin(BEL[b],palaceEl):'');
-  return lqs;
-}
-
-function getChangedLines2(lines){return lines.map(l=>l===3?0:l===2?1:l);}
+function getBengongBranches(pi){if(!pi)return Array(6).fill('');const bgn=PALACES[pi.palace].hexs[0];const bgk=Object.entries(HEXDB).find(([,v])=>v===bgn)?.[0];if(!bgk)return Array(6).fill('');return getEBranches(bgk.split('').map(Number).reverse());}
+function getBengongLiuqins(pi){const br=getBengongBranches(pi);const lqs=br.map(b=>b&&pi?getLiuqin(BEL[b],pi.el):'');return{branches:br,lqs};}
+function getLiuqinsFor(hexName,branches,palaceEl){return branches.map(b=>b?getLiuqin(BEL[b],palaceEl):'');}
 
 // ================================================================
-// ANALYSIS ENGINE
+// ANALYSIS
 // ================================================================
 function analyzeHex(lines,hexName,gz){
-  const results=[];
-  const pi=getPalaceInfo(hexName);if(!pi)return results;
-  const palaceEl=pi.el;
-  const branches=getEBranches(lines);
-  const lqs=getLiuqinsForHex(hexName,branches,palaceEl);
-  const hasChange=lines.some(l=>l===2||l===3);
-  const cLines=getChangedLines(lines);
-  const cHex=hasChange?getHexName(cLines):'';
-  const cPi=hasChange?getPalaceInfo(cHex):null;
-
-  // 1. 本变五行
-  if(hasChange&&cPi){
-    const rel=wxRel(palaceEl,cPi.el);
-    let txt='',cls='chip-n';
-    if(rel==='生'){txt=`本卦${palaceEl}生变卦${cPi.el}，泄气主渐散`;cls='chip-b';}
-    else if(rel==='被生'){txt=`变卦${cPi.el}生本卦${palaceEl}，回头生主吉`;cls='chip-g';}
-    else if(rel==='克'){txt=`本卦${palaceEl}克变卦${cPi.el}，有制凶后收`;cls='chip-b';}
-    else if(rel==='被克'){txt=`变卦${cPi.el}克本卦${palaceEl}，回头克主凶`;cls='chip-b';}
-    else if(palaceEl===cPi.el){txt=`本变同宫${palaceEl}，格局稳定`;cls='chip-n';}
-    if(txt)results.push({type:'本变五行',items:[{txt,cls}]});
-  }
-
-  // 2. 月日对各爻
+  const results=[];const pi=getPalaceInfo(hexName);if(!pi)return results;
+  const palaceEl=pi.el,branches=getEBranches(lines),lqs=getLiuqinsFor(hexName,branches,palaceEl);
+  const hasChange=lines.some(l=>l===2||l===3),cLines=getChangedLines(lines);
+  const cHex=hasChange?getHexName(cLines):'',cPi=hasChange?getPalaceInfo(cHex):null;
+  if(hasChange&&cPi){const rel=wxRel(palaceEl,cPi.el);let txt='',cls='chip-n';if(rel==='生'){txt=`本${palaceEl}生变${cPi.el}，泄气渐散`;cls='chip-b';}else if(rel==='被生'){txt=`变${cPi.el}生本${palaceEl}，回头生吉`;cls='chip-g';}else if(rel==='克'){txt=`本${palaceEl}克变${cPi.el}，有制凶后收`;cls='chip-b';}else if(rel==='被克'){txt=`变${cPi.el}克本${palaceEl}，回头克主凶`;cls='chip-b';}else{txt=`本变同宫${palaceEl}，格局稳定`;}if(txt)results.push({type:'本变五行',items:[{txt,cls}]});}
   if(gz){
-    const mdz=gz.monthDZ,ddz=gz.dayDZ;
-    const dynIdx=lines.map((l,i)=>(l===2||l===3)?i:-1).filter(i=>i>=0);
+    const mdz=gz.monthDZ,ddz=gz.dayDZ,dynIdx=lines.map((l,i)=>(l===2||l===3)?i:-1).filter(i=>i>=0);
     const lnames=['初','二','三','四','五','上'];
-
-    const mItems=[],dItems=[];
-    for(let i=0;i<6;i++){
-      const b=branches[i];if(!b)continue;
-      const ln=lnames[i],lqS=LQ_S[lqs[i]]||lqs[i];
-      dzRel(mdz,b).forEach(r=>{
-        let cls='chip-n';
-        if(r==='六合'||r.includes('三合')||r==='被生')cls='chip-g';
-        if(r==='冲'||r==='克'||r==='刑')cls='chip-b';
-        mItems.push({txt:`月${mdz}${r}${ln}${lqS}(${b})`,cls});
-      });
-      dzRel(ddz,b).forEach(r=>{
-        let cls='chip-n';
-        if(r==='六合'||r.includes('三合')||r==='被生')cls='chip-g';
-        if(r==='冲'||r==='克'||r==='刑')cls='chip-b';
-        dItems.push({txt:`日${ddz}${r}${ln}${lqS}(${b})`,cls});
-      });
-    }
-    if(mItems.length)results.push({type:'月建影响',items:mItems});
-    if(dItems.length)results.push({type:'日辰影响',items:dItems});
-
-    // 3. 动爻
-    if(dynIdx.length>0){
-      const dynItems=[];
-      dynIdx.forEach(di=>{
-        const db=branches[di];if(!db)return;
-        const dln=lnames[di],dlqS=LQ_S[lqs[di]]||lqs[di];
-        // vs other lines
-        for(let j=0;j<6;j++){
-          if(j===di)continue;
-          const ob=branches[j];if(!ob)continue;
-          const oln=lnames[j],olqS=LQ_S[lqs[j]]||lqs[j];
-          dzRel(db,ob).forEach(r=>{
-            let cls='chip-n';
-            if(r==='六合'||r.includes('三合'))cls='chip-g';
-            if(r==='冲'||r==='刑'||r==='克')cls='chip-b';
-            if(r==='被生')cls='chip-g';
-            dynItems.push({txt:`动${dln}${dlqS}(${db})${r}${oln}${olqS}(${ob})`,cls});
-          });
-        }
-        // changsheng
-        const cs=getCS(BEL[db],ddz);
-        if(cs)dynItems.push({txt:`动${dln}${dlqS}(${db})逢日${ddz}长生:${cs}`,cls:'chip-n'});
-        // vs changed form
-        const cdb=getEBranches(cLines)[di];
-        if(cdb&&cdb!==db){
-          dzRel(db,cdb).forEach(r=>{
-            let cls='chip-n';
-            if(r==='六合'||r.includes('三合'))cls='chip-g';
-            if(r==='冲'||r==='刑'||r==='克')cls='chip-b';
-            dynItems.push({txt:`${dln}爻(${db})化(${cdb}) ${r}`,cls});
-          });
-        }
-      });
-      if(dynItems.length)results.push({type:'动爻分析',items:dynItems});
-    }
-
-    // 4. 三合局
-    const shItems=[];
-    for(const sg of SANHE){const mb=sg.m.filter(dz=>branches.includes(dz));if(mb.length>=2)shItems.push({txt:`卦内含三合${sg.el}局(${mb.join('')})`,cls:'chip-g'});}
-    if(shItems.length)results.push({type:'三合局',items:shItems});
+    const mI=[],dI=[];
+    for(let i=0;i<6;i++){const b=branches[i];if(!b)continue;const ln=lnames[i],lqS=LQ_S[lqs[i]]||lqs[i];dzRel(mdz,b).forEach(r=>{let c='chip-n';if(r==='六合'||r.includes('三合')||r==='被生')c='chip-g';if(r==='冲'||r==='克'||r==='刑')c='chip-b';mI.push({txt:`月${mdz}${r}${ln}${lqS}(${b})`,cls:c});});dzRel(ddz,b).forEach(r=>{let c='chip-n';if(r==='六合'||r.includes('三合')||r==='被生')c='chip-g';if(r==='冲'||r==='克'||r==='刑')c='chip-b';dI.push({txt:`日${ddz}${r}${ln}${lqS}(${b})`,cls:c});});}
+    if(mI.length)results.push({type:'月建',items:mI});
+    if(dI.length)results.push({type:'日辰',items:dI});
+    if(dynIdx.length){const dI2=[];dynIdx.forEach(di=>{const db=branches[di];if(!db)return;const dln=lnames[di],dlqS=LQ_S[lqs[di]]||lqs[di];for(let j=0;j<6;j++){if(j===di)continue;const ob=branches[j];if(!ob)continue;dzRel(db,ob).forEach(r=>{let c='chip-n';if(r==='六合'||r.includes('三合'))c='chip-g';if(r==='冲'||r==='刑'||r==='克')c='chip-b';dI2.push({txt:`动${dln}${dlqS}(${db})${r}${lnames[j]}(${ob})`,cls:c});});}const cs=getCS(BEL[db],ddz);if(cs)dI2.push({txt:`动${dln}${dlqS}(${db})日逢${cs}`,cls:'chip-n'});const cdb=getEBranches(cLines)[di];if(cdb&&cdb!==db)dzRel(db,cdb).forEach(r=>{let c='chip-n';if(r==='六合'||r.includes('三合'))c='chip-g';if(r==='冲'||r==='刑'||r==='克')c='chip-b';dI2.push({txt:`${dln}(${db})化(${cdb})${r}`,cls:c});});});if(dI2.length)results.push({type:'动爻',items:dI2});}
+    const shI=[];for(const sg of SANHE){const mb=sg.m.filter(dz=>branches.includes(dz));if(mb.length>=2)shI.push({txt:`卦内三合${sg.el}局(${mb.join('')})`,cls:'chip-g'});}
+    if(shI.length)results.push({type:'三合局',items:shI});
   }
   return results;
 }
 
 // ================================================================
-// BUILD HEXAGRAM HTML
-// Single <table> with <colgroup> + <thead> for pixel-perfect alignment
+// HEXAGRAM RENDER
 // ================================================================
-let showFuchenCols=false;
-function toggleFuchen(srcId){
-  showFuchenCols=!showFuchenCols;
-  // Update all toggle buttons (cast page + detail page may both exist)
-  document.querySelectorAll('.fc-toggle').forEach(btn=>{
-    btn.classList.toggle('on',showFuchenCols);
-    const t=btn.querySelector('.fc-txt');
-    if(t)t.textContent=showFuchenCols?'on':'off';
-  });
-  // Re-render wherever hexagram is showing
-  if(curLines)refreshResult();
-  // Also re-render open record detail if any
-  const rdContent=document.getElementById('rdContent');
-  if(rdContent&&rdContent._recId){
-    const rec=recs.find(r=>r.id===rdContent._recId);
-    if(rec)renderRD(rec);
-  }
+function toggleFuchen(){
+  showFcol=!showFcol;
+  document.querySelectorAll('.fc-toggle').forEach(b=>{b.classList.toggle('on',showFcol);const t=b.querySelector('.fc-txt');if(t)t.textContent=showFcol?'on':'off';});
+  if(curLines)doRefreshResult();
+  const rdC=document.getElementById('rdContent');
+  if(rdC&&rdC._recId){const r=recs.find(x=>x.id===rdC._recId);if(r)renderRD(r);}
 }
-
-function yaoBar(isYang){
-  if(isYang)return`<div class="yv"><div class="y-yang"></div></div>`;
-  return`<div class="yv"><div class="y-yin"><div class="y-yin-h"></div><div class="y-yin-h"></div></div></div>`;
-}
-
+function yaoBar(isYang){return isYang?`<div class="yv"><div class="y-yang"></div></div>`:`<div class="yv"><div class="y-yin"><div class="y-yin-h"></div><div class="y-yin-h"></div></div></div>`;}
 function buildHexHtml(lines,gz){
-  const hasChange=lines.some(l=>l===2||l===3);
-  const hexName=getHexName(lines);
-  const pi=getPalaceInfo(hexName);
-  const palaceEl=pi?pi.el:'金';
-  const branches=getEBranches(lines);
-  const lqs=getLiuqinsForHex(hexName,branches,palaceEl);
-  const dayTG=gz?gz.dayTG:'甲';
-  const shen=SHEN_MAP[dayTG]||SHEN_MAP['甲'];
-
-  const bgInfo=getBengongLiuqins(pi);
-  const bgBranches=bgInfo.branches;
-  const bgLqs=bgInfo.lqs;
-  const hasFuchen=pi&&!pi.isBG;
-
-  const cLines=getChangedLines(lines);
-  const cHex=hasChange?getHexName(cLines):'';
-  const cPi=hasChange?getPalaceInfo(cHex):null;
-  const cBranches=hasChange?getEBranches(cLines):Array(6).fill('');
-  const cLqs=hasChange?getLiuqinsForHex(cHex,cBranches,palaceEl):Array(6).fill('');
-
+  const hasChange=lines.some(l=>l===2||l===3),hexName=getHexName(lines),pi=getPalaceInfo(hexName),palaceEl=pi?pi.el:'金';
+  const branches=getEBranches(lines),lqs=getLiuqinsFor(hexName,branches,palaceEl);
+  const dayTG=gz?gz.dayTG:'甲',shen=SHEN_MAP[dayTG]||SHEN_MAP['甲'];
+  const bgInfo=getBengongLiuqins(pi),bgBr=bgInfo.branches,bgLqs=bgInfo.lqs,hasFc=pi&&!pi.isBG;
+  const cLines=getChangedLines(lines),cHex=hasChange?getHexName(cLines):'',cPi=hasChange?getPalaceInfo(cHex):null;
+  const cBr=hasChange?getEBranches(cLines):Array(6).fill(''),cLqs=hasChange?getLiuqinsFor(cHex,cBr,palaceEl):Array(6).fill('');
   const tags=[],cTags=[];
-  if(pi?.isYH)tags.push('游魂');if(pi?.isGH)tags.push('归魂');
-  if(LIUHE_SET.has(hexName))tags.push('六合');if(LIUCHONG_SET.has(hexName))tags.push('六冲');
-  if(hasChange){if(cPi?.isYH)cTags.push('游魂');if(cPi?.isGH)cTags.push('归魂');if(LIUHE_SET.has(cHex))cTags.push('六合');if(LIUCHONG_SET.has(cHex))cTags.push('六冲');}
-
-  const fcHide=showFuchenCols?'':'fc-hidden';
-
-  // Title content
-  const mainTitle=(pi?`<span class="pal-badge" style="background:${WX_BG[pi.el]};color:${WX_COL[pi.el]}">${pi.palace}宫·${pi.el}</span>`:'')+
-    `${HEXSYM[hexName]||''} ${hexName}`+tags.map(t=>`<span class="spec-tag">${t}</span>`).join('');
-  const changeTitle=hasChange?
-    (cPi?`<span class="pal-badge" style="background:${WX_BG[cPi.el]};color:${WX_COL[cPi.el]}">${cPi.palace}宫·${cPi.el}</span>`:'')+
-    `${HEXSYM[cHex]||''} ${cHex}`+cTags.map(t=>`<span class="spec-tag">${t}</span>`).join(''):
-    `<span style="color:var(--tx3);font-size:.72rem;font-weight:400">无变卦</span>`;
-
-  let html=`<div class="hx-area"><div class="hx-wrap ${fcHide}">`;
-
-  // Single table: colgroup defines widths, thead has titles, tbody has yao rows
-  html+=`<table class="hx-table" style="width:100%">
-  <colgroup>
-    <col class="cfc"><col class="cfclq"><col class="csep">
-    <col class="cshn"><col class="clq"><col class="cdz">
-    <col class="cyao"><col class="csw"><col class="cmk">
-    <col class="ccyao"><col class="ccdz"><col class="cclq">
-  </colgroup>
-  <thead>
-    <tr>
-      <th class="cfc-cell th-gap"></th>
-      <th class="cfclq-cell th-gap"></th>
-      <th class="th-gap" style="border-right:1px solid var(--bdl)"></th>
-      <th class="th-gap"></th>
-      <th class="th-main" colspan="3">${mainTitle}</th>
-      <th class="th-gap"></th>
-      <th class="th-gap"></th>
-      <th class="th-change" colspan="3">${changeTitle}</th>
-    </tr>
-  </thead>
-  <tbody>`;
-
+  if(pi?.isYH)tags.push('游魂');if(pi?.isGH)tags.push('归魂');if(LIUHE_S.has(hexName))tags.push('六合');if(LIUCHONG_S.has(hexName))tags.push('六冲');
+  if(hasChange){if(cPi?.isYH)cTags.push('游魂');if(cPi?.isGH)cTags.push('归魂');if(LIUHE_S.has(cHex))cTags.push('六合');if(LIUCHONG_S.has(cHex))cTags.push('六冲');}
+  const fcH=showFcol?'':'fc-hidden';
+  const mT=(pi?`<span class="pal-badge" style="background:${WX_BG[pi.el]};color:${WX_COL[pi.el]}">${pi.palace}宫·${pi.el}</span>`:'')+`${HEXSYM[hexName]||''} ${hexName}`+tags.map(t=>`<span class="spec-tag">${t}</span>`).join('');
+  const cT=hasChange?(cPi?`<span class="pal-badge" style="background:${WX_BG[cPi.el]};color:${WX_COL[cPi.el]}">${cPi.palace}宫·${cPi.el}</span>`:'')+`${HEXSYM[cHex]||''} ${cHex}`+cTags.map(t=>`<span class="spec-tag">${t}</span>`).join(''):`<span style="color:var(--tx3);font-size:.7rem;font-weight:400">无变卦</span>`;
+  let h=`<div class="hx-area"><div class="hx-wrap ${fcH}"><table class="hx-table" style="width:100%"><colgroup><col class="cfc"><col class="cfclq"><col class="csep"><col class="cshn"><col class="clq"><col class="cdz"><col class="cyao"><col class="csw"><col class="cmk"><col class="ccyao"><col class="ccdz"><col class="cclq"></colgroup><thead><tr><th class="cfc-cell th-gap"></th><th class="cfclq-cell th-gap"></th><th class="th-gap" style="border-right:1px solid var(--bdl)"></th><th class="th-gap"></th><th class="th-main" colspan="3">${mT}</th><th class="th-gap"></th><th class="th-gap"></th><th class="th-change" colspan="3">${cT}</th></tr></thead><tbody>`;
   for(let i=5;i>=0;i--){
-    const line=lines[i];
-    const isYang=line===1||line===3;
-    const isOldYang=line===3,isOldYin=line===2;
-    const b=branches[i]||'';
-    const lqS=LQ_S[lqs[i]]||lqs[i]||'';
-    const sh=shen[i]||'';
-    const isShi=pi&&pi.shi===i,isYing=pi&&pi.ying===i;
-    const bCls=b?WX_CSS[BEL[b]]||'':'';
-    const markTxt=isOldYang?'○':isOldYin?'×':'';
-
-    const bgB=bgBranches[i]||'';
-    const bgLq=LQ_S[bgLqs[i]]||bgLqs[i]||'';
-    const bgBCls=bgB?WX_CSS[BEL[bgB]]||'':'';
-    const showFC=hasFuchen&&bgB;
-
-    const cB=cBranches[i]||'';
-    const cLqS=LQ_S[cLqs[i]]||cLqs[i]||'';
-    const cBCls=cB?WX_CSS[BEL[cB]]||'':'';
-    const cLine=hasChange?cLines[i]:line;
-    const cIsYang=cLine===1||cLine===3;
-
-    html+=`<tr>
-      <td class="c-fc cfc-cell">${showFC?`<span class="${bgBCls}">${bgB}</span>`:''}</td>
-      <td class="c-fclq cfclq-cell">${showFC?`<span class="${bgBCls}">${bgLq}</span>`:''}</td>
-      <td class="c-sep" style="border-right:1px solid var(--bdl)"></td>
-      <td class="c-shen">${sh}</td>
-      <td class="c-lq"><span class="${bCls}">${lqS}</span></td>
-      <td class="c-dz"><span class="${bCls}">${b}</span></td>
-      <td class="c-yao">${yaoBar(isYang)}</td>
-      <td class="c-sw">${isShi?`<span class="yshi">世</span>`:isYing?`<span class="yying">应</span>`:''}</td>
-      <td class="c-mark">${markTxt}</td>
-      <td class="c-cyao">${hasChange?yaoBar(cIsYang):''}</td>
-      <td class="c-cdz">${hasChange?`<span class="${cBCls}">${cB}</span>`:''}</td>
-      <td class="c-clq">${hasChange?`<span class="${cBCls}">${cLqS}</span>`:''}</td>
-    </tr>`;
+    const line=lines[i],isYang=line===1||line===3,isOY=line===3,isOIn=line===2;
+    const b=branches[i]||'',lqS=LQ_S[lqs[i]]||lqs[i]||'',sh=shen[i]||'';
+    const isShi=pi&&pi.shi===i,isYing=pi&&pi.ying===i,bCls=b?WX_CSS[BEL[b]]||'':'';
+    const mkTxt=isOY?'○':isOIn?'×':'';
+    const bgB=bgBr[i]||'',bgLq=LQ_S[bgLqs[i]]||bgLqs[i]||'',bgBC=bgB?WX_CSS[BEL[bgB]]||'':'',showFC=hasFc&&bgB;
+    const cB=cBr[i]||'',cLqS=LQ_S[cLqs[i]]||cLqs[i]||'',cBC=cB?WX_CSS[BEL[cB]]||'':'';
+    const cLine=hasChange?cLines[i]:line,cIsYang=cLine===1||cLine===3;
+    h+=`<tr><td class="c-fc cfc-cell">${showFC?`<span class="${bgBC}">${bgB}</span>`:''}</td><td class="c-fclq cfclq-cell">${showFC?`<span class="${bgBC}">${bgLq}</span>`:''}</td><td class="c-sep" style="border-right:1px solid var(--bdl)"></td><td class="c-shen">${sh}</td><td class="c-lq"><span class="${bCls}">${lqS}</span></td><td class="c-dz"><span class="${bCls}">${b}</span></td><td>${yaoBar(isYang)}</td><td class="c-sw">${isShi?`<span class="yshi">世</span>`:isYing?`<span class="yying">应</span>`:''}</td><td class="c-mark">${mkTxt}</td><td>${hasChange?yaoBar(cIsYang):''}</td><td class="c-cdz">${hasChange?`<span class="${cBC}">${cB}</span>`:''}</td><td class="c-clq">${hasChange?`<span class="${cBC}">${cLqS}</span>`:''}</td></tr>`;
   }
-  html+=`</tbody></table></div>`;
-
-  // Analysis
-  const anaData=analyzeHex(lines,hexName,gz);
-  if(anaData.length){
-    html+=`<div class="ana-toggle" onclick="toggleAna(this)">
-      <span class="ana-toggle-icon">▶</span>
-      <span style="font-size:.72rem;font-weight:600;letter-spacing:.06em">地支分析</span>
-      <span style="font-size:.65rem;color:var(--tx3);margin-left:4px">(点击展开)</span>
-    </div><div class="ana-body">`;
-    anaData.forEach(sec=>{
-      html+=`<div class="ana-section"><div class="ana-sec-title">${sec.type}</div><div class="chip-row">`;
-      sec.items.forEach(it=>{
-        const icons={六合:'🔗',三合:'△',冲:'⚡',刑:'✕',生:'→',被生:'←',克:'✖',被克:'◁',长生:'🌱',沐浴:'💧',帝旺:'🔥',死:'💀',墓:'⬛',绝:'❌'};
-        let icon='';for(const[k,v]of Object.entries(icons)){if(it.txt.includes(k)){icon=v;break;}}
-        html+=`<span class="chip ${it.cls}">${icon}${it.txt}</span>`;
-      });
-      html+=`</div></div>`;
-    });
-    html+=`</div>`;
-  }
-  html+=`</div>`;
-  return html;
-}function toggleAna(el){
-  const body=el.nextElementSibling;
-  const icon=el.querySelector('.ana-toggle-icon');
-  const isOpen=body.classList.toggle('open');
-  icon.classList.toggle('open',isOpen);
-  el.querySelector('span:last-child').textContent=isOpen?'(点击收起)':'(点击展开)';
+  h+=`</tbody></table></div>`;
+  return h+'</div>';
+}
+function buildAnaHtml(lines,hexName,gz){
+  const ana=analyzeHex(lines,hexName,gz);if(!ana.length)return'';
+  let h=`<div class="ana-toggle" onclick="this.querySelector('.ana-icon').classList.toggle('open');this.nextElementSibling.classList.toggle('open')"><span class="ana-icon">▶</span><span style="font-size:.7rem;font-weight:600;letter-spacing:.06em">地支分析</span><span style="font-size:.63rem;color:var(--tx3);margin-left:4px">(点击展开)</span></div><div class="ana-body">`;
+  ana.forEach(s=>{h+=`<div class="ana-sec"><div class="ana-sec-tit">${s.type}</div><div class="chip-row">`;s.items.forEach(it=>{const icons={六合:'🔗',三合:'△',冲:'⚡',刑:'✕',生:'→',被生:'←',克:'✖',被克:'◁',长生:'🌱',帝旺:'🔥',死:'💀',墓:'⬛',绝:'❌'};let icon='';for(const[k,v]of Object.entries(icons)){if(it.txt.includes(k)){icon=v;break;}}h+=`<span class="chip ${it.cls}">${icon}${it.txt}</span>`;});h+=`</div></div>`;});
+  return h+'</div>';
 }
 
 // ================================================================
-// CAST
+// MANUAL SELECTOR
 // ================================================================
-let curLines=null,curMethod='random',selCat='',cnOpen=false;
-let manualState=[0,0,0,0,0,0];
-
-function setMethod(m){
-  curMethod=m;
-  document.querySelectorAll('.mtab').forEach((t,i)=>t.classList.toggle('on',['random','number','manual'][i]===m));
-  document.querySelectorAll('.mp').forEach(p=>p.classList.remove('on'));
-  document.getElementById('mp-'+m).classList.add('on');
-}
-function castRandom(){curLines=Array.from({length:6},()=>[2,3,0,1][Math.floor(Math.random()*4)]);refreshResult();toast('随机起卦','ok');}
-const N2TRI={1:'111',9:'111',2:'011',3:'101',4:'001',5:'110',6:'010',7:'100',8:'000'};
-const CN_MAP={1:0,7:0,2:1,8:1,3:2,9:2,4:3,5:4,6:5};
-function castNum(){
-  const u=+document.getElementById('nU').value||1,l=+document.getElementById('nL').value||1,c=+document.getElementById('nC').value||1;
-  if(u<1||u>9||l<1||l>9||c<1||c>9){toast('请输入1-9','err');return;}
-  const ut=N2TRI[u]||'111',lt=N2TRI[l]||'111',cp=CN_MAP[c];
-  const ln=[+lt[2],+lt[1],+lt[0],+ut[2],+ut[1],+ut[0]];
-  ln[cp]=ln[cp]===1?3:2;
-  curLines=ln;refreshResult();toast('数字起卦','ok');
-}
-function castManual(){curLines=[...manualState];refreshResult();toast('手动起卦','ok');}
-function refreshResult(){
-  if(!curLines)return;
-  const gz=curGZ||renderGZ();
-  document.getElementById('hexRes').innerHTML=buildHexHtml(curLines,gz);
-  document.getElementById('castNotesWrap').style.display='block';
-  document.getElementById('castResetWrap').style.display='block';
-}
-function resetCast(){
-  curLines=null;
-  document.getElementById('hexRes').innerHTML='<div style="text-align:center;padding:32px 0;color:var(--tx3)"><div style="font-size:2.2rem;opacity:.18;margin-bottom:6px">☯</div>请起卦</div>';
-  document.getElementById('castNotesWrap').style.display='none';
-  document.getElementById('castResetWrap').style.display='none';
-  if(document.getElementById('castNotesTxt'))document.getElementById('castNotesTxt').value='';
-  toast('已清除');
-}
 function renderManual(){
   const labels=['初爻','二爻','三爻','四爻','五爻','上爻'];
-  const g=document.getElementById('mlGrid');
   let h='';
   for(let i=5;i>=0;i--){
     h+=`<div class="ml-row"><div class="ml-lbl">${labels[i]}</div>
       <select class="ml-sel" onchange="manualState[${i}]=parseInt(this.value)">
-        <option value="1"${manualState[i]===1?' selected':''}>少阳 ————</option>
-        <option value="0"${manualState[i]===0?' selected':''}>少阴 ── ──</option>
-        <option value="3"${manualState[i]===3?' selected':''}>老阳 ────── O</option>
-        <option value="2"${manualState[i]===2?' selected':''}>老阴 ── ── X</option>
+        <option value="1"${manualState[i]===1?' selected':''}>少阳 ━━━━━━</option>
+        <option value="0"${manualState[i]===0?' selected':''}>少阴 ━━  ━━</option>
+        <option value="3"${manualState[i]===3?' selected':''}>老阳 ━━━━━━ ○</option>
+        <option value="2"${manualState[i]===2?' selected':''}>老阴 ━━  ━━ ×</option>
       </select></div>`;
   }
-  g.innerHTML=h;
+  document.getElementById('mlGrid').innerHTML=h;
 }
-function toggleCN(){cnOpen=!cnOpen;document.getElementById('cnBody').style.display=cnOpen?'block':'none';document.getElementById('cnArrow').textContent=cnOpen?'▲':'▼';}
 
 // ================================================================
-// CATEGORIES
+// NAME METHOD
 // ================================================================
-function renderCats(){document.getElementById('catRow').innerHTML=CATS.map(c=>`<button class="catb${selCat===c.id?' on':''}" onclick="setSCat('${c.id}')">${c.e}${c.n}</button>`).join('');}
-function setSCat(id){selCat=selCat===id?'':id;renderCats();}
+let nameUpper=null,nameLower=null;
+function renderNameMethod(){
+  const grid=(id,sel)=>{let h='';TRIGRAMS.forEach(t=>{h+=`<button class="tri-btn${sel===t.bits?' on':''}" onclick="${id==='upper'?'selectUpper':'selectLower'}('${t.bits}')"><span class="tri-sym">${t.sym}</span><span class="tri-name">${t.name}</span></button>`;});document.getElementById(id==='upper'?'upperTriGrid':'lowerTriGrid').innerHTML=h;};
+  grid('upper',nameUpper);grid('lower',nameLower);
+  const lnames=['初爻','二爻','三爻','四爻','五爻','上爻'];
+  let cy='';for(let i=0;i<6;i++){cy+=`<button class="cn-yao-btn${nameChangedYaos.has(i)?' on':''}" onclick="toggleNameYao(${i})">${lnames[i]}</button>`;}
+  document.getElementById('cnYaoGrid').innerHTML=cy;
+  updateNameResult();
+}
+function selectUpper(bits){nameUpper=bits;renderNameMethod();}
+function selectLower(bits){nameLower=bits;renderNameMethod();}
+function toggleNameYao(i){if(nameChangedYaos.has(i))nameChangedYaos.delete(i);else nameChangedYaos.add(i);renderNameMethod();}
+function updateNameResult(){
+  if(!nameUpper||!nameLower){document.getElementById('nameResult').textContent='请选择上卦和下卦';return;}
+  const key=nameUpper[2]+nameUpper[1]+nameUpper[0]+nameLower[2]+nameLower[1]+nameLower[0];
+  const hexName=HEXDB[key]||'未知';
+  const sym=HEXSYM[hexName]||'';
+  let txt=`${sym} ${hexName}`;
+  if(nameChangedYaos.size>0)txt+=` → 有${nameChangedYaos.size}个变爻`;
+  document.getElementById('nameResult').textContent=txt;
+}
+function castByName(){
+  if(!nameUpper||!nameLower){toast('请先选择上下卦','err');return;}
+  const key=nameUpper[2]+nameUpper[1]+nameUpper[0]+nameLower[2]+nameLower[1]+nameLower[0];
+  // Build base lines
+  const lines=[+nameLower[2],+nameLower[1],+nameLower[0],+nameUpper[2],+nameUpper[1],+nameUpper[0]];
+  // Apply changes: if changed yao is yang→oldyang(3), yin→oldyin(2)
+  nameChangedYaos.forEach(i=>{lines[i]=lines[i]===1?3:2;});
+  curLines=lines;refreshResult();toast('卦名起卦','ok');
+}
+
+// ================================================================
+// CAST METHODS
+// ================================================================
+function setMethod(m){
+  curMethod=m;
+  document.querySelectorAll('.mtab').forEach((t,i)=>t.classList.toggle('on',['random','number','manual','name'][i]===m));
+  document.querySelectorAll('.mp').forEach(p=>p.classList.remove('on'));
+  document.getElementById('mp-'+m).classList.add('on');
+  if(m==='name')renderNameMethod();
+}
+const N2TRI={1:'111',9:'111',2:'011',3:'101',4:'001',5:'110',6:'010',7:'100',8:'000'};
+const CN_MAP={1:0,7:0,2:1,8:1,3:2,9:2,4:3,5:4,6:5};
+function castRandom(){curLines=Array.from({length:6},()=>[2,3,0,1][Math.floor(Math.random()*4)]);refreshResult();toast('随机起卦','ok');}
+function castNum(){
+  const u=+document.getElementById('nU').value||1,l=+document.getElementById('nL').value||1,c=+document.getElementById('nC').value||1;
+  if(u<1||u>9||l<1||l>9||c<1||c>9){toast('请输入1-9','err');return;}
+  const ut=N2TRI[u]||'111',lt=N2TRI[l]||'111',cp=CN_MAP[c];
+  const ln=[+lt[2],+lt[1],+lt[0],+ut[2],+ut[1],+ut[0]];ln[cp]=ln[cp]===1?3:2;
+  curLines=ln;refreshResult();toast('数字起卦','ok');
+}
+function castManual(){curLines=[...manualState];refreshResult();toast('手动起卦','ok');}
+
+function refreshResult(){
+  const gz=curGZ||renderGZ();
+  document.getElementById('hexRes').innerHTML=buildHexHtml(curLines,gz);
+  document.getElementById('hexAna').innerHTML=buildAnaHtml(curLines,getHexName(curLines),gz);
+  // Show after-cast view
+  document.getElementById('castBefore').style.display='none';
+  document.getElementById('castAfter').style.display='block';
+  // Sync ganzhi to after view
+  renderGZTo('lunarStr2','gzRow2','gzExt2',gz);
+  // Init cast notes editor
+  if(!castNotesMed){castNotesMed=createMedEditor('castMedWrap','');}
+}
+function doRefreshResult(){if(curLines)refreshResult();}
+function resetCast(){
+  curLines=null;castNotesMed=null;castSelFolder='';castSelTags=new Set();
+  document.getElementById('castBefore').style.display='block';
+  document.getElementById('castAfter').style.display='none';
+  document.getElementById('castName').value='';
+  document.getElementById('castMedWrap').innerHTML='';
+  toast('已清除');
+}
+function toggleCastNotes(){cnOpen=!cnOpen;document.getElementById('castNotesBody').style.display=cnOpen?'block':'none';document.getElementById('castNoteArrow').textContent=cnOpen?'▲':'▼';}
+
+// ================================================================
+// CAST SAVE
+// ================================================================
+function renderCastFolderRow(){
+  const el=document.getElementById('castFolderRow');if(!el)return;
+  el.innerHTML=cfg.folders.map(f=>`<button class="catb${castSelFolder===f.id?' on':''}" onclick="castSelFolder='${f.id}';renderCastFolderRow()">${f.emoji}${f.name}</button>`).join('');
+}
+function renderCastTagRow(){
+  const el=document.getElementById('castTagRow');if(!el)return;
+  el.innerHTML=cfg.tags.map(t=>`<button class="catb${castSelTags.has(t)?' on':''}" onclick="toggleCastTag('${t}')">${t}</button>`).join('');
+}
+function toggleCastTag(t){if(castSelTags.has(t))castSelTags.delete(t);else castSelTags.add(t);renderCastTagRow();}
+function handleCastTagInput(e){if(e.key==='Enter'){const v=e.target.value.trim();if(v){castSelTags.add(v);if(!cfg.tags.includes(v)){cfg.tags.push(v);saveAll();}renderCastTagRow();e.target.value='';}};}
+function saveCast(){
+  if(!curLines){toast('请先起卦','err');return;}
+  const name=document.getElementById('castName').value.trim();if(!name){toast('请输入名称','err');return;}
+  const gz=curGZ,hexName=getHexName(curLines),cLines=getChangedLines(curLines);
+  const chex=curLines.some(l=>l===2||l===3)?getHexName(cLines):'';
+  const notes=castNotesMed?getMedContent(castNotesMed):'';
+  const rec={id:Date.now()+'',name,folder:castSelFolder,tags:[...castSelTags],date:new Date().toISOString(),lines:[...curLines],hexName,changeHex:chex||null,method:curMethod,ganzhi:gz?{y:gz.y,m:gz.m,d:gz.d,h:gz.h,ls:gz.ls,kw:gz.kw,monthDZ:gz.monthDZ,dayDZ:gz.dayDZ}:null,notes,synced:false,imported:false};
+  recs.unshift(rec);saveAll();renderRL();updCnt();
+  toast('已保存','ok');resetCast();
+}
 
 // ================================================================
 // RECORDS
 // ================================================================
-let recs=[],batchMode=false,selIds=new Set(),recFilt='',movCatTgt='';
-function saveCast(){
-  if(!curLines){toast('请先起卦','err');return;}
-  const name=document.getElementById('castName').value.trim();
-  if(!name){toast('请输入名称','err');return;}
-  const gz=curGZ;
-  const hexName=getHexName(curLines);
-  const cLines=getChangedLines(curLines);
-  const chex=curLines.some(l=>l===2||l===3)?getHexName(cLines):'';
-  const notes=document.getElementById('castNotesTxt')?.value||'';
-  const rec={id:Date.now()+'',name,cat:selCat,date:new Date().toISOString(),lines:[...curLines],hexName,changeHex:chex||null,method:curMethod,
-    ganzhi:gz?{y:gz.y,m:gz.m,d:gz.d,h:gz.h,ls:gz.ls,kw:gz.kw,monthDZ:gz.monthDZ,dayDZ:gz.dayDZ}:null,notes,synced:false};
-  recs.unshift(rec);saveRecs();renderRL();
-  document.getElementById('castName').value='';selCat='';renderCats();
-  if(document.getElementById('castNotesTxt'))document.getElementById('castNotesTxt').value='';
-  toast('已保存','ok');updSyncDot();
+function updCnt(){
+  document.getElementById('recCnt').textContent=recs.length;
+  document.getElementById('recTotal').textContent=`共 ${recs.length} 条`;
+  document.getElementById('nbCnt').textContent=notes.length;
+  document.getElementById('nbTotal').textContent=`共 ${notes.length} 条`;
+  document.getElementById('syncDot').style.display=recs.some(r=>!r.synced)?'inline-block':'none';
 }
-function saveRecs(){localStorage.setItem('liuyao_recs',JSON.stringify(recs));}
-function loadRecs(){try{recs=JSON.parse(localStorage.getItem('liuyao_recs')||'[]');}catch{recs=[];}updCnt();}
-function updCnt(){document.getElementById('recCnt').textContent=recs.length;document.getElementById('recTotal').textContent=`共 ${recs.length} 条`;}
-function updSyncDot(){document.getElementById('syncDot').style.display=recs.some(r=>!r.synced)?'inline-block':'none';}
 function renderRecFilt(){
-  const act=new Set(recs.map(r=>r.cat).filter(Boolean));
-  let h=`<button class="catb${recFilt===''?' on':''}" onclick="setRF('')">全部</button>`;
-  CATS.filter(c=>act.has(c.id)).forEach(c=>{h+=`<button class="catb${recFilt===c.id?' on':''}" onclick="setRF('${c.id}')">${c.e}${c.n}</button>`;});
+  const usedFolders=new Set(recs.map(r=>r.folder).filter(Boolean));
+  const usedTags=new Set(recs.flatMap(r=>r.tags||[]).filter(Boolean));
+  let h=`<button class="catb${recFilt.folder===''&&recFilt.tag===''?' on':''}" onclick="recFilt={folder:'',tag:''};renderRL()">全部</button>`;
+  cfg.folders.filter(f=>usedFolders.has(f.id)).forEach(f=>h+=`<button class="catb${recFilt.folder===f.id?' on':''}" onclick="recFilt.folder='${f.id}';recFilt.tag='';renderRL()">${f.emoji}${f.name}</button>`);
+  cfg.tags.filter(t=>usedTags.has(t)).forEach(t=>h+=`<button class="catb${recFilt.tag===t?' on':''}" onclick="recFilt.tag='${t}';recFilt.folder='';renderRL()">#${t}</button>`);
   document.getElementById('recFilt').innerHTML=h;
 }
-function setRF(id){recFilt=id;renderRL();}
 function renderRL(){
   updCnt();renderRecFilt();
-  const filtered=recFilt?recs.filter(r=>r.cat===recFilt):recs;
+  const q=(document.getElementById('recSearch')?.value||'').toLowerCase();
+  let filtered=recs.filter(r=>{
+    const fMatch=!recFilt.folder||r.folder===recFilt.folder;
+    const tMatch=!recFilt.tag||(r.tags||[]).includes(recFilt.tag);
+    const qMatch=!q||r.name.toLowerCase().includes(q)||(r.tags||[]).some(t=>t.toLowerCase().includes(q));
+    return fMatch&&tMatch&&qMatch;
+  });
   const c=document.getElementById('recList');
-  if(!filtered.length){c.innerHTML='<div style="text-align:center;padding:36px;color:var(--tx3)"><div style="font-size:1.8rem;opacity:.3;margin-bottom:6px">📚</div>暂无卦例</div>';return;}
-  const cm=Object.fromEntries(CATS.map(c=>[c.id,c]));
+  if(!filtered.length){c.innerHTML='<div style="text-align:center;padding:30px;color:var(--tx3)"><div style="font-size:1.8rem;opacity:.3;margin-bottom:6px">📚</div>暂无卦例</div>';return;}
+  const fm=Object.fromEntries(cfg.folders.map(f=>[f.id,f]));
   c.innerHTML=filtered.map(r=>{
-    const dt=new Date(r.date);
-    const ds=`${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}-${String(dt.getDate()).padStart(2,'0')} ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')}`;
-    const cat=cm[r.cat];
-    const hx=r.changeHex?`${r.hexName} → ${r.changeHex}`:r.hexName;
-    const sm=r.synced?'':'<span class="sdot" title="未同步"></span>';
-    const clickAct=batchMode?'':`onclick="openRec('${r.id}')"`;
+    const dt=new Date(r.date);const ds=`${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}-${String(dt.getDate()).padStart(2,'0')}`;
+    const folder=fm[r.folder];const hx=r.changeHex?`${r.hexName} → ${r.changeHex}`:r.hexName;
+    const imp=r.imported?`<span class="import-badge">导入</span>`:'';const sy=r.synced?'':'<span class="sdot" title="未同步"></span>';
+    const clickAct=recBatch?'':`onclick="openRec('${r.id}')"`;
     return`<div class="ri" ${clickAct}>
-      ${batchMode?`<input type="checkbox" class="chk" id="chk-${r.id}" ${selIds.has(r.id)?'checked':''} onchange="togSel('${r.id}',this)" onclick="event.stopPropagation()" style="margin-bottom:6px">`:''}
-      <div class="ri-hdr"><div class="ri-name">${r.name} ${sm}</div><div class="ri-date">${ds}</div></div>
-      <div class="ri-meta">${cat?`<span class="ri-cat">${cat.e}${cat.n}</span>`:''}
-        <span>${{random:'随机',number:'数字',manual:'手动'}[r.method]||''}</span>
-        ${r.ganzhi?`<span>${r.ganzhi.d}日</span>`:''}
-      </div>
+      ${recBatch?`<input type="checkbox" class="chk" id="rchk-${r.id}" ${recSelIds.has(r.id)?'checked':''} onchange="togSel('rec','${r.id}',this)" onclick="event.stopPropagation()" style="margin-bottom:5px">`:''}
+      <div class="ri-hdr"><div class="ri-name">${r.name}${imp}${sy}</div><div class="ri-date">${ds}</div></div>
+      <div class="ri-meta">${folder?`<span class="cat-badge" style="background:${WX_BG['土']};color:var(--tx2)">${folder.emoji}${folder.name}</span>`:''} ${(r.tags||[]).map(t=>`<span class="tag-badge">#${t}</span>`).join(' ')}</div>
       <div class="ri-hex">${HEXSYM[r.hexName]||''} ${hx}</div>
     </div>`;
   }).join('');
 }
-function toggleBatch(){batchMode=!batchMode;selIds=new Set();document.getElementById('batchBar').style.display=batchMode?'flex':'none';renderRL();}
-function togSel(id,el){if(el.checked)selIds.add(id);else selIds.delete(id);document.getElementById('batchCnt').textContent=`已选 ${selIds.size} 条`;}
-function togSelAll(el){const f=recFilt?recs.filter(r=>r.cat===recFilt):recs;if(el.checked)f.forEach(r=>selIds.add(r.id));else selIds=new Set();document.getElementById('batchCnt').textContent=`已选 ${selIds.size} 条`;renderRL();}
-function batchDel(){if(!selIds.size){toast('请先选择','err');return;}if(!confirm(`删除 ${selIds.size} 条？`))return;recs=recs.filter(r=>!selIds.has(r.id));saveRecs();selIds=new Set();toggleBatch();toast('已删除','ok');}
-function batchMov(){
-  if(!selIds.size){toast('请先选择','err');return;}
-  const b=document.getElementById('movCatB');
-  b.innerHTML='<div style="margin-bottom:8px;font-size:.78rem;color:var(--tx2)">选择目标分类：</div>'+CATS.map(c=>`<button class="catb" onclick="movCatTgt='${c.id}';document.querySelectorAll('#movCatB .catb').forEach(x=>x.classList.remove('on'));this.classList.add('on')">${c.e}${c.n}</button>`).join(' ');
-  movCatTgt='';openModal('movCatM');
+function toggleBatch(type){
+  if(type==='rec'){recBatch=!recBatch;recSelIds=new Set();document.getElementById('recBatchBar').style.display=recBatch?'flex':'none';renderRL();}
+  else{nbBatch=!nbBatch;nbSelIds=new Set();document.getElementById('nbBatchBar').style.display=nbBatch?'flex':'none';renderNBList();}
 }
-function confMovCat(){if(!movCatTgt){toast('请选择分类','err');return;}recs.forEach(r=>{if(selIds.has(r.id))r.cat=movCatTgt;});saveRecs();closeModal('movCatM');toggleBatch();toast('分类已更新','ok');}
-function shareRec(id){const r=recs.find(x=>x.id===id);if(!r)return;const b=new Blob([JSON.stringify([r],null,2)],{type:'application/json'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`卦例_${r.name}.json`;a.click();URL.revokeObjectURL(u);toast('已导出');}
-function delRec(id){if(!confirm('删除？'))return;recs=recs.filter(r=>r.id!==id);saveRecs();renderRL();toast('已删除','ok');}
+function togSel(type,id,el){const s=type==='rec'?recSelIds:nbSelIds;if(el.checked)s.add(id);else s.delete(id);document.getElementById(type==='rec'?'recBatchCnt':'nbBatchCnt').textContent=`已选 ${s.size} 条`;}
+function togSelAll(type,el){const s=type==='rec'?recSelIds:nbSelIds;const items=type==='rec'?recs:notes;if(el.checked)items.forEach(r=>s.add(r.id));else s.clear();document.getElementById(type==='rec'?'recBatchCnt':'nbBatchCnt').textContent=`已选 ${s.size} 条`;type==='rec'?renderRL():renderNBList();}
+function batchDel(type){const s=type==='rec'?recSelIds:nbSelIds;if(!s.size){toast('请先选择','err');return;}if(!confirm(`删除 ${s.size} 条？`))return;if(type==='rec')recs=recs.filter(r=>!s.has(r.id));else notes=notes.filter(n=>!s.has(n.id));saveAll();s.clear();toggleBatch(type);toast('已删除','ok');}
+function batchMov(type){
+  const s=type==='rec'?recSelIds:nbSelIds;if(!s.size){toast('请先选择','err');return;}
+  movTarget={type,folder:'',tags:new Set()};
+  const b=document.getElementById('movModalBody');
+  b.innerHTML=`<div style="font-size:.76rem;color:var(--tx2);margin-bottom:7px">选择目标分类：</div>`+cfg.folders.map(f=>`<button class="catb" onclick="movTarget.folder='${f.id}';document.querySelectorAll('#movModalBody .catb').forEach(x=>x.classList.remove('on'));this.classList.add('on')">${f.emoji}${f.name}</button>`).join(' ');
+  openModal('movModal');
+}
+function confMovCat(){
+  if(!movTarget.folder){toast('请选择分类','err');return;}
+  const s=movTarget.type==='rec'?recSelIds:nbSelIds;
+  if(movTarget.type==='rec')recs.forEach(r=>{if(s.has(r.id))r.folder=movTarget.folder;});
+  else notes.forEach(n=>{if(s.has(n.id))n.folder=movTarget.folder;});
+  saveAll();closeModal('movModal');toggleBatch(movTarget.type);toast('分类已更新','ok');
+}
 
 // ================================================================
 // RECORD DETAIL
 // ================================================================
-function openRec(id){const rec=recs.find(r=>r.id===id);if(!rec)return;document.getElementById('rlv').style.display='none';document.getElementById('rdv').style.display='block';renderRD(rec);}
+function openRec(id){const r=recs.find(x=>x.id===id);if(!r)return;document.getElementById('rlv').style.display='none';document.getElementById('rdv').style.display='block';renderRD(r);}
 function showRL(){document.getElementById('rlv').style.display='block';document.getElementById('rdv').style.display='none';}
-
 function renderRD(rec){
-  const lines=rec.lines;
-  const gz=rec.ganzhi?{...rec.ganzhi,dayTG:rec.ganzhi.d?.[0]||'甲'}:null;
-  const dt=new Date(rec.date);
-  const ds=`${dt.getFullYear()}年${dt.getMonth()+1}月${dt.getDate()}日 ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')}`;
+  const lines=rec.lines,gz=rec.ganzhi?{...rec.ganzhi,dayTG:rec.ganzhi.d?.[0]||'甲'}:null;
+  const dt=new Date(rec.date),ds=`${dt.getFullYear()}年${dt.getMonth()+1}月${dt.getDate()}日 ${String(dt.getHours()).padStart(2,'0')}:${String(dt.getMinutes()).padStart(2,'0')}`;
   const hx=rec.changeHex?`${rec.hexName} → ${rec.changeHex}`:rec.hexName;
-  const cat=CATS.find(c=>c.id===rec.cat);
-  const container=document.getElementById('rdContent');
-  container._recId=rec.id; // for re-render on fuchen toggle
-  let noteEd=false;
-
+  const folder=cfg.folders.find(f=>f.id===rec.folder);
+  const c=document.getElementById('rdContent');c._recId=rec.id;
+  let medInst=null;
   function render(){
-    let h=`<div style="margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--bdl)">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;flex-wrap:wrap">
-        <div>
-          <div style="font-size:1rem;font-weight:700;margin-bottom:3px">${rec.name}</div>
-          <div style="font-size:.7rem;color:var(--tx3);display:flex;gap:7px;flex-wrap:wrap">
-            <span>${ds}</span>${cat?`<span>${cat.e}${cat.n}</span>`:''}
-            <span style="color:var(--ac)">${hx}</span>
-          </div>
+    let h=`<div style="margin-bottom:10px;padding-bottom:9px;border-bottom:1px solid var(--bdl)">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:7px;flex-wrap:wrap">
+        <div><div style="font-size:.96rem;font-weight:700;margin-bottom:2px">${rec.name}${rec.imported?'<span class="import-badge">导入</span>':''}</div>
+          <div style="font-size:.68rem;color:var(--tx3);display:flex;gap:6px;flex-wrap:wrap"><span>${ds}</span>${folder?`<span>${folder.emoji}${folder.name}</span>`:''}<span style="color:var(--ac)">${hx}</span></div>
+          <div style="margin-top:3px">${(rec.tags||[]).map(t=>`<span class="tag-badge">#${t}</span>`).join(' ')}</div>
         </div>
-        <div style="display:flex;gap:5px;flex-wrap:wrap">
-          <button class="fc-toggle${showFuchenCols?' on':''}" onclick="toggleFuchen()" style="height:fit-content">
-            伏藏爻 <span class="fc-txt">${showFuchenCols?'on':'off'}</span>
-          </button>
-          <button class="gz-cal-btn" onclick="openModal('calModal')" style="margin:0;padding:4px 10px;font-size:.7rem;width:auto">
-            📆 应期
-          </button>
-          <button class="btn btns bsm" onclick="shareRec('${rec.id}')">📤 分享</button>
-          <button class="btn btnd bsm" onclick="delRecDetail('${rec.id}')">删除</button>
+        <div style="display:flex;gap:4px;flex-wrap:wrap">
+          <button class="fc-toggle${showFcol?' on':''}" onclick="toggleFuchen()">伏藏 <span class="fc-txt">${showFcol?'on':'off'}</span></button>
+          <button class="gz-cal-btn" onclick="openModal('calModal')" style="margin:0;padding:3px 8px;font-size:.67rem;width:auto">📆</button>
+          <button class="btn btns bsm" onclick="shareItem('rec','${rec.id}')">📤</button>
+          <button class="btn btnd bsm" onclick="delItemFromDetail('rec','${rec.id}')">删除</button>
         </div>
       </div>
     </div>`;
-
-    // Ganzhi
-    if(rec.ganzhi){
-      const g=rec.ganzhi;
-      h+=`<div style="margin-bottom:10px">
-        <div style="font-size:.65rem;color:var(--tx3);margin-bottom:4px">${g.ls||''}</div>
-        <div class="gz-row" style="max-width:300px">
-          ${['年','月','日','时'].map((l,i)=>{const v=[g.y,g.m,g.d,g.h][i];return`<div class="gz-cell"><div class="gz-lbl">${l}</div><div class="gz-val"><span class="${WX_CSS[tgEl(v[0])]||''}">${v[0]}</span><span class="${WX_CSS[dzEl(v[1])]||''}">${v[1]}</span></div></div>`;}).join('')}
-        </div>
-        <div class="gz-ext" style="margin-top:5px"><span>日辰空亡：</span><span>${(g.kw||[]).join('')}</span></div>
-      </div>`;
-    }
-
-    // Hex
-    h+=`<div style="margin-bottom:12px">${buildHexHtml(lines,gz)}</div>`;
-
-    // Notes
-    h+=`<div style="border-top:1px solid var(--bdl);padding-top:10px">
-      <div style="font-size:.7rem;font-weight:700;color:var(--tx3);margin-bottom:6px;padding-left:4px;border-left:2px solid var(--ac);display:flex;align-items:center;justify-content:space-between">
-        <span>📝 笔记</span>
-        ${!noteEd?`<button class="btn btns bsm" id="edNt">✏️ 编辑</button>`:''}
-      </div>`;
-    if(noteEd){
-      h+=`<textarea class="nted" id="ntEd">${escH(rec.notes||'')}</textarea>
-        <div style="display:flex;gap:5px;margin-top:5px;justify-content:flex-end">
-          <button class="btn btnp bsm" id="svNt">保存</button>
-          <button class="btn btns bsm" id="cnNt">取消</button>
-        </div>`;
-    }else{
-      h+=`<div class="ntpv">${rec.notes?parseMD(rec.notes):'<span style="color:var(--tx3)">暂无笔记</span>'}</div>`;
-    }
-    h+=`</div>`;
-    container.innerHTML=h;
-    container._recId=rec.id; // re-assign after innerHTML replace
-    document.getElementById('edNt')?.addEventListener('click',()=>{noteEd=true;render();setTimeout(()=>document.getElementById('ntEd')?.focus(),50);});
-    document.getElementById('svNt')?.addEventListener('click',()=>{const v=document.getElementById('ntEd')?.value||'';const idx=recs.findIndex(r=>r.id===rec.id);if(idx>=0){recs[idx].notes=v;rec.notes=v;saveRecs();}noteEd=false;render();toast('笔记已保存','ok');});
-    document.getElementById('cnNt')?.addEventListener('click',()=>{noteEd=false;render();});
+    if(rec.ganzhi){const g=rec.ganzhi;h+=`<div style="margin-bottom:9px"><div class="gz-row" style="max-width:300px">${['年','月','日','时'].map((l,i)=>{const v=[g.y,g.m,g.d,g.h][i];return`<div class="gz-cell"><div class="gz-lbl">${l}</div><div class="gz-val"><span class="${WX_CSS[tgEl(v[0])]||''}">${v[0]}</span><span class="${WX_CSS[dzEl(v[1])]||''}">${v[1]}</span></div></div>`;}).join('')}</div><div class="gz-ext" style="margin-top:4px"><span>空亡：</span><span>${(g.kw||[]).join('')}</span></div></div>`;}
+    h+=`<div style="margin-bottom:10px">${buildHexHtml(lines,gz)}</div>`;
+    h+=buildAnaHtml(lines,rec.hexName,gz);
+    h+=`<div style="border-top:1px solid var(--bdl);padding-top:9px;margin-top:10px"><div style="font-size:.7rem;font-weight:700;color:var(--tx3);margin-bottom:6px;padding-left:4px;border-left:2px solid var(--ac)">📝 笔记</div><div id="rdMedWrap"></div></div>`;
+    c.innerHTML=h;c._recId=rec.id;
+    medInst=createMedEditor('rdMedWrap',rec.notes||'',txt=>{const idx=recs.findIndex(r=>r.id===rec.id);if(idx>=0){recs[idx].notes=txt;rec.notes=txt;saveAll();}toast('已保存','ok');});
   }
   render();
-}function delRecDetail(id){if(!confirm('删除？'))return;recs=recs.filter(r=>r.id!==id);saveRecs();renderRL();showRL();toast('已删除','ok');}
+}
+function delItemFromDetail(type,id){if(!confirm('删除？'))return;if(type==='rec'){recs=recs.filter(r=>r.id!==id);renderRL();showRL();}else{notes=notes.filter(n=>n.id!==id);renderNBList();showNBList();}saveAll();toast('已删除','ok');}
 
 // ================================================================
-// IMPORT / EXPORT
+// NOTEBOOK
 // ================================================================
-function exportRecs(){const b=new Blob([JSON.stringify(recs,null,2)],{type:'application/json'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`liuyao_${Date.now()}.json`;a.click();URL.revokeObjectURL(u);toast('导出成功');}
-function openImport(){openModal('importModal');document.getElementById('impSt').textContent='';document.getElementById('impTxt').value='';}
-function handleImpFile(el){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{document.getElementById('impTxt').value=e.target.result;document.getElementById('impSt').textContent='文件已读取';};r.readAsText(f);}
-function initDropArea(){
-  const d=document.getElementById('dropA');if(!d)return;
-  d.addEventListener('dragover',e=>{e.preventDefault();d.style.borderColor='var(--ac)';});
-  d.addEventListener('dragleave',()=>{d.style.borderColor='';});
-  d.addEventListener('drop',e=>{e.preventDefault();d.style.borderColor='';const f=e.dataTransfer.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{document.getElementById('impTxt').value=ev.target.result;document.getElementById('impSt').textContent='文件已读取';};r.readAsText(f);});
+function newNote(){
+  const id=Date.now()+'';
+  const n={id,name:'新笔记 '+new Date().toLocaleDateString(),folder:'',tags:[],date:new Date().toISOString(),content:'',imported:false};
+  notes.unshift(n);saveAll();renderNBList();openNote(id);
 }
-function doImport(){const raw=(document.getElementById('impTxt').value||'').trim();if(!raw){toast('请提供内容','err');return;}try{let d=JSON.parse(raw);if(!Array.isArray(d))d=[d];let n=0;d.forEach(r=>{if(!r.id||!r.name||!r.lines)return;if(!recs.find(x=>x.id===r.id)){recs.unshift(r);n++;}});saveRecs();renderRL();closeModal('importModal');toast(`导入 ${n} 条`,'ok');}catch(e){toast('JSON格式错误','err');}}
-function clearAll(){if(!confirm('清空所有卦例？'))return;recs=[];saveRecs();renderRL();toast('已清空');}
+function renderNBFilt(){
+  const usedF=new Set(notes.map(n=>n.folder).filter(Boolean));
+  const usedT=new Set(notes.flatMap(n=>n.tags||[]).filter(Boolean));
+  let h=`<button class="catb${nbFilt.folder===''&&nbFilt.tag===''?' on':''}" onclick="nbFilt={folder:'',tag:''};renderNBList()">全部</button>`;
+  cfg.folders.filter(f=>usedF.has(f.id)).forEach(f=>h+=`<button class="catb${nbFilt.folder===f.id?' on':''}" onclick="nbFilt.folder='${f.id}';nbFilt.tag='';renderNBList()">${f.emoji}${f.name}</button>`);
+  cfg.tags.filter(t=>usedT.has(t)).forEach(t=>h+=`<button class="catb${nbFilt.tag===t?' on':''}" onclick="nbFilt.tag='${t}';nbFilt.folder='';renderNBList()">#${t}</button>`);
+  document.getElementById('nbFilt').innerHTML=h;
+}
+function renderNBList(){
+  updCnt();renderNBFilt();
+  const q=(document.getElementById('nbSearch')?.value||'').toLowerCase();
+  let filtered=notes.filter(n=>{
+    const fM=!nbFilt.folder||n.folder===nbFilt.folder;
+    const tM=!nbFilt.tag||(n.tags||[]).includes(nbFilt.tag);
+    const qM=!q||n.name.toLowerCase().includes(q)||(n.tags||[]).some(t=>t.toLowerCase().includes(q));
+    return fM&&tM&&qM;
+  });
+  const c=document.getElementById('nbList');
+  if(!filtered.length){c.innerHTML='<div style="text-align:center;padding:30px;color:var(--tx3)"><div style="font-size:1.8rem;opacity:.3;margin-bottom:6px">📔</div>暂无笔记，点击"+ 新建笔记"</div>';return;}
+  const fm=Object.fromEntries(cfg.folders.map(f=>[f.id,f]));
+  c.innerHTML=filtered.map(n=>{
+    const dt=new Date(n.date);const ds=`${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,'0')}-${String(dt.getDate()).padStart(2,'0')}`;
+    const folder=fm[n.folder];const imp=n.imported?`<span class="import-badge">导入</span>`:'';
+    const preview=n.content?n.content.replace(/[#*\[\]`]/g,'').slice(0,50):'';
+    const clickAct=nbBatch?'':`onclick="openNote('${n.id}')"`;
+    return`<div class="nb-item" ${clickAct}>
+      ${nbBatch?`<input type="checkbox" class="chk" id="nchk-${n.id}" ${nbSelIds.has(n.id)?'checked':''} onchange="togSel('nb','${n.id}',this)" onclick="event.stopPropagation()" style="margin-bottom:5px">`:''}
+      <div class="nb-name">${n.name}${imp}</div>
+      <div class="nb-meta">${ds}${folder?` <span class="cat-badge" style="background:${WX_BG['土']};color:var(--tx2)">${folder.emoji}${folder.name}</span>`:''} ${(n.tags||[]).map(t=>`<span class="tag-badge">#${t}</span>`).join(' ')}</div>
+      ${preview?`<div class="nb-preview">${escH(preview)}…</div>`:''}
+    </div>`;
+  }).join('');
+}
+function openNote(id){const n=notes.find(x=>x.id===id);if(!n)return;document.getElementById('nbListView').style.display='none';document.getElementById('nbDetailView').style.display='block';renderNoteDetail(n);}
+function showNBList(){document.getElementById('nbListView').style.display='block';document.getElementById('nbDetailView').style.display='none';}
+function renderNoteDetail(note){
+  const c=document.getElementById('nbDetailContent');
+  const folder=cfg.folders.find(f=>f.id===note.folder);
+  let tagStr=(note.tags||[]).join(',');
+  let medInst=null;
+  function render(){
+    let h=`<div style="margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px">
+        <input type="text" class="sinp" value="${escH(note.name)}" id="noteNameInp" placeholder="笔记标题" style="margin:0;flex:1;font-size:.92rem;font-weight:600">
+        <button class="btn btns bsm" onclick="shareItem('nb','${note.id}')">📤</button>
+        <button class="btn btnd bsm" onclick="delItemFromDetail('nb','${note.id}')">删除</button>
+      </div>
+      <div style="font-size:.7rem;color:var(--tx3);margin-bottom:5px">分类</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:7px">${cfg.folders.map(f=>`<button class="catb${note.folder===f.id?' on':''}" onclick="note.folder='${f.id}';document.querySelectorAll('#noteFolder .catb').forEach(x=>x.classList.remove('on'));this.classList.add('on');autoSaveNote()" >${f.emoji}${f.name}</button>`).join('')}</div>
+      <div style="font-size:.7rem;color:var(--tx3);margin-bottom:5px">标签</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:5px">${cfg.tags.map(t=>`<button class="catb${(note.tags||[]).includes(t)?' on':''}" onclick="toggleNoteTag('${note.id}','${t}',this)">#${t}</button>`).join('')}</div>
+      <input type="text" class="sinp" id="noteTagInp" placeholder="输入新标签后回车…" style="margin-bottom:7px">
+    </div>
+    <div style="margin-bottom:10px"><div style="font-size:.7rem;color:var(--tx3);margin-bottom:4px">也可查看干支历：</div><button class="gz-cal-btn" onclick="openModal('calModal')" style="margin:0">📆 干支应期推算 / 万年历</button></div>
+    <div id="nbMedWrap"></div>`;
+    c.innerHTML=h;
+    // Bind name change
+    document.getElementById('noteNameInp')?.addEventListener('blur',e=>{const v=e.target.value.trim();if(v&&v!==note.name){note.name=v;const idx=notes.findIndex(n=>n.id===note.id);if(idx>=0)notes[idx].name=v;saveAll();renderNBList();}});
+    // Bind tag input
+    document.getElementById('noteTagInp')?.addEventListener('keydown',e=>{if(e.key==='Enter'){const v=e.target.value.trim();if(v){if(!(note.tags||[]).includes(v)){note.tags=(note.tags||[]).concat(v);if(!cfg.tags.includes(v)){cfg.tags.push(v);}saveAll();renderNoteDetail(note);}}e.target.value='';}});
+    // Create editor
+    medInst=createMedEditor('nbMedWrap',note.content||'',txt=>{const idx=notes.findIndex(n=>n.id===note.id);if(idx>=0){notes[idx].content=txt;note.content=txt;saveAll();}});
+  }
+  render();
+  function autoSaveNote(){const idx=notes.findIndex(n=>n.id===note.id);if(idx>=0){notes[idx].folder=note.folder;saveAll();renderNBList();}}
+}
+function toggleNoteTag(noteId,tag,el){
+  const n=notes.find(x=>x.id===noteId);if(!n)return;
+  if((n.tags||[]).includes(tag))n.tags=(n.tags||[]).filter(t=>t!==tag);else n.tags=(n.tags||[]).concat(tag);
+  el.classList.toggle('on',(n.tags||[]).includes(tag));saveAll();renderNBList();
+}
+
+// ================================================================
+// ENHANCED MARKDOWN EDITOR
+// ================================================================
+const MED_COLORS=['#000000','#cc0000','#cc6600','#007700','#0044aa','#7700aa','#999999'];
+function createMedEditor(containerId,initContent,onSave){
+  const c=document.getElementById(containerId);if(!c)return null;
+  const id='med_'+Date.now();
+  let showPreview=false;
+  c.innerHTML=`<div class="med-wrap">
+    <div class="med-tabs">
+      <button class="med-tab on" id="${id}_etab" onclick="medSwitchTab('${id}','edit')">编辑</button>
+      <button class="med-tab" id="${id}_ptab" onclick="medSwitchTab('${id}','preview')">预览</button>
+    </div>
+    <div class="med-toolbar">
+      <button class="med-btn" title="粗体" onclick="medCmd('${id}','bold')"><b>B</b></button>
+      <button class="med-btn" title="斜体" onclick="medCmd('${id}','italic')"><i>I</i></button>
+      <div class="med-sep"></div>
+      <button class="med-btn" title="一级标题" onclick="medCmd('${id}','h1')">H1</button>
+      <button class="med-btn" title="二级标题" onclick="medCmd('${id}','h2')">H2</button>
+      <button class="med-btn" title="三级标题" onclick="medCmd('${id}','h3')">H3</button>
+      <div class="med-sep"></div>
+      <button class="med-btn" title="无序列表" onclick="medCmd('${id}','ul')">≡</button>
+      <button class="med-btn" title="有序列表" onclick="medCmd('${id}','ol')">1.</button>
+      <button class="med-btn" title="复选框" onclick="medCmd('${id}','check')">☐</button>
+      <div class="med-sep"></div>
+      <button class="med-btn" title="引用" onclick="medCmd('${id}','quote')">"</button>
+      <button class="med-btn" title="代码" onclick="medCmd('${id}','code')">&lt;/&gt;</button>
+      <button class="med-btn" title="表格" onclick="medCmd('${id}','table')">⊞</button>
+      <button class="med-btn" title="分割线" onclick="medCmd('${id}','hr')">—</button>
+      <div class="med-sep"></div>
+      <span style="font-size:.65rem;color:var(--tx3);align-self:center;margin-right:2px">颜色</span>
+      ${MED_COLORS.map(clr=>`<div class="col-dot" style="background:${clr}" title="${clr}" onclick="medColor('${id}','${clr}')"></div>`).join('')}
+      <div class="med-sep"></div>
+      ${onSave?`<button class="med-btn btnp" onclick="medSave('${id}')" style="font-size:.68rem;padding:2px 7px;background:var(--ac);color:#fff;border-radius:3px">保存</button>`:'<span style="font-size:.62rem;color:var(--tx3);align-self:center">自动保存</span>'}
+    </div>
+    <div id="${id}_edit" style="display:block"><textarea class="med-ta" id="${id}_ta" placeholder="支持 Markdown 格式…">${escH(initContent)}</textarea></div>
+    <div id="${id}_pv" class="med-preview" id="${id}_preview" style="display:none"></div>
+  </div>`;
+  // Auto-save on change
+  const ta=document.getElementById(id+'_ta');
+  if(ta){
+    let saveTimer=null;
+    ta.addEventListener('input',()=>{clearTimeout(saveTimer);saveTimer=setTimeout(()=>{if(onSave)onSave(ta.value);},800);});
+  }
+  return{id,onSave};
+}
+function getMedContent(med){if(!med)return'';const ta=document.getElementById(med.id+'_ta');return ta?ta.value:'';}
+function medSwitchTab(id,tab){
+  document.getElementById(id+'_etab').classList.toggle('on',tab==='edit');
+  document.getElementById(id+'_ptab').classList.toggle('on',tab==='preview');
+  document.getElementById(id+'_edit').style.display=tab==='edit'?'block':'none';
+  const pv=document.getElementById(id+'_pv');pv.style.display=tab==='preview'?'block':'none';
+  if(tab==='preview'){const ta=document.getElementById(id+'_ta');if(ta)pv.innerHTML=parseMD(ta.value);}
+}
+function medCmd(id,cmd){
+  const ta=document.getElementById(id+'_ta');if(!ta)return;
+  const s=ta.selectionStart,e=ta.selectionEnd,sel=ta.value.slice(s,e),before=ta.value.slice(0,s),after=ta.value.slice(e);
+  let ins='',cs=0,ce=0;
+  const lnBefore=before.endsWith('\n')||before===''?'':'\n';
+  switch(cmd){
+    case'bold':ins=`**${sel||'粗体文字'}**`;cs=2;ce=ins.length-2;break;
+    case'italic':ins=`*${sel||'斜体文字'}*`;cs=1;ce=ins.length-1;break;
+    case'h1':ins=`${lnBefore}# ${sel||'一级标题'}\n`;cs=lnBefore.length+2;ce=ins.length-1;break;
+    case'h2':ins=`${lnBefore}## ${sel||'二级标题'}\n`;cs=lnBefore.length+3;ce=ins.length-1;break;
+    case'h3':ins=`${lnBefore}### ${sel||'三级标题'}\n`;cs=lnBefore.length+4;ce=ins.length-1;break;
+    case'ul':ins=`${lnBefore}- ${sel||'列表项'}\n`;cs=lnBefore.length+2;ce=ins.length-1;break;
+    case'ol':ins=`${lnBefore}1. ${sel||'列表项'}\n`;cs=lnBefore.length+3;ce=ins.length-1;break;
+    case'check':ins=`${lnBefore}- [ ] ${sel||'待办事项'}\n`;cs=lnBefore.length+6;ce=ins.length-1;break;
+    case'quote':ins=`${lnBefore}> ${sel||'引用内容'}\n`;cs=lnBefore.length+2;ce=ins.length-1;break;
+    case'code':ins=sel?`\`${sel}\``:'`代码`';cs=1;ce=ins.length-1;break;
+    case'table':ins=`${lnBefore}| 列1 | 列2 | 列3 |\n|------|------|------|\n| 数据 | 数据 | 数据 |\n`;cs=lnBefore.length;ce=ins.length;break;
+    case'hr':ins=`${lnBefore}---\n`;cs=ins.length;ce=ins.length;break;
+  }
+  ta.value=before+ins+after;ta.selectionStart=s+cs;ta.selectionEnd=s+ce;ta.focus();ta.dispatchEvent(new Event('input'));
+}
+function medColor(id,color){
+  const ta=document.getElementById(id+'_ta');if(!ta)return;
+  const s=ta.selectionStart,e=ta.selectionEnd,sel=ta.value.slice(s,e)||'彩色文字';
+  const ins=`<span style="color:${color}">${sel}</span>`;
+  ta.value=ta.value.slice(0,s)+ins+ta.value.slice(e);
+  ta.selectionStart=s+ins.length;ta.selectionEnd=s+ins.length;ta.focus();ta.dispatchEvent(new Event('input'));
+}
+function medSave(id){const ta=document.getElementById(id+'_ta');if(!ta)return;const med=document.querySelector(`#${id}_ta`);if(med&&med._onSave)med._onSave(ta.value);}
+
+// ================================================================
+// IMPORT / EXPORT / SHARE
+// ================================================================
+function shareItem(type,id){
+  const item=type==='rec'?recs.find(r=>r.id===id):notes.find(n=>n.id===id);if(!item)return;
+  const b=new Blob([JSON.stringify([item],null,2)],{type:'application/json'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`${type==='rec'?'卦例':'笔记'}_${item.name}.json`;a.click();URL.revokeObjectURL(u);toast('已导出');
+}
+function exportAll(){
+  const data={recs,notes,cfg,exported:new Date().toISOString()};
+  const b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`liuyao_backup_${Date.now()}.json`;a.click();URL.revokeObjectURL(u);toast('已导出全部数据');
+}
+function openImport(type){importType=type;openModal('importModal');document.getElementById('impSt').textContent='';document.getElementById('impTxt').value='';}
+function handleImpFile(el){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{document.getElementById('impTxt').value=e.target.result;document.getElementById('impSt').textContent='文件已读取';};r.readAsText(f);}
+function doImport(){
+  const raw=(document.getElementById('impTxt').value||'').trim();if(!raw){toast('请提供内容','err');return;}
+  try{
+    let d=JSON.parse(raw);
+    if(!Array.isArray(d))d=[d];
+    let added=0;
+    const target=importType==='nb'?notes:recs;
+    for(const item of d){
+      if(!item.id||!item.name)continue;
+      const existing=target.find(x=>x.name===item.name);
+      if(existing){
+        if(!confirm(`"${item.name}" 与现有${importType==='nb'?'笔记':'卦例'}同名，是否修改导入的标题？`)){continue;}
+        item.name=item.name+' (导入)';
+      }
+      if(!target.find(x=>x.id===item.id)){item.imported=true;target.unshift(item);added++;}
+    }
+    saveAll();importType==='nb'?renderNBList():renderRL();closeModal('importModal');toast(`导入 ${added} 条`,'ok');
+  }catch(e){toast('JSON格式错误','err');}
+}
+function clearAll(type){if(!confirm(`清空所有${type==='rec'?'卦例':'笔记'}？`))return;if(type==='rec')recs=[];else notes=[];saveAll();type==='rec'?renderRL():renderNBList();toast('已清空');}
+
+// ================================================================
+// SETTINGS: FOLDERS, TAGS, LINKS
+// ================================================================
+function renderFolderManage(){
+  document.getElementById('folderManageList').innerHTML=cfg.folders.map(f=>`<div class="tag-editable">${f.emoji} ${f.name}<span class="tag-del" onclick="removeFolder('${f.id}')">×</span></div>`).join('');
+}
+function addFolder(){
+  const name=document.getElementById('newFolderInp').value.trim(),emoji=document.getElementById('newFolderEmoji').value.trim()||'📁';
+  if(!name){toast('请输入分类名称','err');return;}
+  const id='f_'+Date.now();cfg.folders.push({id,name,emoji});saveAll();renderFolderManage();
+  document.getElementById('newFolderInp').value='';document.getElementById('newFolderEmoji').value='';
+  toast('分类已添加','ok');
+}
+function removeFolder(id){if(!confirm('删除此分类？'))return;cfg.folders=cfg.folders.filter(f=>f.id!==id);saveAll();renderFolderManage();toast('已删除');}
+function renderTagManage(){document.getElementById('tagManageList').innerHTML=cfg.tags.map(t=>`<div class="tag-editable">#${t}<span class="tag-del" onclick="removeTag('${t}')">×</span></div>`).join('');}
+function addTag(){const v=document.getElementById('newTagInp').value.trim();if(!v){toast('请输入标签','err');return;}if(!cfg.tags.includes(v)){cfg.tags.push(v);saveAll();renderTagManage();}document.getElementById('newTagInp').value='';toast('标签已添加','ok');}
+function removeTag(t){if(!confirm('删除此标签？'))return;cfg.tags=cfg.tags.filter(x=>x!==t);saveAll();renderTagManage();toast('已删除');}
+function exportFolderTags(){
+  const data={folders:cfg.folders,tags:cfg.tags,exported:new Date().toISOString()};
+  const b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='liuyao_folder_tags.json';a.click();URL.revokeObjectURL(u);toast('已导出');
+}
+function importFolderTagsClick(){document.getElementById('ftImportFile').click();}
+function importFolderTagsFile(el){
+  const f=el.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    try{
+      const d=JSON.parse(e.target.result);
+      if(d.folders){for(const f of d.folders){const ex=cfg.folders.find(x=>x.id===f.id);if(ex){if(confirm(`分类"${f.name}"已存在，是否覆盖？`)){cfg.folders=cfg.folders.map(x=>x.id===f.id?f:x);}else continue;}else cfg.folders.push(f);}}
+      if(d.tags){for(const t of d.tags){if(!cfg.tags.includes(t))cfg.tags.push(t);}}
+      saveAll();renderFolderManage();renderTagManage();toast('导入完成','ok');
+    }catch{toast('格式错误','err');}
+  };r.readAsText(f);
+}
+// Links
+function renderLinksManage(){
+  const el=document.getElementById('linksManageList');if(!el)return;
+  el.innerHTML=(cfg.links||[]).map(l=>`<div class="link-item"><a href="${l.url}" target="_blank">${l.name}</a><span style="font-size:.65rem;color:var(--tx3)">${l.url.slice(0,30)}</span><button class="btn btnd bsm" onclick="removeLink('${l.id}')">×</button></div>`).join('');
+}
+function addLink(){
+  const name=document.getElementById('newLinkName').value.trim(),url=document.getElementById('newLinkUrl').value.trim();
+  if(!name||!url){toast('请填写名称和链接','err');return;}
+  const id='l_'+Date.now();
+  if(!cfg.links)cfg.links=[];cfg.links.push({id,name,url});saveAll();renderLinksManage();renderExternalTabs();
+  document.getElementById('newLinkName').value='';document.getElementById('newLinkUrl').value='';toast('已添加','ok');
+}
+function removeLink(id){cfg.links=(cfg.links||[]).filter(l=>l.id!==id);saveAll();renderLinksManage();renderExternalTabs();toast('已删除');}
+function renderExternalTabs(){
+  const tabs=document.getElementById('mainTabs');
+  document.querySelectorAll('.ext-tab').forEach(t=>t.remove());
+  document.querySelectorAll('.ext-page').forEach(p=>p.remove());
+  (cfg.links||[]).forEach(l=>{
+    const tab=document.createElement('button');
+    tab.className='tab ext-tab';tab.dataset.p='ext_'+l.id;tab.textContent='🔗 '+l.name;
+    tab.onclick=()=>showExtSite(l);tabs.appendChild(tab);
+  });
+}
+function showExtSite(link){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.querySelector(`.tab[data-p="ext_${link.id}"]`)?.classList.add('on');
+  let pg=document.getElementById('ext_'+link.id);
+  if(!pg){pg=document.createElement('div');pg.className='pg';pg.id='ext_'+link.id;pg.innerHTML=`<div style="padding:10px 0"><div style="font-size:.8rem;color:var(--tx3);margin-bottom:8px">正在加载 <a href="${link.url}" target="_blank">${link.url}</a>（如无法加载请点击链接在新窗口打开）</div><iframe src="${link.url}" class="ext-site-frame" sandbox="allow-scripts allow-same-origin allow-forms allow-navigation allow-popups"></iframe></div>`;document.querySelector('.main').appendChild(pg);}
+  pg.classList.add('on');
+}
+
+// ================================================================
+// GLOBAL SEARCH
+// ================================================================
+function openGlobalSearch(){document.getElementById('globalSearchInp').value='';document.getElementById('globalSearchResult').innerHTML='';openModal('searchModal');setTimeout(()=>document.getElementById('globalSearchInp')?.focus(),100);}
+function doGlobalSearch(){
+  const q=(document.getElementById('globalSearchInp')?.value||'').toLowerCase().trim();
+  const el=document.getElementById('globalSearchResult');if(!q){el.innerHTML='';return;}
+  const res=[];
+  recs.filter(r=>r.name.toLowerCase().includes(q)||(r.tags||[]).some(t=>t.toLowerCase().includes(q))||(r.notes||'').toLowerCase().includes(q)).forEach(r=>res.push({type:'卦例',item:r}));
+  notes.filter(n=>n.name.toLowerCase().includes(q)||(n.tags||[]).some(t=>t.toLowerCase().includes(q))||(n.content||'').toLowerCase().includes(q)).forEach(n=>res.push({type:'笔记',item:n}));
+  if(!res.length){el.innerHTML='<div style="color:var(--tx3);padding:10px 0">未找到匹配结果</div>';return;}
+  el.innerHTML=res.map(r=>`<div style="padding:7px 0;border-bottom:1px solid var(--bdl);cursor:pointer" onclick="closeModal('searchModal');${r.type==='卦例'?`showPage('records');openRec('${r.item.id}')`:`showPage('notebook');openNote('${r.item.id}')`}">
+    <div style="font-size:.76rem;color:var(--tx3);margin-bottom:2px">${r.type}</div>
+    <div style="font-size:.84rem;font-weight:600">${escH(r.item.name)}</div>
+    <div style="font-size:.68rem;color:var(--tx3)">${(r.item.tags||[]).map(t=>`#${t}`).join(' ')}</div>
+  </div>`).join('');
+}
 
 // ================================================================
 // GITHUB SYNC
@@ -1435,34 +1493,29 @@ function loadGHSettings(){document.getElementById('ghTok').value=localStorage.ge
 function saveGHS(){localStorage.setItem('gh_tok',document.getElementById('ghTok').value);localStorage.setItem('gh_repo',document.getElementById('ghRepo').value);localStorage.setItem('gh_path',document.getElementById('ghPath').value||'records.json');}
 function togTok(){const i=document.getElementById('ghTok');i.type=i.type==='password'?'text':'password';}
 async function saveAndPush(){
-  saveGHS();
-  const tok=localStorage.getItem('gh_tok'),repo=localStorage.getItem('gh_repo'),path=localStorage.getItem('gh_path')||'records.json';
+  saveGHS();const tok=localStorage.getItem('gh_tok'),repo=localStorage.getItem('gh_repo'),path=localStorage.getItem('gh_path')||'records.json';
   if(!tok||!repo){toast('请填写Token和仓库','err');return;}
   document.getElementById('ghSt').textContent='推送中…';
   try{
-    let sha=null;
-    const cr=await fetch(`https://api.github.com/repos/${repo}/contents/${path}`,{headers:{Authorization:`Bearer ${tok}`,Accept:'application/vnd.github+json'}});
-    if(cr.ok){const d=await cr.json();sha=d.sha;}
-    const content=btoa(unescape(encodeURIComponent(JSON.stringify(recs,null,2))));
+    let sha=null;const cr=await fetch(`https://api.github.com/repos/${repo}/contents/${path}`,{headers:{Authorization:`Bearer ${tok}`,Accept:'application/vnd.github+json'}});if(cr.ok){const d=await cr.json();sha=d.sha;}
+    const data={recs,notes,cfg};const content=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));
     const body={message:`liuyao sync ${new Date().toISOString()}`,content};if(sha)body.sha=sha;
     const res=await fetch(`https://api.github.com/repos/${repo}/contents/${path}`,{method:'PUT',headers:{Authorization:`Bearer ${tok}`,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});
-    if(res.ok){recs.forEach(r=>r.synced=true);saveRecs();updSyncDot();toast('推送成功','ok');document.getElementById('ghSt').textContent=`同步：${new Date().toLocaleString()}`;closeModal('syncModal');}
-    else{const e=await res.json();toast('失败: '+(e.message||res.status),'err');document.getElementById('ghSt').textContent='失败';}
+    if(res.ok){recs.forEach(r=>r.synced=true);saveAll();updCnt();toast('推送成功','ok');document.getElementById('ghSt').textContent=`同步：${new Date().toLocaleString()}`;closeModal('syncModal');}
+    else{const e=await res.json();toast('失败: '+(e.message||res.status),'err');}
   }catch(e){toast('失败: '+e.message,'err');}
 }
 async function syncFrom(){
-  saveGHS();
-  const tok=localStorage.getItem('gh_tok'),repo=localStorage.getItem('gh_repo'),path=localStorage.getItem('gh_path')||'records.json';
+  saveGHS();const tok=localStorage.getItem('gh_tok'),repo=localStorage.getItem('gh_repo'),path=localStorage.getItem('gh_path')||'records.json';
   if(!tok||!repo){toast('请填写Token和仓库','err');return;}
   document.getElementById('ghSt').textContent='同步中…';
   try{
-    const res=await fetch(`https://api.github.com/repos/${repo}/contents/${path}`,{headers:{Authorization:`Bearer ${tok}`,Accept:'application/vnd.github+json'}});
-    if(!res.ok){toast('失败: '+res.status,'err');return;}
-    const data=await res.json();
-    const json=decodeURIComponent(escape(atob(data.content.replace(/\n/g,''))));
-    const imp=JSON.parse(json);if(!Array.isArray(imp))throw new Error('格式错误');
-    let n=0;imp.forEach(r=>{if(r.id&&!recs.find(x=>x.id===r.id)){r.synced=true;recs.unshift(r);n++;}});
-    saveRecs();renderRL();updSyncDot();toast(`同步成功 +${n}条`,'ok');document.getElementById('ghSt').textContent=`同步：${new Date().toLocaleString()}`;closeModal('syncModal');
+    const res=await fetch(`https://api.github.com/repos/${repo}/contents/${path}`,{headers:{Authorization:`Bearer ${tok}`,Accept:'application/vnd.github+json'}});if(!res.ok){toast('失败: '+res.status,'err');return;}
+    const data=await res.json();const json=decodeURIComponent(escape(atob(data.content.replace(/\n/g,''))));
+    const imp=JSON.parse(json);
+    if(imp.recs){let n=0;imp.recs.forEach(r=>{if(r.id&&!recs.find(x=>x.id===r.id)){r.synced=true;recs.unshift(r);n++;}});toast(`同步成功 +${n}条卦例`,'ok');}
+    if(imp.notes){let n=0;imp.notes.forEach(x=>{if(x.id&&!notes.find(y=>y.id===x.id)){notes.unshift(x);n++;}});if(n)toast(`同步笔记 +${n}条`,'ok');}
+    saveAll();renderRL();renderNBList();updCnt();document.getElementById('ghSt').textContent=`同步：${new Date().toLocaleString()}`;closeModal('syncModal');
   }catch(e){toast('失败: '+e.message,'err');}
 }
 
@@ -1474,15 +1527,26 @@ function showPage(p){
   document.getElementById('pg-'+p)?.classList.add('on');
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.p===p));
   if(p==='records')renderRL();
-  if(p==='settings')document.getElementById('darkTog').checked=document.documentElement.getAttribute('data-theme')==='dark';
+  if(p==='notebook')renderNBList();
+  if(p==='settings'){document.getElementById('darkTog').checked=document.documentElement.getAttribute('data-theme')==='dark';renderFolderManage();renderTagManage();renderLinksManage();}
 }
-function closeModal(id){document.getElementById(id).classList.remove('on');}
 function toggleTheme(){applyT(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');}
 function togTheme(el){applyT(el.checked?'dark':'light');}
-function applyT(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('liuyao_t',t);document.getElementById('themeBtn').textContent=t==='dark'?'☀':'🌙';}
+function applyT(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('ly_theme',t);document.getElementById('themeBtn').textContent=t==='dark'?'☀':'🌙';}
 function toast(msg,t){const c=document.getElementById('tc');const el=document.createElement('div');el.className=`toast${t?' '+t:''}`;el.textContent=msg;c.appendChild(el);setTimeout(()=>{el.style.opacity='0';el.style.transform='translateY(4px)';el.style.transition='all .25s';setTimeout(()=>el.remove(),250);},2400);}
-function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function parseMD(md){return md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h1>$1</h1>').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/`(.+?)`/g,'<code>$1</code>').replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>').replace(/^---$/gm,'<hr>').replace(/^[-*] (.+)$/gm,'<li>$1</li>').replace(/(<li>[\s\S]+?<\/li>)/g,'<ul>$1</ul>').replace(/\n\n/g,'</p><p>').replace(/^(?!<[hubl])(.+)$/gm,'<p>$1</p>');}
+function escH(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function parseMD(md){
+  return md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/^#### (.+)$/gm,'<h4>$1</h4>').replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h1>$1</h1>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/`(.+?)`/g,'<code>$1</code>')
+    .replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>').replace(/^---$/gm,'<hr>')
+    .replace(/^- \[ \] (.+)$/gm,'<li><input type="checkbox" disabled> $1</li>').replace(/^- \[x\] (.+)$/gm,'<li><input type="checkbox" checked disabled> $1</li>')
+    .replace(/^[-*] (.+)$/gm,'<li>$1</li>').replace(/^(\d+)\. (.+)$/gm,'<li>$2</li>')
+    .replace(/(<li>[\s\S]+?<\/li>)/g,'<ul>$1</ul>')
+    .replace(/\|(.+)\|/g,(m,p)=>`<tr>${p.split('|').map(c=>c.trim().match(/^-+$/)?'':'<td>'+c.trim()+'</td>').filter(Boolean).join('')}</tr>`)
+    .replace(/(<tr>[\s\S]+?<\/tr>)/g,'<table>$1</table>')
+    .replace(/\n\n/g,'</p><p>').replace(/^(?!<[hubtprc])(.+)$/gm,'<p>$1</p>');
+}
 
 // ================================================================
 // PWA
@@ -1496,13 +1560,19 @@ if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.ser
 // INIT
 // ================================================================
 function init(){
-  const t=localStorage.getItem('liuyao_t')||'light';applyT(t);
-  loadRecs();renderRL();renderManual();renderCats();renderGZ();updSyncDot();
-  initDropArea();
+  const t=localStorage.getItem('ly_theme')||'light';applyT(t);
+  loadAll();
+  renderRL();renderNBList();renderManual();
+  renderCastFolderRow();renderCastTagRow();
+  renderGZ();updCnt();
+  renderExternalTabs();
+  // Bind cast tag input
+  document.getElementById('castTagInput')?.addEventListener('keydown',handleCastTagInput);
+  // Bind drop area
+  const d=document.getElementById('dropA');
+  if(d){d.addEventListener('dragover',e=>{e.preventDefault();d.style.borderColor='var(--ac)';});d.addEventListener('dragleave',()=>{d.style.borderColor='';});d.addEventListener('drop',e=>{e.preventDefault();d.style.borderColor='';const f=e.dataTransfer.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{document.getElementById('impTxt').value=ev.target.result;document.getElementById('impSt').textContent='文件已读取';};r.readAsText(f);});}
+  // Modal overlay close
   document.querySelectorAll('.mover').forEach(o=>{o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('on');});});
-  const instBtn=document.getElementById('instBtn');
-  if(instBtn){instBtn.addEventListener('click',async()=>{if(!dp)return;dp.prompt();await dp.userChoice;document.getElementById('ibar').style.display='none';dp=null;});}
-  if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}
   setInterval(renderGZ,60000);
 }
 document.addEventListener('DOMContentLoaded',init);
