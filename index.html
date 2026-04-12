@@ -118,55 +118,65 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 .bfw{width:100%;justify-content:center;}
 
 /* ============================================================
-   HEXAGRAM TABLE
-   Row layout (left→right):
-   [伏地支 伏亲(可选)] | 六神 | 六亲 地支 [本卦爻] 世应 | ○× | [变卦爻] 变地支 变亲
-   Key: 爻画列用固定宽度，卦名标题用colgroup对齐
+   HEXAGRAM TABLE - single <table> with <thead> for guaranteed alignment
+   Columns: [伏支?][伏亲?] | 六神 | 六亲 地支 [爻] 世应 | ○× | [变爻] 变地支 变亲
    ============================================================ */
 .hx-area{animation:fadeup .3s ease;}
 @keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-/* Fuchen toggle button */
-.fc-toggle{display:inline-flex;align-items:center;gap:3px;font-size:.65rem;color:var(--tx3);cursor:pointer;padding:2px 7px;border:1px solid var(--bdl);border-radius:10px;background:none;transition:var(--tr);margin-bottom:6px;user-select:none;}
+/* Fuchen toggle */
+.fc-toggle{display:inline-flex;align-items:center;gap:3px;font-size:.65rem;color:var(--tx3);cursor:pointer;padding:2px 8px;border:1px solid var(--bdl);border-radius:10px;background:none;transition:var(--tr);user-select:none;}
 .fc-toggle.on{color:var(--ac);border-color:var(--ac);}
 .fc-toggle:hover{border-color:var(--ac);color:var(--ac);}
 
-/* The wrapper that holds title row + yao table together, ensuring alignment */
+/* Outer wrapper with horizontal scroll on tiny screens */
 .hx-wrap{width:100%;overflow-x:auto;}
 
-/* Title bar above the table - must match table column structure exactly */
-.hx-title-row{display:flex;align-items:center;margin-bottom:4px;gap:0;}
-/* These flex items mirror the colgroup widths */
-.hx-t-fc{flex:0 0 auto;min-width:0;} /* 伏藏 (hidden by default) */
-.hx-t-sep{flex:0 0 3px;}
-.hx-t-shen{flex:0 0 18px;}          /* 六神 col */
-.hx-t-left{flex:1;text-align:right;font-size:.8rem;font-weight:700;color:var(--tx2);padding-right:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.hx-t-yao{flex:0 0 52px;}           /* 本卦爻 - fixed */
-.hx-t-sw{flex:0 0 14px;}            /* 世应 */
-.hx-t-mark{flex:0 0 16px;}          /* ○× */
-.hx-t-cyao{flex:0 0 52px;}          /* 变卦爻 - fixed */
-.hx-t-right{flex:1;text-align:left;font-size:.8rem;font-weight:700;color:var(--jade);padding-left:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+/* THE TABLE - one table covers both title row and yao rows */
+.hx-table{border-collapse:collapse;table-layout:fixed;}
+/* Force table to NOT stretch: width determined by content */
+.hx-table-outer{display:inline-block;min-width:100%;}
+.hx-table td,.hx-table th{padding:2px 2px;vertical-align:middle;white-space:nowrap;}
 
-/* Special styling for title sections */
-.hx-t-left span,.hx-t-right span{font-size:.8rem;}
+/* Fixed column widths */
+.hx-table col.cfc {width:22px;}   /* 伏地支 */
+.hx-table col.cfclq{width:14px;}  /* 伏六亲 */
+.hx-table col.csep{width:4px;}    /* separator */
+.hx-table col.cshn{width:20px;}   /* 六神 */
+.hx-table col.clq {width:20px;}   /* 六亲 */
+.hx-table col.cdz {width:20px;}   /* 地支 */
+.hx-table col.cyao{width:56px;}   /* 本卦爻 */
+.hx-table col.csw {width:16px;}   /* 世应 */
+.hx-table col.cmk {width:16px;}   /* ○× */
+.hx-table col.ccyao{width:56px;}  /* 变卦爻 */
+.hx-table col.ccdz{width:20px;}   /* 变地支 */
+.hx-table col.cclq{width:20px;}   /* 变六亲 */
 
-/* Yao table */
-.hx-table{width:100%;border-collapse:collapse;table-layout:auto;}
-.hx-table td{padding:2px 1px;vertical-align:middle;white-space:nowrap;font-size:.68rem;}
+/* Title row (thead) */
+.hx-table thead th{
+  font-size:.78rem;font-weight:700;padding:0 2px 6px;border-bottom:1px solid var(--bdl);
+  vertical-align:bottom;
+}
+/* Main hex title spans lq+dz+yao cols = right-aligned */
+.th-main{text-align:right;color:var(--tx2);}
+/* Change hex title spans cyao+cdz+clq = left-aligned */
+.th-change{text-align:left;color:var(--jade);}
+/* Middle gap cols in thead */
+.th-gap{border-bottom:1px solid var(--bdl);}
 
-/* Column widths via explicit width on td */
-.c-fc{width:24px;max-width:28px;text-align:right;font-size:.6rem;color:var(--tx3);opacity:.8;}
-.c-fclq{width:14px;max-width:16px;text-align:right;font-size:.58rem;color:var(--tx3);opacity:.75;padding-right:2px;}
-.c-sep{width:3px;border-right:1px solid var(--bdl);padding:0;}
-.c-shen{width:18px;text-align:center;font-size:.7rem;font-weight:700;color:var(--sc);}
-.c-lq{width:auto;text-align:right;font-size:.65rem;font-weight:600;padding-right:2px;}
-.c-dz{width:auto;text-align:right;font-size:.65rem;padding-right:3px;}
-.c-yao{width:52px;min-width:44px;max-width:60px;}
-.c-sw{width:14px;text-align:center;font-size:.65rem;}
-.c-mark{width:16px;text-align:center;font-size:.75rem;font-weight:bold;color:var(--gold);}
-.c-cyao{width:52px;min-width:44px;max-width:60px;}
-.c-cdz{width:auto;text-align:left;font-size:.65rem;padding-left:3px;}
-.c-clq{width:auto;text-align:left;font-size:.65rem;font-weight:600;}
+/* Data cell classes */
+.c-fc {text-align:right;font-size:.6rem;color:var(--tx3);opacity:.75;}
+.c-fclq{text-align:right;font-size:.58rem;color:var(--tx3);opacity:.70;padding-right:1px;}
+.c-sep{border-right:1px solid var(--bdl);padding:0!important;}
+.c-shen{text-align:center;font-size:.7rem;font-weight:700;color:var(--sc);}
+.c-lq{text-align:right;font-size:.65rem;font-weight:600;padding-right:1px;}
+.c-dz{text-align:right;font-size:.65rem;padding-right:2px;}
+.c-yao{} /* width from col */
+.c-sw{text-align:center;font-size:.65rem;}
+.c-mark{text-align:center;font-size:.75rem;font-weight:bold;color:var(--gold);}
+.c-cyao{}
+.c-cdz{text-align:left;font-size:.65rem;padding-left:2px;}
+.c-clq{text-align:left;font-size:.65rem;font-weight:600;}
 
 /* Yao bars */
 .yv{display:flex;align-items:center;height:10px;width:100%;}
@@ -174,24 +184,18 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 .y-yin{display:flex;gap:6px;width:100%;height:10px;}
 .y-yin-h{flex:1;height:10px;background:var(--lc);border-radius:5px;}
 
-/* World / 应 */
 .yshi{color:var(--ac);font-weight:700;font-size:.65rem;}
 .yying{color:var(--jade);font-weight:700;font-size:.65rem;}
 
-/* Palace badge, spec tag */
 .pal-badge{display:inline-block;padding:1px 5px;border-radius:7px;font-size:.6rem;font-weight:700;margin-right:2px;vertical-align:middle;}
 .spec-tag{display:inline-block;padding:1px 4px;border-radius:5px;font-size:.58rem;color:var(--tx3);border:1px solid var(--bdl);margin-left:2px;vertical-align:middle;}
 
-/* Hide fuchen cols by default */
-.fc-cols-hidden .c-fc,
-.fc-cols-hidden .c-fclq,
-.fc-cols-hidden .hx-t-fc{display:none;}
+/* Hide fuchen cols */
+.fc-hidden .cfc-cell,.fc-hidden .cfclq-cell,.fc-hidden .cfc,.fc-hidden .cfclq{display:none;}
 
-@media(max-width:380px){
-  .c-yao,.c-cyao{width:38px;min-width:32px;}
-  .hx-t-yao,.hx-t-cyao{flex:0 0 38px;}
-  .hx-table td{font-size:.6rem;}
-  .c-shen{width:14px;font-size:.62rem;}
+@media(max-width:360px){
+  .hx-table col.cyao,.hx-table col.ccyao{width:42px;}
+  .hx-table td,.hx-table th{font-size:.58rem;}
 }
 
 /* ============================================================
@@ -426,7 +430,7 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
           <div class="ctit" style="margin-bottom:0">☯ 卦象</div>
           <button class="fc-toggle" id="fcToggleBtn" onclick="toggleFuchen()" title="显示/隐藏伏藏爻">
-            伏藏爻 <span id="fcToggleTxt">off</span>
+            伏藏爻 <span class="fc-txt">off</span>
           </button>
         </div>
         <div id="hexRes">
@@ -1043,17 +1047,26 @@ function analyzeHex(lines,hexName,gz){
 }
 
 // ================================================================
-// BUILD HEXAGRAM HTML - fixed alignment
-// Title row mirrors table columns exactly via flex
+// BUILD HEXAGRAM HTML
+// Single <table> with <colgroup> + <thead> for pixel-perfect alignment
 // ================================================================
 let showFuchenCols=false;
-function toggleFuchen(){
+function toggleFuchen(srcId){
   showFuchenCols=!showFuchenCols;
-  const btn=document.getElementById('fcToggleBtn');
-  const txt=document.getElementById('fcToggleTxt');
-  if(btn)btn.classList.toggle('on',showFuchenCols);
-  if(txt)txt.textContent=showFuchenCols?'on':'off';
+  // Update all toggle buttons (cast page + detail page may both exist)
+  document.querySelectorAll('.fc-toggle').forEach(btn=>{
+    btn.classList.toggle('on',showFuchenCols);
+    const t=btn.querySelector('.fc-txt');
+    if(t)t.textContent=showFuchenCols?'on':'off';
+  });
+  // Re-render wherever hexagram is showing
   if(curLines)refreshResult();
+  // Also re-render open record detail if any
+  const rdContent=document.getElementById('rdContent');
+  if(rdContent&&rdContent._recId){
+    const rec=recs.find(r=>r.id===rdContent._recId);
+    if(rec)renderRD(rec);
+  }
 }
 
 function yaoBar(isYang){
@@ -1087,34 +1100,40 @@ function buildHexHtml(lines,gz){
   if(LIUHE_SET.has(hexName))tags.push('六合');if(LIUCHONG_SET.has(hexName))tags.push('六冲');
   if(hasChange){if(cPi?.isYH)cTags.push('游魂');if(cPi?.isGH)cTags.push('归魂');if(LIUHE_SET.has(cHex))cTags.push('六合');if(LIUCHONG_SET.has(cHex))cTags.push('六冲');}
 
-  const fcHide=showFuchenCols?'':'fc-cols-hidden';
+  const fcHide=showFuchenCols?'':'fc-hidden';
 
+  // Title content
   const mainTitle=(pi?`<span class="pal-badge" style="background:${WX_BG[pi.el]};color:${WX_COL[pi.el]}">${pi.palace}宫·${pi.el}</span>`:'')+
-    `${HEXSYM[hexName]||''}&thinsp;${hexName}`+tags.map(t=>`<span class="spec-tag">${t}</span>`).join('');
+    `${HEXSYM[hexName]||''} ${hexName}`+tags.map(t=>`<span class="spec-tag">${t}</span>`).join('');
   const changeTitle=hasChange?
     (cPi?`<span class="pal-badge" style="background:${WX_BG[cPi.el]};color:${WX_COL[cPi.el]}">${cPi.palace}宫·${cPi.el}</span>`:'')+
-    `${HEXSYM[cHex]||''}&thinsp;${cHex}`+cTags.map(t=>`<span class="spec-tag">${t}</span>`).join(''):
+    `${HEXSYM[cHex]||''} ${cHex}`+cTags.map(t=>`<span class="spec-tag">${t}</span>`).join(''):
     `<span style="color:var(--tx3);font-size:.72rem;font-weight:400">无变卦</span>`;
 
-  // The title row uses the same flex structure as the table uses for columns
-  // We use a colgroup-like approach: fixed-width cells + auto-flex cells for meta text
   let html=`<div class="hx-area"><div class="hx-wrap ${fcHide}">`;
 
-  // Title row - identical column structure to table rows below
-  html+=`<div class="hx-title-row">
-    <div class="hx-t-fc"></div>
-    <div class="hx-t-fc"></div>
-    <div class="hx-t-sep"></div>
-    <div class="hx-t-shen"></div>
-    <div class="hx-t-left">${mainTitle}</div>
-    <div class="hx-t-yao"></div>
-    <div class="hx-t-sw"></div>
-    <div class="hx-t-mark"></div>
-    <div class="hx-t-cyao"></div>
-    <div class="hx-t-right">${changeTitle}</div>
-  </div>`;
+  // Single table: colgroup defines widths, thead has titles, tbody has yao rows
+  html+=`<table class="hx-table" style="width:100%">
+  <colgroup>
+    <col class="cfc"><col class="cfclq"><col class="csep">
+    <col class="cshn"><col class="clq"><col class="cdz">
+    <col class="cyao"><col class="csw"><col class="cmk">
+    <col class="ccyao"><col class="ccdz"><col class="cclq">
+  </colgroup>
+  <thead>
+    <tr>
+      <th class="cfc-cell th-gap"></th>
+      <th class="cfclq-cell th-gap"></th>
+      <th class="th-gap" style="border-right:1px solid var(--bdl)"></th>
+      <th class="th-gap"></th>
+      <th class="th-main" colspan="3">${mainTitle}</th>
+      <th class="th-gap"></th>
+      <th class="th-gap"></th>
+      <th class="th-change" colspan="3">${changeTitle}</th>
+    </tr>
+  </thead>
+  <tbody>`;
 
-  html+=`<table class="hx-table">`;
   for(let i=5;i>=0;i--){
     const line=lines[i];
     const isYang=line===1||line===3;
@@ -1138,9 +1157,9 @@ function buildHexHtml(lines,gz){
     const cIsYang=cLine===1||cLine===3;
 
     html+=`<tr>
-      <td class="c-fc">${showFC?`<span class="${bgBCls}">${bgB}</span>`:''}</td>
-      <td class="c-fclq">${showFC?`<span class="${bgBCls}">${bgLq}</span>`:''}</td>
-      <td class="c-sep"></td>
+      <td class="c-fc cfc-cell">${showFC?`<span class="${bgBCls}">${bgB}</span>`:''}</td>
+      <td class="c-fclq cfclq-cell">${showFC?`<span class="${bgBCls}">${bgLq}</span>`:''}</td>
+      <td class="c-sep" style="border-right:1px solid var(--bdl)"></td>
       <td class="c-shen">${sh}</td>
       <td class="c-lq"><span class="${bCls}">${lqS}</span></td>
       <td class="c-dz"><span class="${bCls}">${b}</span></td>
@@ -1152,8 +1171,9 @@ function buildHexHtml(lines,gz){
       <td class="c-clq">${hasChange?`<span class="${cBCls}">${cLqS}</span>`:''}</td>
     </tr>`;
   }
-  html+=`</table></div>`;
+  html+=`</tbody></table></div>`;
 
+  // Analysis
   const anaData=analyzeHex(lines,hexName,gz);
   if(anaData.length){
     html+=`<div class="ana-toggle" onclick="toggleAna(this)">
@@ -1174,9 +1194,7 @@ function buildHexHtml(lines,gz){
   }
   html+=`</div>`;
   return html;
-}
-
-function toggleAna(el){
+}function toggleAna(el){
   const body=el.nextElementSibling;
   const icon=el.querySelector('.ana-toggle-icon');
   const isOpen=body.classList.toggle('open');
@@ -1329,6 +1347,7 @@ function renderRD(rec){
   const hx=rec.changeHex?`${rec.hexName} → ${rec.changeHex}`:rec.hexName;
   const cat=CATS.find(c=>c.id===rec.cat);
   const container=document.getElementById('rdContent');
+  container._recId=rec.id; // for re-render on fuchen toggle
   let noteEd=false;
 
   function render(){
@@ -1341,7 +1360,13 @@ function renderRD(rec){
             <span style="color:var(--ac)">${hx}</span>
           </div>
         </div>
-        <div style="display:flex;gap:5px">
+        <div style="display:flex;gap:5px;flex-wrap:wrap">
+          <button class="fc-toggle${showFuchenCols?' on':''}" onclick="toggleFuchen()" style="height:fit-content">
+            伏藏爻 <span class="fc-txt">${showFuchenCols?'on':'off'}</span>
+          </button>
+          <button class="gz-cal-btn" onclick="openModal('calModal')" style="margin:0;padding:4px 10px;font-size:.7rem;width:auto">
+            📆 应期
+          </button>
           <button class="btn btns bsm" onclick="shareRec('${rec.id}')">📤 分享</button>
           <button class="btn btnd bsm" onclick="delRecDetail('${rec.id}')">删除</button>
         </div>
@@ -1380,13 +1405,13 @@ function renderRD(rec){
     }
     h+=`</div>`;
     container.innerHTML=h;
+    container._recId=rec.id; // re-assign after innerHTML replace
     document.getElementById('edNt')?.addEventListener('click',()=>{noteEd=true;render();setTimeout(()=>document.getElementById('ntEd')?.focus(),50);});
     document.getElementById('svNt')?.addEventListener('click',()=>{const v=document.getElementById('ntEd')?.value||'';const idx=recs.findIndex(r=>r.id===rec.id);if(idx>=0){recs[idx].notes=v;rec.notes=v;saveRecs();}noteEd=false;render();toast('笔记已保存','ok');});
     document.getElementById('cnNt')?.addEventListener('click',()=>{noteEd=false;render();});
   }
   render();
-}
-function delRecDetail(id){if(!confirm('删除？'))return;recs=recs.filter(r=>r.id!==id);saveRecs();renderRL();showRL();toast('已删除','ok');}
+}function delRecDetail(id){if(!confirm('删除？'))return;recs=recs.filter(r=>r.id!==id);saveRecs();renderRL();showRL();toast('已删除','ok');}
 
 // ================================================================
 // IMPORT / EXPORT
