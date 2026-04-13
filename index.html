@@ -31,7 +31,7 @@
   --lc:#e2d0a8;--sc:#cc3020;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{font-size:15px;-webkit-tap-highlight-color:transparent;}
+html{font-size:16px;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;transition:background .25s,color .25s;}
 ::-webkit-scrollbar{width:3px;height:3px;}
 ::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px;}
@@ -142,40 +142,62 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 .hx-area{animation:fadeup .3s ease;}
 @keyframes fadeup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .hx-wrap{width:100%;overflow-x:auto;}
-.fc-toggle{display:inline-flex;align-items:center;gap:3px;font-size:.63rem;color:var(--tx3);cursor:pointer;padding:2px 7px;border:1px solid var(--bdl);border-radius:9px;background:none;transition:var(--tr);user-select:none;}
+.fc-toggle{display:inline-flex;align-items:center;gap:3px;font-size:.72rem;color:var(--tx3);cursor:pointer;padding:2px 8px;border:1px solid var(--bdl);border-radius:9px;background:none;transition:var(--tr);user-select:none;}
 .fc-toggle.on{color:var(--ac);border-color:var(--ac);}
-.hx-table{border-collapse:collapse;width:100%;}
-.hx-table col.cfc{width:22px;}.hx-table col.cfclq{width:14px;}
-.hx-table col.csep{width:4px;}.hx-table col.cshn{width:20px;}
-.hx-table col.clq{width:20px;}.hx-table col.cdz{width:20px;}
-.hx-table col.cyao{width:54px;}.hx-table col.csw{width:15px;}
-.hx-table col.cmk{width:15px;}.hx-table col.ccyao{width:54px;}
-.hx-table col.ccdz{width:20px;}.hx-table col.cclq{width:20px;}
-.hx-table td,.hx-table th{padding:2px 1px;vertical-align:middle;white-space:nowrap;}
-.hx-table thead th{font-size:.76rem;font-weight:700;padding-bottom:5px;border-bottom:1px solid var(--bdl);}
+/*
+  KEY FIX: table-layout:fixed means column widths are set by <col> only.
+  cyao and ccyao MUST be identical widths so both hex bars are the same size.
+  When fc is hidden we keep the col elements but zero their width so the table
+  simply re-distributes the freed space to the auto-width meta columns - 
+  the two yao columns stay identical because they're both fixed.
+*/
+.hx-table{border-collapse:collapse;width:100%;table-layout:fixed;}
+.hx-table col.cfc  {width:22px;}
+.hx-table col.cfclq{width:14px;}
+.hx-table col.csep {width:3px;}
+.hx-table col.cshn {width:22px;}
+.hx-table col.clq  {width:22px;}
+.hx-table col.cdz  {width:22px;}
+.hx-table col.cyao {width:60px;}   /* ← fixed, identical to ccyao */
+.hx-table col.csw  {width:16px;}
+.hx-table col.cmk  {width:16px;}
+.hx-table col.ccyao{width:60px;}   /* ← fixed, identical to cyao */
+.hx-table col.ccdz {width:22px;}
+.hx-table col.cclq {width:22px;}
+/* When fc hidden: collapse fc cols to 0, rest re-flows but yao cols stay same */
+.fc-hidden col.cfc,.fc-hidden col.cfclq{width:0!important;min-width:0!important;}
+.fc-hidden .cfc-cell,.fc-hidden .cfclq-cell{display:none!important;padding:0!important;width:0!important;}
+.hx-table td,.hx-table th{padding:2px 2px;vertical-align:middle;white-space:nowrap;overflow:hidden;}
+.hx-table thead th{font-size:.8rem;font-weight:700;padding-bottom:6px;border-bottom:1px solid var(--bdl);}
+/* Title alignment: main title right-aligns into yao col, change left-aligns out of yao col */
 .th-main{text-align:right;color:var(--tx2);}
 .th-change{text-align:left;color:var(--jade);}
 .th-gap{border-bottom:1px solid var(--bdl);}
-.c-fc{text-align:right;font-size:.58rem;color:var(--tx3);opacity:.7;}
-.c-fclq{text-align:right;font-size:.56rem;color:var(--tx3);opacity:.65;padding-right:1px;}
-.c-sep{border-right:1px solid var(--bdl);padding:0!important;}
-.c-shen{text-align:center;font-size:.68rem;font-weight:700;color:var(--sc);}
-.c-lq{text-align:right;font-size:.63rem;font-weight:600;padding-right:1px;}
-.c-dz{text-align:right;font-size:.63rem;padding-right:2px;}
-.c-sw{text-align:center;font-size:.63rem;}
-.c-mark{text-align:center;font-size:.72rem;font-weight:bold;color:var(--gold);}
-.c-cdz{text-align:left;font-size:.63rem;padding-left:2px;}
-.c-clq{text-align:left;font-size:.63rem;font-weight:600;}
-.yv{display:flex;align-items:center;height:10px;width:100%;}
-.y-yang{width:100%;height:10px;background:var(--lc);border-radius:5px;}
-.y-yin{display:flex;gap:5px;width:100%;height:10px;}
-.y-yin-h{flex:1;height:10px;background:var(--lc);border-radius:5px;}
-.yshi{color:var(--ac);font-weight:700;font-size:.63rem;}
-.yying{color:var(--jade);font-weight:700;font-size:.63rem;}
-.pal-badge{display:inline-block;padding:1px 5px;border-radius:7px;font-size:.58rem;font-weight:700;margin-right:2px;vertical-align:middle;}
-.spec-tag{display:inline-block;padding:1px 4px;border-radius:5px;font-size:.56rem;color:var(--tx3);border:1px solid var(--bdl);margin-left:2px;vertical-align:middle;}
-.fc-hidden .cfc-cell,.fc-hidden .cfclq-cell{display:none;}
-@media(max-width:360px){.hx-table col.cyao,.hx-table col.ccyao{width:38px;}.hx-table td,.hx-table th{font-size:.55rem;}}
+.c-fc  {text-align:right;font-size:.62rem;color:var(--tx3);opacity:.7;}
+.c-fclq{text-align:right;font-size:.6rem;color:var(--tx3);opacity:.65;padding-right:1px;}
+.c-sep {border-right:1px solid var(--bdl);padding:0!important;}
+.c-shen{text-align:center;font-size:.72rem;font-weight:700;color:var(--sc);}
+.c-lq  {text-align:right;font-size:.68rem;font-weight:600;padding-right:1px;}
+.c-dz  {text-align:right;font-size:.68rem;padding-right:2px;}
+.c-sw  {text-align:center;font-size:.68rem;}
+.c-mark{text-align:center;font-size:.76rem;font-weight:bold;color:var(--gold);}
+.c-cdz {text-align:left;font-size:.68rem;padding-left:2px;}
+.c-clq {text-align:left;font-size:.68rem;font-weight:600;}
+/* Yao bars - always fill their column 100% */
+.yv{display:flex;align-items:center;height:11px;width:100%;}
+.y-yang{width:100%;height:11px;background:var(--lc);border-radius:5px;}
+.y-yin{display:flex;gap:6px;width:100%;height:11px;}
+.y-yin-h{flex:1;height:11px;background:var(--lc);border-radius:5px;}
+.yshi{color:var(--ac);font-weight:700;font-size:.68rem;}
+.yying{color:var(--jade);font-weight:700;font-size:.68rem;}
+.pal-badge{display:inline-block;padding:1px 5px;border-radius:7px;font-size:.62rem;font-weight:700;margin-right:2px;vertical-align:middle;}
+.spec-tag{display:inline-block;padding:1px 4px;border-radius:5px;font-size:.6rem;color:var(--tx3);border:1px solid var(--bdl);margin-left:2px;vertical-align:middle;}
+/* Mobile: keep yao cols equal but slightly smaller */
+@media(max-width:400px){
+  .hx-table col.cyao,.hx-table col.ccyao{width:44px;}
+  .hx-table col.cshn,.hx-table col.clq,.hx-table col.cdz,.hx-table col.ccdz,.hx-table col.cclq{width:16px;}
+  .hx-table td,.hx-table th{font-size:.58rem;}
+}
 
 /* ===== ANALYSIS ===== */
 .ana-toggle{display:flex;align-items:center;gap:5px;cursor:pointer;padding:7px 0;border-top:1px solid var(--bdl);margin-top:8px;font-size:.75rem;color:var(--tx3);user-select:none;}
@@ -321,7 +343,43 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 .gz-result-item{padding:2px 0;border-bottom:1px solid var(--bdl);}
 .gz-result-item:last-child{border-bottom:none;}
 
-/* ===== SEARCH ===== */
+/* ===== OTHER SITES DROPDOWN TAB ===== */
+.tab-dropdown{position:relative;}
+.tab-dropdown-menu{
+  display:none;position:absolute;top:100%;left:0;z-index:500;
+  background:var(--sf);border:1px solid var(--bd);border-radius:var(--rs);
+  box-shadow:var(--sh2);min-width:160px;padding:4px 0;
+}
+.tab-dropdown:hover .tab-dropdown-menu,
+.tab-dropdown.open .tab-dropdown-menu{display:block;}
+.tab-dropdown-item{
+  display:block;padding:8px 14px;font-size:.82rem;color:var(--tx2);
+  text-decoration:none;white-space:nowrap;transition:var(--tr);
+  font-family:'Noto Serif SC',serif;cursor:pointer;
+  border:none;background:none;width:100%;text-align:left;
+}
+.tab-dropdown-item:hover{background:var(--bg2);color:var(--ac);}
+.tab-dropdown .tab-arrow{font-size:.55rem;margin-left:3px;vertical-align:middle;}
+
+/* ===== FOLDER / TAG SEPARATION ===== */
+/* Folder = single select pill with folder icon */
+.folder-row{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px;}
+.folder-btn{padding:3px 9px;border:1px solid var(--bdl);background:none;border-radius:6px;cursor:pointer;font-size:.72rem;color:var(--tx3);transition:var(--tr);font-family:'Noto Serif SC',serif;display:inline-flex;align-items:center;gap:3px;}
+.folder-btn.on{background:var(--ac);color:#fff;border-color:var(--ac);}
+.folder-btn:hover:not(.on){border-color:var(--ac);color:var(--ac);}
+.folder-btn .fico{font-size:.8rem;}
+/* Tags = multi-select rounded pills */
+.tag-row{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px;}
+.tag-sel-btn{padding:2px 8px;border:1px solid var(--bdl);background:none;border-radius:12px;cursor:pointer;font-size:.7rem;color:var(--tx3);transition:var(--tr);font-family:'Noto Serif SC',serif;}
+.tag-sel-btn.on{background:var(--jade);color:#fff;border-color:var(--jade);}
+.tag-sel-btn:hover:not(.on){border-color:var(--jade);color:var(--jade);}
+/* Section labels in cast/detail */
+.sect-lbl{font-size:.68rem;color:var(--tx3);font-weight:600;letter-spacing:.06em;margin-bottom:4px;margin-top:8px;}
+.sect-lbl:first-child{margin-top:0;}
+/* Folder badge in list - distinct look */
+.folder-badge{display:inline-flex;align-items:center;gap:2px;padding:2px 7px;border-radius:5px;font-size:.64rem;font-weight:600;background:var(--bg2);color:var(--tx2);border:1px solid var(--bdl);}
+/* Filter row separation */
+.rfilt-sep{width:1px;background:var(--bdl);margin:0 3px;align-self:stretch;display:inline-block;height:18px;vertical-align:middle;}
 .search-wrap{position:relative;margin-bottom:10px;}
 .search-inp{width:100%;padding:7px 12px 7px 32px;border:1px solid var(--bdl);background:var(--bg2);border-radius:20px;font-family:'Noto Serif SC',serif;font-size:.82rem;color:var(--tx);transition:var(--tr);}
 .search-inp:focus{outline:none;border-color:var(--ac);background:var(--sf);}
@@ -382,7 +440,13 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
     </button>
     <button class="tab" data-p="settings" onclick="showPage('settings')">⚙ 设置</button>
     <button class="tab" data-p="about" onclick="showPage('about')">？ 简介</button>
-    <!-- External sites added dynamically -->
+    <!-- Other sites dropdown -->
+    <div class="tab-dropdown" id="otherSitesTab" style="display:none">
+      <button class="tab" onclick="document.getElementById('otherSitesTab').classList.toggle('open')">
+        🔗 其他小站 <span class="tab-arrow">▾</span>
+      </button>
+      <div class="tab-dropdown-menu" id="otherSitesMenu"></div>
+    </div>
   </div>
 </div>
 
@@ -480,10 +544,10 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
     <div class="card">
       <div class="ctit">💾 保存卦例</div>
       <input type="text" class="sinp" id="castName" placeholder="为此卦起一个名字…" maxlength="40">
-      <div style="font-size:.7rem;color:var(--tx3);margin-bottom:4px">分类</div>
-      <div class="cats" id="castFolderRow"></div>
-      <div style="font-size:.7rem;color:var(--tx3);margin-bottom:4px">标签</div>
-      <div class="cats" id="castTagRow"></div>
+      <div class="sect-lbl">📁 分类（单选）</div>
+      <div class="folder-row" id="castFolderRow"></div>
+      <div class="sect-lbl">🏷 标签（多选）</div>
+      <div class="tag-row" id="castTagRow"></div>
       <input type="text" class="sinp" id="castTagInput" placeholder="输入新标签后按回车…" style="margin-bottom:8px">
       <button class="btn btnp bfw" onclick="saveCast()" style="margin-bottom:8px">保存到卦例</button>
       <button class="btn btns bfw" onclick="resetCast()">🔄 清除重新起卦</button>
@@ -1079,11 +1143,14 @@ function toggleCastNotes(){cnOpen=!cnOpen;document.getElementById('castNotesBody
 // ================================================================
 function renderCastFolderRow(){
   const el=document.getElementById('castFolderRow');if(!el)return;
-  el.innerHTML=cfg.folders.map(f=>`<button class="catb${castSelFolder===f.id?' on':''}" onclick="castSelFolder='${f.id}';renderCastFolderRow()">${f.emoji}${f.name}</button>`).join('');
+  // Folder = single select, radio-like buttons
+  el.innerHTML=`<button class="folder-btn${castSelFolder===''?' on':''}" onclick="castSelFolder='';renderCastFolderRow()"><span class="fico">📂</span>无分类</button>`+
+    cfg.folders.map(f=>`<button class="folder-btn${castSelFolder===f.id?' on':''}" onclick="castSelFolder='${f.id}';renderCastFolderRow()"><span class="fico">${f.emoji}</span>${f.name}</button>`).join('');
 }
 function renderCastTagRow(){
   const el=document.getElementById('castTagRow');if(!el)return;
-  el.innerHTML=cfg.tags.map(t=>`<button class="catb${castSelTags.has(t)?' on':''}" onclick="toggleCastTag('${t}')">${t}</button>`).join('');
+  // Tags = multi-select pills
+  el.innerHTML=cfg.tags.map(t=>`<button class="tag-sel-btn${castSelTags.has(t)?' on':''}" onclick="toggleCastTag('${t}')">#${t}</button>`).join('');
 }
 function toggleCastTag(t){if(castSelTags.has(t))castSelTags.delete(t);else castSelTags.add(t);renderCastTagRow();}
 function handleCastTagInput(e){if(e.key==='Enter'){const v=e.target.value.trim();if(v){castSelTags.add(v);if(!cfg.tags.includes(v)){cfg.tags.push(v);saveAll();}renderCastTagRow();e.target.value='';}};}
@@ -1111,9 +1178,15 @@ function updCnt(){
 function renderRecFilt(){
   const usedFolders=new Set(recs.map(r=>r.folder).filter(Boolean));
   const usedTags=new Set(recs.flatMap(r=>r.tags||[]).filter(Boolean));
-  let h=`<button class="catb${recFilt.folder===''&&recFilt.tag===''?' on':''}" onclick="recFilt={folder:'',tag:''};renderRL()">全部</button>`;
-  cfg.folders.filter(f=>usedFolders.has(f.id)).forEach(f=>h+=`<button class="catb${recFilt.folder===f.id?' on':''}" onclick="recFilt.folder='${f.id}';recFilt.tag='';renderRL()">${f.emoji}${f.name}</button>`);
-  cfg.tags.filter(t=>usedTags.has(t)).forEach(t=>h+=`<button class="catb${recFilt.tag===t?' on':''}" onclick="recFilt.tag='${t}';recFilt.folder='';renderRL()">#${t}</button>`);
+  let h=`<button class="folder-btn${recFilt.folder===''&&recFilt.tag===''?' on':''}" onclick="recFilt={folder:'',tag:''};renderRL()">全部</button>`;
+  if(usedFolders.size>0){
+    h+=`<span class="rfilt-sep"></span>`;
+    cfg.folders.filter(f=>usedFolders.has(f.id)).forEach(f=>h+=`<button class="folder-btn${recFilt.folder===f.id?' on':''}" onclick="recFilt.folder='${f.id}';recFilt.tag='';renderRL()"><span>${f.emoji}</span>${f.name}</button>`);
+  }
+  if(usedTags.size>0){
+    h+=`<span class="rfilt-sep"></span>`;
+    cfg.tags.filter(t=>usedTags.has(t)).forEach(t=>h+=`<button class="tag-sel-btn${recFilt.tag===t?' on':''}" onclick="recFilt.tag='${t}';recFilt.folder='';renderRL()">#${t}</button>`);
+  }
   document.getElementById('recFilt').innerHTML=h;
 }
 function renderRL(){
@@ -1136,7 +1209,11 @@ function renderRL(){
     return`<div class="ri" ${clickAct}>
       ${recBatch?`<input type="checkbox" class="chk" id="rchk-${r.id}" ${recSelIds.has(r.id)?'checked':''} onchange="togSel('rec','${r.id}',this)" onclick="event.stopPropagation()" style="margin-bottom:5px">`:''}
       <div class="ri-hdr"><div class="ri-name">${r.name}${imp}${sy}</div><div class="ri-date">${ds}</div></div>
-      <div class="ri-meta">${folder?`<span class="cat-badge" style="background:${WX_BG['土']};color:var(--tx2)">${folder.emoji}${folder.name}</span>`:''} ${(r.tags||[]).map(t=>`<span class="tag-badge">#${t}</span>`).join(' ')}</div>
+      <div class="ri-meta">
+        ${folder?`<span class="folder-badge"><span>${folder.emoji}</span>${folder.name}</span>`:''}
+        ${(r.tags||[]).length?`<span style="color:var(--bdl);font-size:.6rem">·</span>`:''}
+        ${(r.tags||[]).map(t=>`<span class="tag-badge">#${t}</span>`).join('')}
+      </div>
       <div class="ri-hex">${HEXSYM[r.hexName]||''} ${hx}</div>
     </div>`;
   }).join('');
@@ -1212,9 +1289,15 @@ function newNote(){
 function renderNBFilt(){
   const usedF=new Set(notes.map(n=>n.folder).filter(Boolean));
   const usedT=new Set(notes.flatMap(n=>n.tags||[]).filter(Boolean));
-  let h=`<button class="catb${nbFilt.folder===''&&nbFilt.tag===''?' on':''}" onclick="nbFilt={folder:'',tag:''};renderNBList()">全部</button>`;
-  cfg.folders.filter(f=>usedF.has(f.id)).forEach(f=>h+=`<button class="catb${nbFilt.folder===f.id?' on':''}" onclick="nbFilt.folder='${f.id}';nbFilt.tag='';renderNBList()">${f.emoji}${f.name}</button>`);
-  cfg.tags.filter(t=>usedT.has(t)).forEach(t=>h+=`<button class="catb${nbFilt.tag===t?' on':''}" onclick="nbFilt.tag='${t}';nbFilt.folder='';renderNBList()">#${t}</button>`);
+  let h=`<button class="folder-btn${nbFilt.folder===''&&nbFilt.tag===''?' on':''}" onclick="nbFilt={folder:'',tag:''};renderNBList()">全部</button>`;
+  if(usedF.size>0){
+    h+=`<span class="rfilt-sep"></span>`;
+    cfg.folders.filter(f=>usedF.has(f.id)).forEach(f=>h+=`<button class="folder-btn${nbFilt.folder===f.id?' on':''}" onclick="nbFilt.folder='${f.id}';nbFilt.tag='';renderNBList()"><span>${f.emoji}</span>${f.name}</button>`);
+  }
+  if(usedT.size>0){
+    h+=`<span class="rfilt-sep"></span>`;
+    cfg.tags.filter(t=>usedT.has(t)).forEach(t=>h+=`<button class="tag-sel-btn${nbFilt.tag===t?' on':''}" onclick="nbFilt.tag='${t}';nbFilt.folder='';renderNBList()">#${t}</button>`);
+  }
   document.getElementById('nbFilt').innerHTML=h;
 }
 function renderNBList(){
@@ -1237,7 +1320,7 @@ function renderNBList(){
     return`<div class="nb-item" ${clickAct}>
       ${nbBatch?`<input type="checkbox" class="chk" id="nchk-${n.id}" ${nbSelIds.has(n.id)?'checked':''} onchange="togSel('nb','${n.id}',this)" onclick="event.stopPropagation()" style="margin-bottom:5px">`:''}
       <div class="nb-name">${n.name}${imp}</div>
-      <div class="nb-meta">${ds}${folder?` <span class="cat-badge" style="background:${WX_BG['土']};color:var(--tx2)">${folder.emoji}${folder.name}</span>`:''} ${(n.tags||[]).map(t=>`<span class="tag-badge">#${t}</span>`).join(' ')}</div>
+      <div class="nb-meta">${ds}${folder?` <span class="folder-badge"><span>${folder.emoji}</span>${folder.name}</span>`:''} ${(n.tags||[]).map(t=>`<span class="tag-badge">#${t}</span>`).join(' ')}</div>
       ${preview?`<div class="nb-preview">${escH(preview)}…</div>`:''}
     </div>`;
   }).join('');
