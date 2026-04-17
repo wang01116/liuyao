@@ -31,7 +31,7 @@
   --lc:#e2d0a8;--sc:#cc3020;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html{font-size:16px;-webkit-tap-highlight-color:transparent;}
+html{font-size:17px;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;transition:background .25s,color .25s;}
 ::-webkit-scrollbar{width:3px;height:3px;}
 ::-webkit-scrollbar-thumb{background:var(--bd);border-radius:2px;}
@@ -144,60 +144,71 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 .hx-wrap{width:100%;overflow-x:auto;}
 .fc-toggle{display:inline-flex;align-items:center;gap:3px;font-size:.72rem;color:var(--tx3);cursor:pointer;padding:2px 8px;border:1px solid var(--bdl);border-radius:9px;background:none;transition:var(--tr);user-select:none;}
 .fc-toggle.on{color:var(--ac);border-color:var(--ac);}
+
 /*
-  KEY FIX: table-layout:fixed means column widths are set by <col> only.
-  cyao and ccyao MUST be identical widths so both hex bars are the same size.
-  When fc is hidden we keep the col elements but zero their width so the table
-  simply re-distributes the freed space to the auto-width meta columns - 
-  the two yao columns stay identical because they're both fixed.
+  STRATEGY: table-layout:auto so cell content drives minimum widths.
+  The yao <td> gets an explicit min-width via inline style in JS so both
+  cyao and ccyao are ALWAYS the same minimum width regardless of fc state.
+  fc columns use display:none when hidden — zero pixels, no reflow on others.
+  The two "title" th cells use text-align to hug their respective yao cols.
 */
-.hx-table{border-collapse:collapse;width:100%;table-layout:fixed;}
-.hx-table col.cfc  {width:22px;}
-.hx-table col.cfclq{width:14px;}
-.hx-table col.csep {width:3px;}
-.hx-table col.cshn {width:22px;}
-.hx-table col.clq  {width:22px;}
-.hx-table col.cdz  {width:22px;}
-.hx-table col.cyao {width:60px;}   /* ← fixed, identical to ccyao */
-.hx-table col.csw  {width:16px;}
-.hx-table col.cmk  {width:16px;}
-.hx-table col.ccyao{width:60px;}   /* ← fixed, identical to cyao */
-.hx-table col.ccdz {width:22px;}
-.hx-table col.cclq {width:22px;}
-/* When fc hidden: collapse fc cols to 0, rest re-flows but yao cols stay same */
-.fc-hidden col.cfc,.fc-hidden col.cfclq{width:0!important;min-width:0!important;}
-.fc-hidden .cfc-cell,.fc-hidden .cfclq-cell{display:none!important;padding:0!important;width:0!important;}
-.hx-table td,.hx-table th{padding:2px 2px;vertical-align:middle;white-space:nowrap;overflow:hidden;}
-.hx-table thead th{font-size:.8rem;font-weight:700;padding-bottom:6px;border-bottom:1px solid var(--bdl);}
-/* Title alignment: main title right-aligns into yao col, change left-aligns out of yao col */
-.th-main{text-align:right;color:var(--tx2);}
-.th-change{text-align:left;color:var(--jade);}
-.th-gap{border-bottom:1px solid var(--bdl);}
+.hx-table{border-collapse:collapse;table-layout:auto;}
+.hx-table td,.hx-table th{
+  padding:2px 3px;vertical-align:middle;white-space:nowrap;
+  font-size:.72rem;
+}
+.hx-table thead th{padding-bottom:6px;border-bottom:1px solid var(--bdl);}
+.th-main   {text-align:right; color:var(--tx2);font-size:.8rem;font-weight:700;}
+.th-change {text-align:left;  color:var(--jade);font-size:.8rem;font-weight:700;}
+.th-gap    {border-bottom:1px solid var(--bdl);}
+
+/* fc hidden: simply hide, width collapses to 0 */
+.fc-hidden .cfc-cell,.fc-hidden .cfclq-cell{display:none!important;}
+
+/* cell style classes */
 .c-fc  {text-align:right;font-size:.62rem;color:var(--tx3);opacity:.7;}
 .c-fclq{text-align:right;font-size:.6rem;color:var(--tx3);opacity:.65;padding-right:1px;}
-.c-sep {border-right:1px solid var(--bdl);padding:0!important;}
-.c-shen{text-align:center;font-size:.72rem;font-weight:700;color:var(--sc);}
-.c-lq  {text-align:right;font-size:.68rem;font-weight:600;padding-right:1px;}
-.c-dz  {text-align:right;font-size:.68rem;padding-right:2px;}
-.c-sw  {text-align:center;font-size:.68rem;}
-.c-mark{text-align:center;font-size:.76rem;font-weight:bold;color:var(--gold);}
-.c-cdz {text-align:left;font-size:.68rem;padding-left:2px;}
-.c-clq {text-align:left;font-size:.68rem;font-weight:600;}
-/* Yao bars - always fill their column 100% */
-.yv{display:flex;align-items:center;height:11px;width:100%;}
+.c-sep {border-right:1px solid var(--bdl);padding:0 2px 0 0!important;width:4px;}
+.c-shen{text-align:center;font-size:.72rem;font-weight:700;color:var(--sc);min-width:18px;}
+.c-lq  {text-align:right;font-size:.68rem;font-weight:600;padding-right:2px;min-width:18px;}
+.c-dz  {text-align:right;font-size:.68rem;padding-right:3px;min-width:18px;}
+.c-yao {min-width:58px;width:58px;padding:2px 1px!important;}  /* both yao cols same min-width */
+.c-sw  {text-align:center;font-size:.68rem;min-width:14px;}
+.c-mark{text-align:center;font-size:.76rem;font-weight:bold;color:var(--gold);min-width:14px;}
+.c-cdz {text-align:left;font-size:.68rem;padding-left:3px;min-width:18px;}
+.c-clq {text-align:left;font-size:.68rem;font-weight:600;min-width:18px;}
+
+/* Yao bars - always fill 100% of their cell */
+.yv{display:flex;align-items:center;height:11px;width:100%;min-width:54px;}
 .y-yang{width:100%;height:11px;background:var(--lc);border-radius:5px;}
 .y-yin{display:flex;gap:6px;width:100%;height:11px;}
 .y-yin-h{flex:1;height:11px;background:var(--lc);border-radius:5px;}
-.yshi{color:var(--ac);font-weight:700;font-size:.68rem;}
+
+.yshi {color:var(--ac);font-weight:700;font-size:.68rem;}
 .yying{color:var(--jade);font-weight:700;font-size:.68rem;}
 .pal-badge{display:inline-block;padding:1px 5px;border-radius:7px;font-size:.62rem;font-weight:700;margin-right:2px;vertical-align:middle;}
 .spec-tag{display:inline-block;padding:1px 4px;border-radius:5px;font-size:.6rem;color:var(--tx3);border:1px solid var(--bdl);margin-left:2px;vertical-align:middle;}
-/* Mobile: keep yao cols equal but slightly smaller */
-@media(max-width:400px){
-  .hx-table col.cyao,.hx-table col.ccyao{width:44px;}
-  .hx-table col.cshn,.hx-table col.clq,.hx-table col.cdz,.hx-table col.ccdz,.hx-table col.cclq{width:16px;}
-  .hx-table td,.hx-table th{font-size:.58rem;}
+
+@media(max-width:420px){
+  .c-yao,.hx-table .c-yao{min-width:36px;width:36px;}
+  .yv{min-width:32px;}
+  .c-shen,.c-lq,.c-dz,.c-cdz,.c-clq{min-width:13px;font-size:.58rem;}
+  .c-sw,.c-mark{min-width:11px;font-size:.58rem;}
+  .hx-table td,.hx-table th{font-size:.58rem;padding:1px 1px;}
+  .th-main,.th-change{font-size:.7rem;}
 }
+
+/* ===== SHASHA (神煞) ===== */
+.sha-section{margin-top:10px;padding-top:8px;border-top:1px solid var(--bdl);}
+.sha-title{font-size:.68rem;font-weight:700;color:var(--tx3);margin-bottom:6px;display:flex;align-items:center;gap:4px;}
+.sha-title::before{content:'★';font-size:.6rem;color:var(--gold);}
+.sha-grid{display:flex;flex-wrap:wrap;gap:4px;}
+.sha-item{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:8px;font-size:.66rem;border:1px solid var(--bdl);background:var(--bg2);color:var(--tx2);}
+.sha-item .sha-name{font-weight:600;color:var(--ac);}
+.sha-item .sha-val{color:var(--tx);}
+.sha-item.sha-hit{border-color:var(--ac);background:rgba(139,37,0,.06);}
+.sha-item.sha-gold{border-color:var(--gold);background:rgba(138,106,0,.07);}
+.sha-item.sha-jade{border-color:var(--jade);background:rgba(40,90,58,.07);}
 
 /* ===== ANALYSIS ===== */
 .ana-toggle{display:flex;align-items:center;gap:5px;cursor:pointer;padding:7px 0;border-top:1px solid var(--bdl);margin-top:8px;font-size:.75rem;color:var(--tx3);user-select:none;}
@@ -265,7 +276,7 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 .tag-badge{padding:1px 5px;background:var(--bg2);border-radius:6px;font-size:.62rem;color:var(--tx2);}
 .cat-badge{padding:1px 6px;border-radius:7px;font-size:.62rem;font-weight:600;}
 .import-badge{font-size:.55rem;padding:1px 4px;background:var(--jade);color:#fff;border-radius:4px;vertical-align:middle;margin-left:3px;}
-.rfilt{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:9px;}
+.rfilt{display:block;margin-bottom:9px;}
 .bbr{display:flex;align-items:center;gap:5px;padding:6px 10px;background:var(--sf2);border-radius:var(--rs);margin-bottom:8px;flex-wrap:wrap;font-size:.76rem;color:var(--tx2);}
 .chk{width:14px;height:14px;cursor:pointer;accent-color:var(--ac);}
 
@@ -389,8 +400,7 @@ body{font-family:'Noto Serif SC',serif;background:var(--bg);color:var(--tx);min-
 .drop{border:2px dashed var(--bdl);border-radius:var(--r);padding:14px;text-align:center;color:var(--tx3);font-size:.76rem;cursor:pointer;transition:var(--tr);margin-bottom:6px;}
 .drop:hover{border-color:var(--ac);color:var(--ac);}
 
-/* ===== OTHER SITES ===== */
-.ext-site-frame{width:100%;height:calc(100vh - 130px);border:none;border-radius:var(--r);box-shadow:var(--sh);}
+/* ===== OTHER SITES (now opens in new tab, no frame needed) ===== */
 
 /* ===== TOAST ===== */
 .tc{position:fixed;bottom:18px;right:13px;z-index:9999;display:flex;flex-direction:column;gap:5px;pointer-events:none;}
@@ -1020,7 +1030,16 @@ function buildHexHtml(lines,gz){
   const fcH=showFcol?'':'fc-hidden';
   const mT=(pi?`<span class="pal-badge" style="background:${WX_BG[pi.el]};color:${WX_COL[pi.el]}">${pi.palace}宫·${pi.el}</span>`:'')+`${HEXSYM[hexName]||''} ${hexName}`+tags.map(t=>`<span class="spec-tag">${t}</span>`).join('');
   const cT=hasChange?(cPi?`<span class="pal-badge" style="background:${WX_BG[cPi.el]};color:${WX_COL[cPi.el]}">${cPi.palace}宫·${cPi.el}</span>`:'')+`${HEXSYM[cHex]||''} ${cHex}`+cTags.map(t=>`<span class="spec-tag">${t}</span>`).join(''):`<span style="color:var(--tx3);font-size:.7rem;font-weight:400">无变卦</span>`;
-  let h=`<div class="hx-area"><div class="hx-wrap ${fcH}"><table class="hx-table" style="width:100%"><colgroup><col class="cfc"><col class="cfclq"><col class="csep"><col class="cshn"><col class="clq"><col class="cdz"><col class="cyao"><col class="csw"><col class="cmk"><col class="ccyao"><col class="ccdz"><col class="cclq"></colgroup><thead><tr><th class="cfc-cell th-gap"></th><th class="cfclq-cell th-gap"></th><th class="th-gap" style="border-right:1px solid var(--bdl)"></th><th class="th-gap"></th><th class="th-main" colspan="3">${mT}</th><th class="th-gap"></th><th class="th-gap"></th><th class="th-change" colspan="3">${cT}</th></tr></thead><tbody>`;
+  let h=`<div class="hx-area"><div class="hx-wrap ${fcH}"><table class="hx-table"><thead><tr>
+    <th class="cfc-cell th-gap"></th>
+    <th class="cfclq-cell th-gap"></th>
+    <th class="th-gap c-sep"></th>
+    <th class="th-gap"></th>
+    <th class="th-main" colspan="3">${mT}</th>
+    <th class="th-gap"></th>
+    <th class="th-gap"></th>
+    <th class="th-change" colspan="3">${cT}</th>
+  </tr></thead><tbody>`;
   for(let i=5;i>=0;i--){
     const line=lines[i],isYang=line===1||line===3,isOY=line===3,isOIn=line===2;
     const b=branches[i]||'',lqS=LQ_S[lqs[i]]||lqs[i]||'',sh=shen[i]||'';
@@ -1029,7 +1048,20 @@ function buildHexHtml(lines,gz){
     const bgB=bgBr[i]||'',bgLq=LQ_S[bgLqs[i]]||bgLqs[i]||'',bgBC=bgB?WX_CSS[BEL[bgB]]||'':'',showFC=hasFc&&bgB;
     const cB=cBr[i]||'',cLqS=LQ_S[cLqs[i]]||cLqs[i]||'',cBC=cB?WX_CSS[BEL[cB]]||'':'';
     const cLine=hasChange?cLines[i]:line,cIsYang=cLine===1||cLine===3;
-    h+=`<tr><td class="c-fc cfc-cell">${showFC?`<span class="${bgBC}">${bgB}</span>`:''}</td><td class="c-fclq cfclq-cell">${showFC?`<span class="${bgBC}">${bgLq}</span>`:''}</td><td class="c-sep" style="border-right:1px solid var(--bdl)"></td><td class="c-shen">${sh}</td><td class="c-lq"><span class="${bCls}">${lqS}</span></td><td class="c-dz"><span class="${bCls}">${b}</span></td><td>${yaoBar(isYang)}</td><td class="c-sw">${isShi?`<span class="yshi">世</span>`:isYing?`<span class="yying">应</span>`:''}</td><td class="c-mark">${mkTxt}</td><td>${hasChange?yaoBar(cIsYang):''}</td><td class="c-cdz">${hasChange?`<span class="${cBC}">${cB}</span>`:''}</td><td class="c-clq">${hasChange?`<span class="${cBC}">${cLqS}</span>`:''}</td></tr>`;
+    h+=`<tr>
+      <td class="c-fc cfc-cell">${showFC?`<span class="${bgBC}">${bgB}</span>`:''}</td>
+      <td class="c-fclq cfclq-cell">${showFC?`<span class="${bgBC}">${bgLq}</span>`:''}</td>
+      <td class="c-sep"></td>
+      <td class="c-shen">${sh}</td>
+      <td class="c-lq"><span class="${bCls}">${lqS}</span></td>
+      <td class="c-dz"><span class="${bCls}">${b}</span></td>
+      <td class="c-yao">${yaoBar(isYang)}</td>
+      <td class="c-sw">${isShi?`<span class="yshi">世</span>`:isYing?`<span class="yying">应</span>`:''}</td>
+      <td class="c-mark">${mkTxt}</td>
+      <td class="c-yao">${hasChange?yaoBar(cIsYang):''}</td>
+      <td class="c-cdz">${hasChange?`<span class="${cBC}">${cB}</span>`:''}</td>
+      <td class="c-clq">${hasChange?`<span class="${cBC}">${cLqS}</span>`:''}</td>
+    </tr>`;
   }
   h+=`</tbody></table></div>`;
   return h+'</div>';
@@ -1039,6 +1071,109 @@ function buildAnaHtml(lines,hexName,gz){
   let h=`<div class="ana-toggle" onclick="this.querySelector('.ana-icon').classList.toggle('open');this.nextElementSibling.classList.toggle('open')"><span class="ana-icon">▶</span><span style="font-size:.7rem;font-weight:600;letter-spacing:.06em">地支分析</span><span style="font-size:.63rem;color:var(--tx3);margin-left:4px">(点击展开)</span></div><div class="ana-body">`;
   ana.forEach(s=>{h+=`<div class="ana-sec"><div class="ana-sec-tit">${s.type}</div><div class="chip-row">`;s.items.forEach(it=>{const icons={六合:'🔗',三合:'△',冲:'⚡',刑:'✕',生:'→',被生:'←',克:'✖',被克:'◁',长生:'🌱',帝旺:'🔥',死:'💀',墓:'⬛',绝:'❌'};let icon='';for(const[k,v]of Object.entries(icons)){if(it.txt.includes(k)){icon=v;break;}}h+=`<span class="chip ${it.cls}">${icon}${it.txt}</span>`;});h+=`</div></div>`;});
   return h+'</div>';
+}
+
+// ================================================================
+// 神煞 (SHASHA) SYSTEM
+// ================================================================
+// 驿马：申子辰→寅，亥卯未→巳，寅午戌→申，巳酉丑→亥
+const YIMA={申:'寅',子:'寅',辰:'寅',亥:'巳',卯:'巳',未:'巳',寅:'申',午:'申',戌:'申',巳:'亥',酉:'亥',丑:'亥'};
+// 天乙贵人(甲戊庚→丑未, 乙己→子申, 丙丁→亥酉, 壬癸→卯巳, 辛→寅午, 庚...)
+const TIANYI={甲:['丑','未'],戊:['丑','未'],庚:['丑','未'],乙:['子','申'],己:['子','申'],丙:['亥','酉'],丁:['亥','酉'],壬:['卯','巳'],癸:['卯','巳'],辛:['寅','午']};
+// 桃花：申子辰→酉, 亥卯未→子, 寅午戌→卯, 巳酉丑→午
+const TAOHUA={申:'酉',子:'酉',辰:'酉',亥:'子',卯:'子',未:'子',寅:'卯',午:'卯',戌:'卯',巳:'午',酉:'午',丑:'午'};
+// 华盖：申子辰→辰, 亥卯未→未, 寅午戌→戌, 巳酉丑→丑
+const HUAGAI={申:'辰',子:'辰',辰:'辰',亥:'未',卯:'未',未:'未',寅:'戌',午:'戌',戌:'戌',巳:'丑',酉:'丑',丑:'丑'};
+// 劫煞：申子辰→巳, 亥卯未→寅, 寅午戌→亥, 巳酉丑→申
+const JIESHA={申:'巳',子:'巳',辰:'巳',亥:'寅',卯:'寅',未:'寅',寅:'亥',午:'亥',戌:'亥',巳:'申',酉:'申',丑:'申'};
+// 灾煞：申子辰→午, 亥卯未→卯, 寅午戌→子, 巳酉丑→酉
+const ZAISHA={申:'午',子:'午',辰:'午',亥:'卯',卯:'卯',未:'卯',寅:'子',午:'子',戌:'子',巳:'酉',酉:'酉',丑:'酉'};
+// 羊刃（阳干）：甲→卯,乙→辰,丙→午,丁→未,戊→午,己→未,庚→酉,辛→戌,壬→子,癸→丑
+const YANGREN={甲:'卯',乙:'辰',丙:'午',丁:'未',戊:'午',己:'未',庚:'酉',辛:'戌',壬:'子',癸:'丑'};
+// 日禄：甲→寅,乙→卯,丙→巳,丁→午,戊→巳,己→午,庚→申,辛→酉,壬→亥,癸→子
+const RILU={甲:'寅',乙:'卯',丙:'巳',丁:'午',戊:'巳',己:'午',庚:'申',辛:'酉',壬:'亥',癸:'子'};
+// 文昌：甲→巳,乙→午,丙→申,丁→酉,戊→申,己→酉,庚→亥,辛→子,壬→寅,癸→卯
+const WENCHANG={甲:'巳',乙:'午',丙:'申',丁:'酉',戊:'申',己:'酉',庚:'亥',辛:'子',壬:'寅',癸:'卯'};
+// 天医：月支前一位(子→亥, 丑→子, 寅→丑...)
+const TIANYI_M={子:'亥',丑:'子',寅:'丑',卯:'寅',辰:'卯',巳:'辰',午:'巳',未:'午',申:'未',酉:'申',戌:'酉',亥:'戌'};
+// 月德：寅午戌月→丙, 申子辰月→壬, 亥卯未月→甲, 巳酉丑月→庚 (天干)
+const YUEDE_M={寅:'丙',午:'丙',戌:'丙',申:'壬',子:'壬',辰:'壬',亥:'甲',卯:'甲',未:'甲',巳:'庚',酉:'庚',丑:'庚'};
+// 将星：申子辰→子, 亥卯未→卯, 寅午戌→午, 巳酉丑→酉
+const JIANGXING={申:'子',子:'子',辰:'子',亥:'卯',卯:'卯',未:'卯',寅:'午',午:'午',戌:'午',巳:'酉',酉:'酉',丑:'酉'};
+// 亡神：申子辰→亥, 亥卯未→寅, 寅午戌→巳, 巳酉丑→申
+const WANGSHEN={申:'亥',子:'亥',辰:'亥',亥:'寅',卯:'寅',未:'寅',寅:'巳',午:'巳',戌:'巳',巳:'申',酉:'申',丑:'申'};
+// 病符：当年太岁后一位
+const DZ_IDX={子:0,丑:1,寅:2,卯:3,辰:4,巳:5,午:6,未:7,申:8,酉:9,戌:10,亥:11};
+// 胎爻：年支前二位为胎
+// 卦身：起于世爻地支，以五行之气配合卦宫
+// 香闺：月支前三位
+// 床帐：日支前一位（与天医同，专指婚姻占）
+// 天马：寅午戌月→午, 申子辰月→寅, 亥卯未月→亥, 巳酉丑月→巳 (实为驿马参数变体)
+const TIANMA_M={寅:'午',午:'午',戌:'午',申:'寅',子:'寅',辰:'寅',亥:'亥',卯:'亥',未:'亥',巳:'巳',酉:'巳',丑:'巳'};
+// 吊客：月支+4位
+const DZ_LIST=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+
+function calcShasha(gz){
+  if(!gz)return[];
+  const yTG=gz.y[0],yDZ=gz.y[1],mDZ=gz.m[1],dTG=gz.d[0],dDZ=gz.d[1];
+  const results=[];
+  const add=(name,dz,cls='')=>results.push({name,dz,cls});
+
+  // 驿马 (from year branch)
+  if(YIMA[yDZ])add('驿马',YIMA[yDZ],'sha-gold');
+  // 天乙贵人 (from day TG)
+  const ty=TIANYI[dTG]||[];ty.forEach(dz=>add('贵人',dz,'sha-jade'));
+  // 桃花 (from year branch)
+  if(TAOHUA[yDZ])add('桃花',TAOHUA[yDZ]);
+  // 华盖 (from year branch)
+  if(HUAGAI[yDZ])add('华盖',HUAGAI[yDZ]);
+  // 劫煞 (from year branch)
+  if(JIESHA[yDZ])add('劫煞',JIESHA[yDZ],'sha-hit');
+  // 灾煞 (from year branch)
+  if(ZAISHA[yDZ])add('灾煞',ZAISHA[yDZ],'sha-hit');
+  // 羊刃 (from year TG)
+  if(YANGREN[yTG])add('羊刃',YANGREN[yTG],'sha-hit');
+  // 日禄 (from day TG)
+  if(RILU[dTG])add('日禄',RILU[dTG],'sha-jade');
+  // 文昌 (from day TG)
+  if(WENCHANG[dTG])add('文昌',WENCHANG[dTG],'sha-jade');
+  // 天医 (from month branch, 前一位)
+  if(TIANYI_M[mDZ])add('天医',TIANYI_M[mDZ],'sha-jade');
+  // 月德 (from month branch, 返回天干)
+  if(YUEDE_M[mDZ])add('月德',YUEDE_M[mDZ]+'干','sha-jade');
+  // 将星 (from year branch)
+  if(JIANGXING[yDZ])add('将星',JIANGXING[yDZ],'sha-gold');
+  // 亡神 (from year branch)
+  if(WANGSHEN[yDZ])add('亡神',WANGSHEN[yDZ],'sha-hit');
+  // 天马 (from month branch)
+  if(TIANMA_M[mDZ])add('天马',TIANMA_M[mDZ],'sha-gold');
+  // 病符 (year branch 前一位)
+  {const yi=DZ_IDX[yDZ]??-1;if(yi>=0)add('病符',DZ_LIST[(yi+11)%12],'sha-hit');}
+  // 吊客 (month branch +4)
+  {const mi=DZ_IDX[mDZ]??-1;if(mi>=0)add('吊客',DZ_LIST[(mi+4)%12],'sha-hit');}
+  // 香闺 (month branch +3)
+  {const mi=DZ_IDX[mDZ]??-1;if(mi>=0)add('香闺',DZ_LIST[(mi+3)%12]);}
+  // 床帐 (day branch +1, 婚姻占专用)
+  {const di=DZ_IDX[dDZ]??-1;if(di>=0)add('床帐',DZ_LIST[(di+1)%12]);}
+  // 胎爻 (year branch +2)
+  {const yi=DZ_IDX[yDZ]??-1;if(yi>=0)add('胎爻',DZ_LIST[(yi+2)%12]);}
+  return results;
+}
+
+function buildShashaHtml(lines,gz){
+  const sha=calcShasha(gz);if(!sha.length)return'';
+  // Check which shasha appear in the hexagram branches
+  const branches=getEBranches(lines);
+  const brSet=new Set(branches.filter(Boolean));
+  let h=`<div class="sha-section"><div class="sha-title">神煞参考</div><div class="sha-grid">`;
+  sha.forEach(s=>{
+    const inHex=brSet.has(s.dz);
+    h+=`<div class="sha-item ${s.cls}${inHex?' sha-hit':''}" title="${inHex?'★ 卦中有此支':''}">
+      <span class="sha-name">${s.name}</span>
+      <span class="sha-val">${s.dz}${inHex?' ★':''}</span>
+    </div>`;
+  });
+  return h+`</div></div>`;
 }
 
 // ================================================================
@@ -1117,7 +1252,9 @@ function castManual(){curLines=[...manualState];refreshResult();toast('手动起
 
 function refreshResult(){
   const gz=curGZ||renderGZ();
-  document.getElementById('hexRes').innerHTML=buildHexHtml(curLines,gz);
+  const hx=buildHexHtml(curLines,gz);
+  const sha=buildShashaHtml(curLines,gz);
+  document.getElementById('hexRes').innerHTML=hx+sha;
   document.getElementById('hexAna').innerHTML=buildAnaHtml(curLines,getHexName(curLines),gz);
   // Show after-cast view
   document.getElementById('castBefore').style.display='none';
@@ -1178,14 +1315,15 @@ function updCnt(){
 function renderRecFilt(){
   const usedFolders=new Set(recs.map(r=>r.folder).filter(Boolean));
   const usedTags=new Set(recs.flatMap(r=>r.tags||[]).filter(Boolean));
-  let h=`<button class="folder-btn${recFilt.folder===''&&recFilt.tag===''?' on':''}" onclick="recFilt={folder:'',tag:''};renderRL()">全部</button>`;
-  if(usedFolders.size>0){
-    h+=`<span class="rfilt-sep"></span>`;
-    cfg.folders.filter(f=>usedFolders.has(f.id)).forEach(f=>h+=`<button class="folder-btn${recFilt.folder===f.id?' on':''}" onclick="recFilt.folder='${f.id}';recFilt.tag='';renderRL()"><span>${f.emoji}</span>${f.name}</button>`);
-  }
+  let h=`<div style="font-size:.65rem;color:var(--tx3);font-weight:700;margin-bottom:3px">📁 分类（单选）</div>
+    <div class="folder-row">
+      <button class="folder-btn${recFilt.folder===''?' on':''}" onclick="recFilt.folder='';renderRL()">全部</button>`;
+  cfg.folders.filter(f=>usedFolders.has(f.id)).forEach(f=>h+=`<button class="folder-btn${recFilt.folder===f.id?' on':''}" onclick="recFilt.folder=recFilt.folder==='${f.id}'?'':'${f.id}';renderRL()"><span>${f.emoji}</span>${f.name}</button>`);
+  h+=`</div>`;
   if(usedTags.size>0){
-    h+=`<span class="rfilt-sep"></span>`;
-    cfg.tags.filter(t=>usedTags.has(t)).forEach(t=>h+=`<button class="tag-sel-btn${recFilt.tag===t?' on':''}" onclick="recFilt.tag='${t}';recFilt.folder='';renderRL()">#${t}</button>`);
+    h+=`<div style="font-size:.65rem;color:var(--tx3);font-weight:700;margin-bottom:3px;margin-top:4px">🏷 标签（多选）</div><div class="tag-row">`;
+    cfg.tags.filter(t=>usedTags.has(t)).forEach(t=>h+=`<button class="tag-sel-btn${recFilt.tag===t?' on':''}" onclick="recFilt.tag=recFilt.tag==='${t}'?'':'${t}';renderRL()">#${t}</button>`);
+    h+=`</div>`;
   }
   document.getElementById('recFilt').innerHTML=h;
 }
@@ -1268,7 +1406,7 @@ function renderRD(rec){
       </div>
     </div>`;
     if(rec.ganzhi){const g=rec.ganzhi;h+=`<div style="margin-bottom:9px"><div class="gz-row" style="max-width:300px">${['年','月','日','时'].map((l,i)=>{const v=[g.y,g.m,g.d,g.h][i];return`<div class="gz-cell"><div class="gz-lbl">${l}</div><div class="gz-val"><span class="${WX_CSS[tgEl(v[0])]||''}">${v[0]}</span><span class="${WX_CSS[dzEl(v[1])]||''}">${v[1]}</span></div></div>`;}).join('')}</div><div class="gz-ext" style="margin-top:4px"><span>空亡：</span><span>${(g.kw||[]).join('')}</span></div></div>`;}
-    h+=`<div style="margin-bottom:10px">${buildHexHtml(lines,gz)}</div>`;
+    h+=`<div style="margin-bottom:10px">${buildHexHtml(lines,gz)}${buildShashaHtml(lines,gz)}</div>`;
     h+=buildAnaHtml(lines,rec.hexName,gz);
     h+=`<div style="border-top:1px solid var(--bdl);padding-top:9px;margin-top:10px"><div style="font-size:.7rem;font-weight:700;color:var(--tx3);margin-bottom:6px;padding-left:4px;border-left:2px solid var(--ac)">📝 笔记</div><div id="rdMedWrap"></div></div>`;
     c.innerHTML=h;c._recId=rec.id;
@@ -1289,14 +1427,15 @@ function newNote(){
 function renderNBFilt(){
   const usedF=new Set(notes.map(n=>n.folder).filter(Boolean));
   const usedT=new Set(notes.flatMap(n=>n.tags||[]).filter(Boolean));
-  let h=`<button class="folder-btn${nbFilt.folder===''&&nbFilt.tag===''?' on':''}" onclick="nbFilt={folder:'',tag:''};renderNBList()">全部</button>`;
-  if(usedF.size>0){
-    h+=`<span class="rfilt-sep"></span>`;
-    cfg.folders.filter(f=>usedF.has(f.id)).forEach(f=>h+=`<button class="folder-btn${nbFilt.folder===f.id?' on':''}" onclick="nbFilt.folder='${f.id}';nbFilt.tag='';renderNBList()"><span>${f.emoji}</span>${f.name}</button>`);
-  }
+  let h=`<div style="font-size:.65rem;color:var(--tx3);font-weight:700;margin-bottom:3px">📁 分类（单选）</div>
+    <div class="folder-row">
+      <button class="folder-btn${nbFilt.folder===''?' on':''}" onclick="nbFilt.folder='';renderNBList()">全部</button>`;
+  cfg.folders.filter(f=>usedF.has(f.id)).forEach(f=>h+=`<button class="folder-btn${nbFilt.folder===f.id?' on':''}" onclick="nbFilt.folder=nbFilt.folder==='${f.id}'?'':'${f.id}';renderNBList()"><span>${f.emoji}</span>${f.name}</button>`);
+  h+=`</div>`;
   if(usedT.size>0){
-    h+=`<span class="rfilt-sep"></span>`;
-    cfg.tags.filter(t=>usedT.has(t)).forEach(t=>h+=`<button class="tag-sel-btn${nbFilt.tag===t?' on':''}" onclick="nbFilt.tag='${t}';nbFilt.folder='';renderNBList()">#${t}</button>`);
+    h+=`<div style="font-size:.65rem;color:var(--tx3);font-weight:700;margin-bottom:3px;margin-top:4px">🏷 标签（多选）</div><div class="tag-row">`;
+    cfg.tags.filter(t=>usedT.has(t)).forEach(t=>h+=`<button class="tag-sel-btn${nbFilt.tag===t?' on':''}" onclick="nbFilt.tag=nbFilt.tag==='${t}'?'':'${t}';renderNBList()">#${t}</button>`);
+    h+=`</div>`;
   }
   document.getElementById('nbFilt').innerHTML=h;
 }
@@ -1533,23 +1672,33 @@ function addLink(){
 }
 function removeLink(id){cfg.links=(cfg.links||[]).filter(l=>l.id!==id);saveAll();renderLinksManage();renderExternalTabs();toast('已删除');}
 function renderExternalTabs(){
+  // Remove old ext tab if present
+  document.querySelector('.ext-dropdown-tab')?.remove();
+  if(!(cfg.links||[]).length)return;
   const tabs=document.getElementById('mainTabs');
-  document.querySelectorAll('.ext-tab').forEach(t=>t.remove());
-  document.querySelectorAll('.ext-page').forEach(p=>p.remove());
-  (cfg.links||[]).forEach(l=>{
-    const tab=document.createElement('button');
-    tab.className='tab ext-tab';tab.dataset.p='ext_'+l.id;tab.textContent='🔗 '+l.name;
-    tab.onclick=()=>showExtSite(l);tabs.appendChild(tab);
-  });
+  const wrapper=document.createElement('div');
+  wrapper.className='tab ext-dropdown-tab';
+  wrapper.style.cssText='position:relative;padding:0;';
+  wrapper.innerHTML=`
+    <button class="tab" id="extTabBtn" onclick="toggleExtMenu(event)" style="gap:3px">
+      🔗 其他小站 <span style="font-size:.6rem">▾</span>
+    </button>
+    <div id="extMenu" style="display:none;position:absolute;top:100%;left:0;min-width:140px;background:var(--sf);border:1px solid var(--bdl);border-radius:var(--rs);box-shadow:var(--sh2);z-index:500;padding:4px 0;">
+      ${(cfg.links||[]).map(l=>`<a href="${l.url}" target="_blank" style="display:block;padding:8px 14px;font-size:.8rem;color:var(--tx2);text-decoration:none;white-space:nowrap;transition:var(--tr);" onmouseover="this.style.background='var(--bg2)'" onmouseout="this.style.background=''">${l.name}</a>`).join('')}
+    </div>`;
+  tabs.appendChild(wrapper);
 }
-function showExtSite(link){
-  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
-  document.querySelector(`.tab[data-p="ext_${link.id}"]`)?.classList.add('on');
-  let pg=document.getElementById('ext_'+link.id);
-  if(!pg){pg=document.createElement('div');pg.className='pg';pg.id='ext_'+link.id;pg.innerHTML=`<div style="padding:10px 0"><div style="font-size:.8rem;color:var(--tx3);margin-bottom:8px">正在加载 <a href="${link.url}" target="_blank">${link.url}</a>（如无法加载请点击链接在新窗口打开）</div><iframe src="${link.url}" class="ext-site-frame" sandbox="allow-scripts allow-same-origin allow-forms allow-navigation allow-popups"></iframe></div>`;document.querySelector('.main').appendChild(pg);}
-  pg.classList.add('on');
+function toggleExtMenu(e){
+  e.stopPropagation();
+  const m=document.getElementById('extMenu');
+  if(!m)return;
+  const isOpen=m.style.display!=='none';
+  // Close all other menus first
+  document.querySelectorAll('#extMenu').forEach(x=>x.style.display='none');
+  m.style.display=isOpen?'none':'block';
 }
+// Close ext menu when clicking elsewhere
+document.addEventListener('click',()=>{const m=document.getElementById('extMenu');if(m)m.style.display='none';});
 
 // ================================================================
 // GLOBAL SEARCH
